@@ -1,11 +1,17 @@
-import './App.scss';
+import React from 'react';
+import Navbar from './components/NavbarComponent/NavbarComponent';
+import { Switch, Route } from 'react-router-dom';
+import DashboardPageComponent from './pages/DashboardPageComponent/DashboardPageComponent';
 
-function App() {
+const App = () => {
   return (
     <div className="app">
-     Hello World 
+      <Navbar />
+      <Switch>
+        <Route path="/home" exact component={DashboardPageComponent} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
