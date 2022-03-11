@@ -10,7 +10,7 @@
 1. NodeJS express sever.
 1. MongoDB.
 1. React.
-1. mui/material.
+1. Ant design.
 1. Sass.
 1. styled component
 
@@ -19,10 +19,10 @@
 Follow the current naming convention and folder structure.
 
 ```
-MERN-to-do-app
+Crestera
 ├── client                   // Frontend
 |   ├── public               // Public folder
-|   ├── src                  // Add all the mongoose models here
+|   ├── src                  // Add all the source files here
 | 	|   ├── assets           // Assets folder
 | 	|   ├── components       // Components folder. Add all sub components here
 | 	|   ├── constants        // Add Constant files here
@@ -57,6 +57,10 @@ Follow the follwing steps to begin development.
 1. cd server. 
 1. Run `npm install`.
 1. Test locally using `npm start` command. //start Backend 
+
+note 
+if you haven't install globally install it 
+`npm i nodemon`
 
 ### `npm start`
 
