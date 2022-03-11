@@ -5,15 +5,19 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+//cors for handeling ports
+const cors = require("cors");
+
 //connect to db
 const connectDB = require('./config/db');
 connectDB();
 
 //middleware
 app.use(express.json());
+app.use(cors());
 
 //routes
-app.use('/v1/crestera', require('./routes/FolderRoutes'));
+app.use('/v1/crestera/folders', require('./routes/FolderRoutes'));
 
 //set port
 const PORT = process.env.PORT
