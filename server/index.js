@@ -17,7 +17,10 @@ app.use(express.json());
 app.use(cors());
 
 //routes
+//folderroutes
 app.use('/v1/crestera/folders', require('./routes/FolderRoutes'));
+//fileroutes
+app.use('/v1/crestera/files', require('./routes/FileRoutes'));
 
 //set port
 const PORT = process.env.PORT
