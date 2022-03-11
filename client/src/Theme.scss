@@ -1,20 +1,13 @@
 // ------ Theme ------
 
 //? Colors
-$blue: #0f96c3;
-$purple: #582753;
-$red: #7d292b;
-$green: #0b572e;
-
-$grey: #444e63;
-$greyIconsDark: rgba(#444e63, 0.75);
-$greyIconsLight: rgba(#444e63, 0.3);
-
 $white: #ffffff;
 $black: #000000;
 
+
 //? Border
-$borderGreyLight: 1px solid $greyIconsLight;
+
+
 
 //? Font Sizes
 
@@ -25,11 +18,7 @@ $font-medium: 16px;
 $font-large: 18px;
 $font-extra-large: 20px;
 
-$font-icon: 24px;
-
 //? Mixins
-@mixin flexbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
+
