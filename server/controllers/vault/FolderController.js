@@ -1,5 +1,5 @@
-const Folder = require("../models/Folder"); //model
-const ResponseService = require("../utils/ResponseService"); // Response service
+const Folder = require("../../models/vault/FolderModel"); 
+const ResponseService = require("../../utils/ResponseService"); 
 
 exports.createNew = (req, res) => {
   let newfolder = new Folder(req.body);

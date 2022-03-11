@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //controller
-FolderController = require("../controllers/FolderController");
+FolderController = require("../../controllers/vault/FolderController");
 
 //router - /v1/computers/
 //create
