@@ -25,7 +25,7 @@ exports.getAll = (async (req, res) => {
         .skip(page * limit).limit(limit);
 });
 
-exports.updateById = (req, res) => {
+exports.updateById =(async (req, res) => {
    File.findByIdAndUpdate(
         req.params.id,
         {
@@ -33,9 +33,9 @@ exports.updateById = (req, res) => {
         }, (err, doc) => {
             ResponseService.generalPayloadResponse(err, doc, res, 'file updated successfully');
         });
-};
+});
 
-exports.deleteById = (req, res, next) => {
+exports.deleteById = (async(req, res, next) => {
    File.findByIdAndRemove(
         req.params.id,
         {
@@ -43,4 +43,4 @@ exports.deleteById = (req, res, next) => {
         }, (err, doc) => {
             ResponseService.generalPayloadResponse(err, doc, res, 'file deleted successfully');
         });
-};
+});
