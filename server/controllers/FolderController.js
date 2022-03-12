@@ -1,6 +1,8 @@
-const Folder = require('../models/Folder');//model
+//Imports
+const Folder = require('../models/Folder');//Folder Model
 const ResponseService = require('../utils/ResponseService'); // Response service
 
+// Create New Folder
 exports.createNew = (req, res) => {
     let newfolder = new Folder(req.body);
     newfolder.save((err) => {
@@ -8,6 +10,7 @@ exports.createNew = (req, res) => {
     });
 };
 
+// Get All Folders
 exports.getAll = (async (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 10;
     const page = req.query.page ? parseInt(req.query.page) : 0;
@@ -25,6 +28,7 @@ exports.getAll = (async (req, res) => {
         .skip(page * limit).limit(limit);
 });
 
+// Update a Folder
 exports.updateById = (req, res) => {
     Folder.findByIdAndUpdate(
         req.params.id,
@@ -35,6 +39,7 @@ exports.updateById = (req, res) => {
         });
 };
 
+// Delete a Folder
 exports.deleteById = (req, res, next) => {
     Folder.findByIdAndRemove(
         req.params.id,

@@ -1,0 +1,94 @@
+// ------ Navbar ------
+@import "../../Theme.scss";
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  // background-color: lightgreen;
+
+  @include flexbox;
+
+  border-bottom: $borderGreyLight;
+  .navbar__container {
+    width: 90%;
+    height: 100%;
+    // background-color: lightcoral;
+
+    @include flexbox;
+
+    .navbar__menu {
+      width: 40px;
+      height: 100%;
+      // background-color: lightpink;
+
+      @include flexbox;
+      justify-content: flex-start;
+
+      .navbar__menu__container {
+        font-size: $font-icon;
+        color: $greyIconsDark;
+        cursor: pointer;
+      }
+    }
+    .navbar__logo {
+      width: calc(100% - 340px);
+      height: 100%;
+      // background-color: lightseagreen;
+
+      @include flexbox;
+      justify-content: flex-start;
+
+      img {
+        height: 30px;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+
+    .navbar__username {
+      width: 200px;
+      height: 100%;
+      // background-color: lightpink;
+
+      @include flexbox;
+      justify-content: flex-end;
+
+      p {
+        color: $grey;
+        font-size: $font-medium;
+      }
+    }
+    
+    .navbar__notification {
+      width: 60px;
+      height: 100%;
+      // background-color: lightcoral;
+
+      @include flexbox;
+
+      .navbar__notification__container {
+        font-size: $font-icon-small;
+        color: $greyIconsDark;
+        cursor: pointer;
+      }
+    }
+    
+    .navbar__userimage {
+      width: 40px;
+      height: 100%;
+      // background-color: lightseagreen;
+
+      @include flexbox;
+      justify-content: flex-end;
+
+      img {
+        height: 40px;
+        width: 40px;
+
+        border-radius: 50%;
+        border: 2px solid $blue;
+        cursor: pointer;
+      }
+    }
+  }
+}

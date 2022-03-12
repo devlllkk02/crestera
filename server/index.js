@@ -1,27 +1,24 @@
-// this will find and all the .env  file in root folder
-require('dotenv').config();
-
-//express
+//Imports
 const express = require('express');
-const app = express();
-
-//cors for handeling ports
 const cors = require("cors");
-
-//connect to db
 const connectDB = require('./config/db');
-connectDB();
+const PORT = process.env.PORT
 
-//middleware
+
+//Initialising Express Application
+const app = express();
 app.use(express.json());
 app.use(cors());
 
-//routes
-//folderroutes
+//Connecting to MongoDB
+connectDB();
+
+//Routes
+
+//? Folder Routes
 app.use('/v1/crestera/folders', require('./routes/FolderRoutes'));
-//fileroutes
+//? File Routes
 app.use('/v1/crestera/files', require('./routes/FileRoutes'));
 
-//set port
-const PORT = process.env.PORT
+//Listening
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
