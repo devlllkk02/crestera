@@ -1,8 +1,15 @@
+//------ Singup  ------
 import React from 'react'
 
 function Signup() {
   return (
-    <div className='signup'>Signup</div>
+    <div className='signup'>
+      <div className='signup__container'>
+        <form className='signup__form'>
+          
+        </form>
+      </div>
+    </div>
   )
 }
 
