@@ -14,6 +14,22 @@ function Signup() {
              <img className='signup__form__logo' src={Logo} alt="Cresetra"/>
              <h1>SIGN UP</h1>
            </div>
+            {/* Signup form content begins here */}
+            <div className='form-group'>
+                 <input type="text" className='form-control' placeholder='First Name'/>
+            </div>
+            <div className='form-group'>
+                 <input type="text" className='form-control' placeholder='Last Name'/>
+            </div>
+            <div className='form-group'>
+                 <input type="text" className='form-control' placeholder='Email'/>
+            </div>
+            <div className='form-group'>
+                 <input type="text" className='form-control' placeholder='Password'/>
+            </div>
+            <div className='form-group'>
+                 <input type="text" className='form-control' placeholder='Confirm Password'/>
+            </div>
         </form>
       </div>
     </div>
