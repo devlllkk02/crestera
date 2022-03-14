@@ -1,6 +1,7 @@
 //------ Singup  ------
 import React from 'react'
-import Logo from "../../../public/images/logos/Crestera-Logo.png"
+// import Logo from "./images/logos/Crestera-Logo.png"
+import "./Signup.scss";
 
 function Signup() {
   return (
@@ -11,7 +12,7 @@ function Signup() {
           {/* Signup header begins here. It contains company logo and "SIGN UP" label*/}
            <div className='signup__form__header'>
 
-             <img className='signup__form__logo' src={Logo} alt="Cresetra"/>
+             <img className='signup__form__logo' src="./images/logos/Crestera-Logo.png" alt="Cresetra"/>
              <h1>SIGN UP</h1>
            </div>
             {/* Signup form content begins here */}

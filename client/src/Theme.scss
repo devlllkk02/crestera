@@ -28,6 +28,11 @@ $font-extra-large: 20px;
 $font-icon: 20px;
 $font-icon-small: 18px;
 
+//? Fonts
+//import google font Roboto
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@100;300;400;600&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+$Signup-font-family:Roboto;
+
 //? Mixins
 @mixin flexbox {
   display: flex;

@@ -1,11 +1,13 @@
 import React from 'react';
 
-import Navbar from './components/Navbar/Navbar';
+// import Navbar from './components/Navbar/Navbar';
+import Signup from './components/Signup/Signup';
 
 const App = () => {
   return (
     <div className="app">
-      <Navbar />
+      {/* <Navbar /> */}
+      <Signup/>
     </div>
   );
 };
