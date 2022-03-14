@@ -30,6 +30,13 @@ function Signup() {
             <div className='form-group'>
                  <input type="text" className='form-control' placeholder='Confirm Password'/>
             </div>
+
+            {/* Sign up button */}
+            <button type="submit" className="form-btn">SIGN UP</button>
+                <p>
+                    Already Have An Account?
+                </p>
+                <a href="#">Login</a>
         </form>
       </div>
     </div>
