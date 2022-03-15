@@ -2,6 +2,9 @@
 import React from "react";
 import "./DashHome.scss";
 
+//Components
+import DashCard from "../Utils/DashCard/DashCard";
+
 function DashHome() {
   return (
     <div className="dashHome">
@@ -11,7 +14,9 @@ function DashHome() {
       <div className="dashHome__l2">
         <p>Recommended</p>
       </div>
-      <div className="dashHome__cards"></div>
+      <div className="dashHome__cards">
+        <DashCard />
+      </div>
       <div className="dashHome__search"></div>
       <div className="dashHome__header"></div>
       <div className="dashHome__items"></div>

@@ -15,10 +15,10 @@
     @include flexbox;
     justify-content: flex-start;
 
-    p{
-        color: $grey;
-        font-weight: 500;
-        font-size: $font-extra-large;
+    p {
+      color: $grey;
+      font-weight: 500;
+      font-size: $font-extra-large;
     }
   }
   .dashHome__l2 {
@@ -29,20 +29,24 @@
     @include flexbox;
     justify-content: flex-start;
 
-    p{
-        font-size: $font-small;
-        color: $grey;
+    p {
+      font-size: $font-small;
+      color: $grey;
     }
   }
   .dashHome__cards {
     width: 100%;
-    height: 250px;
+    height: 300px;
     background-color: lightpink;
+
+
   }
   .dashHome__search {
     width: 100%;
     height: 75px;
     background-color: coral;
+
+    
   }
   .dashHome__header {
   }
