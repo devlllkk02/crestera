@@ -1,0 +1,51 @@
+// ------ Navbar ------
+@import "../../../Theme.scss";
+
+.dashHome {
+  width: 90%;
+  height: 1000px;
+  background-color: lightgreen;
+  margin: 0px auto;
+
+  .dashHome__l1 {
+    width: 100%;
+    height: 75px;
+    background-color: lightcoral;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p{
+        color: $grey;
+        font-weight: 500;
+        font-size: $font-extra-large;
+    }
+  }
+  .dashHome__l2 {
+    width: 100%;
+    height: 30px;
+    background-color: lightblue;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p{
+        font-size: $font-small;
+        color: $grey;
+    }
+  }
+  .dashHome__cards {
+    width: 100%;
+    height: 250px;
+    background-color: lightpink;
+  }
+  .dashHome__search {
+    width: 100%;
+    height: 75px;
+    background-color: coral;
+  }
+  .dashHome__header {
+  }
+  .dashHome__title {
+  }
+}

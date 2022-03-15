@@ -2,6 +2,11 @@
 import React from "react";
 import "./Navbar.scss";
 
+//Images
+import profilePic from "../../assets/images/other/profilePicture.jpg"
+import cresteraLogo from "../../assets/images/logos/Crestera-Logo.png"
+
+//Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,7 +20,7 @@ function Navbar() {
           </div>
         </div>
         <div className="navbar__logo">
-          <img src="./images/logos/Crestera-Logo.png" alt="" />
+          <img src={cresteraLogo} alt="" />
         </div>
         <div className="navbar__username">
           <p>Janice Brownwell</p>
@@ -26,7 +31,7 @@ function Navbar() {
           </div>
         </div>
         <div className="navbar__userimage">
-          <img src="./images/other/profilePicture.jpg" alt="" />
+          <img src={profilePic} alt="" />
         </div>
       </div>
     </div>
