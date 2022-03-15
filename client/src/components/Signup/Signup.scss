@@ -19,26 +19,25 @@
         border-radius: 20px;
 
           .signup__form{
-              font-family: $Signup-font-family;
+              font-family: $font;
               text-align: center;
-              //center elements inside signup form
-              position: absolute;
-              top: 50%; 
-              left: 50%; 
-              transform: translate(-50%, -50%);
+              @include flexbox;
+              flex-direction: column;
              
              .signup__form__logo{
-                    height: 60px;
+                    height: 40px;
                     margin-top: 30px;
+                    margin: 0;
                   }
-             h1{
+
+              h1{
                     font-weight: 500;
-                    font-size: 25px;
+                    font-size: $font-extra-large;
                     line-height: 33px;
                     color: $blue;
                     margin-top: 7px; 
-                }
-              
+                    margin-bottom: 0;
+                }  
 
              .signup__form__control{
                 width: 300px;
@@ -48,7 +47,7 @@
                 padding-left: 10px;
                 } 
              input::placeholder{
-                    font-size: 12px;
+                    font-size: $font-extra-small;
                     line-height: 16px;
                     font-family: Roboto;
                     color: $form-black;
@@ -65,18 +64,46 @@
                     }
             .signup__form__submit-btn{
                 margin-top: 15px;
+                margin-bottom: 10px;
                 background: $blue;
                 border: 2px solid $blue;
                 box-sizing: border-box;
                 width: 200px;
                 height: 30px;
                 font-weight: 570;
-                font-size: 12px;
+                font-size: $font-extra-small;
                 color: $white;
+            }
+            hr {
+                border: none;
+                color: $light-grey;
+                background-color: $greyIconsLight;
+                overflow: visible;
+                text-align: center;
+                height: 0.1px;
+                width: 100%;
+            }
+            
+            hr:after {
+                background: $white;
+                color: $greyIconsLight;
+                content: 'OR';
+                font-size: 10px;
+                padding: 0 4px;
+                position: relative;
+                top: -13px;
+            }
+            .signup__form__google-btn{
+                width: 100%;
+                border: 2px solid $blue;
+                background-color: $white;
+                padding: 7px;
+                margin-top: 10px;
+                color: $blue;
             }
 
             p{
-                font-size: 12px;
+                font-size: $font-extra-small;
                 color: $grey;
                 margin-bottom: 2px;
                 
@@ -84,11 +111,10 @@
 
             a{
                 text-decoration: none;
-                font-size: 13px;
+                font-size: $font-extra-small;
                 color: $blue;
                 
             }
-
               
           }
     }

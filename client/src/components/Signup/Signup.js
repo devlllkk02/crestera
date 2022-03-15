@@ -31,6 +31,10 @@ function Signup() {
 
             {/* Sign up button */}
             <button type="submit" className="signup__form__submit-btn">SIGN UP</button>
+
+            <hr/>
+
+            <button type="submit" className="signup__form__google-btn">Sign up with google</button>
                 <p>
                     Already Have An Account?
                 </p>
