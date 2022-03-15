@@ -1,7 +1,10 @@
 //------ Singup  ------
 import React from 'react'
-// import Logo from "./images/logos/Crestera-Logo.png"
 import "./Signup.scss";
+
+//Images
+import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png"
+import Google from "../../assets/images/Icons/google.png"
 
 function Signup() {
   return (
@@ -10,7 +13,7 @@ function Signup() {
         {/* Signup form begins here */}
         <form className='signup__form'>
              {/* Signup header */}
-             <img className='signup__form__logo' src="./images/logos/Crestera-Logo.png" alt="Cresetra"/>
+             <img className='signup__form__logo' src={CresteraLogo} alt="Cresetra"/>
              <h1>SIGN UP</h1>
              {/* Signup content */}
             <div className='signup__form__group'>
@@ -34,7 +37,9 @@ function Signup() {
 
             <hr/>
 
-            <button type="submit" className="signup__form__google-btn">Sign up with google</button>
+            <button type="button" className="signup__form__google-btn">
+                 <img src={Google} alt="google-logo" width={30} className="signup__form__google"/>
+                 <span>Sign up with google</span></button>
                 <p>
                     Already Have An Account?
                 </p>
