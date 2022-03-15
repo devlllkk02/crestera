@@ -8,7 +8,9 @@ const UserCircleSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a name to the Circle"],
     },
-    addedOn: Date,
+    addedOn: {
+        type: Date,
+    },
     addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

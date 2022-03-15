@@ -2,13 +2,7 @@
 const Folder = require('../models/Folder');//Folder Model
 const ResponseService = require('../utils/ResponseService'); // Response service
 
-// Create New Folder
-exports.createNew = (req, res) => {
-    let newfolder = new Folder(req.body);
-    newfolder.save((err) => {
-        ResponseService.generalResponse(err, res, 'new folder created successfully');
-    });
-};
+
 
 // Get All Folders
 exports.getAll = (async (req, res) => {
@@ -28,24 +22,3 @@ exports.getAll = (async (req, res) => {
         .skip(page * limit).limit(limit);
 });
 
-// Update a Folder
-exports.updateById = (req, res) => {
-    Folder.findByIdAndUpdate(
-        req.params.id,
-        {
-           $set:req.body
-        }, (err, doc) => {
-            ResponseService.generalPayloadResponse(err, doc, res, 'folder updated successfully');
-        });
-};
-
-// Delete a Folder
-exports.deleteById = (req, res, next) => {
-    Folder.findByIdAndRemove(
-        req.params.id,
-        {
-           $set:req.body
-        }, (err, doc) => {
-            ResponseService.generalPayloadResponse(err, doc, res, 'folder deleted successfully');
-        });
-};

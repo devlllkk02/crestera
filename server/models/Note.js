@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const BoardSchema = new mongoose.Schema({
+const NoteSchema = new mongoose.Schema({
     id: {
         type: String,
     },
     name: {
         type: String,
-        required: [true, "Please provide a name to the Board"],
+        required: [true, "Please provide a name to the Note"],
     },
     addedOn: {
         type: Date,
@@ -41,4 +41,4 @@ const BoardSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("Board", BoardSchema);
+module.exports = mongoose.model("Note", NoteSchema);
