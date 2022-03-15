@@ -2,12 +2,12 @@ import React from "react";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
-import DashHome from "./components/Dashboard/DashHome/DashHome";
+import DashHome from "./pages/landing/landingPage";
 
 const App = () => {
   return (
     <div className="app">
-      <Navbar />
+      {/* <Navbar /> */}
       <DashHome />
     </div>
   );
