@@ -3,14 +3,14 @@
 
 .dashHome {
   width: 90%;
-  height: 1000px;
-  background-color: lightgreen;
+  min-height: 800px;
+  // background-color: lightgreen;
   margin: 0px auto;
 
   .dashHome__l1 {
     width: 100%;
     height: 75px;
-    background-color: lightcoral;
+    // background-color: lightcoral;
 
     @include flexbox;
     justify-content: flex-start;
@@ -24,7 +24,7 @@
   .dashHome__l2 {
     width: 100%;
     height: 30px;
-    background-color: lightblue;
+    // background-color: lightblue;
 
     @include flexbox;
     justify-content: flex-start;
@@ -37,19 +37,33 @@
   .dashHome__cards {
     width: 100%;
     height: 300px;
-    background-color: lightpink;
+    // background-color: lightpink;
 
-
+    margin-top: 10px;
+    padding-top: 10px;
+    .swiper {
+      height: 300px;
+      padding-left: 5px;
+    }
+    span.swiper-pagination-bullet {
+      // background-color: $blue;
+    }
   }
   .dashHome__search {
     width: 100%;
     height: 75px;
-    background-color: coral;
-
-    
+    // background-color: coral;
   }
   .dashHome__header {
+    width: 100%;
+    height: 75px;
+    // background-color: lightseagreen;
+
+    @include flexbox;
   }
-  .dashHome__title {
+  .dashHome__items {
+    width: 100%;
+    min-height: 400px;
+    // background-color: lightblue;
   }
 }

@@ -4,25 +4,38 @@
 .dashCard {
   width: 200px;
   height: 250px;
-  background-color: lightseagreen;
+  // background-color: lightseagreen;
 
   @include flexbox;
-  box-shadow: 0px 3px 2px -2px rgba($grey, 0.2);
+  box-shadow: 0px 0px 10px -2px rgba($grey, 0.3);
+  border-radius: 3px;
+
+  position: relative;
+  margin-top: 10px;
 
   .dashCard__container {
     width: 180px;
     height: 230px;
-    background-color: lightgreen;
+    // background-color: lightgreen;
 
     .dashCard__image {
       width: 180px;
       height: 180px;
-      background-color: lightslategray;
+      // background-color: lightslategray;
+    }
+
+    .dashCard__icon {
+      position: absolute;
+      bottom: 60px;
+
+      img {
+        height: 40px;
+      }
     }
     .dashCard__name {
       width: 180px;
-      height: 20px;
-      background-color: lightcoral;
+      height: 30px;
+      // background-color: lightcoral;
 
       @include flexbox;
       justify-content: flex-start;
@@ -34,8 +47,8 @@
     }
     .dashCard__username {
       width: 180px;
-      height: 30px;
-      background-color: lightblue;
+      height: 20px;
+      // background-color: lightblue;
 
       @include flexbox;
       justify-content: flex-start;
