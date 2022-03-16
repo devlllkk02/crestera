@@ -15,7 +15,7 @@ connectDB();
 
 //Routes
 //? User Routes
-app.use('/v1/crestera/userss', require('./routes/UserRoutes'));
+app.use('/v1/crestera/users', require('./routes/UserRoutes'));
 //? UserCircle Routes
 app.use('/v1/crestera/circles', require('./routes/UserCircleRoutes'));
 //? Board Routes
