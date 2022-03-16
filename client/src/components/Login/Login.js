@@ -17,14 +17,14 @@ function Login() {
           <div className="login__form__group">
             <input
               type="text"
-              className="login__from__control"
+              className="login__form__control"
               placeholder="Email"
             />
           </div>
           <div className="login__form__group">
             <input
               type="text"
-              className="login__from__control"
+              className="login__form__control"
               placeholder="Password"
             />
           </div>
@@ -44,7 +44,9 @@ function Login() {
             <span>Sign up with google</span>
           </button>
           <p>New User?</p>
-          <p className='login__signup__link'><Link to="/">Signup</Link></p>
+          <p className='login__signup__link'>
+            <Link to="/"  style={{ textDecoration: 'none' }}>Signup</Link>
+            </p>
           
         </form>
       </div>

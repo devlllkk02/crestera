@@ -46,7 +46,9 @@ function Signup() {
                     Already Have An Account?
                 </p>
                 
-                <p className='signup__login__link'><Link to="/login">Login</Link></p>
+                <p className='signup__login__link'>
+                     <Link to="/login"  style={{ textDecoration: 'none' }}>Login</Link>
+                </p>
         </form>
       </div>
     </div>
