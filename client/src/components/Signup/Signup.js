@@ -15,7 +15,10 @@ function Signup() {
         {/* Signup form begins here */}
         <form className='signup__form'>
              {/* Signup header */}
+             <Link to="/">
              <img className='signup__form__logo' src={CresteraLogo} alt="Cresetra"/>
+             </Link>
+             
              <h1>SIGN UP</h1>
              {/* Signup content */}
             <div className='signup__form__group'>

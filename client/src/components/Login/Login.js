@@ -11,7 +11,10 @@ function Login() {
     <div className="login">
       <div className="login__container">
         <form className="login__form">
-          <img src={Logo} alt="cresetra__logo" className="login__form__logo" height={40}/>
+        <Link to="/">
+        <img src={Logo} alt="cresetra__logo" className="login__form__logo" height={40}/>
+       </Link>
+          
           <h1>LOGIN</h1>
 
           <div className="login__form__group">
