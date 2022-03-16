@@ -11,10 +11,10 @@ const landingPage = () => {
           <img src={logo} width={400} /> 
         </div>
         <div className="button__container">
-          <NavLink to="/SignIn">
+          <NavLink to="/SignUp">
           <button className="sign__up">SIGN UP</button>
           </NavLink>
-          <NavLink to="/SignUp">
+          <NavLink to="/SignIn">
           <button className="log__in">LOG IN</button>
           </NavLink>
           
