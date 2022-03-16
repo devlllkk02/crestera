@@ -133,7 +133,7 @@ exports.getByQueryLimitAndSort = function (query, limit, sortQuery, type, res) {
     }).sort(sortQuery).limit(limit);
 }
 
-/* Read n items by query [ NO PAGINATION ]
+/* Read n items by query 
     [/] PAGINATION
     [/] SORTING
     [/] LIMIT
@@ -145,7 +145,7 @@ exports.getByQueryPaginate = function (query, limit, sortQuery, page, type, res)
     }).sort(sortQuery).skip(page * limit).limit(limit);
 }
 
-/* Read n items by query [ NO PAGINATION ]
+/* Read n items by query 
     [/] PAGINATION
     [X] SORTING
     [/] LIMIT
