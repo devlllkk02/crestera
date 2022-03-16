@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // Components
 import Navbar from "./components/Navbar/Navbar";
 import DashHome from "./components/Dashboard/DashHome/DashHome";
@@ -10,9 +10,12 @@ const App = () => {
   return (
     <div className="app">
       <Navbar />
-      <Routes>
-        <Route path="/" exact component={DashHome} />
-      </Routes>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<DashHome/>} />
+        </Routes>
+      </Router>
+
     </div>
   );
 };
