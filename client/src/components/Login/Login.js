@@ -7,10 +7,10 @@ import Google from "../../assets/images/Icons/google.png";
 
 function Login() {
   return (
-    <div className="logo">
-      <div className="logo__container">
+    <div className="login">
+      <div className="login__container">
         <form className="login__form">
-          <img src={Logo} alt="cresetra__logo" />
+          <img src={Logo} alt="cresetra__logo" className="login__form__logo" height={40}/>
           <h1>LOGIN</h1>
 
           <div className="login__form__group">
@@ -33,12 +33,12 @@ function Login() {
           </button>
           <hr />
 
-          <button type="button" className="signup__form__google-btn">
+          <button type="button" className="login__form__google__btn">
             <img
               src={Google}
               alt="google-logo"
               width={30}
-              className="signup__form__google"
+              className="login__form__google"
             />
             <span>Sign up with google</span>
           </button>
