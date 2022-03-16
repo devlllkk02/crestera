@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.scss";
+import { Link } from "react-router-dom";
 
 //images
 import Logo from "../../assets/images/logos/Crestera-Logo.png";
@@ -43,7 +44,8 @@ function Login() {
             <span>Sign up with google</span>
           </button>
           <p>New User?</p>
-          <a href="#">Signup</a>
+          <p className='login__signup__link'><Link to="/">Signup</Link></p>
+          
         </form>
       </div>
     </div>

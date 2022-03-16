@@ -1,12 +1,14 @@
 //------ Singup  ------
 import React from 'react'
 import "./Signup.scss";
+import { Link } from "react-router-dom";
 
 //Images
 import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png"
 import Google from "../../assets/images/Icons/google.png"
 
 function Signup() {
+     
   return (
     <div className='signup'>
       <div className='signup__container'>
@@ -43,7 +45,8 @@ function Signup() {
                 <p>
                     Already Have An Account?
                 </p>
-                <a href="#">Login</a>
+                
+                <p className='signup__login__link'><Link to="/login">Login</Link></p>
         </form>
       </div>
     </div>
