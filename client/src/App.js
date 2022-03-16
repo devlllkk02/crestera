@@ -1,24 +1,30 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+// Components
+import Navbar from "./components/Navbar/Navbar";
+import Landing from "./pages/landing/landingPage";
+import DashHome from './components/Dashboard/DashHome/DashHome';
 import Login from "./components/Login/Login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from './components/Signup/Signup';
 
-// import Navbar from "./components/Navbar/Navbar";
-// import DashHome from "./components/Dashboard/DashHome/DashHome";
-
+//? note add rotes
 const App = () => {
   return (
     <div className="app">
-    
-      {/* <Navbar />
-      <DashHome /> */}
+     
+      <Navbar />
       <Router>
         <Routes>
-          <Route path="/" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route exact path="/" element={<Landing/>} />
+          <Route exact path="/SignIn" element={<DashHome/>} />
+          <Route exact path="/SignUp" element={<DashHome/>} />
+          <Route exact path="/DashBoard" element={<DashHome/>} />
+          <Route exact path="/SignUp" element={<Signup />} />
+          <Route exact path="/SignIn" element={<Login />} />
+          
         </Routes>
       </Router>
-     
 
     </div>
   );

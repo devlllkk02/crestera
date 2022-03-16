@@ -14,7 +14,14 @@ app.use(cors());
 connectDB();
 
 //Routes
-
+//? User Routes
+app.use('/v1/crestera/users', require('./routes/UserRoutes'));
+//? UserCircle Routes
+app.use('/v1/crestera/circles', require('./routes/UserCircleRoutes'));
+//? Board Routes
+app.use('/v1/crestera/boards', require('./routes/BoardRoutes'));
+//? note Routes
+app.use('/v1/crestera/notes', require('./routes/NoteRoutes'));
 //? Folder Routes
 app.use('/v1/crestera/folders', require('./routes/FolderRoutes'));
 //? File Routes
