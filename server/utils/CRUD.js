@@ -4,10 +4,10 @@ const ResponseService = require('./ResponseService'); // Response service
 // models
 const User = require('../models/User');
 const UserCircle = require('../models/UserCircle');
-const Board = require('../models/UserCircle');
-const Note = require('../models/UserCircle');
-const File = require('../models/UserCircle');
-const Folder = require('../models/UserCircle');
+const Board = require('../models/Board');
+const Note = require('../models/Note');
+const File = require('../models/File');
+const Folder = require('../models/Folder');
 
 const Types = require('./Types') // Model types
 
@@ -60,7 +60,7 @@ exports.create = function (val, type, res) {
 // Update by ID
 exports.updateById = function (id, val, type, res) {
     const model = getModelByType(type);
-    model.findByIdAndUpdate(id, val, { new: true }, (err, doc) => {
+    model.findByIdAndUpdate(id, val, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res, "Updated");
     });
 }

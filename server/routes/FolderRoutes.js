@@ -17,7 +17,7 @@ router.get('/', (req, res) => CRUD.getByQuery({}, Types.FOLDER, res));
 
 //router - /v1/crestera/folders/id
 // Update
-router.put('/', (req, res) => CRUD.updateById(req.body.id, req.body,  Types.FOLDER, res));
+router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.FOLDER, res));
 
 // Get by id
 router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.FOLDER, res));
