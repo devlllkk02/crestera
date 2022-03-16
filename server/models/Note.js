@@ -6,7 +6,6 @@ const NoteSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: [true, "Please provide a name to the Note"],
     },
     addedOn: {
         type: Date,

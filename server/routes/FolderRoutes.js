@@ -12,7 +12,8 @@ FolderController = require('../controllers/FolderController');
 router.post('/', (req, res) => CRUD.create(req.body, Types.FOLDER, res));
 
 //get all
-router.route('/').get(FolderController.getAll);
+// router.route('/').get(FolderController.getAll);
+router.get('/', (req, res) => CRUD.getByQuery({}, Types.FOLDER, res));
 
 //router - /v1/crestera/folders/id
 // Update
