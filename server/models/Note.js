@@ -10,6 +10,9 @@ const NoteSchema = new mongoose.Schema({
     content: {
         type: String,
     },
+    thumbnail: {
+        type: String,
+    },
     addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
