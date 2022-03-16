@@ -45,7 +45,7 @@ function Login() {
           </button>
           <p>New User?</p>
           <p className='login__signup__link'>
-            <Link to="/"  style={{ textDecoration: 'none' }}>Signup</Link>
+            <Link to="/SignUp"  style={{ textDecoration: 'none' }}>Signup</Link>
             </p>
           
         </form>

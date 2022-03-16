@@ -47,7 +47,7 @@ function Signup() {
                 </p>
                 
                 <p className='signup__login__link'>
-                     <Link to="/login"  style={{ textDecoration: 'none' }}>Login</Link>
+                     <Link to="/SignIn"  style={{ textDecoration: 'none' }}>Login</Link>
                 </p>
         </form>
       </div>
