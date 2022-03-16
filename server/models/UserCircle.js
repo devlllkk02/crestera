@@ -6,7 +6,6 @@ const UserCircleSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: [true, "Please provide a name to the Circle"],
     },
     addedOn: {
         type: Date,
