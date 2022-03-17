@@ -8,6 +8,7 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path="/dashboard" element={<DashHomePage />} />
           <Route exact path="/dashboard/board" element={<DashBoardPage />} />
           <Route exact path="/dashboard/note" element={<DashNotePage />} />
+          <Route exact path="/profile" element={<UserProfilePage />} />
         </Routes>
       </Router>
     </div>

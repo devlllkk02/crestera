@@ -1,7 +1,9 @@
 //? ------ DashNote Page  ------
 import React from "react";
-import DashNote from "../../components/Dashboard/DashNote/DashNote";
+
+//Components
 import Navbar from "../../components/Navbar/Navbar";
+import DashNote from "../../components/Dashboard/DashNote/DashNote";
 
 function DashNotePage() {
   return (

@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
 
+//Pacakages
+import { Link } from "react-router-dom";
+
 //Images
 import ProfilePic from "../../assets/images/other/profilePicture.jpg";
 import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
@@ -49,7 +52,9 @@ function Navbar({ page }) {
             <img src={setLogo()} alt="" />
           </div>
           <div className="navbar__username">
-            <p>Janice Brownwell</p>
+            <Link to="/profile" style={{ textDecoration: "none" }}>
+              <p>Janice Brownwell</p>
+            </Link>
           </div>
           <div className="navbar__notification">
             <div className="navbar__notification__container">
@@ -57,7 +62,9 @@ function Navbar({ page }) {
             </div>
           </div>
           <div className="navbar__userimage">
-            <img src={ProfilePic} alt="" />
+            <Link to="/profile">
+              <img src={ProfilePic} alt="" />
+            </Link>
           </div>
         </div>
         {isOpen && (

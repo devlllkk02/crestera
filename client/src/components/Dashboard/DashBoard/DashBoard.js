@@ -56,7 +56,7 @@ function DashBoard() {
       </div>
       {/* Header */}
       <div className="dashBoard__header">
-        <DashHeader />
+        <DashHeader title1="Name" title2="Owned By" title3="Date Modified" />
       </div>
       {/* Items */}
       <div className="dashBoard__items">

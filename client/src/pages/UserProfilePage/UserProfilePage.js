@@ -1,15 +1,15 @@
-//? ------ DashHome Page  ------
+//? ------ User Profile Page  ------
 import React from "react";
 
-//Components
+// Components
 import Navbar from "../../components/Navbar/Navbar";
-import DashHome from "../../components/Dashboard/DashHome/DashHome";
+import UserProfile from "../../components/UserProfile/UserProfile";
 
 function DashHomePage() {
   return (
     <>
       <Navbar page="crestera" />
-      <DashHome />
+      <UserProfile />
     </>
   );
 }
