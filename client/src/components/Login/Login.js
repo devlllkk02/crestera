@@ -11,10 +11,15 @@ function Login() {
     <div className="login">
       <div className="login__container">
         <form className="login__form">
-        <Link to="/">
-        <img src={Logo} alt="cresetra__logo" className="login__form__logo" height={40}/>
-       </Link>
-          
+          <Link to="/">
+            <img
+              src={Logo}
+              alt="cresetra__logo"
+              className="login__form__logo"
+              height={40}
+            />
+          </Link>
+
           <h1>LOGIN</h1>
 
           <div className="login__form__group">
@@ -31,10 +36,12 @@ function Login() {
               placeholder="Password"
             />
           </div>
+          <Link to="/dashboard">
+            <button type="submit" className="login__form__btn">
+              LOGIN
+            </button>
+          </Link>
 
-          <button type="submit" className="login__form__btn">
-            LOGIN
-          </button>
           <hr />
 
           <button type="button" className="login__form__google__btn">
@@ -47,10 +54,11 @@ function Login() {
             <span>Sign up with google</span>
           </button>
           <p>New User?</p>
-          <p className='login__signup__link'>
-            <Link to="/SignUp"  style={{ textDecoration: 'none' }}>Signup</Link>
-            </p>
-          
+          <p className="login__signup__link">
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              Signup
+            </Link>
+          </p>
         </form>
       </div>
     </div>

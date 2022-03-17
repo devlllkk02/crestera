@@ -22,13 +22,22 @@
       width: 180px;
       height: 180px;
       // background-color: lightslategray;
+      background-color: rgba($grey, 0.05);
+
+      @include flexbox;
+      img {
+        height: 100px;
+        opacity: 0.2;
+      }
     }
 
     .dashCard__icon {
       position: absolute;
-      bottom: 60px;
+      bottom: 56px;
+      left: 12px;
 
       img {
+        display: none;
         height: 40px;
       }
     }

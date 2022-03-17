@@ -1,29 +1,27 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// Components
-import Navbar from "./components/Navbar/Navbar";
-import Landing from "./pages/landing/landingPage";
-import DashHome from './components/Dashboard/DashHome/DashHome';
-import Login from "./components/Login/Login";
-import Signup from './components/Signup/Signup';
+// Pages
+import LandingPage from "./pages/LandingPage/LandingPage";
+import DashHomePage from "./pages/DashHomePage/DashHomePage";
+import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
+import DashNotePage from "./pages/DashNotePage/DashNotePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
 
-//? note add rotes
 const App = () => {
   return (
     <div className="app">
-     
-      <Navbar />
       <Router>
         <Routes>
-          <Route exact path="/" element={<Landing/>} />
-          <Route exact path="/DashBoard" element={<DashHome/>} />
-          <Route exact path="/SignUp" element={<Signup />} />
-          <Route exact path="/SignIn" element={<Login />} />
-          
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/signup" element={<SignupPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/dashboard" element={<DashHomePage />} />
+          <Route exact path="/dashboard/board" element={<DashBoardPage />} />
+          <Route exact path="/dashboard/note" element={<DashNotePage />} />
         </Routes>
       </Router>
-
     </div>
   );
 };

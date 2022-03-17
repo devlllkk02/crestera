@@ -1,13 +1,13 @@
-// ------ DashHome ------
+// ------ dashNote ------
 @import "../../../Theme.scss";
 
-.dashHome {
+.dashNote {
   width: 90%;
   min-height: 800px;
   // background-color: lightgreen;
   margin: 0px auto;
 
-  .dashHome__l1 {
+  .dashNote__l1 {
     width: 100%;
     height: 75px;
     // background-color: lightcoral;
@@ -21,7 +21,7 @@
       font-size: $font-extra-large;
     }
   }
-  .dashHome__l2 {
+  .dashNote__l2 {
     width: 100%;
     height: 30px;
     // background-color: lightblue;
@@ -34,7 +34,7 @@
       color: $grey;
     }
   }
-  .dashHome__cards {
+  .dashNote__cards {
     width: 100%;
     height: 300px;
     // background-color: lightpink;
@@ -49,19 +49,19 @@
       // background-color: $blue;
     }
   }
-  .dashHome__search {
+  .dashNote__search {
     width: 100%;
     height: 75px;
     // background-color: coral;
   }
-  .dashHome__header {
+  .dashNote__header {
     width: 100%;
     height: 75px;
     // background-color: lightseagreen;
 
     @include flexbox;
   }
-  .dashHome__items {
+  .dashNote__items {
     width: 100%;
     min-height: 400px;
     // background-color: lightblue;

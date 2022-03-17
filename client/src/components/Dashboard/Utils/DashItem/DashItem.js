@@ -13,7 +13,7 @@ import {
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 
-function DashItem({ fileIcon, fileName, title1, title2 }) {
+function DashItem({ fileIcon, fileName, title1, title2, shared }) {
   return (
     <div className="dashItem">
       <div className="dashItem__fileIcon">
@@ -27,7 +27,7 @@ function DashItem({ fileIcon, fileName, title1, title2 }) {
       </div>
       <div className="dashItem__middleIcon">
         <div className="dashItem__middleIcon__container">
-          <FontAwesomeIcon icon={faUserFriends} />
+          {shared && <FontAwesomeIcon icon={faUserFriends} />}
         </div>
       </div>
       <div className="dashItem__title1">

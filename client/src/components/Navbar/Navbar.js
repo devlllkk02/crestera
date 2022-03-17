@@ -3,16 +3,31 @@ import React, { useState } from "react";
 import "./Navbar.scss";
 
 //Images
-import profilePic from "../../assets/images/other/profilePicture.jpg";
-import cresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
+import ProfilePic from "../../assets/images/other/profilePicture.jpg";
+import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
+import CresteraBoardLogo from "../../assets/images/logos/Crestera-Board.png";
+import CresteraNoteLogo from "../../assets/images/logos/Crestera-Note.png";
+import CresteraVaultLogo from "../../assets/images/logos/Crestera-Vault.png";
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell, faClose } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(!false);
+function Navbar({ page }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const setLogo = () => {
+    if (page == "board") {
+      return CresteraBoardLogo;
+    } else if (page == "note") {
+      return CresteraNoteLogo;
+    } else if (page == "vault") {
+      return CresteraVaultLogo;
+    } else {
+      return CresteraLogo;
+    }
+  };
 
   return (
     <>
@@ -31,7 +46,7 @@ function Navbar() {
             </div>
           </div>
           <div className="navbar__logo">
-            <img src={cresteraLogo} alt="" />
+            <img src={setLogo()} alt="" />
           </div>
           <div className="navbar__username">
             <p>Janice Brownwell</p>
@@ -42,12 +57,12 @@ function Navbar() {
             </div>
           </div>
           <div className="navbar__userimage">
-            <img src={profilePic} alt="" />
+            <img src={ProfilePic} alt="" />
           </div>
         </div>
         {isOpen && (
           <div className="navbar__sidebar">
-            <Sidebar />
+            <Sidebar page={page} />
             <div className="sidebar__rightBorder"></div>
           </div>
         )}

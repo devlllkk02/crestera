@@ -1,6 +1,6 @@
-// ------ DashHome  ------
+// ------ DashNote  ------
 import React from "react";
-import "./DashHome.scss";
+import "./DashNote.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -14,19 +14,19 @@ import DashHeader from "../Utils/DashHeader/DashHeader";
 import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 
-function DashHome() {
+function DashNote() {
   return (
-    <div className="dashHome">
+    <div className="dashNote">
       {/* L1 */}
-      <div className="dashHome__l1">
+      <div className="dashNote__l1">
         <p>Good Morning, Janice</p>
       </div>
       {/* L2 */}
-      <div className="dashHome__l2">
+      <div className="dashNote__l2">
         <p>Recommended</p>
       </div>
       {/* Cards */}
-      <div className="dashHome__cards">
+      <div className="dashNote__cards">
         <Swiper
           pagination={{ clickable: true }}
           modules={[Pagination]}
@@ -38,13 +38,6 @@ function DashHome() {
               fileType="note"
               fileName="Note 01"
               username="Naveen Liyanage"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <DashCard
-              fileType="board"
-              fileName="Board 01"
-              username="Janice Brownwell"
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -63,13 +56,6 @@ function DashHome() {
           </SwiperSlide>
           <SwiperSlide>
             <DashCard
-              fileType="board"
-              fileName="Board 02"
-              username="Naveen Liyanage"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <DashCard
               fileType="note"
               fileName="Note 04"
               username="Janice Brownwell"
@@ -78,28 +64,21 @@ function DashHome() {
         </Swiper>
       </div>
       {/* Search */}
-      <div className="dashHome__search">
-        <DashSearch page="crestera" />
+      <div className="dashNote__search">
+        <DashSearch page="note" />
       </div>
       {/* Header */}
-      <div className="dashHome__header">
+      <div className="dashNote__header">
         <DashHeader />
       </div>
       {/* Items */}
-      <div className="dashHome__items">
+      <div className="dashNote__items">
         <DashItem
           fileIcon="note"
           fileName="Note 01"
           shared={true}
           title1="Naveen Liyanage"
           title2="Jan 12, 2022"
-        />
-        <DashItem
-          fileIcon="board"
-          fileName="Board 01"
-          shared={false}
-          title1="Janice Brownwell"
-          title2="Jan 10, 2022"
         />
         <DashItem
           fileIcon="note"
@@ -115,14 +94,6 @@ function DashHome() {
           title1="Janith Thenuka"
           title2="Jan 07, 2022"
         />
-
-        <DashItem
-          fileIcon="board"
-          fileName="Board 02"
-          shared={true}
-          title1="Naveen Liyanage"
-          title2="Jan 07, 2022"
-        />
         <DashItem
           fileIcon="note"
           fileName="Note 04"
@@ -134,4 +105,4 @@ function DashHome() {
   );
 }
 
-export default DashHome;
+export default DashNote;
