@@ -2,25 +2,26 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // Components
 import Navbar from "./components/Navbar/Navbar";
-import DashHome from "./components/Dashboard/DashHome/DashHome";
 import UserCirclesAll from './components/Usercircles/UserCirclesAll/UserCirclesAll';
-import Landing from './pages/landing/landingPage';
 import UserCirclesCreate from './components/Usercircles/UserCirclesCreate/UserCirclesCreate';
 import UserCircle from './components/Usercircles/UserCircle/UserCircle';
 import UserCirclesPublic from './components/Usercircles/UserCirclesPublic/UserCirclesPublic';
 import UserCirclesPrivate from './components/Usercircles/UserCirclesPrivate/UserCirclesPrivate';
 
-//? note add rotes
+// Pages
+import LandingPage from "./pages/LandingPage/LandingPage";
+import DashHomePage from "./pages/DashHomePage/DashHomePage";
+import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
+import DashNotePage from "./pages/DashNotePage/DashNotePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+
 const App = () => {
   return (
     <div className="app">
-      <Navbar />
       <Router>
         <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/SignIn" element={<DashHome />} />
-          <Route exact path="/SignUp" element={<DashHome />} />
-          <Route exact path="/DashBoard" element={<DashHome />} />
           <Route exact path="/UserCirclesAll" element={<UserCirclesAll />} />
           <Route
             exact
@@ -38,6 +39,13 @@ const App = () => {
             element={<UserCirclesCreate />}
           />
           <Route exact path="/UserCircle" element={<UserCircle />} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/signup" element={<SignupPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/dashboard" element={<DashHomePage />} />
+          <Route exact path="/dashboard/board" element={<DashBoardPage />} />
+          <Route exact path="/dashboard/note" element={<DashNotePage />} />
+          <Route exact path="/profile" element={<UserProfilePage />} />
         </Routes>
       </Router>
     </div>

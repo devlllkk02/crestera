@@ -15,7 +15,7 @@ router.get('/', (req, res) => CRUD.getByQuery({}, Types.USERCIRCLE, res));
 
 //router - /v1/crestera/circles/id
 // Update
-router.put('/', (req, res) => CRUD.updateById(req.body.id, req.body,  Types.USERCIRCLE, res));
+router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.USERCIRCLE, res));
 
 // Get by id
 router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.USERCIRCLE, res));

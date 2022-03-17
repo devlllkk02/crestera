@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
 
 const BoardSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
     name: {
         type: String,
-        required: [true, "Please provide a name to the Board"],
     },
     addedOn: {
         type: Date,
     },
     content: {
+        type: String,
+    },
+    thumbnail: {
         type: String,
     },
     addedBy: {

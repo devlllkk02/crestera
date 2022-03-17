@@ -17,7 +17,7 @@ router.route('/').get(fileController.getAll);
 
 //router - /v1/crestera/files/id
 // Update
-router.put('/', (req, res) => CRUD.updateById(req.body.id, req.body,  Types.FILE, res));
+router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.FILE, res));
 
 // Get by id
 router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.FILE, res));

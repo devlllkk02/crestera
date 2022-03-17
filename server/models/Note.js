@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
 
 const NoteSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
     name: {
         type: String,
-        required: [true, "Please provide a name to the Note"],
     },
     addedOn: {
         type: Date,
     },
     content: {
+        type: String,
+    },
+    thumbnail: {
         type: String,
     },
     addedBy: {

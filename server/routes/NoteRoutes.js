@@ -15,7 +15,7 @@ router.get('/', (req, res) => CRUD.getByQuery({}, Types.NOTE, res));
 
 //router - /v1/crestera/notes/id
 // Update
-router.put('/', (req, res) => CRUD.updateById(req.body.id, req.body,  Types.NOTE, res));
+router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.NOTE, res));
 
 // Get by id
 router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.NOTE, res));

@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 
 const FolderSchema = new mongoose.Schema({
-  id: {
-    type: String,
-  },
   name: {
     type: String,
-    required: [true, "Please provide a name to the folder"],
   },
   addedOn: {
     type: Date,

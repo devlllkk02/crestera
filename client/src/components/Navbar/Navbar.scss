@@ -5,8 +5,11 @@
   width: 100%;
   height: 60px;
   // background-color: lightgreen;
+  background-color: $white;
 
   @include flexbox;
+  position: fixed;
+  z-index: 5;
 
   border-bottom: $borderGreyLight;
   .navbar__container {
@@ -58,7 +61,7 @@
         font-size: $font-medium;
       }
     }
-    
+
     .navbar__notification {
       width: 60px;
       height: 100%;
@@ -72,7 +75,7 @@
         cursor: pointer;
       }
     }
-    
+
     .navbar__userimage {
       width: 40px;
       height: 100%;
@@ -91,4 +94,36 @@
       }
     }
   }
+
+  .navbar__filler {
+    width: 100%;
+    height: 60px;
+    background-color: red;
+  }
+
+  .navbar__sidebar {
+    height: 100vh;
+    width: 100%;
+    // background-color: lightcoral;
+    position: fixed;
+    top: 61px;
+    left: 0px;
+
+    z-index: 10;
+
+    .sidebar__rightBorder {
+      height: 100vh;
+      width: 1px;
+      border-right: $borderGreyLight;
+
+      position: absolute;
+      left: 349px;
+    }
+  }
+}
+
+.navbar__filler {
+  width: 100%;
+  height: 60px;
+  background-color: $white;
 }
