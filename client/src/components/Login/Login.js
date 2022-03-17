@@ -10,7 +10,12 @@ function Login() {
   return (
     <div className="login">
       <div className="login__container">
+        {/* Login form begins here */}
         <form className="login__form">
+          {/* Login Header */}
+
+          {/* Link crestera logo to the landing page.
+          So, once the user click the logo he/she will be redirected to landing page */}
           <Link to="/">
             <img
               src={Logo}
@@ -23,19 +28,24 @@ function Login() {
           <h1>LOGIN</h1>
 
           <div className="login__form__group">
+            {/* Email */}
             <input
               type="text"
               className="login__form__control"
               placeholder="Email"
             />
           </div>
+
           <div className="login__form__group">
+            {/* Password */}
             <input
               type="text"
               className="login__form__control"
               placeholder="Password"
             />
           </div>
+
+          {/* Once user click login button he/she will be redirected into user dashboard */}
           <Link to="/dashboard">
             <button type="submit" className="login__form__btn">
               LOGIN
@@ -44,6 +54,7 @@ function Login() {
 
           <hr />
 
+          {/* Google login button */}
           <button type="button" className="login__form__google__btn">
             <img
               src={Google}
@@ -55,6 +66,7 @@ function Login() {
           </button>
           <p>New User?</p>
           <p className="login__signup__link">
+            {/* If user does not have an account once he click Signup he/she will be redirected into Signup page */}
             <Link to="/signup" style={{ textDecoration: "none" }}>
               Signup
             </Link>
