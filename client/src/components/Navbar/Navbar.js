@@ -1,14 +1,15 @@
 // ------ Navbar  ------
 import React from "react";
 import "./Navbar.scss";
+import { NavLink } from 'react-router-dom';
 
 //Images
-import profilePic from "../../assets/images/other/profilePicture.jpg"
-import cresteraLogo from "../../assets/images/logos/Crestera-Logo.png"
+import profilePic from '../../assets/images/other/profilePicture.jpg';
+import cresteraLogo from '../../assets/images/logos/Crestera-Logo.png';
 
 //Fontawesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faBell } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   return (
