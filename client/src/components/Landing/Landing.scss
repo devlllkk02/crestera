@@ -1,0 +1,38 @@
+//-----Landing Page-----
+@import "../../Theme.scss";
+
+.landing__page {
+  height: 100vh;
+  background: url("../../assets/images/other/Crestera-Background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include flexbox;
+
+  .landing__page__container {
+    width: 450px;
+    // background-color: lightgreen;
+  }
+
+  .landing__page__logo__container {
+    @include flexbox;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .landing__page__button__container {
+    padding-top: 42px;
+    display: flex;
+    justify-content: space-between;
+
+    button.sign__up {
+      @include ButtonBlueDark;
+    }
+
+    button.log__in {
+      @include ButtonBlueLight;
+    }
+  }
+}
