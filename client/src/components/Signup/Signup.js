@@ -47,14 +47,14 @@ function Signup() {
           </div>
           <div className="signup__form__group">
             <input
-              type="text"
+              type="password"
               className="signup__form__control"
               placeholder="Password"
             />
           </div>
           <div className="signup__form__group">
             <input
-              type="text"
+              type="password"
               className="signup__form__control"
               placeholder="Confirm Password"
             />
@@ -64,9 +64,7 @@ function Signup() {
           <button type="submit" className="signup__form__submit-btn">
             SIGN UP
           </button>
-
           <hr />
-
           <button type="button" className="signup__form__google-btn">
             <img
               src={Google}
@@ -74,13 +72,13 @@ function Signup() {
               width={30}
               className="signup__form__google"
             />
-            <span>Sign up with google</span>
+            <span>Sign up with Google</span>
           </button>
           <p>Already Have An Account?</p>
 
           <p className="signup__login__link">
             <Link to="/login" style={{ textDecoration: "none" }}>
-              Login
+              <p>Login</p>
             </Link>
           </p>
         </form>

@@ -31,7 +31,7 @@ function Login() {
           </div>
           <div className="login__form__group">
             <input
-              type="text"
+              type="password"
               className="login__form__control"
               placeholder="Password"
             />
@@ -41,9 +41,7 @@ function Login() {
               LOGIN
             </button>
           </Link>
-
           <hr />
-
           <button type="button" className="login__form__google__btn">
             <img
               src={Google}
@@ -51,12 +49,12 @@ function Login() {
               width={30}
               className="login__form__google"
             />
-            <span>Sign up with google</span>
+            <span>Sign up with Google</span>
           </button>
-          <p>New User?</p>
+          <p>Don't Have An Account?</p>
           <p className="login__signup__link">
             <Link to="/signup" style={{ textDecoration: "none" }}>
-              Signup
+              <p>Signup</p>
             </Link>
           </p>
         </form>
