@@ -11,8 +11,6 @@ import profilePic from '../../assets/images/other/profilePicture.jpg';
 import cresteraLogo from '../../assets/images/logos/Crestera-Logo.png';
 
 //Fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBell } from '@fortawesome/free-solid-svg-icons';
 import ProfilePic from "../../assets/images/other/profilePicture.jpg";
 import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
 import CresteraBoardLogo from "../../assets/images/logos/Crestera-Board.png";

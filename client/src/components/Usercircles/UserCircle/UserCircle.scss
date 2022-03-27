@@ -2,6 +2,8 @@
 
 .usercircle {
   width: 100%;
+  overflow-y: hidden; 
+  overflow-x: hidden;
   .usercircle_header {
     display: flex;
     .user_gear_icon {
@@ -41,10 +43,12 @@
     margin-left: 60px;
     display: flex;
     width: 100%;
+    margin-bottom: 100px;
     // background-color: aqua;
     // padding-top: 42px;
 
     .circle_type {
+      margin-top: 15px;
       p1 {
         color: #0f96c3;
         margin-left: 30px;
@@ -141,5 +145,30 @@
         color: rgba(199, 202, 208, 1);
       }
     }
+    .usercircle__search {
+      width: 90%;
+      height: 75px;
+      // background-color: coral;
+    }
   }
+  .User_Circles_List{
+
+    width: 95%;
+    min-height: 800px;
+    // background-color: lightgreen;
+    margin: 0px auto;
+  .usercircle__header {
+    width: 100%;
+    height: 75px;
+    // background-color: lightseagreen;
+    margin-top: 130px;
+
+    // @include flexbox;
+  }
+  .usercircle__items {
+    width: 100%;
+    min-height: 400px;
+    // background-color: lightblue;
+  }
+}
 }

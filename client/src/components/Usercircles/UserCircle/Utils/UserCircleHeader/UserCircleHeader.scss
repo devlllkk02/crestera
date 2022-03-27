@@ -1,0 +1,84 @@
+// ------ usercircleHeader ------
+@import "../../../../../Theme.scss";
+
+.usercircleHeader {
+  width: 100%;
+  height: 60px;
+  // background-color: lightblue;
+
+  @include flexbox;
+  box-shadow: 0px 8px 10px -10px rgba($grey, 0.3),
+    0px -8px 10px -10px rgba($grey, 0.3);
+
+  .usercircleHeader__fileIcon {
+    width: 70px;
+    height: 100%;
+    // background-color: lightpink;
+  }
+  .usercircleHeader__title1 {
+    width: calc((100% - 210px) * 0.5);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-small;
+      font-weight: 500;
+    }
+  }
+  .usercircleHeader__middleIcon {
+    width: 70px;
+    height: 100%;
+    // background-color: lightpink;
+  }
+  .usercircleHeader__title2 {
+    width: calc((100% - 210px) * 0.25);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-small;
+      font-weight: 500;
+    }
+  }
+  .usercircleHeader__title3 {
+    width: calc((100% - 210px) * 0.25);
+    height: 100%;
+    // background-color: lightpink;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-small;
+      font-weight: 500;
+    }
+  }
+  .usercircleHeader__title4 {
+    width: calc((100% - 210px) * 0.25);
+    height: 100%;
+    // background-color: lightpink;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-small;
+      font-weight: 500;
+    }
+  }
+  .usercircleHeader__setings {
+    width: 70px;
+    height: 100%;
+    // background-color: lightyellow;
+  }
+}

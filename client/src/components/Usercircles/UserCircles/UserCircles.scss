@@ -2,6 +2,8 @@
 
 .usercircles {
   width: 100%;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; 
   .usercircles_header {
     p {
       text-align: center;
@@ -14,8 +16,9 @@
     }
   }
   .usercircles_header_container {
-    margin-top: 40px;
-    margin-left: 60px;
+    margin-top: 70px;
+    margin-left: 0px;
+    margin-bottom: 0px;
     display: flex;
     width: 100%;
     // background-color: aqua;
@@ -30,7 +33,7 @@
       //   box-sizing: border-box;
       width: 150px;
       height: 40px;
-      margin-left: 5px;
+      margin-left: 60%;
       .plus_button {
         // color: white;
         margin-left: -10px;
@@ -44,38 +47,43 @@
         line-height: 19px;
       }
     }
-    .usercircles_search_box {
-      background: #ffffff;
-      border: 1px solid rgba(68, 78, 99, 0.3);
-      box-sizing: border-box;
-      width: 220px;
-      height: 40px;
-      margin-left: 45%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .usercircles_search_form {
-        width: 85%;
-        form {
-          input[type='text'] {
-            width: 100%;
-            padding: 6px;
-            margin-right: 16px;
-            border: none;
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 16px;
-            &:focus {
-              outline: none !important;
-            }
-          }
-        }
-      }
-      .icon {
-        color: rgba(199, 202, 208, 1);
-      }
+    // .usercircles_search_box {
+    //   background: #ffffff;
+    //   border: 1px solid rgba(68, 78, 99, 0.3);
+    //   box-sizing: border-box;
+    //   width: 220px;
+    //   height: 40px;
+    //   margin-left: 45%;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   .usercircles_search_form {
+    //     width: 85%;
+    //     form {
+    //       input[type='text'] {
+    //         width: 100%;
+    //         padding: 6px;
+    //         margin-right: 16px;
+    //         border: none;
+    //         font-family: 'Roboto';
+    //         font-style: normal;
+    //         font-weight: 400;
+    //         font-size: 14px;
+    //         line-height: 16px;
+    //         &:focus {
+    //           outline: none !important;
+    //         }
+    //       }
+    //     }
+    //   }
+    //   .icon {
+    //     color: rgba(199, 202, 208, 1);
+    //   }
+    // }
+    .usercircles__search {
+      width: 95%;
+      height: 75px;
+      // background-color: coral;
     }
     .usercircles_filter_box {
       background: #ffffff;
@@ -87,7 +95,7 @@
       display: flex;
       .usercircles_filter_dropdown {
         width: 300px;
-        margin: auto;
+        margin: 6px auto;
         .usercircles_filter_dropdown_button {
           padding: 5px;
           display: flex;
@@ -106,7 +114,7 @@
       .dropdown_icon {
         width: 10%;
         color: rgba(199, 202, 208, 1);
-        margin-top: 10px;
+        margin-top: 3px;
         margin-left: -10px;
       }
     }
@@ -116,13 +124,13 @@
       background: white;
       box-sizing: border-box;
       border: 1px solid rgba(68, 78, 99, 0.3);
-      width: 14.08%;
+      width: 17.78%;
       margin-left: -1px;
       
       .usercircles_filter_dropdown_item {
         cursor:pointer;
         transition: all 0.2s;
-        margin-top: 10px;
+        margin-top: 20px;
         
         
         p{
@@ -141,4 +149,24 @@
   }
   }
     }
+    .User_Circles_List{
+
+      width: 95%;
+      min-height: 800px;
+      // background-color: lightgreen;
+      margin: 0px auto;
+    .usercircles__header {
+      width: 100%;
+      height: 75px;
+      // background-color: lightseagreen;
+      margin-top: 130px;
+  
+      // @include flexbox;
+    }
+    .usercircles__items {
+      width: 100%;
+      min-height: 400px;
+      // background-color: lightblue;
+    }
+  }
   }

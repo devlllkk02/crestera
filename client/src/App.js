@@ -1,44 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // Components
-import Navbar from "./components/Navbar/Navbar";
-import UserCirclesAll from './components/Usercircles/UserCirclesAll/UserCirclesAll';
-import UserCirclesCreate from './components/Usercircles/UserCirclesCreate/UserCirclesCreate';
-import UserCircle from './components/Usercircles/UserCircle/UserCircle';
-import UserCirclesPublic from './components/Usercircles/UserCirclesPublic/UserCirclesPublic';
-import UserCirclesPrivate from './components/Usercircles/UserCirclesPrivate/UserCirclesPrivate';
+import Navbar from './components/Navbar/Navbar';
 
 // Pages
-import LandingPage from "./pages/LandingPage/LandingPage";
-import DashHomePage from "./pages/DashHomePage/DashHomePage";
-import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
-import DashNotePage from "./pages/DashNotePage/DashNotePage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import SignupPage from "./pages/SignupPage/SignupPage";
-import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import LandingPage from './pages/LandingPage/LandingPage';
+import DashHomePage from './pages/DashHomePage/DashHomePage';
+import DashBoardPage from './pages/DashBoardPage/DashBoardPage';
+import DashNotePage from './pages/DashNotePage/DashNotePage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignupPage from './pages/SignupPage/SignupPage';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
+import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
+import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
+import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 
 const App = () => {
   return (
     <div className="app">
       <Router>
         <Routes>
-          <Route exact path="/UserCirclesAll" element={<UserCirclesAll />} />
-          <Route
-            exact
-            path="/UserCirclesPublic"
-            element={<UserCirclesPublic />}
-          />
-          <Route
-            exact
-            path="/UserCirclesPrivate"
-            element={<UserCirclesPrivate />}
-          />
-          <Route
-            exact
-            path="/UserCirclesCreate"
-            element={<UserCirclesCreate />}
-          />
-          <Route exact path="/UserCircle" element={<UserCircle />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/signup" element={<SignupPage />} />
           <Route exact path="/login" element={<LoginPage />} />
@@ -46,6 +27,13 @@ const App = () => {
           <Route exact path="/dashboard/board" element={<DashBoardPage />} />
           <Route exact path="/dashboard/note" element={<DashNotePage />} />
           <Route exact path="/profile" element={<UserProfilePage />} />
+          <Route exact path="/usercircle" element={<UserCirclePage />} />
+          <Route exact path="/usercircles" element={<UserCirclesPage />} />
+          <Route
+            exact
+            path="/usercirclescreate"
+            element={<UserCirclesCreatePage />}
+          />
         </Routes>
       </Router>
     </div>

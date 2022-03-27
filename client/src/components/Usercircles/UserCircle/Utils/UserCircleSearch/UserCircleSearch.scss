@@ -1,0 +1,110 @@
+// ------ usercircleSearch ------
+@import "../../../../../Theme.scss";
+
+.usercircleSearch {
+  width: 100%;
+  height: 60px;
+  // background-color: lightblue;
+
+  @include flexbox;
+
+  .usercircleSearch__button {
+    width: calc(((100% - 210px) * 0.5) + 140px);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    button {
+      width: 200px;
+      height: 40px;
+      background-color: $white;
+      border: none;
+      cursor: pointer;
+
+      @include flexbox;
+
+      .usercircleSearch__button__icon {
+        margin-right: 5px;
+      }
+      .usercircleSearch__button__text {
+        margin-left: 5px;
+        p {
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .usercircleSearch__searchbox2 {
+    width: calc((100% - 500px) * 0.25);
+    height: 100%;
+    // background-color: lightseagreen;
+
+    @include flexbox;
+    justify-content: flex-start;
+    position: relative;
+
+    input {
+      width: 100%;
+      height: 35px;
+      padding: 10px;
+      margin-left: 20px;
+
+      color: $grey;
+      outline: none;
+      border: $borderGreyLight;
+      box-sizing: border-box;
+      font-size: $font-small;
+
+      &:focus {
+        border: $borderGreyLight;
+        border-color: $blue;
+      }
+    }
+
+    .usercircleSearch__searchbox1__icon {
+      position: absolute;
+      right: 8px;
+      color: $greyIconsLight;
+    }
+  }
+  .usercircleSearch__searchbox1 {
+    width: calc((100% - 500px) * 0.25);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-end;
+    position: relative;
+
+    select {
+      width: 100%;
+      height: 35px;
+      // background-color: $white;
+      background: $white;
+
+      margin-left: 20px;
+      padding: 5px;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      color: $grey;
+      outline: none;
+      border: $borderGreyLight;
+      box-sizing: border-box;
+
+      &:focus {
+        border: $borderGreyLight;
+        border-color: $blue;
+      }
+    }
+
+    .usercircleSearch__searchbox2__icon {
+      position: absolute;
+      right: 8px;
+      color: $greyIconsLight;
+    }
+  }
+}

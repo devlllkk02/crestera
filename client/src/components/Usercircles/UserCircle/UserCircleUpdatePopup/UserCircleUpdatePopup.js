@@ -2,9 +2,9 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './PopUp.scss';
+import './UserCircleUpdatePopup.scss';
 
-const PopUp = ({ trigger, settrigger, children }) => {
+const UserCircleUpdatePopup = ({ trigger, settrigger, children }) => {
   return trigger ? (
     <div className="popup">
       <div className="popup-body">
@@ -47,4 +47,4 @@ const PopUp = ({ trigger, settrigger, children }) => {
   );
 };
 
-export default PopUp;
+export default UserCircleUpdatePopup;
