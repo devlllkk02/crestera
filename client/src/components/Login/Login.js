@@ -63,7 +63,7 @@ function Login() {
               width={30}
               className="login__form__google"
             />
-            <span>Sign up with google</span>
+            <span>Login with google</span>
           </button>
           <p>New User?</p>
           <p className="login__signup__link">
