@@ -21,18 +21,18 @@ Follow the current naming convention and folder structure.
 ```
 Crestera
 ├── client                   // Frontend
-|   ├── public               // Public folder
-|   ├── src                  // Add all the source files here
+|       ├── public               // Public folder
+|       ├── src                  // Add all the source files here
 | 	|   ├── assets           // Assets folder
 | 	|   ├── components       // Components folder. Add all sub components here
 | 	|   ├── constants        // Add Constant files here
-|   |   ├── context          // Add files related to Context API here.
+|       |   ├── context          // Add files related to Context API here.
 |	|   ├── pages            // Main pages folder such as About Page, Landing Page etc.
 | 	|   ├── services         // Services folder
 |	|   ├── App.js           // App.js
 | 	|   └── index.js         // index.js file. Add context providers here to wrap the whole app
-|   ├── .gitignore           // Gitignore file
-|   └── package.json         // node module dependencies
+|       ├── .gitignore           // Gitignore file
+|       └── package.json         // node module dependencies
 ├── server                   //Backend
 |       ├── controllers      // Add all controller for models here
 |       ├── models           // Add all the mongoose models here
