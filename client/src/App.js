@@ -9,6 +9,7 @@ import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import VaultDashboard from "./pages/Vault/VaultDashboard";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route exact path="/dashboard/board" element={<DashBoardPage />} />
           <Route exact path="/dashboard/note" element={<DashNotePage />} />
           <Route exact path="/profile" element={<UserProfilePage />} />
+          <Route path="/vault" element={<VaultDashboard />} />
         </Routes>
       </Router>
     </div>
