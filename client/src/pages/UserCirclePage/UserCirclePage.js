@@ -11,6 +11,6 @@ function UserCirclePage() {
       <UserCircle />
     </>
   );
-}
+};
 
 export default UserCirclePage;
