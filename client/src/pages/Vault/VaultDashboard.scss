@@ -1,0 +1,28 @@
+.vaultDashboard {
+  margin-left: 5%;
+  margin-right: 5%;
+
+  .vaultDashButtons {
+    margin-top: 30px;
+    .vaultDashButton {
+      background-color: white;
+      color: #0b572e;
+      border: 2px solid #0b572e;
+      padding: 5px 32px;
+      text-align: center;
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0px 5px;
+      cursor: pointer;
+    }
+    .progressBar {
+      width: 180px;
+      float: right;
+    }
+  }
+
+  .folderList {
+    margin-top: 30px;
+  }
+}
