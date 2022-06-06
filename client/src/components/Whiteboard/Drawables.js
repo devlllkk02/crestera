@@ -21,7 +21,9 @@ class ArrowDrawable extends Drawable{
     }
 
     render(){
+        //get cordinates for the arrow
         const points = [this.startx, this.starty ,this.x, this.y];
+        // return konva arrow object
         return <Arrow points={points} fill= "black" stroke="black" />
     }
 }
