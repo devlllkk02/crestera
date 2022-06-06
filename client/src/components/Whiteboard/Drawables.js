@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Arrow} from 'react-konva';
+import {Arrow, Circle} from 'react-konva';
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
@@ -7,7 +7,7 @@ class Drawable{
     }
 }
 
-//Arrow drawable class
+//Arrow drawable 
 class ArrowDrawable extends Drawable{
     constructor(startx,starty){
         super(startx,starty);
@@ -23,10 +23,30 @@ class ArrowDrawable extends Drawable{
     render(){
         //get cordinates for the arrow
         const points = [this.startx, this.starty ,this.x, this.y];
-        // return konva arrow object
+        // return konva arrow shape
         return <Arrow points={points} fill= "black" stroke="black" />
     }
 }
+
+//circle drawable 
+class CircleDrawable extends Drawable{
+    constructor(startx,starty){
+        super(startx,starty);
+        this.x = startx;
+        this.y = starty;
+    }
+    render(){
+    //get center points dx,dy
+    const dx = this.startx - this.x;
+    const dy = this.starty - this.y;
+    // Equation of a  circle -> dx*dx + dy*dy = radius * radius
+    const radius = Math.sqrt(dx * dx + dy * dy);
+    // return konva circle shape
+    return <Circle radius={radius} x={this.startx} y={this.starty} stroke="black" />
+    }
+}
+
+
 class Drawables extends Component{
 render(){
     return;
