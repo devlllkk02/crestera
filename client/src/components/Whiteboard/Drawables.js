@@ -1,11 +1,17 @@
 import React, {Component} from "react";
-import {Arrow, Circle, Rect,Line} from 'react-konva';
+import {Arrow, Circle, Rect,Line, Stage, Layer} from 'react-konva';
+import Pencil from "../../assets/images/Icons/pencil.png"
+import ArrowIcon from "../../assets/images/Icons/arrow.png"
+import CircleIcon from "../../assets/images/Icons/circle.png"
+import EraserIcon from "../../assets/images/Icons/eraser.png"
+import RectangleIcon from "../../assets/images/Icons/rectangle.png"
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
         this.starty = starty;
     }
 }
+/*----------------------------------- Drawable classes ------------------------------*/
 
 //Arrow drawable 
 class ArrowDrawable extends Drawable{
@@ -92,9 +98,130 @@ class Eraser extends Drawable{
     }
   }
 
+  /*----------------------------Main Drawable Class ------------------------*/
 class Drawables extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          drawables: [],
+          newDrawable: [],
+          newDrawableType: "FreePathDrawable"
+        };
+      }
+    //   Create drawable classes
+  getNewDrawableBasedOnType = (x, y, type) => {
+    const drawableClasses = {
+      FreePathDrawable,
+      ArrowDrawable,
+      CircleDrawable,
+      RectangleDrawable,
+      Eraser
+    };
+    return new drawableClasses[type](x, y);
+  };
+  //   handle mouse down event when pressing the tool buttons
+  handleMouseDown = e => {
+    const { newDrawable } = this.state;
+    if (newDrawable.length === 0) {
+      const { x, y } = e.target.getStage().getPointerPosition();
+      const newDrawable = this.getNewDrawableBasedOnType(
+        x,
+        y,
+        this.state.newDrawableType
+      );
+      this.setState({
+        newDrawable: [newDrawable]
+      });
+    }
+  };
+  //  handle mouse up event when user release mouse click and use it to draw things
+  handleMouseUp = e => {
+    const { newDrawable, drawables } = this.state;
+    if (newDrawable.length === 1) {
+      const { x, y } = e.target.getStage().getPointerPosition();
+      const drawableToAdd = newDrawable[0];
+      drawableToAdd.registerMovement(x, y);
+      drawables.push(drawableToAdd);
+      this.setState({
+        newDrawable: [],
+        drawables
+      });
+    }
+  };
+  //   handle mouse move event when mouse pointer move over stage element
+  handleMouseMove = e => {
+    const { newDrawable } = this.state;
+    if (newDrawable.length === 1) {
+      const { x, y } = e.target.getStage().getPointerPosition();
+      const updatedNewDrawable = newDrawable[0];
+      updatedNewDrawable.registerMovement(x, y);
+      this.setState({
+        newDrawable: [updatedNewDrawable]
+      });
+    }
+  };
 render(){
-    return;
+    const drawables = [...this.state.drawables, ...this.state.newDrawable];
+    return(
+    <div>
+        <div className="whiteboard__container">
+        <div className="toolbar">
+      {/* ------------------------------------------Tool bar----------------------------------------------------------*/}
+      {/* Arrow button*/}
+        <button className="toolbar__btn"
+          onClick={e => { this.setState({ newDrawableType: "ArrowDrawable" }); }}
+        >
+         <img src={ArrowIcon} width={20} alt="arrow" className="toolbar-icon-img"/>
+        </button>
+         {/* Circle button */}
+        <button className="toolbar__btn"
+          onClick={e => { this.setState({ newDrawableType: "CircleDrawable" });}}
+        >
+         <img src={CircleIcon} width={20} alt="circle" className="toolbar-icon-img"/>
+        </button>
+         {/* Pencil button*/}
+        <button className="toolbar__btn"
+          onClick={e => {
+            this.setState({ newDrawableType: "FreePathDrawable" });
+          }}
+        >
+            <img src={Pencil} width={20} alt="pencil" className="toolbar-icon-img"/>
+        </button>
+         {/* Eraser button*/}
+        <button className="toolbar__btn"
+          onClick={e => {
+            this.setState({ newDrawableType: "Eraser" });
+          }}
+        >
+            <img src={EraserIcon} width={20} alt="eraser" className="toolbar-icon-img"/>
+        </button>
+        {/* Rectangle button */}
+        <button className="toolbar__btn"
+          onClick={e => {
+            this.setState({ newDrawableType: "RectangleDrawable" });
+          }}
+        >
+            <img src={RectangleIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
+        </button>
+        </div>
+       
+       {/* ------------------------------------------  Drawing area -------------------------------------------*/}
+        <Stage
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          onMouseMove={this.handleMouseMove}
+          width={window.innerWidth}
+          height={window.innerHeight}
+          className="canvas-stage"
+        >
+          <Layer className="canvas-layer">
+            {drawables.map(drawable => {
+              return drawable.render();
+            })}
+          </Layer>
+        </Stage>
+        </div>
+      </div>);
 }
 }
 
