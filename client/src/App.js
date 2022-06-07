@@ -12,6 +12,7 @@ import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
 import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
 import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
+import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 
 import VaultDashboard from './pages/Vault/VaultDashboard';
 
@@ -30,6 +31,13 @@ const App = () => {
           <Route exact path="/profile" element={<UserProfilePage />} />
           <Route exact path="/usercircle" element={<UserCirclePage />} />
           <Route exact path="/usercircles" element={<UserCirclesPage />} />
+          <Route exact path="/vaultshare" element={<VaultSharePage />} />
+          <Route
+            exact
+            path="/usercirclescreate"
+            element={<UserCirclesCreatePage />}
+          />
+          <Route exact path="/vault" element={<VaultDashboard />} />
           <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  />
           <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
           <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
