@@ -19,7 +19,6 @@
     border-radius: 20px;
 
     .login__form {
-      font-family: $font;
       text-align: center;
       @include flexbox;
       flex-direction: column;
@@ -33,7 +32,7 @@
       h1 {
         font-weight: 500;
         font-size: $font-extra-large;
-        line-height: 33px;
+        line-height: 25px;
         color: $blue;
         margin-top: 5px;
         margin-bottom: 0;
@@ -41,38 +40,37 @@
 
       .login__form__control {
         width: 300px;
-        height: 26px;
-        border: 1px solid $form-white;
-        margin: 10px 0;
+        height: 30px;
+        // border: 1px solid $form-white;
+        border: $borderGreyLight;
+        margin: 7px 0;
         padding-left: 10px;
       }
+
       input::placeholder {
         font-size: $font-extra-small;
         line-height: 16px;
-        font-family: Roboto;
         color: $form-black;
       }
       input:focus {
         outline: none !important;
-        border: 1px solid $form-white;
-        box-shadow: 0 0 7px $form-white;
+        // border: 1px solid $form-white;
+        border: $borderGreyLight;
+        // box-shadow: 0 0 7px $form-white;
         color: $light-grey;
+        border-color: $blue;
       }
 
       input::placeholder > input:focus {
         color: $light-grey;
       }
+
+      input {
+        color: $grey;
+      }
       .login__form__btn {
-        margin-top: 15px;
-        margin-bottom: 15px;
-        background: $blue;
-        border: 2px solid $blue;
-        box-sizing: border-box;
-        width: 200px;
-        height: 35px;
-        font-weight: 570;
-        font-size: $font-extra-small;
-        color: $white;
+        @include ButtonBlueDark;
+        margin: 15px 0px;
       }
       hr {
         border: none;
@@ -80,7 +78,7 @@
         background-color: $greyIconsLight;
         overflow: visible;
         text-align: center;
-        height: 0.1px;
+        height: 1px;
         width: 100%;
         margin-bottom: 15px;
       }
@@ -92,7 +90,7 @@
         font-size: 10px;
         padding: 0 4px;
         position: relative;
-        top: -13px;
+        top: -11px;
       }
       .login__form__google__btn {
         @include flexbox;
@@ -103,6 +101,8 @@
         margin-top: 10px;
         color: $blue;
         height: 40px;
+        cursor: pointer;
+        margin-bottom: 5px;
 
         .login__form__google {
           margin: 0 10px;
@@ -120,6 +120,10 @@
         font-size: $font-extra-small;
         color: $blue;
         margin-top: 7px;
+
+        p {
+          color: $blue;
+        }
       }
     }
   }

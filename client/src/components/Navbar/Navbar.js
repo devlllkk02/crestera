@@ -1,11 +1,16 @@
 // ------ Navbar  ------
 import React, { useState } from "react";
 import "./Navbar.scss";
+import { NavLink } from 'react-router-dom';
 
 //Pacakages
 import { Link } from "react-router-dom";
 
 //Images
+import profilePic from '../../assets/images/other/profilePicture.jpg';
+import cresteraLogo from '../../assets/images/logos/Crestera-Logo.png';
+
+//Fontawesome
 import ProfilePic from "../../assets/images/other/profilePicture.jpg";
 import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
 import CresteraBoardLogo from "../../assets/images/logos/Crestera-Board.png";

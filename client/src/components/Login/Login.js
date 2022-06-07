@@ -40,7 +40,7 @@ function Login() {
           <div className="login__form__group">
             {/* Password */}
             <input
-              type="text"
+              type="password"
               className="login__form__control"
               placeholder="Password"
             />
@@ -52,10 +52,7 @@ function Login() {
               LOGIN
             </button>
           </Link>
-
           <hr />
-
-          {/* Google login button */}
           <button type="button" className="login__form__google__btn">
             <img
               src={Google}
@@ -63,13 +60,13 @@ function Login() {
               width={30}
               className="login__form__google"
             />
-            <span>Login with google</span>
+            <span>Sign up with Google</span>
           </button>
-          <p>New User?</p>
+          <p>Don't Have An Account?</p>
           <p className="login__signup__link">
             {/* If user does not have an account once he click Signup he/she will be redirected into Signup page */}
             <Link to="/signup" style={{ textDecoration: "none" }}>
-              Signup
+              <p>Signup</p>
             </Link>
           </p>
         </form>
