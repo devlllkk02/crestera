@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import '@fontsource/roboto';
 import './UserCircle.scss';
 import UserCircleUpdatePopup from './UserCircleUpdatePopup/UserCircleUpdatePopup';
-
+// import VaultDetailsPopup from '../../Vault/VaultDetailsPopup/VaultDetailsPopup';
+// import VaultRenamePopup from '../../Vault/VaultRenamePopup/VaultRenamePopup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlus,
