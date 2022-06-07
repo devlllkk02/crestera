@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Arrow, Circle, Rect} from 'react-konva';
+import {Arrow, Circle, Rect,Line} from 'react-konva';
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
@@ -63,6 +63,34 @@ class RectangleDrawable extends ArrowDrawable {
     }
   }
 
+  //Pencil / Freepath drawable
+    class FreePathDrawable extends Drawable {
+    constructor(startx, starty) {
+      super(startx, starty);
+      this.points = [startx, starty];
+    }
+  
+    registerMovement(x, y) {
+      this.points = [...this.points, x, y];
+    }
+    render() {
+      return <Line points={this.points} fill="black" stroke="black" />;
+    }
+  }
+
+  // Eraser 
+class Eraser extends Drawable{
+    constructor(startx, starty) {
+      super(startx, starty);
+      this.points = [startx, starty];
+    }
+    registerMovement(x, y) {
+      this.points = [...this.points, x, y];
+    }
+    render() {
+      return <Line points={this.points} fill="white" stroke="white" tension = "10"/>;
+    }
+  }
 
 class Drawables extends Component{
 render(){
