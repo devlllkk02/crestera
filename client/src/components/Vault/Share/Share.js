@@ -12,7 +12,11 @@ import profilePic from '../../../assets/images/other/profilePicture.jpg'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+//Components
+import VaultSharePopup from '../VaultSharePopup/VaultSharePopup';
+
 function Share() {
+  const [btnpopup, setbtnpopup] = useState(false);
   return (
     <div className="vaultshare">
       <div className="vaultshare_header">
@@ -70,9 +74,13 @@ function Share() {
         <div className="vaultshare_link_group_header">
           <p>SHARE WITH PEOPLES & GROUPS</p>
         </div>
-        <button className="vaultshare_link_group_button">
+        <button className="vaultshare_link_group_button" onClick={() => setbtnpopup(true)}>
           <span>INVITE PEOPLES & GROUPS</span>
         </button>
+        <VaultSharePopup
+          trigger={btnpopup}
+          settrigger={setbtnpopup}
+        ></VaultSharePopup>
       </div>
       <div className="vaultshare_list_header">
         <div className="vaultshare_list_header_title1">
