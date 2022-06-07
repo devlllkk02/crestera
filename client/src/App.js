@@ -30,12 +30,8 @@ const App = () => {
           <Route exact path="/profile" element={<UserProfilePage />} />
           <Route exact path="/usercircle" element={<UserCirclePage />} />
           <Route exact path="/usercircles" element={<UserCirclesPage />} />
-          <Route
-            exact
-            path="/usercirclescreate"
-            element={<UserCirclesCreatePage />}
-          />
-          <Route exact path="/vault" element={<VaultDashboard />} />
+          <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  />
+          <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
           <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
         </Routes>
       </Router>
