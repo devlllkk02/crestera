@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Arrow, Circle} from 'react-konva';
+import {Arrow, Circle, Rect} from 'react-konva';
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
@@ -45,6 +45,23 @@ class CircleDrawable extends Drawable{
     return <Circle radius={radius} x={this.startx} y={this.starty} stroke="black" />
     }
 }
+
+//Rectangle drawable
+class RectangleDrawable extends ArrowDrawable {
+    constructor(startx, starty) {
+      super(startx, starty);
+      this.x = startx;
+      this.y = starty;
+    }
+  
+    render() {
+      const recWidth = this.x - this.startx;
+      const recHeight = this.y - this.starty;
+      return (
+        <Rect  x={this.startx} y={this.starty} width={recWidth} height={recHeight} stroke="black" />
+      );
+    }
+  }
 
 
 class Drawables extends Component{
