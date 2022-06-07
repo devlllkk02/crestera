@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import './List.scss';
 import { getDateTime } from '../../helpers/TimeHelper';
+import VaultPopover from "./VaultPopover/VaultPopover";
 
 //Images
 import fileicon from '../../assets/images/Vault icons/FileIcon.png'
 import foldericon from '../../assets/images/Vault icons/FolderIcon.png'
+
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEllipsisVertical,
-  faUserFriends,
-} from "@fortawesome/free-solid-svg-icons";
+import {faEllipsisVertical,faUserFriends,} from "@fortawesome/free-solid-svg-icons";
 
 const List = ({ currentFolder }) => {
 
@@ -25,7 +24,7 @@ const List = ({ currentFolder }) => {
   })));
 
   //File
-  const [files, setFiles] = useState(Array(4).fill(0).map(e => ({
+  const [files, setFiles] = useState(Array(1).fill(0).map(e => ({
     name: 'File',
     addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
     size: Math.floor(Math.random() * 1000)
@@ -112,6 +111,7 @@ const List = ({ currentFolder }) => {
             <div className="dashItem__setings">
               <div className="dashItem__setings__container">
                 <FontAwesomeIcon icon={faEllipsisVertical} />
+                <VaultPopover/>
               </div>
             </div>
           </div>
