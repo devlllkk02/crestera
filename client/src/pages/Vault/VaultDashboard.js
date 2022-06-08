@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import List from '../../components/Vault/List';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
@@ -24,7 +25,10 @@ const VaultDashboard = () => {
         <div className="vaultDashButtons">
           <button className="vaultDashButton">upload</button>
           <button className="vaultDashButton">create</button>
+          <Link to={`/folder/bin`}  style={{ textDecoration: 'none' }}>
           <button className="vaultDashButton">Trash</button>
+          </Link>
+          
 
           <div className='progressBar'>
             <Progress

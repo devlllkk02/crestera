@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getDateTime } from '../../../helpers/TimeHelper';
 import VaultPopover from "../../Popover/Popover";
 import { Link } from 'react-router-dom';
+import '../List.scss';
 
 //Images
 import fileicon from '../../../assets/images/Vault icons/FileIcon.png'
@@ -17,29 +18,29 @@ function FileList(props) {
     const [popover, setpopover] = useState(false);
     return (
         <div>
-            <div className="dashItem">
-                <div className="dashItem__fileIcon">
+            <div className="VaultItem">
+                <div className="VaultItem_fileIcon">
                     <img
                         src={fileicon}
                         alt=""
                     />
                 </div>
-                <div className="dashItem__fileName">
+                <div className="VaultItem_fileName">
                     <p>{props.file.name}</p>
                 </div>
-                <div className="dashItem__middleIcon">
-                    <div className="dashItem__middleIcon__container">
+                <div className="VaultItem_middleIcon">
+                    <div className="VaultItem_middleIcon__container">
                         <FontAwesomeIcon icon={faUserFriends} />
                     </div>
                 </div>
-                <div className="dashItem__title1">
+                <div className="VaultItem_title1 hide">
                     <p>{props.file.size}MB</p>
                 </div>
-                <div className="dashItem__title2">
+                <div className="VaultItem_title2 hide">
                     <p>{getDateTime(props.file.addedOn)}</p>
                 </div>
-                <div className="dashItem__setings">
-                    <div className="dashItem__setings__container">
+                <div className="VaultItem_setings"onClick={() => setpopover(true)}>
+                    <div className="VaultItem_setings__container">
                         <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setpopover(true)} />
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
