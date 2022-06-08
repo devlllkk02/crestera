@@ -36,7 +36,8 @@ const App = () => {
 
           <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
           <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-          <Route exact path="/vaultshare" element={<VaultSharePage />} />
+          <Route exact path="/vaultshare/:folderId" element={<VaultSharePage />} />
+          
           <Route exact path="/boardshare" element={<WhiteboardShare />} />
         </Routes>
       </Router>

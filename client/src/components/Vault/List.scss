@@ -1,24 +1,23 @@
-
 @import "../../../src/Theme.scss";
 
 // ------ DashHeader ------
-.dashHeader {
+.VaultHeader {
   width: 100%;
   height: 60px;
-
-  @include flexbox;
+  display: flex;
   box-shadow: 0px 8px 10px -10px rgba($grey, 0.3),
     0px -8px 10px -10px rgba($grey, 0.3);
 
-  .dashHeader__fileIcon {
+  .VaultHeader_fileIcon {
     width: 70px;
     height: 100%;
   }
-  .dashHeader__title1 {
+  .VaultHeader_title1 {
     width: calc((100% - 210px) * 0.5);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -27,15 +26,16 @@
       font-weight: 500;
     }
   }
-  .dashHeader__middleIcon {
+  .VaultHeader_middleIcon {
     width: 70px;
     height: 100%;
   }
-  .dashHeader__title2 {
+  .VaultHeader_title2 {
     width: calc((100% - 210px) * 0.25);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -44,11 +44,12 @@
       font-weight: 500;
     }
   }
-  .dashHeader__title3 {
+  .VaultHeader_title3 {
     width: calc((100% - 210px) * 0.25);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -57,37 +58,39 @@
       font-weight: 500;
     }
   }
-  .dashHeader__setings {
+  .VaultHeader_setings {
     width: 70px;
     height: 100%;
   }
 }
 
-
 // ------ DashItem ------
-.dashItem {
+.VaultItem {
   width: 100%;
   height: 60px;
-
-  @include flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-bottom: $borderGreyLight;
   margin-bottom: 5px;
 
-  .dashItem__fileIcon {
+  .VaultItem_fileIcon {
     width: 70px;
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
       height: 35px;
     }
   }
-  .dashItem__fileName {
+  .VaultItem_fileName {
     width: calc((100% - 210px) * 0.5);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -95,22 +98,24 @@
       font-size: $font-extra-small;
     }
   }
-  .dashItem__middleIcon {
+  .VaultItem_middleIcon {
     width: 70px;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    @include flexbox;
-
-    .dashItem__middleIcon__container {
+    .VaultItem_middleIcon__container {
       cursor: pointer;
       color: $grey;
     }
   }
-  .dashItem__title1 {
+  .VaultItem_title1 {
     width: calc((100% - 210px) * 0.25);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -118,11 +123,12 @@
       font-size: $font-extra-small;
     }
   }
-  .dashItem__title2 {
+  .VaultItem_title2 {
     width: calc((100% - 210px) * 0.25);
     height: 100%;
-
-    @include flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-content: flex-start;
 
     p {
@@ -130,15 +136,35 @@
       font-size: $font-extra-small;
     }
   }
-  .dashItem__setings {
+  .VaultItem_setings {
     width: 70px;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    @include flexbox;
-
-    .dashItem__setings__container {
+    .VaultItem_setings__container {
       cursor: pointer;
       color: $grey;
     }
+  }
+}
+
+@media screen and (max-width:768px) {
+  .VaultHeader{
+    .VaultHeader_title2{ display: none; }
+  }
+  .VaultItem{
+    .VaultItem_title2{ display: none; }
+  }
+}
+@media screen and (max-width:550px) {
+  .VaultHeader{
+    .VaultHeader_title2{ display: none; }
+    .VaultHeader_title3{ display: none; }
+  }
+  .VaultItem{
+    .VaultItem_title1{ display: none; }
+    .VaultItem_title2{ display: none; }
   }
 }

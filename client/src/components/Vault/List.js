@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './List.scss';
-import { getDateTime } from '../../helpers/TimeHelper';
-import VaultPopover from "./VaultPopover/VaultPopover";
 
-//Images
-import fileicon from '../../assets/images/Vault icons/FileIcon.png'
-import foldericon from '../../assets/images/Vault icons/FolderIcon.png'
+import FileList from "./FileList/FileList";
+import FolderList from './FolderList/FolderList'
 
-//Fontawesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faEllipsisVertical,faUserFriends,} from "@fortawesome/free-solid-svg-icons";
 
 const List = ({ currentFolder }) => {
 
@@ -18,13 +12,15 @@ const List = ({ currentFolder }) => {
 
   //Folder
   const [folders, setFolders] = useState(Array(5).fill(0).map(e => ({
+    _id: Math.floor(Math.random() * 100000),
     name: 'Folder',
     addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
     size: Math.floor(Math.random() * 1000)
   })));
 
   //File
-  const [files, setFiles] = useState(Array(1).fill(0).map(e => ({
+  const [files, setFiles] = useState(Array(5).fill(0).map(e => ({
+    _id: Math.floor(Math.random() * 100000),
     name: 'File',
     addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
     size: Math.floor(Math.random() * 1000)
@@ -36,85 +32,32 @@ const List = ({ currentFolder }) => {
     <div className="box">
 
       {/* Header */}
-      <div className="dashHeader">
-        <div className="dashHeader__fileIcon"></div>
-        <div className="dashHeader__title1">
+      <div className="VaultHeader">
+        <div className="VaultHeader_fileIcon"></div>
+        <div className="VaultHeader_title1">
           <p>Name</p>
         </div>
-        <div className="dashHeader__middleIcon"></div>
-        <div className="dashHeader__title2">
+        <div className="VaultHeader_middleIcon"></div>
+        <div className="VaultHeader_title2">
           <p>Size</p>
         </div>
-        <div className="dashHeader__title3">
+        <div className="VaultHeader_title3">
           <p>Date Modified</p>
         </div>
-        <div className="dashHeader__setings"></div>
+        <div className="VaultHeader_setings"></div>
       </div>
 
       {/* Folder list */}
       {
         folders.map((folder) =>
-          <div className="dashItem">
-            <div className="dashItem__fileIcon">
-              <img
-                src={foldericon}
-                alt=""
-              />
-            </div>
-            <div className="dashItem__fileName">
-              <p>{folder.name}</p>
-            </div>
-            <div className="dashItem__middleIcon">
-              <div className="dashItem__middleIcon__container">
-                <FontAwesomeIcon icon={faUserFriends} />
-              </div>
-            </div>
-            <div className="dashItem__title1">
-              <p>{folder.size}MB</p>
-            </div>
-            <div className="dashItem__title2">
-              <p>{getDateTime(folder.addedOn)}</p>
-            </div>
-            <div className="dashItem__setings">
-              <div className="dashItem__setings__container">
-                <FontAwesomeIcon icon={faEllipsisVertical} />
-              </div>
-            </div>
-          </div>
+        <FolderList  folder={folder}/>
         )
       }
 
       {/* File list */}
       {
         files.map((file) =>
-          <div className="dashItem">
-            <div className="dashItem__fileIcon">
-              <img
-                src={fileicon}
-                alt=""
-              />
-            </div>
-            <div className="dashItem__fileName">
-              <p>{file.name}</p>
-            </div>
-            <div className="dashItem__middleIcon">
-              <div className="dashItem__middleIcon__container">
-                <FontAwesomeIcon icon={faUserFriends} />
-              </div>
-            </div>
-            <div className="dashItem__title1">
-              <p>{file.size}MB</p>
-            </div>
-            <div className="dashItem__title2">
-              <p>{getDateTime(file.addedOn)}</p>
-            </div>
-            <div className="dashItem__setings">
-              <div className="dashItem__setings__container">
-                <FontAwesomeIcon icon={faEllipsisVertical} />
-                <VaultPopover/>
-              </div>
-            </div>
-          </div>
+         <FileList  file={file}/>
         )
       }
     </div>
