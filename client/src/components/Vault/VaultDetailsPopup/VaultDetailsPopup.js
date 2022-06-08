@@ -7,7 +7,7 @@ import './VaultDetailsPopup.scss';
 const VaultDetailsPopup = ({ trigger, settrigger, children }) => {
     return trigger ? (
       <div className="popup">
-        <div className="popup-body">
+        <div className="vaultdetails_popup_body">
           <button className="closebtn" onClick={() => settrigger(false)}>
             <FontAwesomeIcon icon={faX} />
           </button>

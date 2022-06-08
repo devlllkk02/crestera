@@ -7,7 +7,7 @@ import './VaultRenamePopup.scss';
 const VaultRenamePopup = ({ trigger, settrigger, children }) => {
     return trigger ? (
       <div className="popup">
-        <div className="popup-body">
+        <div className="vaultrename_popup_body">
           <button className="closebtn" onClick={() => settrigger(false)}>
             <FontAwesomeIcon icon={faX} />
           </button>

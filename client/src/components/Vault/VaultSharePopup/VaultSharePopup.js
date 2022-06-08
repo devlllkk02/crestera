@@ -10,7 +10,7 @@ import profilePic from '../../../assets/images/other/profilePicture.jpg'
 const VaultSharePopup = ({ trigger, settrigger, children }) => {
     return trigger ? (
       <div className="popup">
-        <div className="popup-body">
+        <div className="vaultshare_popup_body">
           <button className="closebtn" onClick={() => settrigger(false)}>
             <FontAwesomeIcon icon={faX} />
           </button>
