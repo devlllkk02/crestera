@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getDateTime } from '../../../helpers/TimeHelper';
-import VaultPopover from "../VaultPopover/VaultPopover";
+import VaultPopover from "../../Popover/Popover";
 import { Link } from 'react-router-dom';
 
 //Images
@@ -43,7 +43,7 @@ function FolderList(props) {
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
                                 <li >Details</li>
-                                <Link to="/vaultshare/:" style={{ textDecoration: 'none' }}><li>Share</li></Link>
+                                <Link to={`/folder/${props.folder._id}`} style={{ textDecoration: 'none' }}><li>Share</li></Link>
                                 <li>Rename</li>
                                 <li>Download</li>
                                 <li>Delete</li>

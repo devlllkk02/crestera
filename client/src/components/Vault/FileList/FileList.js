@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getDateTime } from '../../../helpers/TimeHelper';
-import VaultPopover from "../VaultPopover/VaultPopover";
+import VaultPopover from "../../Popover/Popover";
 import { Link } from 'react-router-dom';
 
 //Images

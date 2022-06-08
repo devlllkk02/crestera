@@ -1,5 +1,5 @@
 import React,{useRef,useEffect }  from 'react';
-import './VaultPopover.css';
+import './Popover.css';
 
 const VaultPopover = ({ trigger, settrigger, children }) => {
    
