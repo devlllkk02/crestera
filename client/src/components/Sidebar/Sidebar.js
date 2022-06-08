@@ -108,8 +108,8 @@ function Sidebar({ page }) {
               <FontAwesomeIcon icon={faUserFriends} />
             </div>
           </div>
-          <div className="sidebar__item__text">
-            <p>User Circles</p>
+            <div className="sidebar__item__text">
+            <Link to="/usercircles" style={{ textDecoration: 'none' }}><p>User Circles</p></Link>
           </div>
           <div
             className="sidebar__item__border"

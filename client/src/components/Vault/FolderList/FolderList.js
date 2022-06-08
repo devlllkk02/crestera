@@ -11,9 +11,14 @@ import foldericon from '../../../assets/images/Vault icons/FolderIcon.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical, faUserFriends, } from "@fortawesome/free-solid-svg-icons";
 
+import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
+import VaultRenamePopup from "../../Vault/VaultRenamePopup/VaultRenamePopup"
+
 function FolderList(props) {
 
     const [popover, setpopover] = useState(false);
+    const [btnpopup1, setbtnpopup1] = useState(false);
+    const [btnpopup2, setbtnpopup2] = useState(false);
     return (
         <div>
             <Link to={`/folder/${props.folder._id}`}  style={{ textDecoration: 'none' }}>
@@ -43,13 +48,21 @@ function FolderList(props) {
                         <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setpopover(true)}/>
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
-                                <li >Details</li>
+                                <li onClick={() => setbtnpopup1(true)} >Details</li>
                                 <Link to={`/vaultshare/${props.folder._id}`} style={{ textDecoration: 'none' }}><li>Share</li></Link>
-                                <li>Rename</li>
+                                <li onClick={() => setbtnpopup2(true)}>Rename</li>
                                 <li>Download</li>
                                 <li>Delete</li>
                             </ul>
                         </VaultPopover>
+                        <VaultDetailsPopup
+          trigger={btnpopup1}
+          settrigger={setbtnpopup1}
+        ></VaultDetailsPopup>
+         <VaultRenamePopup
+          trigger={btnpopup2}
+          settrigger={setbtnpopup2}
+        ></VaultRenamePopup>
                     </div>
                 </div>
             </div>
