@@ -8,7 +8,7 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
+
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 // import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
@@ -16,6 +16,8 @@ import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 import VaultDashboard from './pages/Vault/VaultDashboard';
 
 import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage'
+import UserEditPage from './components/UserEdit/UserEdit';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 
 const App = () => {
   return (
@@ -29,6 +31,7 @@ const App = () => {
           <Route exact path="/dashboard/board" element={<DashBoardPage />} />
           <Route exact path="/dashboard/note" element={<DashNotePage />} />
           <Route exact path="/profile" element={<UserProfilePage />} />
+          <Route exact path="/edit" element={<UserEditPage />} />
 
           {/* <Route exact path="/usercircle" element={<UserCirclePage />} />
           <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />} />
