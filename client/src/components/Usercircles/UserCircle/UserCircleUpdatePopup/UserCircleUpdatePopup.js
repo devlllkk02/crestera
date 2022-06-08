@@ -1,4 +1,4 @@
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faX, faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,41 +7,35 @@ import './UserCircleUpdatePopup.scss';
 const UserCircleUpdatePopup = ({ trigger, settrigger, children }) => {
   return trigger ? (
     <div className="popup">
-      <div className="popup-body">
-        <button className="closebtn" onClick={() => settrigger(false)}>
-          <FontAwesomeIcon icon={faX} />
-        </button>
-        {children}
-        <div className="usercircles_update_header">
-          <h1>UPDATE USER CIRCLE</h1>
-        </div>
-        <div className="usercircles_update_name_box">
-          <div className="usercircles_update_name_form">
-            <form>
-              <input
-                type="text"
-                name="Circle Name"
-                placeholder="Circle Name"
-              ></input>
-            </form>
+        <div className="usercircleupdate_popup_body">
+          <button className="closebtn" onClick={() => settrigger(false)}>
+            <FontAwesomeIcon icon={faX} />
+          </button>
+          {children}
+          <div className="usercircleupdate_header">
+            <h1>UPDATE USER CIRCLE</h1>
           </div>
-        </div>
-        <div className="usercircles_update_name_box">
-          <div className="usercircles_update_name_form">
-            <form>
-              <input
-                type="text"
-                name="Circle Type"
-                placeholder="Circle Type"
-              ></input>
-            </form>
+          <div className="usercircleupdate__box">
+            <input
+              type="text"
+              placeholder="Circle 01"
+            />
           </div>
+          <div className="usercircleupdate_type_box">
+            <select name="" id="">
+              <option value="">Public</option>
+              <option value="">Private</option>
+            </select>
+            <div className="usercircleupdate_type_box__icon">
+              <FontAwesomeIcon icon={faChevronDown} />
+            </div>
+          </div>
+          <button className="usercircleupdate_button">
+            <span>UPDATE CIRCLE</span>
+          </button>
+
         </div>
-        <button className="usercircles_button">
-          <span>Update Circle</span>
-        </button>{' '}
       </div>
-    </div>
   ) : (
     <></>
   );

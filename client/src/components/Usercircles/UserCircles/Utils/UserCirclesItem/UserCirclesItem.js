@@ -1,5 +1,6 @@
 // ------ usercirclesItem  ------
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './UserCirclesItem.scss';
 
 //Images
@@ -18,7 +19,7 @@ function usercirclesItem({ fileIcon, fileName, title1, title2, shared }) {
     <div className="usercirclesItem">
       <div className="usercirclesItem__fileIcon"></div>
       <div className="usercirclesItem__fileName">
-        <p>{fileName}</p>
+      <Link to="/usercircle" style={{ textDecoration: 'none' }}><p>{fileName}</p></Link> 
       </div>
       <div className="usercirclesItem__middleIcon">
         <div className="usercirclesItem__middleIcon__container">
