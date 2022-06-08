@@ -40,7 +40,7 @@ const App = () => {
           <Route exact path="/vault" element={<VaultDashboard />} />
           <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  />
           <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
-          <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
+          {/* <Route exact path="/folder/:folderId" element={<VaultDashboard />} /> */}
         </Routes>
       </Router>
     </div>
