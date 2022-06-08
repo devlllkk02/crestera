@@ -6,7 +6,7 @@ import FileList from "./FileList/FileList";
 import FolderList from './FolderList/FolderList'
 
 
-const List = ({ currentFolder }) => {
+const List = ({ currentFolder}) => {
 
   const [folder, setFolder] = useState(currentFolder);
   useEffect(() => setFolder(currentFolder), [currentFolder]);
