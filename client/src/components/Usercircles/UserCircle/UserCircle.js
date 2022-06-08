@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '@fontsource/roboto';
+// import '@fontsource/roboto';
 import './UserCircle.scss';
 import UserCircleUpdatePopup from './UserCircleUpdatePopup/UserCircleUpdatePopup';
 
@@ -16,9 +16,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
-import UserCircleSearch from '../UserCircle/Utils/UserCircleSearch/UserCircleSearch';
-import UserCircleHeader from '../UserCircle/Utils/UserCircleHeader/UserCircleHeader';
-import UserCircleItem from '../UserCircle/Utils/UserCircleItem/UserCircleItem';
+import UserCircleSearch from './Utils/UserCircleSearch/UserCircleSearch';
+import UserCircleHeader from './Utils/UserCircleHeader/UserCircleHeader';
+import UserCircleItem from './Utils/UserCircleItem/UserCircleItem';
 
 function UserCircle() {
   const [btnpopup, setbtnpopup] = useState(false);
