@@ -9,7 +9,7 @@ import fileicon from '../../../assets/images/Vault icons/FileIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNodes , faPencil} from "@fortawesome/free-solid-svg-icons";
 
 //components
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
@@ -49,21 +49,15 @@ function FileList(props) {
                         <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setpopover(true)} />
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
-                                <li onClick={() => setbtnpopup1(true)}>Details</li>
-                                <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li>Share</li></Link>
-                                <li onClick={() => setbtnpopup2(true)}>Rename</li>
-                                <li>Download</li>
-                                <li>Delete</li>
+                                <li onClick={() => setbtnpopup1(true)}><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
+                                <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
+                                <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil}/>   Rename</li>
+                                <li><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
+                                <li><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>
                         </VaultPopover>
-                        <VaultDetailsPopup
-                        trigger={btnpopup1}
-                        settrigger={setbtnpopup1}
-                        ></VaultDetailsPopup>
-                        <VaultRenamePopup
-                        trigger={btnpopup2}
-                        settrigger={setbtnpopup2}
-                        ></VaultRenamePopup>
+                        <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1}/>
+                        <VaultRenamePopup trigger={btnpopup2} settrigger={setbtnpopup2} />
                     </div>
                 </div>
             </div>
