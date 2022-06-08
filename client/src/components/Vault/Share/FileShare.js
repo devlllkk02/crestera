@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react'
 import '@fontsource/roboto';
 import './Share.scss';
-import { useState } from 'react';
+
+import { getDateTime } from '../../../helpers/TimeHelper';
 
 //Images
 import fileicon from '../../../assets/images/Vault icons/FileIcon.png';
@@ -15,7 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //Components
 import VaultSharePopup from '../VaultSharePopup/VaultSharePopup';
 
-function Share() {
+function FileShare(props) {
   const [btnpopup, setbtnpopup] = useState(false);
   return (
     <div className="vaultshare">
@@ -24,20 +25,20 @@ function Share() {
       </div>
       <div className="vaultshare_details">
         <div className="vaultshare__folderIcon">
-          <img src={foldericon} alt="" />
+          <img src={fileicon} alt="" />
         </div>
         <div className="vaultshare_details_list">
           <div className="vaultshare_details_name">
             <p1>Name :</p1>&nbsp;
-            <p2>Folder 01</p2>
+            <p2>File 01</p2>
           </div>
           <div className="vaultshare_details_type">
             <p1>Type :</p1>&nbsp;
-            <p2>Folder</p2>
+            <p2>File</p2>
           </div>
           <div className="vaultshare_details_size">
             <p1>Size:</p1>&nbsp;
-            <p2>2.5 GB</p2>
+            <p2>490 MB</p2>
           </div>
           <div className="vaultshare_details_datemodified">
             <p1>Date Modified :</p1>&nbsp;
@@ -204,4 +205,4 @@ function Share() {
   );
 }
 
-export default Share;
+export default FileShare;
