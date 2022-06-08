@@ -44,7 +44,7 @@ function FolderList(props) {
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
                                 <li >Details</li>
-                                <Link to={`/folder/${props.folder._id}`} style={{ textDecoration: 'none' }}><li>Share</li></Link>
+                                <Link to={`/vaultshare/${props.folder._id}`} style={{ textDecoration: 'none' }}><li>Share</li></Link>
                                 <li>Rename</li>
                                 <li>Download</li>
                                 <li>Delete</li>
