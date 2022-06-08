@@ -23,7 +23,7 @@ const FolderCreate = ({ trigger, settrigger }) => {
   const currentDate = new Date();
 
 
-  const handlepostSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await NewFolder({
@@ -48,7 +48,7 @@ const FolderCreate = ({ trigger, settrigger }) => {
         </button>
         <div className='create_folder' ref={ref}>
           <div className='create_folder_box'>
-            <form onSubmit={handlepostSubmit}>
+            <form onSubmit={handleSubmit}>
             <h5>Create Folder</h5>
                 <input
                   type='text'
