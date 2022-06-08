@@ -9,9 +9,9 @@ import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
-import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
-import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
-import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
+// import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
+// import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
+// import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 
 import VaultDashboard from './pages/Vault/VaultDashboard';
@@ -28,19 +28,14 @@ const App = () => {
           <Route exact path="/dashboard/board" element={<DashBoardPage />} />
           <Route exact path="/dashboard/note" element={<DashNotePage />} />
           <Route exact path="/profile" element={<UserProfilePage />} />
-          <Route exact path="/profile" element={<UserProfilePage />} />
-          <Route exact path="/usercircle" element={<UserCirclePage />} />
-          <Route exact path="/usercircles" element={<UserCirclesPage />} />
-          <Route exact path="/vaultshare" element={<VaultSharePage />} />
-          <Route
-            exact
-            path="/usercirclescreate"
-            element={<UserCirclesCreatePage />}
-          />
-          <Route exact path="/vault" element={<VaultDashboard />} />
-          <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  />
+
+          {/* <Route exact path="/usercircle" element={<UserCirclePage />} />
+          <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />} />
+          <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  /> */}
+
           <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
           <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
+          <Route exact path="/vaultshare" element={<VaultSharePage />} />
         </Routes>
       </Router>
     </div>
