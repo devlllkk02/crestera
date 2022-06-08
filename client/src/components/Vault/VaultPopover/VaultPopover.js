@@ -1,5 +1,4 @@
-import React,{ useState,useRef,useEffect }  from 'react';
-import { FiX } from 'react-icons/fi';
+import React,{useRef,useEffect }  from 'react';
 import './VaultPopover.css';
 
 const VaultPopover = ({ trigger, settrigger, children }) => {
