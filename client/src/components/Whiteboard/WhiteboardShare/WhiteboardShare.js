@@ -1,14 +1,14 @@
 import React from "react";
-import '@fontsource/roboto';
-import './WhiteboardShare.scss';
+import "@fontsource/roboto";
+import "./WhiteboardShare.scss";
 
 //images
-import slideicon from '../../../assets/images/Whiteboard/slideicon.png';
-import profilePic from '../../../assets/images/other/profilePicture.jpg'
+import slideicon from "../../../assets/images/Whiteboard/slideicon.png";
+import profilePic from "../../../assets/images/other/profilePicture.jpg";
 
 //Font Awesome
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function WhiteboardShare() {
   return (
@@ -45,7 +45,7 @@ function WhiteboardShare() {
           <p>DOWNLOAD</p>
         </div>
         <div className="boardshare_download_body">
-            <p2>File Type</p2>
+          <p2>File Type</p2>
           <div className="boardshare__filetypebox">
             <select name="" id="">
               <option value="">PNG</option>
@@ -88,12 +88,12 @@ function WhiteboardShare() {
       </div>
 
       <div className="boardshare_linkgroup">
-          <div className="boardshare_linkgroup_header">
-            <p>SHARE WITH PEOPLE & GROUPS</p>
-          </div>
-          <button className="boardshare_linkgroup_button" >
-              <span>INVITE PEOPLE & GROUPS</span>
-          </button>
+        <div className="boardshare_linkgroup_header">
+          <p>SHARE WITH PEOPLE & GROUPS</p>
+        </div>
+        <button className="boardshare_linkgroup_button">
+          <span>INVITE PEOPLE & GROUPS</span>
+        </button>
       </div>
       <div className="boardshare_list_header">
         <div className="boardshare_list_header_title1">
@@ -103,122 +103,119 @@ function WhiteboardShare() {
           <p>Permission</p>
         </div>
       </div>
-      
-      <div className="boardshare_list_items">
-      <div className="boardshare_list_item__Icon">
-        <img src={profilePic} alt="" />
-      </div>
-      <div className="boardshare_list_item__Name">
-        <p>Janice Brownwell</p>
-      </div>
-      <div className="boardshare__list_item_accessbox">
-            <select name="" id="">
-              <option value="">Viewer</option>
-              <option value="">Editor</option>
-            </select>
-            <div className="boardshare__list_item_accessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <div className="boardshare_listitem_remove_container">
-          <button className="boardshare_listitem_remove_button">
-            <span>REMOVE</span>
-          </button>
-        </div>
-      </div>
-      <div className="boardshare_list_items">
-      <div className="boardshare_list_item__Icon">
-        <img src={profilePic} alt="" />
-      </div>
-      <div className="boardshare_list_item__Name">
-        <p>Janice Brownwell</p>
-      </div>
-      <div className="boardshare__list_item_accessbox">
-            <select name="" id="">
-              <option value="">Viewer</option>
-              <option value="">Editor</option>
-            </select>
-            <div className="boardshare__list_item_accessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <div className="boardshare_listitem_remove_container">
-          <button className="boardshare_listitem_remove_button">
-            <span>REMOVE</span>
-          </button>
-        </div>
-      </div>
-      <div className="boardshare_list_items">
-      <div className="boardshare_list_item__Icon">
-        <img src={profilePic} alt="" />
-      </div>
-      <div className="boardshare_list_item__Name">
-        <p>Janice Brownwell</p>
-      </div>
-      <div className="boardshare__list_item_accessbox">
-            <select name="" id="">
-              <option value="">Viewer</option>
-              <option value="">Editor</option>
-            </select>
-            <div className="boardshare__list_item_accessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <div className="boardshare_listitem_remove_container">
-          <button className="boardshare_listitem_remove_button">
-            <span>REMOVE</span>
-          </button>
-        </div>
-      </div>
-      <div className="boardshare_list_items">
-      <div className="boardshare_list_item__Icon">
-        <img src={profilePic} alt="" />
-      </div>
-      <div className="boardshare_list_item__Name">
-        <p>Janice Brownwell</p>
-      </div>
-      <div className="boardshare__list_item_accessbox">
-            <select name="" id="">
-              <option value="">Viewer</option>
-              <option value="">Editor</option>
-            </select>
-            <div className="boardshare__list_item_accessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <div className="boardshare_listitem_remove_container">
-          <button className="boardshare_listitem_remove_button">
-            <span>REMOVE</span>
-          </button>
-        </div>
-      </div>
-      <div className="boardshare_list_items">
-      <div className="boardshare_list_item__Icon">
-        <img src={profilePic} alt="" />
-      </div>
-      <div className="boardshare_list_item__Name">
-        <p>Janice Brownwell</p>
-      </div>
-      <div className="boardshare__list_item_accessbox">
-            <select name="" id="">
-              <option value="">Viewer</option>
-              <option value="">Editor</option>
-            </select>
-            <div className="boardshare__list_item_accessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <div className="boardshare_listitem_remove_container">
-          <button className="boardshare_listitem_remove_button">
-            <span>REMOVE</span>
-          </button>
-        </div>
-      </div>
 
-      
-
+      <div className="boardshare_list_items">
+        <div className="boardshare_list_item__Icon">
+          <img src={profilePic} alt="" />
+        </div>
+        <div className="boardshare_list_item__Name">
+          <p>Janice Brownwell</p>
+        </div>
+        <div className="boardshare__list_item_accessbox">
+          <select name="" id="">
+            <option value="">Viewer</option>
+            <option value="">Editor</option>
+          </select>
+          <div className="boardshare__list_item_accessbox__icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        <div className="boardshare_listitem_remove_container">
+          <button className="boardshare_listitem_remove_button">
+            <span>REMOVE</span>
+          </button>
+        </div>
+      </div>
+      <div className="boardshare_list_items">
+        <div className="boardshare_list_item__Icon">
+          <img src={profilePic} alt="" />
+        </div>
+        <div className="boardshare_list_item__Name">
+          <p>Janice Brownwell</p>
+        </div>
+        <div className="boardshare__list_item_accessbox">
+          <select name="" id="">
+            <option value="">Viewer</option>
+            <option value="">Editor</option>
+          </select>
+          <div className="boardshare__list_item_accessbox__icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        <div className="boardshare_listitem_remove_container">
+          <button className="boardshare_listitem_remove_button">
+            <span>REMOVE</span>
+          </button>
+        </div>
+      </div>
+      <div className="boardshare_list_items">
+        <div className="boardshare_list_item__Icon">
+          <img src={profilePic} alt="" />
+        </div>
+        <div className="boardshare_list_item__Name">
+          <p>Janice Brownwell</p>
+        </div>
+        <div className="boardshare__list_item_accessbox">
+          <select name="" id="">
+            <option value="">Viewer</option>
+            <option value="">Editor</option>
+          </select>
+          <div className="boardshare__list_item_accessbox__icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        <div className="boardshare_listitem_remove_container">
+          <button className="boardshare_listitem_remove_button">
+            <span>REMOVE</span>
+          </button>
+        </div>
+      </div>
+      <div className="boardshare_list_items">
+        <div className="boardshare_list_item__Icon">
+          <img src={profilePic} alt="" />
+        </div>
+        <div className="boardshare_list_item__Name">
+          <p>Janice Brownwell</p>
+        </div>
+        <div className="boardshare__list_item_accessbox">
+          <select name="" id="">
+            <option value="">Viewer</option>
+            <option value="">Editor</option>
+          </select>
+          <div className="boardshare__list_item_accessbox__icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        <div className="boardshare_listitem_remove_container">
+          <button className="boardshare_listitem_remove_button">
+            <span>REMOVE</span>
+          </button>
+        </div>
+      </div>
+      <div className="boardshare_list_items">
+        <div className="boardshare_list_item__Icon">
+          <img src={profilePic} alt="" />
+        </div>
+        <div className="boardshare_list_item__Name">
+          <p>Janice Brownwell</p>
+        </div>
+        <div className="boardshare__list_item_accessbox">
+          <select name="" id="">
+            <option value="">Viewer</option>
+            <option value="">Editor</option>
+          </select>
+          <div className="boardshare__list_item_accessbox__icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+        <div className="boardshare_listitem_remove_container">
+          <button className="boardshare_listitem_remove_button">
+            <span>REMOVE</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default WhiteboardShare; 
+export default WhiteboardShare;

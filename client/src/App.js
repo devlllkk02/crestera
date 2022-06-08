@@ -15,7 +15,7 @@ import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
 import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 import VaultDashboard from './pages/Vault/VaultDashboard';
 
-import WhiteboardShare from './components/Whiteboard/WhiteboardShare/WhiteboardShare'
+import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage'
 
 const App = () => {
   return (
