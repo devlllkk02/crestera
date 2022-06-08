@@ -1,8 +1,9 @@
 // ------ Sidebar  ------
-import React from "react";
+import React, { useContext } from "react";
 import "./Sidebar.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../App";
 
 //Images
 import CresteraBoard from "../../assets/images/logos/Crestera-Board.png";
@@ -18,6 +19,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Sidebar({ page }) {
+  const { state, dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch({ type: "CLEAR" });
+    navigate("/login");
+  };
+
   const setSidebarColors = (active) => {
     if (page === "crestera" && active) {
       return { backgroundColor: "#0f96c3" };
@@ -121,12 +131,15 @@ function Sidebar({ page }) {
       <div className="sidebar__item">
         <div className="sidebar__item__container">
           <div className="sidebar__item__icon">
-            <div className="sidebar__item__icon__container">
+            <div
+              className="sidebar__item__icon__container"
+              onClick={() => handleLogout()}
+            >
               <FontAwesomeIcon icon={faSignOutAlt} />
             </div>
           </div>
           <div className="sidebar__item__text">
-            <p>Logout</p>
+            <p onClick={() => handleLogout()}>Logout</p>
           </div>
           <div
             className="sidebar__item__border"
