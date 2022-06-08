@@ -5,6 +5,8 @@ import ArrowIcon from "../../assets/images/Icons/arrow.png"
 import CircleIcon from "../../assets/images/Icons/circle.png"
 import EraserIcon from "../../assets/images/Icons/eraser.png"
 import RectangleIcon from "../../assets/images/Icons/rectangle.png"
+import "./Drawables.scss"
+
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
@@ -225,4 +227,9 @@ render(){
 }
 }
 
-export default Drawables;
+function Canvas() {
+  return (
+    <div><Drawables /></div>
+  )
+}
+export default Canvas;

@@ -1,2 +1,10 @@
 //-----Whiteboard-----
 @import "../../Theme.scss";
+
+.whiteboard__canvas{
+height: 100%;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: -1px 0px 14px 6px #E5E5E5;
+  padding: 10px;
+}
