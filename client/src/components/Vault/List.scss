@@ -146,25 +146,20 @@
     .VaultItem_setings__container {
       cursor: pointer;
       color: $grey;
+      ul{
+        list-style: none;
+        padding: 10px;
+      }
     }
   }
 }
 
-@media screen and (max-width:768px) {
-  .VaultHeader{
-    .VaultHeader_title2{ display: none; }
-  }
-  .VaultItem{
-    .VaultItem_title2{ display: none; }
-  }
-}
 @media screen and (max-width:550px) {
   .VaultHeader{
-    .VaultHeader_title2{ display: none; }
     .VaultHeader_title3{ display: none; }
+    
   }
   .VaultItem{
-    .VaultItem_title1{ display: none; }
     .VaultItem_title2{ display: none; }
   }
 }

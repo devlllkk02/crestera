@@ -9,7 +9,7 @@ import fileicon from '../../../assets/images/Vault icons/FileIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNodes , faPencil} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -44,11 +44,11 @@ function FileList(props) {
                         <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setpopover(true)} />
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
-                                <li >Details</li>
-                                <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li>Share</li></Link>
-                                <li>Rename</li>
-                                <li>Download</li>
-                                <li>Delete</li>
+                                <li ><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
+                                <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
+                                <li><FontAwesomeIcon icon={faPencil}/>   Rename</li>
+                                <li><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
+                                <li><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>
                         </VaultPopover>
                     </div>
