@@ -5,6 +5,7 @@ import List from '../../components/Vault/List';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
 import { Progress } from 'antd';
+import FolderCreatet from '../../components/Vault/FolderCreate/FolderCreate';
 
 const VaultDashboard = () => {
 
@@ -15,7 +16,7 @@ const VaultDashboard = () => {
 
   useEffect(() => setCurrentFolder(folderId || 'main'), [folderId]);
 
-
+  const [popup, setpopup] = useState(false);
 
   return (
     <>
@@ -24,7 +25,7 @@ const VaultDashboard = () => {
 
         <div className="vaultDashButtons">
           <button className="vaultDashButton">upload</button>
-          <button className="vaultDashButton">create</button>
+          <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
           <Link to={`/folder/bin`}  style={{ textDecoration: 'none' }}>
           <button className="vaultDashButton">Trash</button>
           </Link>
@@ -51,6 +52,7 @@ const VaultDashboard = () => {
         </div>
 
       </div>
+      <FolderCreatet trigger={popup} settrigger={setpopup}/>
     </>
   );
 };
