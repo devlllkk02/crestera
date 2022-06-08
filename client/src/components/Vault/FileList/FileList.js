@@ -13,7 +13,7 @@ import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNode
 
 //components
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
-import VaultRenamePopup from "../../Vault/VaultRenamePopup/VaultRenamePopup"
+// import VaultRenamePopup from "../../Vault/VaultRenamePopup/VaultRenamePopup"
 
 
 function FileList(props) {
@@ -57,7 +57,7 @@ function FileList(props) {
                             </ul>
                         </VaultPopover>
                         <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1}/>
-                        <VaultRenamePopup trigger={btnpopup2} settrigger={setbtnpopup2} />
+                        {/* <VaultRenamePopup trigger={btnpopup2} settrigger={setbtnpopup2} /> */}
                     </div>
                 </div>
             </div>
