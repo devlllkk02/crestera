@@ -1,0 +1,436 @@
+@import '../../../Theme.scss';
+
+.vaultshare {
+    width: 100%;
+    overflow-y: hidden;
+    /* Hide vertical scrollbar */
+    overflow-x: hidden;
+
+    .vaultshare_header {
+        p {
+            text-align: center;
+            font-family: 'Roboto';
+            color: #0f96c3;
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 40px;
+            line-height: 33px;
+        }
+    }
+
+    .vaultshare_details {
+
+
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        height: 300px;
+
+        .vaultshare__folderIcon {
+            width: 17%;
+            // background-color: aqua;
+            display: flex;
+            justify-content: flex-end;
+
+            img {
+
+                height: 200px;
+                width: 200px;
+            }
+
+        }
+
+        .vaultshare_details_list {
+            margin-top: 48px;
+            margin-left: 5%;
+            width: 80%;
+            // background-color: bisque;
+        }
+
+        .vaultshare_details_name {
+            padding-bottom: 14px;
+            display: flex;
+
+            p1 {
+                font-family: 'Roboto';
+                color: #0f96c3;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            p2 {
+                color: #444E63;
+                font-style: normal;
+                font-family: 'Roboto';
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        .vaultshare_details_type {
+            padding-bottom: 14px;
+            display: flex;
+
+            p1 {
+                font-family: 'Roboto';
+                color: #0f96c3;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            p2 {
+                color: #444E63;
+                font-style: normal;
+                font-family: 'Roboto';
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        .vaultshare_details_size {
+            padding-bottom: 14px;
+            display: flex;
+
+            p1 {
+                font-family: 'Roboto';
+                color: #0f96c3;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            p2 {
+                color: #444E63;
+                font-style: normal;
+                font-family: 'Roboto';
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        .vaultshare_details_datemodified {
+            padding-bottom: 14px;
+            display: flex;
+
+            p1 {
+                font-family: 'Roboto';
+                color: #0f96c3;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            p2 {
+                color: #444E63;
+                font-style: normal;
+                font-family: 'Roboto';
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+
+    }
+
+    .vaultshare_link {
+        margin-left: 5%;
+        margin-top: -40px;
+        width: 90%;
+
+        p {
+            font-family: 'Roboto';
+            color: #0f96c3;
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: $borderGreyLight;
+            padding-bottom: 10px;
+        }
+
+        .vaultshare_link_body {
+            margin-top: 40px;
+            display: flex;
+
+            .vaultshare__linkbox {
+                width: calc((100% - 210px) * 0.70);
+                height: 100%;
+                //background-color: lightseagreen;
+
+                @include flexbox;
+                justify-content: flex-start;
+                position: relative;
+
+                input {
+                    width: 100%;
+                    height: 35px;
+                    padding: 10px;
+
+                    color: $grey;
+                    outline: none;
+                    border: $borderGreyLight;
+                    box-sizing: border-box;
+                    font-size: $font-small;
+
+                    &:focus {
+                        border: $borderGreyLight;
+                        border-color: $blue;
+                    }
+                }
+            }
+
+            .vaultshare__linkaccessbox {
+                width: calc(((100% - 210px) * 0.25));
+                height: 100%;
+                // background-color: lightyellow;
+
+                @include flexbox;
+                justify-content: flex-end;
+                position: relative;
+
+                select {
+                    width: 100%;
+                    height: 35px;
+                    // background-color: $white;
+                    background: $white;
+
+                    margin-left: 20px;
+                    padding: 5px;
+                    -moz-appearance: none;
+                    -webkit-appearance: none;
+
+                    color: $grey;
+                    outline: none;
+                    border: $borderGreyLight;
+                    box-sizing: border-box;
+
+                    &:focus {
+                        border: $borderGreyLight;
+                        border-color: $blue;
+                    }
+                }
+
+                .vaultshare__linkaccessbox__icon {
+                    position: absolute;
+                    right: 8px;
+                    color: $greyIconsLight;
+                }
+            }
+
+            button.vaultshare_link_button {
+                background-color: #0f96c3;
+                color: $white;
+                background: #0f96c3;
+                display: block;
+
+                border: 2px solid #0f96c3;
+                //   box-sizing: border-box;
+                width: calc((100% - 210px) * 0.20);
+                height: 100%;
+                padding: 6px;
+                margin-left: 3%;
+                
+                
+                    span {
+                        height: 35px;
+                        font-family: 'Roboto';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 19px;
+                        font-stretch: 1000%;
+                
+                    }
+                }
+                }
+                }
+                
+                .vaultshare_link_group {
+                    margin-left: 5%;
+                    margin-top: 40px;
+                    width: 90%;
+                .vaultshare_link_group_header{
+                    p {
+                        font-family: 'Roboto';
+                        color: #0f96c3;
+                        font-size: 20px;
+                        font-weight: 700;
+                        border-bottom: $borderGreyLight;
+                        padding-bottom: 10px;
+                    }
+                }
+
+                                button.vaultshare_link_group_button {
+                                    margin-top: 30px;
+                                    background-color: #0f96c3;
+                                    color: $white;
+                                    background: #0f96c3;
+                                    display: block;
+                                    border: 2px solid #0f96c3;
+                                    width: calc((100% - 210px) * 0.20);
+                                    height: 100%;
+                                    padding: 6px;
+                                    margin-left: auto;
+                                    margin-right: 0;
+
+        span {
+                height: 35px;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                font-stretch: 1000%;
+
+}
+}
+}
+.vaultshare_list_header {
+    display: flex;
+    border-top: $borderGreyLight;
+        border-bottom: $borderGreyLight;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-left: 5%;
+        margin-top: 40px;
+        width: 90%;
+    .vaultshare_list_header_title1 {
+           // background-color:aquamarine;
+            width:50%;
+            margin-left: 5%;
+            p{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 16px;
+                color: #0F96C3;
+            }
+        }
+        .vaultshare_list_header_title2 {
+            //background-color:aquamarine;
+            width:50%;
+            margin-left: 25%;
+            p{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 16px;
+                color: #0F96C3;
+            }
+        }
+    }
+.vaultshare_list_items{
+    margin-left: 5%;
+    padding-top: 10px;
+    width: 90%;
+   display: flex;
+    border-bottom: $borderGreyLight;
+   padding-bottom: 10px;
+
+    .vaultshare_list_item__Icon {
+        width: 70px;
+        height: 100%;
+        // background-color: lightpink;
+    
+        @include flexbox;
+    
+        img {
+          height: 40px;
+          width: 40px;
+    
+          border-radius: 50%;
+          border: 2px solid $blue;
+          cursor: pointer;
+        }
+      }
+      .vaultshare_list_item__Name {
+        width: calc((100% - 150px) * 0.65);
+        height: 100%;
+        // background-color: lightyellow;
+    
+        @include flexbox;
+        justify-content:flex-start;
+    
+        p {
+          color: $grey;
+          margin-top: 15px;
+          font-size: $font-extra-small;
+        }
+      }
+      .vaultshare__list_item_accessbox {
+        width: calc(((100% - 210px) * 0.25));
+        align-self: center;
+        height: 100%;
+        // background-color: lightyellow;
+
+        @include flexbox;
+        justify-content: flex-end;
+        position: relative;
+
+        select {
+            width: 100%;
+            height: 35px;
+            // background-color: $white;
+            background: $white;
+
+            margin-left: 20px;
+            padding: 5px;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+
+            color: $grey;
+            outline: none;
+            border: $borderGreyLight;
+            box-sizing: border-box;
+
+            &:focus {
+                border: $borderGreyLight;
+                border-color: $blue;
+            }
+        }
+
+        .vaultshare__list_item_accessbox__icon {
+            position: absolute;
+            right: 8px;
+            color: $greyIconsLight;
+        }
+    }
+    .vaultshare__list_item__remove__container {
+        width: calc(((100% - 250px) * 0.15));
+        //background-color: aquamarine;
+        margin-left: auto;
+        margin-right: 0;
+        cursor: pointer;
+        color: $grey;
+        display: flex;
+        button.vaultshare__list_item__remove_button {
+          background-color: #0f96c3;
+          align-self: center;
+          color: $white;
+          background: #0f96c3;
+          margin-left: auto;
+          margin-right: 0;
+          // display: block;
+          // margin:auto;  
+    
+          background-color: white;
+        border: 2px solid #0F96C3;
+        color: #0F96C3;
+          //   box-sizing: border-box;
+          width: 100px;
+          height: 40px;
+          &:hover{
+            background-color:#0F96C3;
+            color: white;
+  
+          }
+          span {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 19px;
+    
+          }
+        }
+      }
+}
+}

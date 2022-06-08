@@ -7,7 +7,7 @@ import {
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 
-function UserCirclesCreate() {
+const UserCirclesCreate = () => {
   return (
     <div className="usercircles_create">
       <div className="usercircles_create_container">

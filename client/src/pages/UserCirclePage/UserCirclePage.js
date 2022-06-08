@@ -1,8 +1,8 @@
 import React from "react";
 
 //components
-import Navbar from "../../components/Navbar/Navbar";
-import UserCircle from "../../components/UserCircles/UserCircle/UserCircle";
+import Navbar from '../../components/Navbar/Navbar';
+import UserCircle from '../../components/UserCircles/UserCircle/UserCircle.js';
 
 function UserCirclePage() {
   return (
@@ -11,6 +11,6 @@ function UserCirclePage() {
       <UserCircle />
     </>
   );
-}
+};
 
 export default UserCirclePage;
