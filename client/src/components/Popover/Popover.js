@@ -1,7 +1,7 @@
 import React,{useRef,useEffect }  from 'react';
 import './Popover.css';
 
-const VaultPopover = ({ trigger, settrigger, children }) => {
+const Popover = ({ trigger, settrigger, children }) => {
    
   useEffect(()=>{
     document.addEventListener('click',handleClickoutside,true)
@@ -25,5 +25,5 @@ const VaultPopover = ({ trigger, settrigger, children }) => {
   ) : <></>;
 };
  
-export default VaultPopover;
+export default Popover;
 

@@ -32,19 +32,19 @@ const List = ({ currentFolder }) => {
     <div className="box">
 
       {/* Header */}
-      <div className="dashHeader">
-        <div className="dashHeader__fileIcon"></div>
-        <div className="dashHeader__title1">
+      <div className="VaultHeader">
+        <div className="VaultHeader_fileIcon"></div>
+        <div className="VaultHeader_title1">
           <p>Name</p>
         </div>
-        <div className="dashHeader__middleIcon"></div>
-        <div className="dashHeader__title2">
+        <div className="VaultHeader_middleIcon"></div>
+        <div className="VaultHeader_title2">
           <p>Size</p>
         </div>
-        <div className="dashHeader__title3">
+        <div className="VaultHeader_title3">
           <p>Date Modified</p>
         </div>
-        <div className="dashHeader__setings"></div>
+        <div className="VaultHeader_setings"></div>
       </div>
 
       {/* Folder list */}
