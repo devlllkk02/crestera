@@ -1,31 +1,30 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React,{ useState,useRef,useEffect }  from 'react';
+import { FiX } from 'react-icons/fi';
 import './VaultPopover.css';
 
+const VaultPopover = ({ trigger, settrigger, children }) => {
+   
+  useEffect(()=>{
+    document.addEventListener('click',handleClickoutside,true)
+  },[])
 
-//Popup Components
-import VaultDetailsPopup from '../VaultDetailsPopup/VaultDetailsPopup';
-import VaultRenamePopup from '../VaultRenamePopup/VaultRenamePopup';
+  const ref =useRef(null)
 
-const VaultPopover = () => {
-  const [btnpopup, setbtnpopup] = useState(false);
-  return (
+  const handleClickoutside =(e)=>{
+    if(!ref.current.contains(e.target)){
+      settrigger(false);
+    }
+  }
+  return  trigger ? (
     <div>
-      <div className="fileActionsMenu popovermenu bubble menu">
-        <ul>
-          <li onClick={() => setbtnpopup(true)}>Details</li>
-          <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li>Share</li></Link>
-          <li onClick={() => setbtnpopup(true)}>Rename</li>
-          <li>Download</li>
-          <li>Delete</li>
-        </ul>
+      <div className="fileActionsMenu popovermenu bubble menu" ref={ref}>
+        <div className='popover'>
+                {children}
+            </div>
       </div>
-      <VaultDetailsPopup
-      trigger={btnpopup}
-      settrigger={setbtnpopup}
-    ></VaultDetailsPopup>
     </div>
-  );
+  ) : <></>;
 };
-
+ 
 export default VaultPopover;
+
