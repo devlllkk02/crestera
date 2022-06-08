@@ -14,7 +14,6 @@ import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes,
 
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
 import FolderUpdate from '../FolderCreate/FolderUpdate';
-import FolderCreate from '../FolderCreate/FolderCreate';
 
 function FolderList(props) {
 
@@ -22,7 +21,7 @@ function FolderList(props) {
     const [btnpopup1, setbtnpopup1] = useState(false);
     const [btnpopup2, setbtnpopup2] = useState(false);
 
-    const DeleteFolder= async (e) => {
+    const DeleteFolder = async (e) => {
         try {
             const response = await deleteFolder(e);
             console.log('item deleted');
@@ -66,12 +65,13 @@ function FolderList(props) {
                                     <li onClick={() => DeleteFolder(props.folder._id)}><FontAwesomeIcon icon={faTrash} />   Delete</li>
                                 </ul>
                             </VaultPopover>
-                            <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} folder={props.folder}/>
-                            <FolderCreate trigger={btnpopup2} settrigger={setbtnpopup2} />
+
                         </div>
                     </div>
                 </div>
             </Link >
+            <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} folder={props.folder} />
+            <FolderUpdate trigger={btnpopup2} settrigger={setbtnpopup2} folder={props.folder} />
         </div >
     )
 }
