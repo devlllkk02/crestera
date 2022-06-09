@@ -43,6 +43,13 @@ export const deleteFolder = (id) => {
     });
 };
 
+export const updateuser = (data) => {
+    return axios.put(baseUrl + 'users/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
 
 
 
