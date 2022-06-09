@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const socketIOConnect = require("./config/socket");
 const PORT = process.env.PORT;
 
 //Initialising Express Application
@@ -11,6 +12,9 @@ app.use(cors());
 
 //Connecting to MongoDB
 connectDB();
+
+//Connecting to Socket.io
+socketIOConnect();
 
 //Modles
 require("./models/User");
