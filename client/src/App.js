@@ -22,6 +22,7 @@ import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
 
 import VaultDashboard from "./pages/Vault/VaultDashboard";
+import NotePage from "./pages/NotePage/NotePage";
 
 export const UserContext = createContext();
 
@@ -34,7 +35,7 @@ const Routing = () => {
 
     if (user) {
       dispatch({ type: "USER", payload: user });
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } else {
       navigate("/login");
     }
@@ -57,6 +58,9 @@ const Routing = () => {
       <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
       <Route exact path="/vaultshare" element={<VaultSharePage />} />
+
+      {/* Note */}
+      <Route exact path="/note" element={<NotePage />} />
     </Routes>
   );
 };

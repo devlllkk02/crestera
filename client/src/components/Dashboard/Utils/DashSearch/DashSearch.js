@@ -9,6 +9,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 function DashSearch({ page }) {
   const setCreateButtonBorderStyles = () => {
@@ -38,23 +39,34 @@ function DashSearch({ page }) {
     }
   };
 
+  const setCreateButtonLink = () => {
+    if (page === "board") {
+      return "/board";
+    }
+    if (page === "note") {
+      return "/note";
+    }
+  };
+
   return (
     <div className="dashSearch">
       <div className="dashSearch__button">
         {page != "crestera" && (
-          <button style={setCreateButtonBorderStyles()}>
-            <div
-              className="dashSearch__button__icon"
-              style={setCreateButtonColorStyles()}
-            >
-              <FontAwesomeIcon icon={faPlus} />
-            </div>
-            <div className="dashSearch__button__text">
-              <p style={setCreateButtonColorStyles()}>
-                {setCreateButtonText()}
-              </p>
-            </div>
-          </button>
+          <Link to={setCreateButtonLink()} style={{ textDecoration: "none" }}>
+            <button style={setCreateButtonBorderStyles()}>
+              <div
+                className="dashSearch__button__icon"
+                style={setCreateButtonColorStyles()}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </div>
+              <div className="dashSearch__button__text">
+                <p style={setCreateButtonColorStyles()}>
+                  {setCreateButtonText()}
+                </p>
+              </div>
+            </button>
+          </Link>
         )}
       </div>
       <div className="dashSearch__searchbox1">

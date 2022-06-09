@@ -1,0 +1,26 @@
+// ------ Editor ------
+@import "../../../Theme.scss";
+
+.editor {
+  width: 100%;
+  .ql-toolbar {
+    @include flexbox;
+  }
+
+  .ql-container.ql-snow {
+    background-color: #f3f3f3;
+    @include flexbox;
+    align-items: flex-start;
+    padding: 40px 0px;
+
+    border: none;
+    .ql-editor {
+      width: 8.5in;
+      min-height: 11in;
+      background-color: $white;
+      padding: 1in;
+
+      box-shadow: 0 0 5px 0 rgba($color: $black, $alpha: 0.5);
+    }
+  }
+}
