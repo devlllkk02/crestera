@@ -5,7 +5,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import UserProfile from "../../components/UserProfile/UserProfile";
 
-function DashHomePage() {
+function UserProfilePage() {
   return (
     <>
       <Navbar page="crestera" />
@@ -14,4 +14,4 @@ function DashHomePage() {
   );
 }
 
-export default DashHomePage;
+export default UserProfilePage;

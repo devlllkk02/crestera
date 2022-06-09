@@ -1,9 +1,19 @@
-//------ User Profile  ------
-import React from "react";
+//------ User Profile Page ------
+import React, { useState, useContext } from 'react';
+
 import "./UserProfile.scss";
+
+//images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
 
-function UserProfile() {
+//packages
+import { Link } from "react-router-dom";
+import { UserContext } from '../../App';
+
+const UserProfile = () => {
+  const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+
   return (
     <div className="profile__page">
       <div className="profile__container">
@@ -11,57 +21,51 @@ function UserProfile() {
           <img src={profilePic} />
         </div>
         <div className="profile__heading">
-          <p1>PUBLIC PROFILE</p1>
+          <p>PUBLIC PROFILE</p>
           <hr />
         </div>
-        <div className="profile__form">
-          <form>
-            <div className="profile__name">
-              <div className="first__name">
-                <label>
-                  First Name
-                  <input type="text" name="firstName" placeholder="Janice" />
-                </label>
-              </div>
-              <div className="last__name">
-                <label>
-                  Last name
-                  <input type="text" name="lastName" placeholder="Brownwell" />
-                </label>
-              </div>
+        <div className="profile__details">
+          <div className="profile__name">
+            <div className="container">
+              <h3>FIRST NAME</h3>
+              <p2>{`${state?.firstName}`}</p2>
+              <hr />
             </div>
-            <div className="user__name">
-              <label>User Name</label>
-              <input
-                type="text"
-                name="userName"
-                placeholder="janicebrownwell@gmail.com"
-              />
+            <div className="container">
+              <h3>LAST NAME</h3>
+              <p2>{`${state?.lastName}`}</p2>
+              <hr />
             </div>
-            <div className="profile__bio">
-              <label>Bio</label>
-              <textarea>Bio</textarea>
+          </div>
+          <div className="container">
+            <h3>EMAIL</h3>
+            <p2>{`${state?.email}`}</p2>
+            <hr />
+          </div>
+          <div className="bio">
+            <div className="container">
+              <h3>BIO</h3>
+              <p2>{`${state?.bio}`}
+              </p2>
+              <hr />
             </div>
-          </form>
+          </div>
+          <div className="container">
+            <h3>DOB</h3>
+            <p2>{`${state?.dob}`}</p2>
+            <hr />
+          </div>
+          <div className="container">
+            <h3>GENDER</h3>
+            <p2>{`${state?.gender}`}</p2>
+            <hr />
+          </div>
         </div>
         <div className="buttons">
-          <button className="cancel">CANCEL</button>
-
-          <button className="save">SAVE</button>
+          <Link to="/edit">
+          <button className="edit">EDIT</button>
+          </Link>
         </div>
-
-        <div className="profile__heading">
-          <p1>DELETE ACCOUNT</p1>
-          <hr />
-          <p2>
-            If you wish to delete your account, please enter your email address
-            to confirm your decision.
-            <br />
-            Please note that this acction is irreversible.
-          </p2>
-          <input type="email" name="email" placeholder="Email" />
-        </div>
-        <button className="delete">DELETE</button>
       </div>
     </div>
   );
