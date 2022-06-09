@@ -14,6 +14,8 @@ import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 import VaultDashboard from './pages/Vault/VaultDashboard';
+import Whiteboard from "./components/Whiteboard/Whiteboard";
+
 
 const App = () => {
   return (
@@ -35,6 +37,8 @@ const App = () => {
           <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
           <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
           <Route exact path="/vaultshare" element={<VaultSharePage />} />
+          <Route exact path="/whiteboard" element={<Whiteboard/>}/>
+          
         </Routes>
       </Router>
     </div>

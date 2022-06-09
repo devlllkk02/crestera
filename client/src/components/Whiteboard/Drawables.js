@@ -21,6 +21,7 @@ class ArrowDrawable extends Drawable{
         super(startx,starty);
         this.x = startx;
         this.y = starty;
+  
     }
     //register movements of the mouse points
     recordMovement(x,y){
@@ -43,6 +44,10 @@ class CircleDrawable extends Drawable{
         this.x = startx;
         this.y = starty;
     }
+    recordMovement(x,y){
+        this.x = x;
+        this.y = y;
+    }
     render(){
     //get center points dx,dy
     const dx = this.startx - this.x;
@@ -61,7 +66,10 @@ class RectangleDrawable extends ArrowDrawable {
       this.x = startx;
       this.y = starty;
     }
-  
+    recordMovement(x,y){
+        this.x = x;
+        this.y = y;
+    }
     render() {
       const recWidth = this.x - this.startx;
       const recHeight = this.y - this.starty;
@@ -78,11 +86,11 @@ class RectangleDrawable extends ArrowDrawable {
       this.points = [startx, starty];
     }
   
-    registerMovement(x, y) {
+    recordMovement(x, y) {
       this.points = [...this.points, x, y];
     }
     render() {
-      return <Line points={this.points} fill="black" stroke="black" />;
+      return <Line points={this.points} fill="black" stroke="black" strokeWidth={3} />;
     }
   }
 
@@ -92,15 +100,15 @@ class Eraser extends Drawable{
       super(startx, starty);
       this.points = [startx, starty];
     }
-    registerMovement(x, y) {
+    recordMovement(x, y) {
       this.points = [...this.points, x, y];
     }
     render() {
-      return <Line points={this.points} fill="white" stroke="white" tension = "10"/>;
+      return <Line points={this.points} fill="white" stroke="white" strokeWidth={5}/>;
     }
   }
 
-  /*----------------------------Main Drawable Class ------------------------*/
+//   /*----------------------------Main Drawable Class ------------------------*/
 class Drawables extends Component{
     constructor(props) {
         super(props);
@@ -111,57 +119,58 @@ class Drawables extends Component{
         };
       }
     //   Create drawable classes
-  getNewDrawableBasedOnType = (x, y, type) => {
-    const drawableClasses = {
-      FreePathDrawable,
-      ArrowDrawable,
-      CircleDrawable,
-      RectangleDrawable,
-      Eraser
-    };
-    return new drawableClasses[type](x, y);
-  };
-  //   handle mouse down event when pressing the tool buttons
-  handleMouseDown = e => {
-    const { newDrawable } = this.state;
-    if (newDrawable.length === 0) {
-      const { x, y } = e.target.getStage().getPointerPosition();
-      const newDrawable = this.getNewDrawableBasedOnType(
-        x,
-        y,
-        this.state.newDrawableType
-      );
-      this.setState({
-        newDrawable: [newDrawable]
-      });
-    }
-  };
-  //  handle mouse up event when user release mouse click and use it to draw things
-  handleMouseUp = e => {
-    const { newDrawable, drawables } = this.state;
-    if (newDrawable.length === 1) {
-      const { x, y } = e.target.getStage().getPointerPosition();
-      const drawableToAdd = newDrawable[0];
-      drawableToAdd.registerMovement(x, y);
-      drawables.push(drawableToAdd);
-      this.setState({
-        newDrawable: [],
-        drawables
-      });
-    }
-  };
-  //   handle mouse move event when mouse pointer move over stage element
-  handleMouseMove = e => {
-    const { newDrawable } = this.state;
-    if (newDrawable.length === 1) {
-      const { x, y } = e.target.getStage().getPointerPosition();
-      const updatedNewDrawable = newDrawable[0];
-      updatedNewDrawable.registerMovement(x, y);
-      this.setState({
-        newDrawable: [updatedNewDrawable]
-      });
-    }
-  };
+      getNewDrawableBasedOnType = (x, y, type) => {
+        const drawableClasses = {
+          FreePathDrawable,
+          ArrowDrawable,
+          CircleDrawable,
+          RectangleDrawable,
+          Eraser
+        };
+        return new drawableClasses[type](x, y);
+      };
+    //   handle mouse down event when pressing the tool button
+      handleMouseDown = e => {
+        const { newDrawable } = this.state;
+        if (newDrawable.length === 0) {
+          const { x, y } = e.target.getStage().getPointerPosition();
+          const newDrawable = this.getNewDrawableBasedOnType(
+            x,
+            y,
+            this.state.newDrawableType
+          );
+          
+          this.setState({
+            newDrawable: [newDrawable]
+          });
+        }
+      };
+    //  handle mouse up event when user release mouse click and use it to draw things
+      handleMouseUp = e => {
+        const { newDrawable, drawables } = this.state;
+        if (newDrawable.length === 1) {
+          const { x, y } = e.target.getStage().getPointerPosition();
+          const drawableToAdd = newDrawable[0];
+          drawableToAdd.recordMovement(x, y);
+          drawables.push(drawableToAdd);
+          this.setState({
+            newDrawable: [],
+            drawables
+          });
+        }
+      };
+    //   handle mouse move event when mouse pointer move over stage element
+      handleMouseMove = e => {
+        const { newDrawable } = this.state;
+        if (newDrawable.length === 1) {
+          const { x, y } = e.target.getStage().getPointerPosition();
+          const updatedNewDrawable = newDrawable[0];
+          updatedNewDrawable.recordMovement(x, y);
+          this.setState({
+            newDrawable: [updatedNewDrawable]
+          });
+        }
+      };
 render(){
     const drawables = [...this.state.drawables, ...this.state.newDrawable];
     return(
@@ -208,6 +217,8 @@ render(){
         </div>
        
        {/* ------------------------------------------  Drawing area -------------------------------------------*/}
+       <div className="stage__container">
+       
         <Stage
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -223,7 +234,9 @@ render(){
           </Layer>
         </Stage>
         </div>
-      </div>);
+        </div>
+      </div>
+      );
 }
 }
 
