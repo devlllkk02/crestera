@@ -9,6 +9,10 @@ function Editor() {
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
 
+  useEffect(() => {
+    console.log(quill);
+  }, [quill]);
+
   //Estblishing Web Socker
   useEffect(() => {
     const s = io("http://localhost:8000");
