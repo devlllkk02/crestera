@@ -187,6 +187,7 @@ render(){
     <div>
         <div className="whiteboard__container">
         <div className="toolbar">
+          <div className="tools__container">
       {/* ------------------------------------------Tool bar----------------------------------------------------------*/}
       {/* Arrow button*/}
         <button className="toolbar__btn"
@@ -230,7 +231,7 @@ render(){
         >
             <img src={DownloadIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
         </button>
-
+        </div>
         </div>
        
        {/* ------------------------------------------  Drawing area -------------------------------------------*/}

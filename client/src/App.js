@@ -20,6 +20,7 @@ import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
 // import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
+import Whiteboard from "./components/Whiteboard/Whiteboard";
 
 import VaultDashboard from "./pages/Vault/VaultDashboard";
 import NotePage from "./pages/NotePage/NotePage";
@@ -72,6 +73,8 @@ const Routing = () => {
 
       {/* Note */}
       <Route exact path="/note" element={<NotePage />} />
+      {/* Board */}
+      <Route exact path="/board" element={<Whiteboard/>}/>
     </Routes>
   );
 };

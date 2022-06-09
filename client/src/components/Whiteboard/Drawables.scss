@@ -4,6 +4,7 @@
 .whiteboard__container{
   justify-content: center;
   align-items: center;
+  height: 620px;
 }
 .toolbar{
   border-radius: 5px;
@@ -17,7 +18,13 @@
   position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
+
+  .tools__container{
+    position: sticky;
+    top: 0;
+  }
 }
+
 
 .toolbar__btn{
   background: #f9f9f9;
@@ -40,6 +47,9 @@
 
 .toolbar-icon-img{
     margin-top: 2px;
+}
+.stage__container{
+  height: 620px;
 }
 .canvas-stage{
   display: flex;
