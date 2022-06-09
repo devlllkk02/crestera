@@ -15,16 +15,6 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-<<<<<<< HEAD
-import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
-// import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
-// import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
-// import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
-import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
-import VaultDashboard from './pages/Vault/VaultDashboard';
-import Whiteboard from "./components/Whiteboard/Whiteboard";
-
-=======
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
@@ -85,41 +75,16 @@ const Routing = () => {
     </Routes>
   );
 };
->>>>>>> b3b73905c8635c2d23f7aef30eafee7235a46786
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div className="app">
-<<<<<<< HEAD
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/signup" element={<SignupPage />} />
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/dashboard" element={<DashHomePage />} />
-          <Route exact path="/dashboard/board" element={<DashBoardPage />} />
-          <Route exact path="/dashboard/note" element={<DashNotePage />} />
-          <Route exact path="/profile" element={<UserProfilePage />} />
-
-          {/* <Route exact path="/usercircle" element={<UserCirclePage />} />
-          <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />} />
-          <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />}  /> */}
-
-          <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
-          <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-          <Route exact path="/vaultshare" element={<VaultSharePage />} />
-          <Route exact path="/whiteboard" element={<Whiteboard/>}/>
-          
-        </Routes>
-      </Router>
-=======
       <UserContext.Provider value={{ state, dispatch }}>
         <Router>
           <Routing />
         </Router>
       </UserContext.Provider>
->>>>>>> b3b73905c8635c2d23f7aef30eafee7235a46786
     </div>
   );
 };
