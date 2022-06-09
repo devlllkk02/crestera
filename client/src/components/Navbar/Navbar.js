@@ -1,14 +1,15 @@
 // ------ Navbar  ------
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Navbar.scss";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-//Pacakages
+//Packages
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 
 //Images
-import profilePic from '../../assets/images/other/profilePicture.jpg';
-import cresteraLogo from '../../assets/images/logos/Crestera-Logo.png';
+import profilePic from "../../assets/images/other/profilePicture.jpg";
+import cresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
 
 //Fontawesome
 import ProfilePic from "../../assets/images/other/profilePicture.jpg";
@@ -23,6 +24,9 @@ import { faBars, faBell, faClose } from "@fortawesome/free-solid-svg-icons";
 import Sidebar from "../Sidebar/Sidebar";
 
 function Navbar({ page }) {
+  const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const setLogo = () => {
@@ -58,7 +62,7 @@ function Navbar({ page }) {
           </div>
           <div className="navbar__username">
             <Link to="/profile" style={{ textDecoration: "none" }}>
-              <p>Janice Brownwell</p>
+              <p>{`${state?.firstName} ${state?.lastName}`}</p>
             </Link>
           </div>
           <div className="navbar__notification">
@@ -68,7 +72,7 @@ function Navbar({ page }) {
           </div>
           <div className="navbar__userimage">
             <Link to="/profile">
-              <img src={ProfilePic} alt="" />
+              <img src={state?.image} alt="" />
             </Link>
           </div>
         </div>
