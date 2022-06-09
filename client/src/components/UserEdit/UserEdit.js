@@ -1,12 +1,16 @@
 //------ User Profile Edit Page ------
-import React from "react";
+import React, { useState, useContext } from 'react';
 import "./UserEdit.scss";
 import profilePic from "../../assets/images/other/profilePicture.jpg";
 
+import { UserContext } from '../../App';
 
 
 
-function UserEdit() {
+const UserEdit = () => {
+  const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+
   return (
     <div className="edit_page">
       <div className="profile__container">
@@ -23,13 +27,13 @@ function UserEdit() {
               <div className="first__name">
                 <label>
                   First Name
-                  <input type="text" name="firstName" placeholder="Janice" />
+                  <input type="text" name="firstName" placeholder={`${state?.firstName}`} />
                 </label>
               </div>
               <div className="last__name">
                 <label>
                   Last name
-                  <input type="text" name="lastName" placeholder="Brownwell" />
+                  <input type="text" name="lastName" placeholder={`${state?.lastName}`} />
                 </label>
               </div>
             </div>
@@ -38,12 +42,12 @@ function UserEdit() {
               <input
                 type="text"
                 name="userName"
-                placeholder="janicebrownwell@gmail.com"
+                placeholder={`${state?.email}`}
               />
             </div>
             <div className="profile__bio">
               <label>Bio</label>
-              <textarea>Bio</textarea>
+              <textarea>{`${state?.bio}`}</textarea>
             </div>
             <div className="container">
             <div className="profile__dob">

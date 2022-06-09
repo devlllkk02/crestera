@@ -2,7 +2,6 @@
 import React, { useState, useContext } from 'react';
 
 import "./UserProfile.scss";
-//import {useGlobalUser} from '../../contexts/UserContext.js'
 
 //images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
@@ -15,7 +14,6 @@ const UserProfile = () => {
   const { state, dispatch } = useContext(UserContext);
   console.log(state);
 
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="profile__page">
       <div className="profile__container">
