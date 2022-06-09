@@ -39,28 +39,7 @@ function WhiteboardShare() {
           </div>
         </div>
       </div>
-
-      <div className="boardshare_download">
-        <div className="boardshare_download_header">
-          <p>DOWNLOAD</p>
-        </div>
-        <div className="boardshare_download_body">
-          <p2>File Type</p2>
-          <div className="boardshare__filetypebox">
-            <select name="" id="">
-              <option value="">PNG</option>
-              <option value="">JPG</option>
-              <option value="">PDF</option>
-            </select>
-            <div className="boardshare__linkaccessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
-          </div>
-          <button className="boardshare_download_button">
-            <span>DOWNLOAD</span>
-          </button>
-        </div>
-      </div>
+      
       <div className="boardshare_getlink">
         <div className="boardshare_getlink_header">
           <p>GET LINK</p>
