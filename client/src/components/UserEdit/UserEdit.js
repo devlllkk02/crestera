@@ -3,6 +3,9 @@ import React from "react";
 import "./UserEdit.scss";
 import profilePic from "../../assets/images/other/profilePicture.jpg";
 
+
+
+
 function UserEdit() {
   return (
     <div className="edit_page">

@@ -151,8 +151,19 @@
           margin-top: 4px;
           width: 285px;
           height: 42px;
+          cursor: pointer;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          color: $grey;
+                    outline: none;
+                    border: $borderGreyLight;
+                    box-sizing: border-box;
+
+                    &:focus {
+                        border: $borderGreyLight;
+                        border-color: $blue;
+                    }
         }
-        
       }
     }
 
