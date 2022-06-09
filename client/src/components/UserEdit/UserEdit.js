@@ -42,6 +42,20 @@ function UserEdit() {
               <label>Bio</label>
               <textarea>Bio</textarea>
             </div>
+            <div className="container">
+            <div className="profile__dob">
+              <label>Date Of Birth</label>
+              <input type="date"/>
+            </div>
+            <div className="profile__gender">
+              <label>Gender</label>
+              <br></br>
+              <select>
+                <option value="">Male</option>
+                <option value="">Female</option>
+              </select>
+            </div>
+            </div>
           </form>
         </div>
         <div className="buttons">

@@ -8,16 +8,15 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import UserEditPage from './pages/UserEditPage/UserEditPage';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 // import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
 import VaultDashboard from './pages/Vault/VaultDashboard';
-
 import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage'
-import UserEditPage from './components/UserEdit/UserEdit';
-import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 
 const App = () => {
   return (
