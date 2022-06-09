@@ -1,10 +1,12 @@
-import React, {Component} from "react";
+import React, {Component,createRef} from "react";
 import {Arrow, Circle, Rect,Line, Stage, Layer} from 'react-konva';
 import Pencil from "../../assets/images/Icons/pencil.png"
 import ArrowIcon from "../../assets/images/Icons/arrow.png"
 import CircleIcon from "../../assets/images/Icons/circle.png"
 import EraserIcon from "../../assets/images/Icons/eraser.png"
 import RectangleIcon from "../../assets/images/Icons/rectangle.png"
+import DownloadIcon from "../../assets/images/Icons/downloadIcon.png"
+import downloadURI from "./BoardDownload/downloadURI"
 import "./Drawables.scss"
 
 class Drawable{
@@ -108,7 +110,9 @@ class Eraser extends Drawable{
     }
   }
 
-//   /*----------------------------Main Drawable Class ------------------------*/
+
+
+  /*---------------------------Main Drawable Class ------------------------*/
 class Drawables extends Component{
     constructor(props) {
         super(props);
@@ -117,6 +121,12 @@ class Drawables extends Component{
           newDrawable: [],
           newDrawableType: "FreePathDrawable"
         };
+        this.stageRef = createRef();
+      }
+      // create handle board export function
+      handleExport = ()=>{
+        const uri = this.stageRef.current.toDataURL();
+        downloadURI(uri,'board.png');
       }
     //   Create drawable classes
       getNewDrawableBasedOnType = (x, y, type) => {
@@ -214,6 +224,13 @@ render(){
         >
             <img src={RectangleIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
         </button>
+        {/* Download button */}
+        <button className="toolbar__btn"
+          onClick={this.handleExport}
+        >
+            <img src={DownloadIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
+        </button>
+
         </div>
        
        {/* ------------------------------------------  Drawing area -------------------------------------------*/}
@@ -226,6 +243,7 @@ render(){
           width={window.innerWidth}
           height={window.innerHeight}
           className="canvas-stage"
+          ref = {this.stageRef}
         >
           <Layer className="canvas-layer">
             {drawables.map(drawable => {
