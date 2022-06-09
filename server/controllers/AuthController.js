@@ -30,6 +30,11 @@ exports.signupController = (req, res) => {
     return res.status(422).json({ error: "Passwords mismatch!" });
   }
 
+  //Generating user avatar
+  let avatar = `https://avatars.dicebear.com/api/initials/${
+    firstName.charAt(0) + lastName.charAt(0)
+  }.svg`;
+
   //Checking existance of the user
   User.findOne({ email: email }).then((existingUser) => {
     if (existingUser) {
@@ -44,6 +49,7 @@ exports.signupController = (req, res) => {
         lastName: lastName,
         email: email,
         password: hashedPassword,
+        image: avatar,
       });
 
       user
@@ -88,7 +94,11 @@ exports.loginController = (req, res) => {
         .then((doMatch) => {
           if (doMatch) {
             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
-            return res.json(token);
+            return res.json({
+              message: "Successfully logged in!",
+              token: token,
+              user: savedUser,
+            });
           } else {
             return res
               .status(422)

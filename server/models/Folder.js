@@ -11,6 +11,14 @@ const FolderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  size: {
+    type: Number,
+    default: 0
+  },
+  motherFolder: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Folder'
+  },
   members: [{
     member: {
       type: mongoose.Schema.Types.ObjectId,
