@@ -27,6 +27,8 @@ import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSha
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
+import VaultFolderSharePage from "./pages/Vault/VaultSharePage/VaultFolderSharePage";
+import VaultFileSharePage from "./pages/Vault/VaultSharePage/VaultFileSharePage";
 
 
 import NotePage from "./pages/NotePage/NotePage";
@@ -65,6 +67,7 @@ const Routing = () => {
 
       {/* User Circles */}
       <Route exact path="/usercircle" element={<UserCirclePage />} />
+      <Route exact path="/usercircles" element={<UserCirclesPage />} />
       <Route
         exact
         path="/usercirclescreate"
@@ -79,7 +82,8 @@ const Routing = () => {
       {/* Vault */}
       <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-      {/* <Route exact path="/vaultshare" element={<VaultSharePage />} /> */}
+      <Route exact path="/vaultshare" element={<VaultFileSharePage />} />
+      <Route exact path="/vaultshare/:folderId" element={<VaultFolderSharePage />} />
 
       {/* Note */}
       <Route exact path="/note" element={<NotePage />} />
