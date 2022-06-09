@@ -1,14 +1,13 @@
-import React, {Component,createRef} from "react";
+import React, {Component} from "react";
 import {Arrow, Circle, Rect,Line, Stage, Layer} from 'react-konva';
 import Pencil from "../../assets/images/Icons/pencil.png"
 import ArrowIcon from "../../assets/images/Icons/arrow.png"
 import CircleIcon from "../../assets/images/Icons/circle.png"
 import EraserIcon from "../../assets/images/Icons/eraser.png"
 import RectangleIcon from "../../assets/images/Icons/rectangle.png"
-import DownloadIcon from "../../assets/images/Icons/downloadIcon.png"
-import downloadURI from "./BoardDownload/downloadURI"
 import "./Drawables.scss"
 
+// get start coordinates
 class Drawable{
     constructor(startx,starty){
         this.startx = startx;
@@ -121,13 +120,10 @@ class Drawables extends Component{
           newDrawable: [],
           newDrawableType: "FreePathDrawable"
         };
-        this.stageRef = createRef();
+        
       }
-      // create handle board export function
-      handleExport = ()=>{
-        const uri = this.stageRef.current.toDataURL();
-        downloadURI(uri,'board.png');
-      }
+    
+
     //   Create drawable classes
       getNewDrawableBasedOnType = (x, y, type) => {
         const drawableClasses = {
@@ -139,7 +135,7 @@ class Drawables extends Component{
         };
         return new drawableClasses[type](x, y);
       };
-    //   handle mouse down event when pressing the tool button
+    //   handle mouse down event when clicking the mouse
       handleMouseDown = e => {
         const { newDrawable } = this.state;
         if (newDrawable.length === 0) {
@@ -225,12 +221,7 @@ render(){
         >
             <img src={RectangleIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
         </button>
-        {/* Download button */}
-        <button className="toolbar__btn"
-          onClick={this.handleExport}
-        >
-            <img src={DownloadIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
-        </button>
+       
         </div>
         </div>
        
@@ -244,7 +235,7 @@ render(){
           width={window.innerWidth}
           height={window.innerHeight}
           className="canvas-stage"
-          ref = {this.stageRef}
+         
         >
           <Layer className="canvas-layer">
             {drawables.map(drawable => {
