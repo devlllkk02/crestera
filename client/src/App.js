@@ -15,15 +15,26 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import UserEditPage from './pages/UserEditPage/UserEditPage';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
+
+// import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
+// import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
+// import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
+
+import VaultDashboard from './pages/Vault/VaultDashboard';
+import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage'
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
 // import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
 import Whiteboard from "./components/Whiteboard/Whiteboard";
+import VaultFolderSharePage from "./pages/Vault/VaultSharePage/VaultFolderSharePage";
+import VaultFileSharePage from "./pages/Vault/VaultSharePage/VaultFileSharePage";
 
-import VaultDashboard from "./pages/Vault/VaultDashboard";
+
 import NotePage from "./pages/NotePage/NotePage";
+import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 
 export const UserContext = createContext();
 
@@ -52,9 +63,13 @@ const Routing = () => {
       <Route exact path="/dashboard/board" element={<DashBoardPage />} />
       <Route exact path="/dashboard/note" element={<DashNotePage />} />
       <Route exact path="/profile" element={<UserProfilePage />} />
+      <Route exact path="/edit" element={<UserEditPage/>}/>
+
+      <Route exact path="/boardshare" element={<WhiteboardSharePage/>}/>
 
       {/* User Circles */}
       <Route exact path="/usercircle" element={<UserCirclePage />} />
+      <Route exact path="/usercircles" element={<UserCirclesPage />} />
       <Route
         exact
         path="/usercirclescreate"
@@ -69,13 +84,15 @@ const Routing = () => {
       {/* Vault */}
       <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-      {/* <Route exact path="/vaultshare" element={<VaultSharePage />} /> */}
+      <Route exact path="/vaultshare" element={<VaultFileSharePage />} />
+      <Route exact path="/vaultshare/:folderId" element={<VaultFolderSharePage />} />
 
       {/* Note */}
       <Route exact path="/note" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board" element={<Whiteboard/>}/>
     </Routes>
+
   );
 };
 

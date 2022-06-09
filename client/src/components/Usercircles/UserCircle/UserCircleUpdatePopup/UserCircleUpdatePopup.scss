@@ -23,7 +23,7 @@
       background-color: bisque;
       width: 50%;
       margin: 2500px auto;
-      height: 600px;
+      height: 500px;
     //   display: inline-block;
     //   margin-left: 500px;
       background: #ffffff;
@@ -42,75 +42,131 @@
         }
       }
     
-      .usercircles_update_header {
-        text-align: center;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        h1 {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight:800;
-          font-size: 28px;
-          line-height: 33px;
+      .update_usercircle {
   
-          text-align: center;
-          font-variant: small-caps;
-  
-          color: #0f96c3;
-        }
-      }
-    
-      .usercircles_update_name_box {
-        background: #ffffff;
-        margin-top: 40px;
-        border: 1px solid rgba(68, 78, 99, 0.3);
-        box-sizing: border-box;
-        width: 400px;
-        height: 40px;
-        margin-left: 29%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .usercircles_update_name_form {
-          width: 93%;
-          form {
-            input[type='text'] {
-              width: 100%;
-              padding: 6px;
-              margin-right: 16px;
-              border: none;
-              font-family: 'Roboto';
-              font-style: normal;
-              font-weight: 400;
-              font-size: 14px;
-              line-height: 16px;
-  
-              &:focus {
-                outline: none !important;
-              }
-            }
+
+        .update_usercircle_box {
+          // margin-top: 20px;
+          // background: #fff;
+          // border-left-color: blue;
+          // margin-bottom: 10px;
+          // padding:10px;
+          // position: relative;
+          // width: 100%;
+          // justify-content: center;
+          width: calc((100% - 210px) * 0.90);
+          //background-color: lightseagreen;
+      
+          @include flexbox;
+          margin-top: 20px;
+         margin-left:auto;
+         margin-right: auto;
+          h5 {
+            font-weight: 700;
+            font-size: 26px;
+            text-align: center;
+            color: #0F96C3;
           }
-        }
-      }
-      button.usercircles_button {
-        background-color: #0f96c3;
-        color: $white;
-        background: #0f96c3;
-        display: block;
-        margin: 50px auto;  
+          form {
+            margin-top: 50px;
+            font-size: 15px;
+            //margin-left: -10px;
+            text-align: center;
+      
+            input {
+              // width: 80%;
+              // padding: 12px 20px;
+              // margin: 8px 0;
+              // display: inline-block;
+              // border: 1px solid #ccc;
+              // border-radius: 4px;
+              // box-sizing: border-box;
+              width: 100%;
+              height: 35px;
+              padding: 10px;
+      
+              color: $grey;
+              outline: none;
+              border: $borderGreyLight;
+              box-sizing: border-box;
+              font-size: $font-small;
+            }
+            input[type="text"] {
+              margin-top: 20px;
+              width: calc((100% - 50px) * 0.90);
+            }
+            input[type="submit"] {
+              // background-color: #0F96C3;
+              // color: white;
+              @include flexbox;
+              margin-top: 60px;
+              align-self: center;
+              margin-left:auto;
+              margin-right: auto;
+              //background-color: #0f96c3;
+              color: $white;
+              background: #0f96c3;
+      
+              border: 2px solid #0f96c3;
+              box-sizing: border-box;
+              width: calc((100% - 210px) * 0.75);
+              padding: 6px;
+              vertical-align: middle;
+      
+                      //height: 20px;
+                      font-family: 'Roboto';
+                      font-style: normal;
+                      font-weight: 500;
+                      font-size: 16px;
+                      // line-height: 19px;
+                      font-stretch: 1000%;
+      
+                      &:hover {
+                          color: #0f96c3;
+                          background: $white;
+                      }
+            }
+            .usercircle_type_box {
+              width: calc(((100% - 52px) * 0.95));
+              height: 100%;
+              // background-color: lightyellow;
   
-        border: 2px solid #0f96c3;
-        //   box-sizing: border-box;
-        width: 200px;
-        height: 40px;
-        span {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 19px;
-          font-stretch: 1000%;
+              @include flexbox;
+              justify-content: flex-end;
+              margin-top: 30px;
+              margin-left: 5.4%;
+              margin-right: auto;
+              position: relative;
   
+              select {
+                  width: 100%;
+                  height: 35px;
+                  // background-color: $white;
+                  background: $white;
+  
+                  margin-left: 20px;
+                  padding: 5px;
+                  -moz-appearance: none;
+                  -webkit-appearance: none;
+  
+                  color: $grey;
+                  outline: none;
+                  border: $borderGreyLight;
+                  box-sizing: border-box;
+  
+                  &:focus {
+                      border: $borderGreyLight;
+                      border-color: $blue;
+                  }
+              }
+  
+              .usercircle_type_box__icon {
+                  position: absolute;
+                  right: 8px;
+                  color: $greyIconsLight;
+              }
+          }
+          }
         }
       }}
   }

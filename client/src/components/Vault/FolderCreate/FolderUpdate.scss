@@ -1,0 +1,126 @@
+@import url("https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css");
+@import '../../../Theme.scss';
+
+
+.update_folder_popup {
+  z-index: 1200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.63);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .update_folder_popup-body {
+    position: relative;
+    padding-top: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    background-color: white;
+    width: 100%;
+    max-width: 900px; //640 conflict
+    max-height: 50%;
+    width: 50%;
+    margin: 2500px auto;
+    height: 600px;
+    .closebtn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 2rem;
+      background-color: transparent;
+      border: none;
+      z-index: 5;
+      &:hover {
+        color: rgb(151, 2, 2);
+      }
+    }
+  }
+}
+.update_folder {
+  
+
+  .update_folder_box {
+    // margin-top: 20px;
+    // background: #fff;
+    // border-left-color: blue;
+    // margin-bottom: 10px;
+    // padding:10px;
+    // position: relative;
+    // width: 100%;
+    // justify-content: center;
+    width: calc((100% - 210px) * 0.90);
+    //background-color: lightseagreen;
+
+    @include flexbox;
+    margin-top: 40px;
+   margin-left:auto;
+   margin-right: auto;
+    h5 {
+      font-weight: 700;
+      font-size: 25px;
+      text-align: center;
+      color: #0F96C3;
+    }
+    form {
+      margin-top: -20px;
+      font-size: 15px;
+      //margin-left: -10px;
+      text-align: center;
+
+      input {
+        // width: 80%;
+        // padding: 12px 20px;
+        // margin: 8px 0;
+        // display: inline-block;
+        // border: 1px solid #ccc;
+        // border-radius: 4px;
+        // box-sizing: border-box;
+        width: 100%;
+        height: 35px;
+        padding: 10px;
+
+        color: $grey;
+        outline: none;
+        border: $borderGreyLight;
+        box-sizing: border-box;
+        font-size: $font-small;
+      }
+      input[type="submit"] {
+        // background-color: #0F96C3;
+        // color: white;
+        @include flexbox;
+        margin-top: 60px;
+        align-self: center;
+        margin-left:auto;
+        margin-right: auto;
+        //background-color: #0f96c3;
+        color: $white;
+        background: #0f96c3;
+
+        border: 2px solid #0f96c3;
+        box-sizing: border-box;
+        width: calc((100% - 210px) * 0.75);
+        padding: 6px;
+        vertical-align: middle;
+
+                //height: 20px;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                // line-height: 19px;
+                font-stretch: 1000%;
+
+                &:hover {
+                    color: #0f96c3;
+                    background: $white;
+                }
+      }
+    }
+  }
+}

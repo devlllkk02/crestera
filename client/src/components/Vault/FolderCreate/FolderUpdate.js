@@ -1,5 +1,5 @@
 import React from 'react';
-import './FolderCreate.scss';
+import './FolderUpdate.scss';
 import { FiX } from 'react-icons/fi';
 import { updateFolder } from '../../../services/AuthService';
 
@@ -22,14 +22,14 @@ const FolderUpdate = ({ trigger, settrigger ,folder }) => {
   
   
     return trigger ? (
-      <div className='create_folder_popup'>
-        <div className='create_folder_popup-body'>
+      <div className='update_folder_popup'>
+        <div className='update_folder_popup-body'>
           <button className='closebtn'
             onClick={() => settrigger(false)}>
             <FiX />
           </button>
-          <div className='create_folder'>
-            <div className='create_folder_box'>
+          <div className='update_folder'>
+            <div className='update_folder_box'>
               <form onSubmit={handleSubmit}>
               <h5>Rename</h5>
                   <input
@@ -42,7 +42,7 @@ const FolderUpdate = ({ trigger, settrigger ,folder }) => {
                     maxLength='100'
                   />
   
-                <input type='submit' value='Submit'></input>
+                <input type='submit' value='SAVE'></input>
               </form>
             </div>
           </div>
