@@ -59,7 +59,7 @@ function FolderList(props) {
                             <VaultPopover trigger={popover} settrigger={setpopover}>
                                 <ul>
                                     <li onClick={() => setbtnpopup1(true)} ><FontAwesomeIcon icon={faInfoCircle} />  Details</li>
-                                    <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
+                                    <Link to={`/vaultshare/${props.folder._id}`} style={{ textDecoration: 'none' }} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
                                     <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil} />   Rename</li>
                                     <li><FontAwesomeIcon icon={faInfoCircle} />   Download</li>
                                     <li onClick={() => DeleteFolder(props.folder._id)}><FontAwesomeIcon icon={faTrash} />   Delete</li>

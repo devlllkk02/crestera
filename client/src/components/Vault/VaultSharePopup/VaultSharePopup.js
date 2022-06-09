@@ -7,14 +7,13 @@ import './VaultSharePopup.scss';
 //Images
 import profilePic from '../../../assets/images/other/profilePicture.jpg'
 
-const VaultSharePopup = ({ trigger, settrigger, children }) => {
+const VaultSharePopup = ({ trigger, settrigger}) => {
     return trigger ? (
       <div className="popup">
         <div className="vaultshare_popup_body">
           <button className="closebtn" onClick={() => settrigger(false)}>
             <FontAwesomeIcon icon={faX} />
           </button>
-          {children}
           <div className="vaultshare_header">
             <h1>INVITE PEOPLES & GROUPS</h1>
           </div>
