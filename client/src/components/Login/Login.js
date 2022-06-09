@@ -48,7 +48,12 @@ function Login() {
   return (
     <div className="login">
       <div className="login__container">
+        {/* Login form begins here */}
         <form className="login__form">
+          {/* Login Header */}
+
+          {/* Link crestera logo to the landing page.
+          So, once the user click the logo he/she will be redirected to landing page */}
           <Link to="/">
             <img
               src={Logo}
@@ -61,6 +66,7 @@ function Login() {
           <h1>LOGIN</h1>
           {/* Email */}
           <div className="login__form__group">
+            {/* Email */}
             <input
               type="text"
               className="login__form__control"
@@ -71,6 +77,7 @@ function Login() {
           </div>
           {/* Password */}
           <div className="login__form__group">
+            {/* Password */}
             <input
               type="password"
               className="login__form__control"

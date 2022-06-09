@@ -27,12 +27,13 @@ function DashBoard() {
       </div>
       {/* Cards */}
       <div className="dashBoard__cards">
+      
         <Swiper
           pagination={{ clickable: true }}
           modules={[Pagination]}
           spaceBetween={50}
           slidesPerView={5}
-        >
+        > 
           <SwiperSlide>
             <DashCard
               fileType="board"
