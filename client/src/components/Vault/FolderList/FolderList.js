@@ -24,7 +24,7 @@ function FolderList(props) {
     const DeleteFolder = async (e) => {
         try {
             const response = await deleteFolder(e);
-            console.log('item deleted');
+            console.log(response);
         } catch (e) {
             console.log(e);
         }
