@@ -1,14 +1,21 @@
 //------ User Profile Page ------
-import React from "react";
+import React, { useState, useContext } from 'react';
+
 import "./UserProfile.scss";
+//import {useGlobalUser} from '../../contexts/UserContext.js'
 
 //images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
 
 //packages
 import { Link } from "react-router-dom";
+import { UserContext } from '../../App';
 
-function UserProfile() {
+const UserProfile = () => {
+  const { state, dispatch } = useContext(UserContext);
+  console.log(state);
+
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="profile__page">
       <div className="profile__container">
@@ -23,43 +30,36 @@ function UserProfile() {
           <div className="profile__name">
             <div className="container">
               <h3>FIRST NAME</h3>
-              <p2>Janice</p2>
+              <p2>{`${state?.firstName}`}</p2>
               <hr />
             </div>
             <div className="container">
               <h3>LAST NAME</h3>
-              <p2>Brownwell</p2>
+              <p2>{`${state?.lastName}`}</p2>
               <hr />
             </div>
           </div>
           <div className="container">
             <h3>EMAIL</h3>
-            <p2>janicebrownwell@gmail.com</p2>
+            <p2>{`${state?.email}`}</p2>
             <hr />
           </div>
           <div className="bio">
             <div className="container">
               <h3>BIO</h3>
-              <p2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <p2>{`${state?.bio}`}
               </p2>
               <hr />
             </div>
           </div>
           <div className="container">
             <h3>DOB</h3>
-            <p2>12/07/1997</p2>
+            <p2>{`${state?.dob}`}</p2>
             <hr />
           </div>
           <div className="container">
             <h3>GENDER</h3>
-            <p2>Female</p2>
+            <p2>{`${state?.gender}`}</p2>
             <hr />
           </div>
         </div>

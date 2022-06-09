@@ -21,16 +21,14 @@ import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 // import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
-import VaultSharePage from './pages/Vault/VaultSharePage/VaultSharePage';
+
 import VaultDashboard from './pages/Vault/VaultDashboard';
 import WhiteboardShare from './pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage'
-import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
-// import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
 
-import VaultDashboard from "./pages/Vault/VaultDashboard";
+
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 
