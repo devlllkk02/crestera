@@ -1,5 +1,5 @@
 // ------ DashHome  ------
-import React from "react";
+import React, { useState } from "react";
 import "./DashHome.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,53 @@ import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 
 function DashHome() {
+  const [items, setItems] = useState([
+    <DashItem
+      fileIcon="note"
+      fileName="Note 01"
+      shared={true}
+      title1="Naveen Liyanage"
+      title2="Jan 12, 2022"
+    />,
+    <DashItem
+      fileIcon="board"
+      fileName="Board 01"
+      shared={false}
+      title1="Janice Brownwell"
+      title2="Jan 10, 2022"
+    />,
+    <DashItem
+      fileIcon="note"
+      fileName="Note 02"
+      shared={false}
+      title1="Janice Brownwell"
+      title2="Jan 08, 2022"
+    />,
+    <DashItem
+      fileIcon="note"
+      fileName="Note 03"
+      shared={true}
+      title1="Janith Thenuka"
+      title2="Jan 07, 2022"
+    />,
+
+    <DashItem
+      fileIcon="board"
+      fileName="Board 02"
+      shared={true}
+      title1="Naveen Liyanage"
+      title2="Jan 07, 2022"
+    />,
+    <DashItem
+      fileIcon="note"
+      fileName="Note 04"
+      title1="Janice Brownwell"
+      title2="Jan 05, 2022"
+    />,
+  ]);
+
+  const [search, setSearch] = useState("");
+
   return (
     <div className="dashHome">
       {/* L1 */}
@@ -79,7 +126,7 @@ function DashHome() {
       </div>
       {/* Search */}
       <div className="dashHome__search">
-        <DashSearch page="crestera" />
+        <DashSearch page="crestera" search={search} setSearch={setSearch} />
       </div>
       {/* Header */}
       <div className="dashHome__header">
@@ -87,48 +134,22 @@ function DashHome() {
       </div>
       {/* Items */}
       <div className="dashHome__items">
-        <DashItem
-          fileIcon="note"
-          fileName="Note 01"
-          shared={true}
-          title1="Naveen Liyanage"
-          title2="Jan 12, 2022"
-        />
-        <DashItem
-          fileIcon="board"
-          fileName="Board 01"
-          shared={false}
-          title1="Janice Brownwell"
-          title2="Jan 10, 2022"
-        />
-        <DashItem
-          fileIcon="note"
-          fileName="Note 02"
-          shared={false}
-          title1="Janice Brownwell"
-          title2="Jan 08, 2022"
-        />
-        <DashItem
-          fileIcon="note"
-          fileName="Note 03"
-          shared={true}
-          title1="Janith Thenuka"
-          title2="Jan 07, 2022"
-        />
-
-        <DashItem
-          fileIcon="board"
-          fileName="Board 02"
-          shared={true}
-          title1="Naveen Liyanage"
-          title2="Jan 07, 2022"
-        />
-        <DashItem
-          fileIcon="note"
-          fileName="Note 04"
-          title1="Janice Brownwell"
-          title2="Jan 05, 2022"
-        />
+        {items
+          .filter((item) => {
+            console.log(item.props.fileName);
+            if (search == "") {
+              return item;
+            } else if (
+              item.props.fileName
+                .toLocaleLowerCase()
+                .includes(search.toLocaleLowerCase())
+            ) {
+              return item;
+            }
+          })
+          .map((item, key) => {
+            return <div key={key}>{item}</div>;
+          })}
       </div>
     </div>
   );

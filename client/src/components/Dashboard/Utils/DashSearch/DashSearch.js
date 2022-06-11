@@ -1,5 +1,5 @@
 // ------ DashSearch  ------
-import React from "react";
+import React, { useEffect } from "react";
 import "./DashSearch.scss";
 
 //Font Awesome
@@ -11,7 +11,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-function DashSearch({ page }) {
+function DashSearch({ page, search, setSearch }) {
+  useEffect(() => {
+    console.log(search);
+  }, [search]);
+
   const setCreateButtonBorderStyles = () => {
     if (page === "board") {
       return { border: "3px solid #582753" };
@@ -70,7 +74,12 @@ function DashSearch({ page }) {
         )}
       </div>
       <div className="dashSearch__searchbox1">
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <div className="dashSearch__searchbox1__icon">
           <FontAwesomeIcon icon={faSearch} />
         </div>
