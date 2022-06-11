@@ -1,7 +1,12 @@
 // ------ DashBoard  ------
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./DashBoard.scss";
 
+//Imports
+import { UserContext } from "../../../App";
+import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
+
+//Packages
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
@@ -15,11 +20,41 @@ import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 
 function DashBoard() {
+  //Global State
+  const { state, dispatch } = useContext(UserContext);
+  useEffect(() => {
+    if (state) {
+      // console.log(state);
+    }
+  }, [state]);
+
+  //States
+  const [items, setItems] = useState([
+    {
+      fileIcon: "board",
+      fileName: "Board 01",
+      shared: false,
+      title1: "Janice Brownwell",
+      title2: "Jan 10, 2022",
+    },
+
+    {
+      fileIcon: "board",
+      fileName: "Board 02",
+      shared: true,
+      title1: "Naveen Liyanage",
+      title2: "Jan 07, 2022",
+    },
+  ]);
+
+  const [search, setSearch] = useState("");
+  const [dropdown, setDropdown] = useState("All Documents");
+
   return (
     <div className="dashBoard">
       {/* L1 */}
       <div className="dashBoard__l1">
-        <p>Good Morning, Janice</p>
+        <p>{`${getCurrentDayPhrase()}, ${state?.firstName}`}</p>
       </div>
       {/* L2 */}
       <div className="dashBoard__l2">
@@ -27,13 +62,12 @@ function DashBoard() {
       </div>
       {/* Cards */}
       <div className="dashBoard__cards">
-      
         <Swiper
           pagination={{ clickable: true }}
           modules={[Pagination]}
           spaceBetween={50}
           slidesPerView={5}
-        > 
+        >
           <SwiperSlide>
             <DashCard
               fileType="board"
@@ -53,7 +87,13 @@ function DashBoard() {
       </div>
       {/* Search */}
       <div className="dashBoard__search">
-        <DashSearch page="board" />
+        <DashSearch
+          page="board"
+          search={search}
+          setSearch={setSearch}
+          dropdown={dropdown}
+          setDropdown={setDropdown}
+        />
       </div>
       {/* Header */}
       <div className="dashBoard__header">
@@ -61,21 +101,38 @@ function DashBoard() {
       </div>
       {/* Items */}
       <div className="dashBoard__items">
-        <DashItem
-          fileIcon="board"
-          fileName="Board 01"
-          shared={false}
-          title1="Janice Brownwell"
-          title2="Jan 10, 2022"
-        />
-
-        <DashItem
-          fileIcon="board"
-          fileName="Board 02"
-          shared={true}
-          title1="Naveen Liyanage"
-          title2="Jan 07, 2022"
-        />
+        {items
+          .filter((item) => {
+            if (dropdown === "All Documents") return item;
+            if (dropdown === "Shared With Me") {
+              if (item.shared == true) {
+                return item;
+              }
+            }
+          })
+          .filter((item) => {
+            if (search == "") {
+              return item;
+            } else if (
+              item.fileName
+                .toLocaleLowerCase()
+                .includes(search.toLocaleLowerCase())
+            ) {
+              return item;
+            }
+          })
+          .map((item, key) => {
+            return (
+              <DashItem
+                key={key}
+                fileIcon={item.fileIcon}
+                fileName={item.fileName}
+                shared={item.shared}
+                title1={item.title1}
+                title2={item.title2}
+              />
+            );
+          })}
       </div>
     </div>
   );

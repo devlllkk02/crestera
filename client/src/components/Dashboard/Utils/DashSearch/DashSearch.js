@@ -11,11 +11,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-function DashSearch({ page, search, setSearch }) {
+function DashSearch({ page, search, setSearch, dropdown, setDropdown }) {
   useEffect(() => {
-    console.log(search);
-  }, [search]);
+    console.log(dropdown);
+  }, [dropdown]);
 
+  //Styles
   const setCreateButtonBorderStyles = () => {
     if (page === "board") {
       return { border: "3px solid #582753" };
@@ -85,10 +86,15 @@ function DashSearch({ page, search, setSearch }) {
         </div>
       </div>
       <div className="dashSearch__searchbox2">
-        <select name="" id="">
-          <option value="">All Documents</option>
-          <option value="">Shared With Me</option>
-          <option value="">Favourites</option>
+        <select
+          name=""
+          id=""
+          onChange={(e) => setDropdown(e.target.value)}
+          value={dropdown}
+        >
+          <option value="All Documents">All Documents</option>
+          <option value="Shared With Me">Shared With Me</option>
+          <option value="Favourites">Favourites</option>
         </select>
         <div className="dashSearch__searchbox2__icon">
           <FontAwesomeIcon icon={faChevronDown} />

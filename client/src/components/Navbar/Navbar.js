@@ -1,11 +1,12 @@
 // ------ Navbar  ------
 import React, { useState, useContext } from "react";
 import "./Navbar.scss";
-import { NavLink } from "react-router-dom";
+
+//Imports
+import { UserContext } from "../../App";
 
 //Packages
-import { Link } from "react-router-dom";
-import { UserContext } from "../../App";
+import { Link, NavLink } from "react-router-dom";
 
 //Images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
@@ -25,7 +26,6 @@ import Sidebar from "../Sidebar/Sidebar";
 
 function Navbar({ page }) {
   const { state, dispatch } = useContext(UserContext);
-  console.log(state);
 
   const [isOpen, setIsOpen] = useState(false);
 
