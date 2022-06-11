@@ -11,11 +11,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-function DashSearch({ page, search, setSearch, dropdown, setDropdown }) {
-  useEffect(() => {
-    console.log(dropdown);
-  }, [dropdown]);
-
+function DashSearch({
+  page,
+  search,
+  setSearch,
+  dropdown,
+  setDropdown,
+  popup,
+  setPopup,
+}) {
   //Styles
   const setCreateButtonBorderStyles = () => {
     if (page === "board") {
@@ -57,21 +61,22 @@ function DashSearch({ page, search, setSearch, dropdown, setDropdown }) {
     <div className="dashSearch">
       <div className="dashSearch__button">
         {page != "crestera" && (
-          <Link to={setCreateButtonLink()} style={{ textDecoration: "none" }}>
-            <button style={setCreateButtonBorderStyles()}>
-              <div
-                className="dashSearch__button__icon"
-                style={setCreateButtonColorStyles()}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </div>
-              <div className="dashSearch__button__text">
-                <p style={setCreateButtonColorStyles()}>
-                  {setCreateButtonText()}
-                </p>
-              </div>
-            </button>
-          </Link>
+          <button
+            style={setCreateButtonBorderStyles()}
+            onClick={() => setPopup("flex")}
+          >
+            <div
+              className="dashSearch__button__icon"
+              style={setCreateButtonColorStyles()}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </div>
+            <div className="dashSearch__button__text">
+              <p style={setCreateButtonColorStyles()}>
+                {setCreateButtonText()}
+              </p>
+            </div>
+          </button>
         )}
       </div>
       <div className="dashSearch__searchbox1">
