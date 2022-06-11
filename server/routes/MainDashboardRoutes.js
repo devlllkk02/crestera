@@ -1,4 +1,4 @@
-// ------ Note Routes  ------
+// ------ Main Dashboard Routes  ------
 // Imports
 const express = require("express");
 const router = express.Router();
@@ -12,12 +12,13 @@ const {
   getNotesController,
 } = require("../controllers/NoteController");
 
-//? ------ GET ROUTES ------
-//ROUTE : GET : Get Notes Of A User
-router.get("/getnotes", AuthMiddleware, getNotesController);
+const {
+  createBoardController,
+  getBoardsController,
+} = require("../controllers/BoardController");
 
-//? ------ POST ROUTES ------
-//ROUTE : POST : Create Note
-router.post("/createnote", AuthMiddleware, createNoteController);
+//? ------ GET ROUTES ------
+//ROUTE : GET : Get Notes and Boards Of A User
+
 
 module.exports = router;

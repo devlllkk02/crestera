@@ -34,7 +34,7 @@ function DashItem({ fileIcon, fileName, title1, title2, shared }) {
         <p>{title1}</p>
       </div>
       <div className="dashItem__title2">
-        <p>{title2}</p>
+        <p>{`${title2.month.short} ${title2.date}, ${title2.year}`}</p>
       </div>
       <div className="dashItem__setings">
         <div className="dashItem__setings__container">

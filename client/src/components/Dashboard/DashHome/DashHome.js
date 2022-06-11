@@ -18,6 +18,7 @@ import DashCard from "../Utils/DashCard/DashCard";
 import DashHeader from "../Utils/DashHeader/DashHeader";
 import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
+import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
 
 function DashHome() {
   //Global State
@@ -29,52 +30,31 @@ function DashHome() {
   }, [state]);
 
   //States
-  const [items, setItems] = useState([
-    {
-      fileIcon: "note",
-      fileName: "Note 01",
-      shared: true,
-      title1: "Naveen Liyanage",
-      title2: "Jan 12, 2022",
-    },
-    {
-      fileIcon: "board",
-      fileName: "Board 01",
-      shared: false,
-      title1: "Janice Brownwell",
-      title2: "Jan 10, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 02",
-      shared: false,
-      title1: "Janice Brownwell",
-      title2: "Jan 08, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 03",
-      shared: true,
-      title1: "Janith Thenuka",
-      title2: "Jan 07, 2022",
-    },
-    {
-      fileIcon: "board",
-      fileName: "Board 02",
-      shared: true,
-      title1: "Naveen Liyanage",
-      title2: "Jan 07, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 04",
-      shared: true,
-      title1: "Janice Brownwell",
-      title2: "Jan 05, 2022",
-    },
-  ]);
+  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [dropdown, setDropdown] = useState("All Documents");
+
+  //Functions
+  const handleItemSort = () => {
+    return items
+      .filter((item) => {
+        if (dropdown === "All Documents") return item;
+        if (dropdown === "Shared With Me") {
+          if (item.shared == true) {
+            return item;
+          }
+        }
+      })
+      .filter((item) => {
+        if (search == "") {
+          return item;
+        } else if (
+          item.fileName.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        ) {
+          return item;
+        }
+      });
+  };
 
   return (
     <div className="dashHome">
@@ -154,38 +134,21 @@ function DashHome() {
       </div>
       {/* Items */}
       <div className="dashHome__items">
-        {items
-          .filter((item) => {
-            if (dropdown === "All Documents") return item;
-            if (dropdown === "Shared With Me") {
-              if (item.shared == true) {
-                return item;
-              }
-            }
-          })
-          .filter((item) => {
-            if (search == "") {
-              return item;
-            } else if (
-              item.fileName
-                .toLocaleLowerCase()
-                .includes(search.toLocaleLowerCase())
-            ) {
-              return item;
-            }
-          })
-          .map((item, key) => {
-            return (
-              <DashItem
-                key={key}
-                fileIcon={item.fileIcon}
-                fileName={item.fileName}
-                shared={item.shared}
-                title1={item.title1}
-                title2={item.title2}
-              />
-            );
-          })}
+        {handleItemSort().length != 0
+          ? handleItemSort().map((item, key) => {
+              if (item == null) console.log("he hje");
+              return (
+                <DashItem
+                  key={key}
+                  fileIcon={item.fileIcon}
+                  fileName={item.fileName}
+                  shared={item.shared}
+                  title1={item.title1}
+                  title2={item.title2}
+                />
+              );
+            })
+          : search && <DashSearchFallback />}
       </div>
     </div>
   );

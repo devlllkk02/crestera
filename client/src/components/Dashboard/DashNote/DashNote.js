@@ -5,6 +5,8 @@ import "./DashNote.scss";
 //Imports
 import { UserContext } from "../../../App";
 import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
+import { getNotes } from "./DashNoteAPI";
+import { DateFormat } from "../../../utils/DateFormat";
 
 //Packages
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,6 +23,7 @@ import DashHeader from "../Utils/DashHeader/DashHeader";
 import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 import DashCreatePopup from "../Utils/DashCreatePopup/DashCreatePopup";
+import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
 
 function DashNote() {
   //Global State
@@ -32,48 +35,38 @@ function DashNote() {
   }, [state]);
 
   //States
-  const [items, setItems] = useState([
-    {
-      fileIcon: "note",
-      fileName: "Note 01",
-      shared: true,
-      title1: "Naveen Liyanage",
-      title2: "Jan 12, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 02",
-      shared: false,
-      title1: "Janice Brownwell",
-      title2: "Jan 08, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 03",
-      shared: true,
-      title1: "Janith Thenuka",
-      title2: "Jan 07, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 03",
-      shared: true,
-      title1: "Janith Thenuka",
-      title2: "Jan 07, 2022",
-    },
-    {
-      fileIcon: "note",
-      fileName: "Note 04",
-      shared: true,
-      title1: "Janice Brownwell",
-      title2: "Jan 05, 2022",
-    },
-  ]);
+  const [items, setItems] = useState([]);
 
   const [search, setSearch] = useState("");
   const [dropdown, setDropdown] = useState("All Documents");
-
   const [popup, setPopup] = useState("none");
+
+  //Functions
+  const handleItemSort = () => {
+    return items
+      .filter((item) => {
+        if (dropdown === "All Documents") return item;
+        if (dropdown === "Shared With Me") {
+          if (item.shared == true) {
+            return item;
+          }
+        }
+      })
+      .filter((item) => {
+        if (search == "") {
+          return item;
+        } else if (
+          item.fileName.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        ) {
+          return item;
+        }
+      });
+  };
+
+  //Getting Notes
+  useEffect(() => {
+    getNotes(setItems);
+  }, []);
 
   return (
     <>
@@ -145,40 +138,24 @@ function DashNote() {
           <DashHeader title1="Name" title2="Owned By" title3="Date Modified" />
         </div>
         {/* Items */}
-        <div className="dashNote__items">
-          {items
-            .filter((item) => {
-              if (dropdown === "All Documents") return item;
-              if (dropdown === "Shared With Me") {
-                if (item.shared == true) {
-                  return item;
-                }
-              }
-            })
-            .filter((item) => {
-              if (search == "") {
-                return item;
-              } else if (
-                item.fileName
-                  .toLocaleLowerCase()
-                  .includes(search.toLocaleLowerCase())
-              ) {
-                return item;
-              }
-            })
-            .map((item, key) => {
-              return (
-                <DashItem
-                  key={key}
-                  fileIcon={item.fileIcon}
-                  fileName={item.fileName}
-                  shared={item.shared}
-                  title1={item.title1}
-                  title2={item.title2}
-                />
-              );
-            })}
-        </div>
+        {items && (
+          <div className="dashNote__items">
+            {handleItemSort().length != 0
+              ? handleItemSort().map((item, key) => {
+                  return (
+                    <DashItem
+                      key={key}
+                      fileIcon={item.fileIcon}
+                      fileName={item.fileName}
+                      shared={item.shared}
+                      title1={`${item.createdBy.firstName} ${item.createdBy.lastName}`}
+                      title2={DateFormat(item.updatedAt)}
+                    />
+                  );
+                })
+              : search && <DashSearchFallback />}
+          </div>
+        )}
       </div>
       {/* Create Note Popup */}
       <div style={{ display: popup }}>

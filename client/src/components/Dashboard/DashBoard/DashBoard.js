@@ -5,6 +5,8 @@ import "./DashBoard.scss";
 //Imports
 import { UserContext } from "../../../App";
 import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
+import { getBoards } from "./DashBoardAPI";
+import { DateFormat } from "../../../utils/DateFormat";
 
 //Packages
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,6 +23,7 @@ import DashHeader from "../Utils/DashHeader/DashHeader";
 import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 import DashCreatePopup from "../Utils/DashCreatePopup/DashCreatePopup";
+import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
 
 function DashBoard() {
   //Global State
@@ -32,27 +35,38 @@ function DashBoard() {
   }, [state]);
 
   //States
-  const [items, setItems] = useState([
-    {
-      fileIcon: "board",
-      fileName: "Board 01",
-      shared: false,
-      title1: "Janice Brownwell",
-      title2: "Jan 10, 2022",
-    },
-
-    {
-      fileIcon: "board",
-      fileName: "Board 02",
-      shared: true,
-      title1: "Naveen Liyanage",
-      title2: "Jan 07, 2022",
-    },
-  ]);
+  const [items, setItems] = useState([]);
 
   const [search, setSearch] = useState("");
   const [dropdown, setDropdown] = useState("All Documents");
   const [popup, setPopup] = useState("none");
+
+  //Functions
+  const handleItemSort = () => {
+    return items
+      .filter((item) => {
+        if (dropdown === "All Documents") return item;
+        if (dropdown === "Shared With Me") {
+          if (item.shared == true) {
+            return item;
+          }
+        }
+      })
+      .filter((item) => {
+        if (search == "") {
+          return item;
+        } else if (
+          item.fileName.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        ) {
+          return item;
+        }
+      });
+  };
+
+  //Getting Notes
+  useEffect(() => {
+    getBoards(setItems);
+  }, []);
 
   return (
     <>
@@ -111,40 +125,24 @@ function DashBoard() {
           <DashHeader title1="Name" title2="Owned By" title3="Date Modified" />
         </div>
         {/* Items */}
-        <div className="dashBoard__items">
-          {items
-            .filter((item) => {
-              if (dropdown === "All Documents") return item;
-              if (dropdown === "Shared With Me") {
-                if (item.shared == true) {
-                  return item;
-                }
-              }
-            })
-            .filter((item) => {
-              if (search == "") {
-                return item;
-              } else if (
-                item.fileName
-                  .toLocaleLowerCase()
-                  .includes(search.toLocaleLowerCase())
-              ) {
-                return item;
-              }
-            })
-            .map((item, key) => {
-              return (
-                <DashItem
-                  key={key}
-                  fileIcon={item.fileIcon}
-                  fileName={item.fileName}
-                  shared={item.shared}
-                  title1={item.title1}
-                  title2={item.title2}
-                />
-              );
-            })}
-        </div>
+        {items && (
+          <div className="dashBoard__items">
+            {handleItemSort().length != 0
+              ? handleItemSort().map((item, key) => {
+                  return (
+                    <DashItem
+                      key={key}
+                      fileIcon={item.fileIcon}
+                      fileName={item.fileName}
+                      shared={item.shared}
+                      title1={`${item.createdBy.firstName} ${item.createdBy.lastName}`}
+                      title2={DateFormat(item.updatedAt)}
+                    />
+                  );
+                })
+              : search && <DashSearchFallback />}
+          </div>
+        )}
       </div>
       {/* Create Board Popup */}
       <div style={{ display: popup }}>

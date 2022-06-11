@@ -4,6 +4,7 @@ import "./DashCreatePopup.scss";
 
 //Imports
 import { ToastProperties } from "../../../../utils/ToastProperties";
+import { createBoard, createNote } from "./DashCreatePopupAPI";
 
 //Pacakges
 import { Link, useNavigate } from "react-router-dom";
@@ -17,12 +18,11 @@ function DashCreatePopup({ popup, setPopup, type, title, link }) {
   const [fileName, setFileName] = useState("");
   //   Functions
   const handleCreate = () => {
-    console.log(fileName);
-
-    if (fileName === "") {
-      return toast.error(`Please enter a ${type} name!`, ToastProperties);
-    } else {
-      navigate(`/${type}`);
+    if (type === "note") {
+      createNote(fileName, new Date());
+    }
+    if (type === "board") {
+      createBoard(fileName, new Date());
     }
   };
   return (
@@ -34,7 +34,6 @@ function DashCreatePopup({ popup, setPopup, type, title, link }) {
             className="dashCreatePopup__title__icon"
             onClick={() => {
               setPopup("none");
-              console.log(popup);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />

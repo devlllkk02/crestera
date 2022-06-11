@@ -1,43 +1,52 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
-const NoteSchema = new mongoose.Schema({
-    name: {
-        type: String,
+const NoteSchema = new mongoose.Schema(
+  {
+    fileIcon: {
+      type: String,
+      default: "note",
     },
-    addedOn: {
-        type: Date,
+    fileName: {
+      type: String,
+      required: true,
     },
-    content: {
-        type: String,
+    data: {
+      type: String,
     },
     thumbnail: {
-        type: String,
+      type: String,
     },
-    addedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    createdBy: {
+      type: ObjectId,
+      ref: "User",
     },
-    members: [{
+    members: [
+      {
         member: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
         },
         canEdit: {
-            type: Boolean,
-            default: false
+          type: Boolean,
+          default: false,
         },
-    }],
-    circles: [{
+      },
+    ],
+    circles: [
+      {
         circle: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'UserCircle'
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "UserCircle",
         },
         canEdit: {
-            type: Boolean,
-            default: false
+          type: Boolean,
+          default: false,
         },
-    }],
-
-});
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Note", NoteSchema);
