@@ -5,7 +5,9 @@ import ArrowIcon from "../../assets/images/Icons/arrow.png"
 import CircleIcon from "../../assets/images/Icons/circle.png"
 import EraserIcon from "../../assets/images/Icons/eraser.png"
 import RectangleIcon from "../../assets/images/Icons/rectangle.png"
-import "./Drawables.scss"
+import DownloadIcon  from "../../assets/images/Icons/downloadIcon.png"
+import "./WhiteboardDownload/downloadURI"
+import downloadURI from "./WhiteboardDownload/downloadURI";
 
 // get start coordinates
 class Drawable{
@@ -122,6 +124,11 @@ class Drawables extends Component{
         };
         
       }
+    //download method
+    handleExport = ()=>{
+      const uri = this.stageRef.current.toDataURL();
+      downloadURI(uri,'stage.png');
+    }
     
 
     //   Create drawable classes
@@ -221,6 +228,12 @@ render(){
         >
             <img src={RectangleIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
         </button>
+        {/* download button */}
+        <button className="toolbar__btn" style={{width:'max-content'}}
+        onClick={this.handleExport}
+        >
+           <img src={DownloadIcon} width={20} alt="rectangle" className="toolbar-icon-img"/>
+        </button>
        
         </div>
         </div>
@@ -235,7 +248,7 @@ render(){
           width={window.innerWidth}
           height={window.innerHeight}
           className="canvas-stage"
-         
+          ref = {this.stageRef}
         >
           <Layer className="canvas-layer">
             {drawables.map(drawable => {
