@@ -18,10 +18,14 @@ socketIOConnect();
 
 //Modles
 require("./models/User");
+require("./models/Note");
+require("./models/Board");
 
 //Routes
-//?Auth Routes
 app.use(require("./routes/AuthRoutes"));
+app.use(require("./routes/NoteRoutes"));
+app.use(require("./routes/BoardRoutes"));
+app.use(require("./routes/MainDashboardRoutes"));
 
 //? User Routes
 app.use("/v1/crestera/users", require("./routes/UserRoutes"));
