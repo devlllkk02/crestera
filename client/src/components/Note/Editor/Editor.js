@@ -15,10 +15,7 @@ function Editor() {
 
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
-
-  useEffect(() => {
-    if (quill) console.log(quill);
-  }, [quill]);
+  const [keyUp, setKeyUp] = useState(false);
 
   //Estblishing Web Socker
   useEffect(() => {
@@ -78,13 +75,31 @@ function Editor() {
     if (socket == null || quill == null) return;
 
     const interval = setInterval(() => {
-      socket.emit("save-document", quill.getContents());
+      console.log(keyUp);
+      if (keyUp == true) {
+        socket.emit("save-document", quill.getContents());
+        console.log("Updated Note");
+      }
+      setKeyUp(false);
     }, 2000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [quill, socket]);
+  }, [quill, socket, keyUp]);
+
+  //Tracking Keyboard
+  useEffect(() => {
+    const keyEvent = window.addEventListener(
+      "keydown",
+      (e) => {
+        setKeyUp(true);
+      },
+      true
+    );
+
+    return keyEvent;
+  }, []);
 
   const TOOLBAR_OPTIONS = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -122,11 +137,6 @@ function Editor() {
     // q.setText("Loading...");
     setQuill(q);
   }, []);
-
-  //Functions
-  const handleSave = () => {
-    updateNote(noteId, { meo: "pew pew" });
-  };
 
   return <div className="editor" ref={editorWrapperRef}></div>;
 }

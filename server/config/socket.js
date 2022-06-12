@@ -22,6 +22,7 @@ const socketIOConnect = () => {
 
         socket.on("save-document", async (data) => {
           await Note.findByIdAndUpdate(noteId, { data });
+          console.log("updated");
         });
       });
     } catch (error) {
