@@ -65,3 +65,13 @@ exports.getSingleNoteController = (req, res) => {
       res.status(422).json({ error: "Invalid note id!" });
     });
 };
+
+//Update One Note
+exports.updateSingleNoteController = (req, res) => {
+  Note.findByIdAndUpdate(req.params.noteId, req.body, { new: true }).exec(
+    (error, result) => {
+      if (error) return res.status(422).json({ error: error });
+      else res.send(result);
+    }
+  );
+};

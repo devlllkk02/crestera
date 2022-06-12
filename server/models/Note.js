@@ -12,7 +12,8 @@ const NoteSchema = new mongoose.Schema(
       required: true,
     },
     data: {
-      type: String,
+      type: Object,
+      default: "",
     },
     thumbnail: {
       type: String,

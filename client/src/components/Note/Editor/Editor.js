@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./Editor.scss";
 
+//Imports
+import { updateNote } from "../Note/NoteAPI";
+
+//Packages
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 function Editor() {
+  const { noteId } = useParams();
+
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
 
   useEffect(() => {
-    console.log(quill);
+    if (quill) console.log(quill);
   }, [quill]);
 
   //Estblishing Web Socker
@@ -55,6 +62,30 @@ function Editor() {
     };
   }, [socket, quill]);
 
+  //Get and Load Document
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    socket.once("load-document", (document) => {
+      quill.setContents(document);
+      quill.enable();
+    });
+
+    socket.emit("get-document", noteId);
+  }, [socket, quill, noteId]);
+
+  //Save Changes
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+
+    const interval = setInterval(() => {
+      socket.emit("save-document", quill.getContents());
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [quill, socket]);
+
   const TOOLBAR_OPTIONS = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
@@ -87,8 +118,15 @@ function Editor() {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
+    q.disable();
+    // q.setText("Loading...");
     setQuill(q);
   }, []);
+
+  //Functions
+  const handleSave = () => {
+    updateNote(noteId, { meo: "pew pew" });
+  };
 
   return <div className="editor" ref={editorWrapperRef}></div>;
 }
