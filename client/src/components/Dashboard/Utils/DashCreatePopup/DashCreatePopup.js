@@ -16,15 +16,25 @@ function DashCreatePopup({ popup, setPopup, type, title, link }) {
   const navigate = useNavigate();
   // State
   const [fileName, setFileName] = useState("");
+  const [fileId, setFileId] = useState("");
+
   //   Functions
   const handleCreate = () => {
     if (type === "note") {
-      createNote(fileName, new Date());
+      createNote(fileName, setFileId);
     }
     if (type === "board") {
-      createBoard(fileName, new Date());
+      createBoard(fileName);
     }
   };
+
+  //Redirecting
+  useEffect(() => {
+    if (fileId) {
+      navigate(`/note/${fileId}`);
+    }
+  }, [fileId]);
+
   return (
     <div className="dashCreatePopup">
       <div className="dashCreatePopup__container">

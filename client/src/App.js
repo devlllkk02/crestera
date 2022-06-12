@@ -92,7 +92,7 @@ const Routing = () => {
       />
 
       {/* Note */}
-      <Route exact path="/note" element={<NotePage />} />
+      <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board" element={<Whiteboard />} />
     </Routes>

@@ -1,7 +1,8 @@
+//Dash Create Popup API
 import { toast } from "react-toastify";
 import { ToastProperties } from "../../../../utils/ToastProperties";
 
-export const createNote = (fileName) => {
+export const createNote = (fileName, setFileId) => {
   fetch("http://localhost:5000/createnote", {
     method: "post",
     headers: {
@@ -17,13 +18,13 @@ export const createNote = (fileName) => {
       if (result.error) {
         toast.error(result.error, ToastProperties);
       } else {
-        console.log(result);
+        setFileId(result.note._id);
       }
     })
     .catch((error) => console.log(error));
 };
 
-export const createBoard = (fileName) => {
+export const createBoard = (fileName, setFileId) => {
   fetch("http://localhost:5000/createboard", {
     method: "post",
     headers: {
@@ -39,7 +40,7 @@ export const createBoard = (fileName) => {
       if (result.error) {
         toast.error(result.error, ToastProperties);
       } else {
-        console.log(result);
+        setFileId(result.note._id);
       }
     })
     .catch((error) => console.log(error));

@@ -1,4 +1,4 @@
-// ------ DashItem  ------
+// ------ DashItemSkeleton  ------
 import React from "react";
 import "./DashItem.scss";
 
@@ -6,46 +6,40 @@ import "./DashItem.scss";
 import cresteraIconsV2Board from "../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png";
 import cresteraIconsV2Note from "../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Note.png";
 
-//Packages
-import { Link } from "react-router-dom";
+//Pacakages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisVertical,
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-function DashItem({ _id, fileIcon, fileName, title1, title2, shared }) {
+function DashItemSkeleton({ fileIcon, fileName, title1, title2, shared }) {
   return (
     <div className="dashItem">
       <div className="dashItem__fileIcon">
-        <img
-          src={fileIcon == "note" ? cresteraIconsV2Note : cresteraIconsV2Board}
-          alt=""
-        />
+        <Skeleton height={20}  width={20}/>
       </div>
       <div className="dashItem__fileName">
-        <Link to={`/note/${_id}`} style={{ textDecorationLine: "none" }}>
-          <p>{fileName}</p>
-        </Link>
+        <Skeleton width={100} height={20} />
       </div>
       <div className="dashItem__middleIcon">
         <div className="dashItem__middleIcon__container">
-          {shared && <FontAwesomeIcon icon={faUserFriends} />}
+        <Skeleton height={20}  width={20}/>
         </div>
       </div>
       <div className="dashItem__title1">
-        <p>{title1}</p>
+        <Skeleton width={100} height={20} />
       </div>
       <div className="dashItem__title2">
-        <p>{`${title2.month.short} ${title2.date}, ${title2.year}`}</p>
+        <Skeleton width={100} height={20} />
       </div>
       <div className="dashItem__setings">
-        <div className="dashItem__setings__container">
-          <FontAwesomeIcon icon={faEllipsisVertical} />
-        </div>
+        <div className="dashItem__setings__container"></div>
       </div>
     </div>
   );
 }
 
-export default DashItem;
+export default DashItemSkeleton;

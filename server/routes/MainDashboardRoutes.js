@@ -8,17 +8,18 @@ const AuthMiddleware = require("../middleware/AuthMiddleware");
 
 //Controller
 const {
-  createNoteController,
-  getNotesController,
-} = require("../controllers/NoteController");
-
-const {
-  createBoardController,
-  getBoardsController,
-} = require("../controllers/BoardController");
+  getNotesAndBoardsController,
+  getRecommendedNotesAndBoardsController,
+} = require("../controllers/MainDashboardController");
 
 //? ------ GET ROUTES ------
 //ROUTE : GET : Get Notes and Boards Of A User
+router.get("/getnotesandboards", AuthMiddleware, getNotesAndBoardsController);
 
-
+//ROUTE : GET : Get Recommended Notes and Boards Of A User
+router.get(
+  "/getrecommendednotesandboards",
+  AuthMiddleware,
+  getRecommendedNotesAndBoardsController
+);
 module.exports = router;

@@ -110,6 +110,15 @@ exports.loginController = (req, res) => {
     .catch((error) => console.log(error));
 };
 
+// Get Logged in User
+exports.getUser = (req, res) => {
+  User.findById(req.user._id)
+    .then((savedUser) => {
+      res.json({ user: savedUser });
+    })
+    .catch((error) => console.log(error));
+};
+
 //Protected
 exports.protectedController = (req, res) => {
   res.send("You are viewing protected resources!");
