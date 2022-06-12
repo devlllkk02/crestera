@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component,createRef} from "react";
 import {Arrow, Circle, Rect,Line, Stage, Layer} from 'react-konva';
 import Pencil from "../../assets/images/Icons/pencil.png"
 import ArrowIcon from "../../assets/images/Icons/arrow.png"
@@ -8,6 +8,7 @@ import RectangleIcon from "../../assets/images/Icons/rectangle.png"
 import DownloadIcon  from "../../assets/images/Icons/downloadIcon.png"
 import "./WhiteboardDownload/downloadURI"
 import downloadURI from "./WhiteboardDownload/downloadURI";
+import "./Drawables.scss"
 
 // get start coordinates
 class Drawable{
@@ -122,7 +123,7 @@ class Drawables extends Component{
           newDrawable: [],
           newDrawableType: "FreePathDrawable"
         };
-        
+        this.stageRef = createRef();
       }
     //download method
     handleExport = ()=>{
