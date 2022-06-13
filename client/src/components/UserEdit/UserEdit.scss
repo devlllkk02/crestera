@@ -103,7 +103,8 @@
         width: 100%;
       }
 
-      .profile__name, .container {
+      .profile__name,
+      .container {
         width: 100%;
         display: flex;
         margin-top: 22px;
@@ -132,22 +133,22 @@
 
         textarea {
           margin-top: 14px;
-          height: 200px;
-          width: 599px;
+          max-height: 200px;
+          max-width: 599px;
           border: 1px solid #444e63;
           opacity: 0.3;
         }
       }
 
-      .profile__dob{
+      .profile__dob {
         width: 300px;
         height: 40px;
       }
 
-      .profile__gender{
+      .profile__gender {
         margin-left: 20px;
 
-        select{
+        select {
           margin-top: 4px;
           width: 285px;
           height: 42px;
@@ -155,14 +156,14 @@
           -moz-appearance: none;
           -webkit-appearance: none;
           color: $grey;
-                    outline: none;
-                    border: $borderGreyLight;
-                    box-sizing: border-box;
+          outline: none;
+          border: $borderGreyLight;
+          box-sizing: border-box;
 
-                    &:focus {
-                        border: $borderGreyLight;
-                        border-color: $blue;
-                    }
+          &:focus {
+            border: $borderGreyLight;
+            border-color: $blue;
+          }
         }
       }
     }
@@ -202,7 +203,7 @@
     }
 
     button.delete {
-      width: 200px;
+      width: 190px;
       height: 40px;
       font-size: 12px;
       font-weight: 700;
@@ -210,7 +211,7 @@
       color: #ffffff;
       border: none;
       margin-top: 30px;
-      margin-left: 65%;
+      margin-left: 465px;
       opacity: 0.8;
 
       &:hover {
