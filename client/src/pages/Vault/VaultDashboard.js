@@ -5,7 +5,7 @@ import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
 import { Progress } from 'antd';
 import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
-import { getFolders } from '../../services/AuthService';
+import { getFolders, getFoldershome } from '../../services/AuthService';
 
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
@@ -13,38 +13,63 @@ import FolderList from '../../components/Vault/FolderList/FolderList'
 const VaultDashboard = () => {
 
   const { folderId } = useParams();
-  const [currentFolder, setCurrentFolder] = useState( folderId || null );
-
-  useEffect(() => setCurrentFolder(folderId || null), [folderId]);
-
-
+  const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
+  useEffect(() => setCurrentFolder(folderId), [folderId]);
   const [popup, setpopup] = useState(false);
 
 
-  const [folder, setFolder] = useState(currentFolder);
-  useEffect(() => setFolder(currentFolder), [currentFolder]);
-
-  
   //Folder
-  
+
   const [updatefolders, setupdatefolders] = useState(false);
   const [folders, setFolders] = useState([]);
 
-  const GetFolders  = async () => {
-		try {
-			const response = await getFolders ();
-			console.log(response.data.data);
-			setFolders(response.data.data);
-		} catch (e) {
-			console.log(e);
-		}
-	};
+  useEffect(() => {
+    currentFolder !== "home "?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, []);
+  useEffect(() => {
+    currentFolder !== "home" ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [popup]);
+  useEffect(() => {
+    currentFolder !=="home"  ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [updatefolders]);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [currentFolder]);
 
-  useEffect(() => {GetFolders();}, []);
-  useEffect(() => {GetFolders();}, [popup]);
-  useEffect(() => {GetFolders();}, [updatefolders]);
+  const GetFolders = async () => {
+    try {
+      const response = await getFolders(currentFolder);
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  
+  const GetFoldersHome = async () => {
+    try {
+      const response = await getFoldershome();
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+
 
   //File
   const [files, setFiles] = useState(Array(5).fill(0).map(e => ({
@@ -104,7 +129,7 @@ const VaultDashboard = () => {
             {
               folders.map((folder) =>
                 <div key={folder._id}>
-                  <FolderList folder={folder} updatefolders={updatefolders} setupdatefolders={setupdatefolders}/>
+                  <FolderList folder={folder} updatefolders={updatefolders} setupdatefolders={setupdatefolders} />
                 </div>
               )
             }
@@ -119,7 +144,7 @@ const VaultDashboard = () => {
         </div>
 
       </div>
-      <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={folder}/>
+      <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={currentFolder} />
     </>
   );
 };

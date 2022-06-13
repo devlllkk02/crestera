@@ -3,26 +3,19 @@ const File = require("../models/File"); //File Model
 const ResponseService = require("../utils/ResponseService"); // Response service
 
 
-
-// Get All Files
-exports.getAll = async (req, res) => {
-  const limit = req.query.limit ? parseInt(req.query.limit) : 10;
-  const page = req.query.page ? parseInt(req.query.page) : 0;
-  const _count = await File.countDocuments();
-  const totalPages = Math.ceil(_count / limit);
-
-  File.find((err, doc) => {
-    const newPayload = {
-      docs: doc,
-      totalPages: totalPages,
-      totalpost: _count,
-    };
-    ResponseService.generalPayloadResponse(err, newPayload, res);
+// Get All Files when mother folder !== null
+exports.getAllByID = (async (req, res) => {
+  const fileId = req.params.id;
+  File.find({ motherFolder: fileId }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
   })
-    .sort({ addedOn: -1 })
-    .populate('addedBy', 'firstName lastName')
-    .populate('members.member', 'firstName lastName')
-    .populate('circles.circle', 'name')
-    .skip(page * limit)
-    .limit(limit);
-};
+      .sort({ addedOn: -1 })
+});
+
+// Get All Files when mother folder == null
+exports.getAll = (async (req, res) => {
+  File.find({ motherFolder: null  }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+  })
+      .sort({ addedOn: -1 })
+});
