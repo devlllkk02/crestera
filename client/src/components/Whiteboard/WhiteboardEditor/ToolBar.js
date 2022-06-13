@@ -24,7 +24,7 @@ const colors = {
 	green: '#239B56',
 	lightBlack: '#17202A',
 	black: '#000',
-    white: '#FFF'
+    white: ' #FFFFFF'
 };
 
 function ToolBar(){
