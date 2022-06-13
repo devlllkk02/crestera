@@ -22,6 +22,17 @@ const NoteSchema = new mongoose.Schema(
       type: ObjectId,
       ref: "User",
     },
+    onlineUsers: [
+      {
+        user: {
+          type: ObjectId,
+          ref: "User",
+        },
+        socketId: {
+          type: String,
+        },
+      },
+    ],
     members: [
       {
         member: {
