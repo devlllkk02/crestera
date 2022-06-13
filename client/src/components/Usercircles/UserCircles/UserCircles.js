@@ -17,9 +17,12 @@ import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
 //AuthService
 import { getCircles } from '../../../services/AuthService';
 
+//import { useParams } from 'react-router';
+
 
 function UserCircles() {
   const [isActive, setIsActive] = useState(false);
+  //const { usercircleId } = useParams();
  
 
   
