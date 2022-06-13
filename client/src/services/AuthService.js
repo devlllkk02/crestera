@@ -3,7 +3,7 @@ import { baseUrl } from '../constants/constants';
 
 
 //vault-folders
-export const NewFolder = (data) => {
+export const newFolder = (data) => {
     return axios.post(baseUrl + 'folders/', data, {
         headers: {
             'Content-Type': 'application/json'
@@ -44,5 +44,53 @@ export const deleteFolder = (id) => {
 };
 
 
+//user-circle
+export const newCircle = (data) => {
+    return axios.post(baseUrl + 'circles/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getCircles = () => {
+    return axios.get(baseUrl + 'circles/', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getCircle = (id) => {
+    return axios.get(baseUrl + 'circles/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const updateCircle = (data) => {
+    return axios.put(baseUrl + 'circles/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const addMember = (data) => {
+    return axios.put(baseUrl + 'circles/member', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const deleteCircle = (id) => {
+    return axios.delete(baseUrl + 'circles/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
 
 

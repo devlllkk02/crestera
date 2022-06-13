@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import '@fontsource/roboto';
 import './UserCircles.scss';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,8 +13,33 @@ import { NavLink } from 'react-router-dom';
 import UserCirclesSearch from './Utils/UserCirclesSearch/UserCirclesSearch';
 import UserCirclesHeader from './Utils/UserCirclesHeader/UserCirclesHeader';
 import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
+
+//AuthService
+import { getCircles } from '../../../services/AuthService';
+
+
 function UserCircles() {
   const [isActive, setIsActive] = useState(false);
+ 
+
+  
+  //Circles
+  useEffect(() => {
+		GetCircles();
+	}, []);
+
+  const [usercircles, setUserCircles] = useState([]);
+
+  //Get Circles
+  const GetCircles  = async () => {
+		try {
+			const response = await getCircles ();
+			console.log(response.data.data);
+			setUserCircles(response.data.data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
   return (
     <div className="usercircles">
       <div className="usercircles_header">
@@ -85,14 +109,14 @@ function UserCircles() {
           />
         </div>
         <div className="usercircles__items">
-          <UserCirclesItem
-            fileIcon="note"
-            fileName="Circle 01"
-            shared={false}
-            title1="Public"
-            title2="Janith Thenuka"
-          />
-          <UserCirclesItem
+        {
+        usercircles.map((usercircle) =>
+        <div key={usercircle._id}>
+        <UserCirclesItem usercircle={usercircle}/>
+        </div>
+        )
+        }
+          {/* <UserCirclesItem
             fileIcon="board"
             fileName="Circle 02"
             shared={false}
@@ -138,7 +162,7 @@ function UserCircles() {
             fileName="Circle 08"
             title1="Private"
             title2="Janith Thenuka"
-          />
+          /> */}
         </div>
       </div>
     </div>
