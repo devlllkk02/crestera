@@ -5,15 +5,19 @@ const Types = require('../utils/Types')
 // CRUD Service
 const CRUD = require('../utils/CRUD')
 //controller
-fileController = require('../controllers/fileController');
+FileController = require('../controllers/FileController');
 
 
 //router - /v1/crestera/files/
 // Create
 router.post('/', (req, res) => CRUD.create(req.body, Types.FILE, res));
 
-//get all
-router.route('/').get(fileController.getAll);
+
+// Get All Folders when mother folder == null
+router.get('/fileId', (req, res) => FileController.getAll(req, res));
+
+// Get All Folders when mother folder !== null
+router.get('/fileId/:id', (req, res) => FileController.getAllByID(req, res));
 
 //router - /v1/crestera/files/id
 // Update

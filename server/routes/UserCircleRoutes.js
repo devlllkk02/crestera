@@ -11,11 +11,9 @@ const UserCircleController = require('../controllers/UserCircleController')
 
 //router - /v1/crestera/circles/
 // Create
-// router.post('/', (req, res) => CRUD.create(req.body, Types.USERCIRCLE, res));
 router.post('/', UserCircleController.create);
 
 //get all
-// router.get('/', (req, res) => CRUD.getByQuery({}, Types.USERCIRCLE, res));
 router.route('/').get(UserCircleController.getAll);
 
 //router - /v1/crestera/circles/id
