@@ -99,7 +99,7 @@ function Sidebar({ page }) {
       <div className="sidebar__item2">
         <div className="sidebar__item2__container">
           <div className="sidebar__item2__icon">
-            <Link to="/dashboard/vault">
+            <Link to="/folder/home">
               <img src={CresteraVault} alt="" />
             </Link>
           </div>
