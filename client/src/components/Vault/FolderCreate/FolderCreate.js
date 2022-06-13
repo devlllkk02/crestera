@@ -1,11 +1,13 @@
 /*eslint-disable */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import './FolderCreate.scss';
 import { FiX } from 'react-icons/fi';
 import { NewFolder } from '../../../services/AuthService';
+import { UserContext } from '../../../App';
 
+const FolderCreate = ({ trigger, settrigger , currentfolder }) => {
 
-const FolderCreate = ({ trigger, settrigger }) => {
+  const { state, dispatch } = useContext(UserContext);
 
   useEffect(() => {
     document.addEventListener('click', handleClickoutside, true)
@@ -19,7 +21,6 @@ const FolderCreate = ({ trigger, settrigger }) => {
     }
   }
 
-  // const { userData } = useGlobalUser();
   const currentDate = new Date();
 
 
@@ -27,9 +28,10 @@ const FolderCreate = ({ trigger, settrigger }) => {
     e.preventDefault();
     try {
       const response = await NewFolder({
-        // addedBy: userData._id,
+        addedBy: state._id,
         name: e.target.title.value,
         addedOn: currentDate,
+        motherFolder: currentfolder
       });
       settrigger(false);
       console.log(response);
