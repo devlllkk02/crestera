@@ -18,7 +18,7 @@
     .noteBar__fileName {
       width: calc((100% - 420px));
       height: 100%;
-    //   background-color: lightblue;
+      //   background-color: lightblue;
 
       @include flexbox;
       justify-content: flex-start;
@@ -42,8 +42,8 @@
         @include flexbox;
         justify-content: flex-end;
         .noteBar__user {
-          width: 45px;
-          height: 45px;
+          width: 35px;
+          height: 35px;
           position: absolute;
           &:nth-child(1) {
             right: 30px;
@@ -60,29 +60,35 @@
           }
 
           img {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             border: 2px solid $red;
           }
         }
       }
 
-      .noteBar__defaultUser {
-        width: 45px;
-        height: 45px;
+      .noteBar__defaultUsers {
+        width: 100%;
+        height: 100%;
+        // background-color: lightgreen;
 
-        div {
+        @include flexbox;
+        justify-content: flex-end;
+
+        .noteBar__defaultUser {
           background-color: $red;
 
           border-radius: 50%;
           border: 2px solid $red;
-          width: 40px;
-          height: 40px;
+          width: 30px;
+          height: 30px;
 
+          &:not(:first-child) {
+            display: none;
+          }
           @include flexbox;
-
-          p{
+          p {
             color: $white;
           }
         }
@@ -91,7 +97,7 @@
     .noteBar__share {
       width: 200px;
       height: 100%;
-    //   background-color: lightseagreen;
+      //   background-color: lightseagreen;
       @include flexbox;
 
       button {
@@ -102,7 +108,7 @@
     .noteBar__settings {
       width: 20px;
       height: 100%;
-    //   background-color: lightblue;
+      //   background-color: lightblue;
 
       @include flexbox;
       .noteBar__settings__icon {

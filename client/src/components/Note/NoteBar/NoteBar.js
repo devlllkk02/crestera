@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./NoteBar.scss";
 
 //Imports
@@ -8,7 +8,7 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
-function NoteBar({ fileName }) {
+function NoteBar({ fileName, onlineUsers }) {
   return (
     <div className="noteBar">
       <div className="noteBar__container">
@@ -17,20 +17,25 @@ function NoteBar({ fileName }) {
         </div>
         <div className="noteBar__users">
           <div className="noteBar__users__online">
-            <div className="noteBar__user">
-              <img src={profilePic} alt="" />
-            </div>
-            <div className="noteBar__user">
-              <img src={profilePic} alt="" />
-            </div>
-            <div className="noteBar__user">
-              <img src={profilePic} alt="" />
-            </div>
+            {onlineUsers &&
+              onlineUsers.slice(0, 3).map((user, key) => {
+                return (
+                  <div className="noteBar__user" key={key}>
+                    <img src={user.user.image} alt="" />
+                  </div>
+                );
+              })}
           </div>
-          <div className="noteBar__defaultUser">
-            <div>
-              <p>10</p>
-            </div>
+          <div className="noteBar__defaultUsers">
+            {onlineUsers &&
+              onlineUsers.slice(0, 3).map((user, key) => {
+                console.log(user);
+                return (
+                  <div className="noteBar__defaultUser" key={key}>
+                    <p>{onlineUsers.length}</p>
+                  </div>
+                );
+              })}
           </div>
         </div>
         <div className="noteBar__share">
