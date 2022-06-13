@@ -1,0 +1,51 @@
+// ------ DashWelcome ------
+@import "../../../../Theme.scss";
+
+.dashWelcome {
+  width: 100%;
+  height: 100%;
+  //   background-color: lightgreen;
+
+  background: url("../../../../../public/images/other/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include flexbox;
+  flex-direction: column;
+  //   border: $borderGreyLight;
+
+  .dashWelcome__title {
+    width: 100%;
+    height: 20%;
+    @include flexbox;
+    // background-color: lightcoral;
+    p {
+      color: $grey;
+      font-size: 36px;
+      font-weight: bold;
+    }
+  }
+
+  .dashWelcome__text {
+    width: 100%;
+    height: 10%;
+    @include flexbox;
+    // background-color: lightblue;
+    p {
+      color: $grey;
+    }
+  }
+
+  .dashWelcome__images {
+    width: 100%;
+    height: 40%;
+    @include flexbox;
+    // background-color: lightcoral;
+
+    img {
+      height: 60px;
+      margin: 0px 10px;
+    }
+  }
+}
