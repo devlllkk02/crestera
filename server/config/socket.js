@@ -10,6 +10,7 @@ const socketIOConnect = () => {
   });
 
   io.on("connection", (socket) => {
+    console.log("Socket Connected")
     try {
       socket.on("get-document", async (noteId) => {
         const document = await Note.findById(noteId);
