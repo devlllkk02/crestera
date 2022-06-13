@@ -7,6 +7,7 @@ import circle from './circle.png';
 import selecthand from './selecthand.png';
 import text from './text.png';
 import downloadIcon from './download.png';
+import save from "./save.png"
 
 
 export {
@@ -19,5 +20,6 @@ export {
 	selecthand,
 	text,
 	downloadIcon,
+	save
 	
 };

@@ -8,7 +8,8 @@ import {
 	circle,
 	selecthand,
 	text,
-	downloadIcon
+	downloadIcon,
+	save
 } from "../../../assets/images/Whiteboard/Icons/whiteboardIcons"
 
 import "../Whiteboard.scss"
@@ -300,12 +301,18 @@ function ToolBar(){
 					</div>
 				</div>
 
-				<div className='load icon' /*onClick={loadData}*/>
-					Load
-				</div>
+				{/* <div className='load icon'>
+				<img
+							src={save}
+							alt='save-icon'
+							className='saveBtn'
+							onClick={download}
+						/>
+					
+				</div> */}
 
-				<div className='clearSaved icon' /* onClick={clearSaved}*/>
-					Clear Saved
+				<div className='save' /* onClick={clearSaved}*/>
+					Save Board
 				</div>
 
 				
