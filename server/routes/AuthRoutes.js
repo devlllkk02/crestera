@@ -5,6 +5,7 @@ const {
   signupController,
   loginController,
   protectedController,
+  getUser,
 } = require("../controllers/AuthController");
 
 const AuthMiddleware = require("../middleware/AuthMiddleware");
@@ -14,6 +15,9 @@ router.post("/signup", signupController);
 
 // Login
 router.post("/login", loginController);
+
+//Get Logged in User
+router.get("/getuser", AuthMiddleware, getUser);
 
 //Protected
 router.get("/protected", AuthMiddleware, protectedController);

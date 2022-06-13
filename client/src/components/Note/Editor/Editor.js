@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./Editor.scss";
 
+//Imports
+import { updateNote } from "../Note/NoteAPI";
+
+//Packages
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 function Editor() {
+  const { noteId } = useParams();
+
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
-
-  useEffect(() => {
-    console.log(quill);
-  }, [quill]);
+  const [keyUp, setKeyUp] = useState(false);
 
   //Estblishing Web Socker
   useEffect(() => {
@@ -55,6 +59,48 @@ function Editor() {
     };
   }, [socket, quill]);
 
+  //Get and Load Document
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+    socket.once("load-document", (document) => {
+      quill.setContents(document);
+      quill.enable();
+    });
+
+    socket.emit("get-document", noteId);
+  }, [socket, quill, noteId]);
+
+  //Save Changes
+  useEffect(() => {
+    if (socket == null || quill == null) return;
+
+    const interval = setInterval(() => {
+      console.log(keyUp);
+      if (keyUp == true) {
+        socket.emit("save-document", quill.getContents());
+        console.log("Updated Note");
+      }
+      setKeyUp(false);
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [quill, socket, keyUp]);
+
+  //Tracking Keyboard
+  useEffect(() => {
+    const keyEvent = window.addEventListener(
+      "keydown",
+      (e) => {
+        setKeyUp(true);
+      },
+      true
+    );
+
+    return keyEvent;
+  }, []);
+
   const TOOLBAR_OPTIONS = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
@@ -87,6 +133,8 @@ function Editor() {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
+    q.disable();
+    // q.setText("Loading...");
     setQuill(q);
   }, []);
 

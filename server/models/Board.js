@@ -1,43 +1,51 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
-const BoardSchema = new mongoose.Schema({
-    name: {
-        type: String,
+const BoardSchema = new mongoose.Schema(
+  {
+    fileIcon: {
+      type: String,
+      default: "board",
     },
-    addedOn: {
-        type: Date,
+    fileName: {
+      type: String,
     },
     content: {
-        type: String,
+      type: String,
     },
     thumbnail: {
-        type: String,
+      type: String,
     },
-    addedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    createdBy: {
+      type: ObjectId,
+      ref: "User",
     },
-    members: [{
+    members: [
+      {
         member: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
         },
         canEdit: {
-            type: Boolean,
-            default: false
+          type: Boolean,
+          default: false,
         },
-    }],
-    circles: [{
+      },
+    ],
+    circles: [
+      {
         circle: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'UserCircle'
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "UserCircle",
         },
         canEdit: {
-            type: Boolean,
-            default: false
+          type: Boolean,
+          default: false,
         },
-    }],
-
-});
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Board", BoardSchema);

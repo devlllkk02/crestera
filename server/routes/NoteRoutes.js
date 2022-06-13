@@ -1,27 +1,32 @@
-const express = require('express');
+// ------ Note Routes  ------
+// Imports
+const express = require("express");
 const router = express.Router();
-// Model types
-const Types = require('../utils/Types') 
-// CRUD Service
-const CRUD = require('../utils/CRUD')
 
+//Middleware
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 
-//router - /v1/crestera/notes/
-// Create
-router.post('/', (req, res) => CRUD.create(req.body, Types.NOTE, res));
+//Controller
+const {
+  createNoteController,
+  getNotesController,
+  getSingleNoteController,
+  updateSingleNoteController,
+} = require("../controllers/NoteController");
 
-//get all
-router.get('/', (req, res) => CRUD.getByQuery({}, Types.NOTE, res));
+//? ------ GET ROUTES ------
+//ROUTE : GET : Notes Of A User
+router.get("/getnotes", AuthMiddleware, getNotesController);
 
-//router - /v1/crestera/notes/id
-// Update
-router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.NOTE, res));
+//ROUTE : GET : Get One Note
+router.get("/note/:noteId", AuthMiddleware, getSingleNoteController);
 
-// Get by id
-router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.NOTE, res));
+//? ------ POST ROUTES ------
+//ROUTE : POST : Create Note
+router.post("/createnote", AuthMiddleware, createNoteController);
 
-// Delete
-router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.NOTE, res));
+//? ------ UPDATE ROUTES ------
+//ROUTE : PUT : Update One Note
+router.put("/update/:noteId", AuthMiddleware, updateSingleNoteController);
 
-
-module.exports=router;
+module.exports = router;
