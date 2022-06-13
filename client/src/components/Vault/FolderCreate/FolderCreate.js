@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import './FolderCreate.scss';
 import { FiX } from 'react-icons/fi';
-import { NewFolder } from '../../../services/AuthService';
+import { newFolder } from '../../../services/AuthService';
 import { UserContext } from '../../../App';
 
 const FolderCreate = ({ trigger, settrigger , currentfolder }) => {
@@ -27,7 +27,7 @@ const FolderCreate = ({ trigger, settrigger , currentfolder }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await NewFolder({
+      const response = await newFolder({
         addedBy: state._id,
         name: e.target.title.value,
         addedOn: currentDate,

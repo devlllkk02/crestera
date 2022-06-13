@@ -14,23 +14,24 @@ import {
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 
-function usercirclesItem({ fileIcon, fileName, title1, title2, shared }) {
+
+function usercirclesItem( props ) {
   return (
     <div className="usercirclesItem">
       <div className="usercirclesItem__fileIcon"></div>
       <div className="usercirclesItem__fileName">
-      <Link to="/usercircle" style={{ textDecoration: 'none' }}><p>{fileName}</p></Link> 
+      <Link to="/usercircle" style={{ textDecoration: 'none' }}><p>{props.usercircle.name}</p></Link> 
       </div>
       <div className="usercirclesItem__middleIcon">
         <div className="usercirclesItem__middleIcon__container">
-          {shared && <FontAwesomeIcon icon={faUserFriends} />}
+          {/* {shared && <FontAwesomeIcon icon={faUserFriends} />} */}
         </div>
       </div>
       <div className="usercirclesItem__title1">
-        <p>{title1}</p>
+        <p>{props.usercircle.isPublic ? 'public':'private'}</p>
       </div>
       <div className="usercirclesItem__title2">
-        <p>{title2}</p>
+      <p>{`${props.usercircle.addedBy.firstName} ${props.usercircle.addedBy.lastName} `}</p>
       </div>
       <div className="usercirclesItem__setings">
         <div className="usercirclesItem__setings__container">

@@ -11,6 +11,10 @@ const UserCircleSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    isPublic: {
+        type : Boolean,
+        default : false
+    },
     members: [{
         member: {
             type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +26,7 @@ const UserCircleSchema = new mongoose.Schema({
         },
         isPending: {
             type: Boolean,
-            default: false
+            default: true
         },
     }],
 
