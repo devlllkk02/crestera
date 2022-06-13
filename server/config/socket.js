@@ -15,7 +15,7 @@ const socketIOConnect = () => {
         const document = await Note.findById(noteId);
         socket.join(noteId);
 
-        socket.emit("load-document", document.data);
+        socket.emit("load-document", document);
         socket.on("send-changes", (delta) => {
           socket.broadcast.to(noteId).emit("receive-changes", delta);
         });
@@ -29,15 +29,6 @@ const socketIOConnect = () => {
       console.log(error);
     }
   });
-};
-
-const getNote = (noteId) => {
-  Note.findById(noteId)
-    .then((result) => {
-      console.log(result.data);
-      return result;
-    })
-    .catch((error) => console.log(error));
 };
 
 module.exports = socketIOConnect;

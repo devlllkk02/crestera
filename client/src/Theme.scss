@@ -56,6 +56,7 @@ $font-icon-small: 18px;
   }
 }
 
+//Blue Buttons
 @mixin ButtonBlueDark {
   width: 200px;
   height: 35px;
@@ -90,6 +91,123 @@ $font-icon-small: 18px;
     color: $white;
     background-color: $blue;
     border-color: $blue;
+    cursor: pointer;
+  }
+}
+
+//Red Buttons
+@mixin ButtonRedDark {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $white;
+  background-color: $red;
+  border: 2px solid $red;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $red;
+    background-color: $white;
+    border-color: $red;
+    cursor: pointer;
+  }
+}
+
+@mixin ButtonRedLight {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $red;
+  background-color: $white;
+  border: 2px solid $red;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $white;
+    background-color: $red;
+    border-color: $red;
+    cursor: pointer;
+  }
+}
+
+//Purple Buttons
+@mixin ButtonPurpleDark {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $white;
+  background-color: $purple;
+  border: 2px solid $purple;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $purple;
+    background-color: $white;
+    border-color: $purple;
+    cursor: pointer;
+  }
+}
+
+@mixin ButtonPurpleLight {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $purple;
+  background-color: $white;
+  border: 2px solid $purple;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $white;
+    background-color: $purple;
+    border-color: $purple;
+    cursor: pointer;
+  }
+}
+
+//Purple Buttons
+@mixin ButtonGreenDark {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $white;
+  background-color: $green;
+  border: 2px solid $green;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $green;
+    background-color: $white;
+    border-color: $green;
+    cursor: pointer;
+  }
+}
+
+@mixin ButtonGreenLight {
+  width: 200px;
+  height: 35px;
+  border: none;
+  color: $green;
+  background-color: $white;
+  border: 2px solid $green;
+
+  font-size: $font-small;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    color: $white;
+    background-color: $green;
+    border-color: $green;
     cursor: pointer;
   }
 }

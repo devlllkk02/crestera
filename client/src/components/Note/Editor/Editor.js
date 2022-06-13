@@ -9,6 +9,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
+import NoteBar from "../NoteBar/NoteBar";
 
 function Editor() {
   const { noteId } = useParams();
@@ -16,6 +17,7 @@ function Editor() {
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const [keyUp, setKeyUp] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   //Estblishing Web Socker
   useEffect(() => {
@@ -63,19 +65,19 @@ function Editor() {
   useEffect(() => {
     if (socket == null || quill == null) return;
     socket.once("load-document", (document) => {
-      quill.setContents(document);
+      quill.setContents(document.data);
       quill.enable();
+      setFileName(document.fileName);
     });
 
     socket.emit("get-document", noteId);
-  }, [socket, quill, noteId]);
+  }, [socket, quill, noteId, fileName]);
 
   //Save Changes
   useEffect(() => {
     if (socket == null || quill == null) return;
 
     const interval = setInterval(() => {
-      console.log(keyUp);
       if (keyUp == true) {
         socket.emit("save-document", quill.getContents());
         console.log("Updated Note");
@@ -138,7 +140,12 @@ function Editor() {
     setQuill(q);
   }, []);
 
-  return <div className="editor" ref={editorWrapperRef}></div>;
+  return (
+    <>
+      <NoteBar fileName={fileName} />
+      <div className="editor" ref={editorWrapperRef}></div>;
+    </>
+  );
 }
 
 export default Editor;
