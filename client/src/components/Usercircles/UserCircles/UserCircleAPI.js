@@ -1,8 +1,8 @@
-export const getUserCircles = (setUserCircles) => {
-    fetch("http://localhost:5000/getusercircles", {
+export const GetCircles = (setUserCircles) => {
+    fetch("http://localhost:5000/v1/crestera/circles/", {
       method: "get",
       headers: {
-        Authorization: `Bearer ${localStorage.getUserCircle("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
       .then((res) => res.json())
