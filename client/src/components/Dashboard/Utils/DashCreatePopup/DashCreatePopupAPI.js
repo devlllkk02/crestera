@@ -40,7 +40,7 @@ export const createBoard = (fileName, setFileId) => {
       if (result.error) {
         toast.error(result.error, ToastProperties);
       } else {
-        setFileId(result.note._id);
+        setFileId(result.board._id);
       }
     })
     .catch((error) => console.log(error));

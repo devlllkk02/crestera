@@ -10,6 +10,7 @@ const AuthMiddleware = require("../middleware/AuthMiddleware");
 const {
   createNoteController,
   getNotesController,
+  getRecommendedNotesController,
   getSingleNoteController,
   updateSingleNoteController,
 } = require("../controllers/NoteController");
@@ -17,6 +18,13 @@ const {
 //? ------ GET ROUTES ------
 //ROUTE : GET : Notes Of A User
 router.get("/getnotes", AuthMiddleware, getNotesController);
+
+//ROUTE : GET : Get Recommended Notes and Boards Of A User
+router.get(
+  "/getrecommendednotes",
+  AuthMiddleware,
+  getRecommendedNotesController
+);
 
 //ROUTE : GET : Get One Note
 router.get("/note/:noteId", AuthMiddleware, getSingleNoteController);
