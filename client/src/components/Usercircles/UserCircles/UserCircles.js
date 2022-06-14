@@ -17,18 +17,51 @@ import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
 //AuthService
 import { getCircles } from '../../../services/AuthService';
 
+//import { useParams } from 'react-router';
+import {getUserCircles } from "./UserCircleAPI";
+
 
 function UserCircles() {
   const [isActive, setIsActive] = useState(false);
+  //const { usercircleId } = useParams();
+  const [search, setSearch] = useState("");
+  const [dropdown, setDropdown] = useState("All Circles");
  
 
   
   //Circles
   useEffect(() => {
-		GetCircles();
+		GetCircles(setUserCircles);
 	}, []);
 
   const [usercircles, setUserCircles] = useState([]);
+
+    //Functions
+    const handleUserCircleSort = () => {
+      return usercircles
+      .filter((usercircle) => {
+        if (dropdown === "All Circles") return usercircle;
+        if (dropdown === "Public Circles") {
+          if (usercircle.isPublic == true) {
+            return usercircle;
+          }
+        }
+        if (dropdown === "Private Circles") {
+          if (usercircle.isPublic == false) {
+            return usercircle;
+          }
+        }
+      })
+        .filter((usercircle) => {
+          if (search == "") {
+            return usercircle;
+          } else if (
+            usercircle.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+          ) {
+            return usercircle;
+          }
+        });
+    };
 
   //Get Circles
   const GetCircles  = async () => {
@@ -40,6 +73,12 @@ function UserCircles() {
 			console.log(e);
 		}
 	};
+    //Getting Notes and Boards
+    // useEffect(() => {
+    //  // getUser(setUser);
+    //  getUserCircles(setUserCircles);
+    //  // getRecommendedNotesAndBoards(setRecommendedItems);
+    // }, []);
   return (
     <div className="usercircles">
       <div className="usercircles_header">
@@ -63,7 +102,9 @@ function UserCircles() {
           </div>
         </div> */}
         <div className="usercircles__search">
-          <UserCirclesSearch page="crestera" />
+          <UserCirclesSearch page="crestera"   search={search}
+          setSearch={setSearch} dropdown={dropdown}
+          setDropdown={setDropdown}/>
         </div>
         {/* <div className="usercircles_filter_box">
           <div className="usercircles_filter_dropdown">
@@ -108,14 +149,28 @@ function UserCircles() {
             title4="Members"
           />
         </div>
-        <div className="usercircles__items">
-        {
+       
+        {/* {
         usercircles.map((usercircle) =>
         <div key={usercircle._id}>
         <UserCirclesItem usercircle={usercircle}/>
         </div>
         )
-        }
+        } */}
+        { usercircles &&
+         <div className="usercircles__items">
+
+            {handleUserCircleSort().map((usercircle) => {
+                return (
+                  <UserCirclesItem
+                  usercircle={usercircle}
+
+                  />
+                );
+              })
+            }
+        </div>}
+              
           {/* <UserCirclesItem
             fileIcon="board"
             fileName="Circle 02"
@@ -163,7 +218,7 @@ function UserCircles() {
             title1="Private"
             title2="Janith Thenuka"
           /> */}
-        </div>
+       
       </div>
     </div>
   );

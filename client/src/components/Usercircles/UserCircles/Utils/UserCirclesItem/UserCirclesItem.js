@@ -15,12 +15,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 
-function usercirclesItem( props ) {
+function usercirclesItem( props) {
   return (
     <div className="usercirclesItem">
       <div className="usercirclesItem__fileIcon"></div>
       <div className="usercirclesItem__fileName">
-      <Link to="/usercircle" style={{ textDecoration: 'none' }}><p>{props.usercircle.name}</p></Link> 
+      <Link to={`/usercircle/${props.usercircle._id}`} style={{ textDecoration: 'none' }}><p>{props.usercircle.name}</p></Link> 
       </div>
       <div className="usercirclesItem__middleIcon">
         <div className="usercirclesItem__middleIcon__container">

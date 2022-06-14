@@ -73,6 +73,9 @@
   align-items: center;
   border-bottom: $borderGreyLight;
   margin-bottom: 5px;
+  &:hover{
+    background-color:#F5F5F5;
+  }
 
   .VaultItem_fileIcon {
     width: 70px;

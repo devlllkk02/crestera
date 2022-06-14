@@ -1,27 +1,35 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import "./Editor.scss";
 
 //Imports
 import { updateNote } from "../Note/NoteAPI";
+import { UserContext } from "../../../App";
 
 //Packages
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
+import Taskbar from "../TaskBar/Taskbar";
 
 function Editor() {
+  const { state, dispatch } = useContext(UserContext);
   const { noteId } = useParams();
 
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const [keyUp, setKeyUp] = useState(false);
+  const [fileName, setFileName] = useState("");
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
+  useEffect(() => {
+    // if (onlineUsers) console.log(onlineUsers);
+  }, [onlineUsers]);
 
   //Estblishing Web Socker
   useEffect(() => {
     const s = io("http://localhost:8000");
     setSocket(s);
-
     return () => {
       s.disconnect();
     };
@@ -61,24 +69,24 @@ function Editor() {
 
   //Get and Load Document
   useEffect(() => {
-    if (socket == null || quill == null) return;
+    if (socket == null || quill == null || state == null) return;
     socket.once("load-document", (document) => {
-      quill.setContents(document);
+      quill.setContents(document.data);
       quill.enable();
+      setFileName(document.fileName);
+      setOnlineUsers(document.onlineUsers);
     });
+    socket.emit("get-document", noteId, state);
+  }, [socket, quill, noteId, fileName, state]);
 
-    socket.emit("get-document", noteId);
-  }, [socket, quill, noteId]);
-
-  //Save Changes
+  //Save Document Changes
   useEffect(() => {
     if (socket == null || quill == null) return;
 
     const interval = setInterval(() => {
-      console.log(keyUp);
       if (keyUp == true) {
         socket.emit("save-document", quill.getContents());
-        console.log("Updated Note");
+        // console.log("Updated Note");
       }
       setKeyUp(false);
     }, 2000);
@@ -87,6 +95,15 @@ function Editor() {
       clearInterval(interval);
     };
   }, [quill, socket, keyUp]);
+
+  //? User
+  useEffect(() => {
+    if (socket == null || onlineUsers == null) return;
+    socket.on("receive-onlineUsers", (result) => {
+      // console.log(typeof result);
+      setOnlineUsers(result);
+    });
+  }, [socket, onlineUsers]);
 
   //Tracking Keyboard
   useEffect(() => {
@@ -100,6 +117,13 @@ function Editor() {
 
     return keyEvent;
   }, []);
+
+  useEffect(() => {
+    if (socket == null || state == null) return;
+    if (state) {
+      socket.emit("get-noteIdAndUser", noteId, state);
+    }
+  }, [socket, state]);
 
   const TOOLBAR_OPTIONS = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -138,7 +162,12 @@ function Editor() {
     setQuill(q);
   }, []);
 
-  return <div className="editor" ref={editorWrapperRef}></div>;
+  return (
+    <>
+      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
+      <div className="editor" ref={editorWrapperRef}></div>;
+    </>
+  );
 }
 
 export default Editor;
