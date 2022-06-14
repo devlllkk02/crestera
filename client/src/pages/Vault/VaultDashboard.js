@@ -11,20 +11,21 @@ import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
 
 const VaultDashboard = () => {
-
+ 
+  //get the mother folder
   const { folderId } = useParams();
   const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
   useEffect(() => setCurrentFolder(folderId), [folderId]);
+  //popup
   const [popup, setpopup] = useState(false);
 
 
   //Folder
-
   const [updatefolders, setupdatefolders] = useState(false);
   const [folders, setFolders] = useState([]);
 
   useEffect(() => {
-    currentFolder !== "home "?
+    currentFolder !== "home " ?
       GetFolders()
       :
       GetFoldersHome();
@@ -36,7 +37,7 @@ const VaultDashboard = () => {
       GetFoldersHome();
   }, [popup]);
   useEffect(() => {
-    currentFolder !=="home"  ?
+    currentFolder !== "home" ?
       GetFolders()
       :
       GetFoldersHome();
@@ -90,19 +91,6 @@ const VaultDashboard = () => {
           <Link to={`/folder/bin`} style={{ textDecoration: 'none' }}>
             <button className="vaultDashButton">Trash</button>
           </Link>
-
-
-          <div className='progressBar'>
-            <Progress
-              strokeColor={{
-                from: '#0B572E',
-                to: '#117f45',
-              }}
-              percent={60.9}
-              status="active"
-              size="small"
-            />
-          </div>
         </div>
 
 
