@@ -10,7 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function usercirclesSearch({ page }) {
+function usercirclesSearch({ page, search,
+  setSearch }) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -58,7 +59,8 @@ function usercirclesSearch({ page }) {
         )}
       </div>
       <div className="usercirclesSearch__searchbox1">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" value={search}
+          onChange={(e) => setSearch(e.target.value)}/>
         <div className="usercirclesSearch__searchbox1__icon">
           <FontAwesomeIcon icon={faSearch} />
         </div>
