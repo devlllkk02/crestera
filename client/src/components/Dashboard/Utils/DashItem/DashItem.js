@@ -24,7 +24,7 @@ function DashItem({ _id, fileIcon, fileName, title1, title2, shared }) {
         />
       </div>
       <div className="dashItem__fileName">
-        <Link to={`/note/${_id}`} style={{ textDecorationLine: "none" }}>
+        <Link to={`/${fileIcon}/${_id}`} style={{ textDecorationLine: "none" }}>
           <p>{fileName}</p>
         </Link>
       </div>

@@ -5,8 +5,9 @@ import "./DashBoard.scss";
 //Imports
 import { UserContext } from "../../../App";
 import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
-import { getBoards } from "./DashBoardAPI";
+import { getBoards, getRecommendedBoards } from "./DashBoardAPI";
 import { DateFormat } from "../../../utils/DateFormat";
+import { getUser } from "../Utils/OtherAPI/UserAPI";
 
 //Packages
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,6 +25,10 @@ import DashItem from "../Utils/DashItem/DashItem";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 import DashCreatePopup from "../Utils/DashCreatePopup/DashCreatePopup";
 import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
+import DashItemSkeleton from "../Utils/DashItem/DashItemSkeleton";
+import DashCardSkeleton from "../Utils/DashCard/DashCardSkeleton";
+import DashWelcome from "../Utils/DashWelcome/DashWelcome";
+import DashNoItems from "../Utils/DashNoItems/DashNoItems";
 
 function DashBoard() {
   //Global State
@@ -35,8 +40,9 @@ function DashBoard() {
   }, [state]);
 
   //States
+  const [user, setUser] = useState();
   const [items, setItems] = useState([]);
-
+  const [recommendedItems, setRecommendedItems] = useState([]);
   const [search, setSearch] = useState("");
   const [dropdown, setDropdown] = useState("All Documents");
   const [popup, setPopup] = useState("none");
@@ -63,9 +69,11 @@ function DashBoard() {
       });
   };
 
-  //Getting Notes
+  //Getting Boards
   useEffect(() => {
+    getUser(setUser);
     getBoards(setItems);
+    getRecommendedBoards(setRecommendedItems);
   }, []);
 
   return (
@@ -77,33 +85,58 @@ function DashBoard() {
           <p>{`${getCurrentDayPhrase()}, ${state?.firstName}`}</p>
         </div>
         {/* L2 */}
-        <div className="dashBoard__l2">
-          <p>Recommended</p>
-        </div>
+        {user && user?.boardCount > 0 && (
+          <div className="dashBoard__l2">
+            <p>Recommended</p>
+          </div>
+        )}
         {/* Cards */}
         <div className="dashBoard__cards">
-          <Swiper
-            pagination={{ clickable: true }}
-            modules={[Pagination]}
-            spaceBetween={50}
-            slidesPerView={5}
-          >
-            <SwiperSlide>
-              <DashCard
-                fileType="board"
-                fileName="Board 01"
-                username="Janice Brownwell"
-              />
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <DashCard
-                fileType="board"
-                fileName="Board 02"
-                username="Naveen Liyanage"
-              />
-            </SwiperSlide>
-          </Swiper>
+          {user &&
+            (user?.boardCount > 0 ? (
+              <div className="dashBoard__cards__swiper">
+                <Swiper
+                  pagination={{ clickable: true }}
+                  modules={[Pagination]}
+                  spaceBetween={50}
+                  slidesPerView={5}
+                >
+                  {recommendedItems.length != 0 ? (
+                    recommendedItems.map((recommendedItem, key) => {
+                      return (
+                        <SwiperSlide key={key}>
+                          <DashCard
+                            fileType={recommendedItem.fileIcon}
+                            fileName={recommendedItem.fileName}
+                            username={`${recommendedItem.createdBy.firstName} ${recommendedItem.createdBy.lastName}`}
+                          />
+                        </SwiperSlide>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                    </>
+                  )}
+                </Swiper>
+              </div>
+            ) : (
+              <DashWelcome />
+            ))}
         </div>
         {/* Search */}
         <div className="dashBoard__search">
@@ -125,13 +158,16 @@ function DashBoard() {
           <DashHeader title1="Name" title2="Owned By" title3="Date Modified" />
         </div>
         {/* Items */}
-        {items && (
-          <div className="dashBoard__items">
-            {handleItemSort().length != 0
-              ? handleItemSort().map((item, key) => {
+        {user &&
+          items &&
+          (user?.boardCount > 0 ? (
+            <div className="dashBoard__items">
+              {handleItemSort().length != 0 ? (
+                handleItemSort().map((item, key) => {
                   return (
                     <DashItem
                       key={key}
+                      _id={item._id}
                       fileIcon={item.fileIcon}
                       fileName={item.fileName}
                       shared={item.shared}
@@ -140,9 +176,21 @@ function DashBoard() {
                     />
                   );
                 })
-              : search && <DashSearchFallback />}
-          </div>
-        )}
+              ) : search ? (
+                <DashSearchFallback />
+              ) : (
+                <>
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                </>
+              )}
+            </div>
+          ) : (
+            <DashNoItems />
+          ))}
       </div>
       {/* Create Board Popup */}
       <div style={{ display: popup }}>

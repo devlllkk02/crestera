@@ -5,8 +5,12 @@ import "./DashNote.scss";
 //Imports
 import { UserContext } from "../../../App";
 import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
-import { getNotes } from "./DashNoteAPI";
+import { getNotes, getRecommendedNotes } from "./DashNoteAPI";
 import { DateFormat } from "../../../utils/DateFormat";
+import DashCardSkeleton from "../Utils/DashCard/DashCardSkeleton";
+import DashWelcome from "../Utils/DashWelcome/DashWelcome";
+import DashNoItems from "../Utils/DashNoItems/DashNoItems";
+import { getUser } from "../Utils/OtherAPI/UserAPI";
 
 //Packages
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,6 +25,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DashCard from "../Utils/DashCard/DashCard";
 import DashHeader from "../Utils/DashHeader/DashHeader";
 import DashItem from "../Utils/DashItem/DashItem";
+import DashItemSkeleton from "../Utils/DashItem/DashItemSkeleton";
 import DashSearch from "../Utils/DashSearch/DashSearch";
 import DashCreatePopup from "../Utils/DashCreatePopup/DashCreatePopup";
 import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
@@ -35,8 +40,9 @@ function DashNote() {
   }, [state]);
 
   //States
+  const [user, setUser] = useState();
   const [items, setItems] = useState([]);
-
+  const [recommendedItems, setRecommendedItems] = useState([]);
   const [search, setSearch] = useState("");
   const [dropdown, setDropdown] = useState("All Documents");
   const [popup, setPopup] = useState("none");
@@ -65,7 +71,9 @@ function DashNote() {
 
   //Getting Notes
   useEffect(() => {
+    getUser(setUser);
     getNotes(setItems);
+    getRecommendedNotes(setRecommendedItems);
   }, []);
 
   return (
@@ -77,46 +85,58 @@ function DashNote() {
           <p>{`${getCurrentDayPhrase()}, ${state?.firstName}`}</p>
         </div>
         {/* L2 */}
-        <div className="dashNote__l2">
-          <p>Recommended</p>
-        </div>
+        {user && user?.noteCount > 0 && (
+          <div className="dashNote__l2">
+            <p>Recommended</p>
+          </div>
+        )}
         {/* Cards */}
         <div className="dashNote__cards">
-          <Swiper
-            pagination={{ clickable: true }}
-            modules={[Pagination]}
-            spaceBetween={50}
-            slidesPerView={5}
-          >
-            <SwiperSlide>
-              <DashCard
-                fileType="note"
-                fileName="Note 01"
-                username="Naveen Liyanage"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DashCard
-                fileType="note"
-                fileName="Note 02"
-                username="Janice Brownwell"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DashCard
-                fileType="note"
-                fileName="Note 03"
-                username="Janith Thenuka"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <DashCard
-                fileType="note"
-                fileName="Note 04"
-                username="Janice Brownwell"
-              />
-            </SwiperSlide>
-          </Swiper>
+          {user &&
+            (user?.noteCount > 0 ? (
+              <div className="dashNote__cards__swiper">
+                <Swiper
+                  pagination={{ clickable: true }}
+                  modules={[Pagination]}
+                  spaceBetween={50}
+                  slidesPerView={5}
+                >
+                  {recommendedItems.length != 0 ? (
+                    recommendedItems.map((recommendedItem, key) => {
+                      return (
+                        <SwiperSlide key={key}>
+                          <DashCard
+                            fileType={recommendedItem.fileIcon}
+                            fileName={recommendedItem.fileName}
+                            username={`${recommendedItem.createdBy.firstName} ${recommendedItem.createdBy.lastName}`}
+                          />
+                        </SwiperSlide>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <DashCardSkeleton />
+                      </SwiperSlide>
+                    </>
+                  )}
+                </Swiper>
+              </div>
+            ) : (
+              <DashWelcome />
+            ))}
         </div>
         {/* Search */}
         <div className="dashNote__search">
@@ -138,13 +158,16 @@ function DashNote() {
           <DashHeader title1="Name" title2="Owned By" title3="Date Modified" />
         </div>
         {/* Items */}
-        {items && (
-          <div className="dashNote__items">
-            {handleItemSort().length != 0
-              ? handleItemSort().map((item, key) => {
+        {user &&
+          items &&
+          (user?.noteCount + user?.boardCount > 0 ? (
+            <div className="dashHome__items">
+              {handleItemSort().length != 0 ? (
+                handleItemSort().map((item, key) => {
                   return (
                     <DashItem
                       key={key}
+                      _id={item._id}
                       fileIcon={item.fileIcon}
                       fileName={item.fileName}
                       shared={item.shared}
@@ -153,9 +176,21 @@ function DashNote() {
                     />
                   );
                 })
-              : search && <DashSearchFallback />}
-          </div>
-        )}
+              ) : search ? (
+                <DashSearchFallback />
+              ) : (
+                <>
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                  <DashItemSkeleton />
+                </>
+              )}
+            </div>
+          ) : (
+            <DashNoItems />
+          ))}
       </div>
       {/* Create Note Popup */}
       <div style={{ display: popup }}>
