@@ -68,7 +68,7 @@ const Routing = () => {
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
 
       {/* User Circles */}
-      <Route exact path="/usercircle" element={<UserCirclePage />} />
+      <Route exact path="/usercircle/:usercircleId" element={<UserCirclePage />} />
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
       <Route
         exact

@@ -17,9 +17,14 @@ import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
 //AuthService
 import { getCircles } from '../../../services/AuthService';
 
+//import { useParams } from 'react-router';
+import {getUserCircles } from "./UserCircleAPI";
+
 
 function UserCircles() {
   const [isActive, setIsActive] = useState(false);
+  //const { usercircleId } = useParams();
+  const [search, setSearch] = useState("");
  
 
   
@@ -29,6 +34,20 @@ function UserCircles() {
 	}, []);
 
   const [usercircles, setUserCircles] = useState([]);
+
+    //Functions
+    const handleUserCircleSort = () => {
+      return usercircles
+        .filter((usercircle) => {
+          if (search == "") {
+            return usercircle;
+          } else if (
+            usercircle.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+          ) {
+            return usercircle;
+          }
+        });
+    };
 
   //Get Circles
   const GetCircles  = async () => {
@@ -108,14 +127,28 @@ function UserCircles() {
             title4="Members"
           />
         </div>
-        <div className="usercircles__items">
-        {
+       
+        {/* {
         usercircles.map((usercircle) =>
         <div key={usercircle._id}>
         <UserCirclesItem usercircle={usercircle}/>
         </div>
         )
-        }
+        } */}
+        { usercircles &&
+         <div className="usercircles__items">
+
+            {handleUserCircleSort().map((usercircle) => {
+                return (
+                  <UserCirclesItem
+                  usercircle={usercircle}
+
+                  />
+                );
+              })
+            }
+        </div>}
+              
           {/* <UserCirclesItem
             fileIcon="board"
             fileName="Circle 02"
@@ -163,7 +196,7 @@ function UserCircles() {
             title1="Private"
             title2="Janith Thenuka"
           /> */}
-        </div>
+       
       </div>
     </div>
   );
