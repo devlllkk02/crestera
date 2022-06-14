@@ -10,7 +10,7 @@ import foldericon from '../../../assets/images/Vault icons/FolderIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes, faPencil, faDownload } from "@fortawesome/free-solid-svg-icons";
 
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
 import FolderUpdate from '../FolderCreate/FolderUpdate';
@@ -33,46 +33,48 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
     };
     return (
         <div>
-            <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }}>
+            
                 <div className="VaultItem">
-                    <div className="VaultItem_fileIcon">
+                <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_fileIcon">
                         <img
                             src={foldericon}
                             alt=""
                         />
-                    </div>
-                    <div className="VaultItem_fileName">
-                        <p>{folder.name}</p>
-                    </div>
-                    <div className="VaultItem_middleIcon">
-                        <div className="VaultItem_middleIcon__container">
+                    </Link>
+                    <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_fileName">
+                    <p>{folder.name}</p>
+                    </Link>
+                    <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_middleIcon">
+                    <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_middleIcon__container">
                             <FontAwesomeIcon icon={faUserFriends} />
-                        </div>
-                    </div>
-                    <div className="VaultItem_title1 hide">
+                        </Link>
+                    </Link>
+                    <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_title1 hide">
                         <p>{folder.size}MB</p>
-                    </div>
-                    <div className="VaultItem_title2 hide">
+                    </Link>
+                    <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_title2 hide">
                         <p>{getDateTime(folder.addedOn)}</p>
-                    </div>
+                    </Link>
                     <div className="VaultItem_setings" onClick={() => setpopover(true)}>
                         <div className="VaultItem_setings__container">
                             <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setpopover(true)} />
                             <VaultPopover trigger={popover} settrigger={setpopover}>
                                 <ul>
                                     <li onClick={() => setbtnpopup1(true)} ><FontAwesomeIcon icon={faInfoCircle} />  Details</li>
-                                    <Link to={`/vaultshare/${folder._id}`} style={{ textDecoration: 'none' }} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
+                                    <Link to={`/vaultshare/${folder._id}`} style={{color: 'black' ,textDecoration: 'none'}} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
                                     <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil} />   Rename</li>
+                                    <li><FontAwesomeIcon icon={faDownload}/> <a href=""style={{color: 'black' ,textDecoration: 'none'}} > Download</a></li>
                                     <li onClick={() => DeleteFolder(folder._id)}><FontAwesomeIcon icon={faTrash} />   Delete</li>
                                 </ul>
                             </VaultPopover>
 
                         </div>
                     </div>
-                </div>
-            </Link >
+                {/* </Link> */}
+            {/* </Link > */}
             <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} folder={folder} />
             <FolderUpdate trigger={btnpopup2} settrigger={setbtnpopup2} folder={folder} />
+            </div>
         </div >
     )
 }

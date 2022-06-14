@@ -25,12 +25,13 @@ function UserCircles() {
   const [isActive, setIsActive] = useState(false);
   //const { usercircleId } = useParams();
   const [search, setSearch] = useState("");
+  const [dropdown, setDropdown] = useState("All Circles");
  
 
   
   //Circles
   useEffect(() => {
-		GetCircles();
+		GetCircles(setUserCircles);
 	}, []);
 
   const [usercircles, setUserCircles] = useState([]);
@@ -38,6 +39,19 @@ function UserCircles() {
     //Functions
     const handleUserCircleSort = () => {
       return usercircles
+      .filter((usercircle) => {
+        if (dropdown === "All Circles") return usercircle;
+        if (dropdown === "Public Circles") {
+          if (usercircle.isPublic == true) {
+            return usercircle;
+          }
+        }
+        if (dropdown === "Private Circles") {
+          if (usercircle.isPublic == false) {
+            return usercircle;
+          }
+        }
+      })
         .filter((usercircle) => {
           if (search == "") {
             return usercircle;
@@ -59,6 +73,12 @@ function UserCircles() {
 			console.log(e);
 		}
 	};
+    //Getting Notes and Boards
+    // useEffect(() => {
+    //  // getUser(setUser);
+    //  getUserCircles(setUserCircles);
+    //  // getRecommendedNotesAndBoards(setRecommendedItems);
+    // }, []);
   return (
     <div className="usercircles">
       <div className="usercircles_header">
@@ -82,7 +102,9 @@ function UserCircles() {
           </div>
         </div> */}
         <div className="usercircles__search">
-          <UserCirclesSearch page="crestera" />
+          <UserCirclesSearch page="crestera"   search={search}
+          setSearch={setSearch} dropdown={dropdown}
+          setDropdown={setDropdown}/>
         </div>
         {/* <div className="usercircles_filter_box">
           <div className="usercircles_filter_dropdown">
