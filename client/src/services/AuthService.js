@@ -11,8 +11,16 @@ export const newFolder = (data) => {
     });
 };
 
-export const getFolders = () => {
-    return axios.get(baseUrl + 'folders/', {
+export const getFolders = (id) => {
+    return axios.get(baseUrl + 'folders/folderId/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getFoldershome = () => {
+    return axios.get(baseUrl + 'folders/folderId', {
         headers: {
             'Content-Type': 'application/json'
         }
