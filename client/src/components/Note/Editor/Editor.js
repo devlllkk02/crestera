@@ -10,7 +10,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
-import NoteBar from "../NoteBar/NoteBar";
+import NoteBar from "../NoteBar/Taskbar";
 
 function Editor() {
   const { state, dispatch } = useContext(UserContext);

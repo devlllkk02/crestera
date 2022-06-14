@@ -1,13 +1,13 @@
-// ------ Note Bar ------
+// ------ Task Bar ------
 @import "../../../Theme.scss";
 
-.noteBar {
+.taskbar {
   width: 100%;
   height: 60px;
   border-bottom: $borderGreyLight;
   //   background-color: lightgreen;
 
-  .noteBar__container {
+  .taskbar__container {
     width: 90%;
     height: 100%;
     // background-color: lightcoral;
@@ -15,7 +15,7 @@
 
     @include flexbox;
 
-    .noteBar__fileName {
+    .taskbar__fileName {
       width: calc((100% - 420px));
       height: 100%;
       //   background-color: lightblue;
@@ -27,7 +27,7 @@
         color: $grey;
       }
     }
-    .noteBar__users {
+    .taskbar__users {
       width: 200px;
       height: 100%;
       //   background-color: lightcoral;
@@ -35,13 +35,13 @@
       justify-content: flex-end;
       position: relative;
 
-      .noteBar__users__online {
+      .taskbar__users__online {
         width: 100%;
         height: 100%;
         // background-color: lightcoral;
         @include flexbox;
         justify-content: flex-end;
-        .noteBar__user {
+        .taskbar__user {
           width: 35px;
           height: 35px;
           position: absolute;
@@ -68,7 +68,7 @@
         }
       }
 
-      .noteBar__defaultUsers {
+      .taskbar__defaultUsers {
         width: 100%;
         height: 100%;
         // background-color: lightgreen;
@@ -76,7 +76,7 @@
         @include flexbox;
         justify-content: flex-end;
 
-        .noteBar__defaultUser {
+        .taskbar__defaultUser {
           background-color: $red;
 
           border-radius: 50%;
@@ -94,7 +94,7 @@
         }
       }
     }
-    .noteBar__share {
+    .taskbar__share {
       width: 200px;
       height: 100%;
       //   background-color: lightseagreen;
@@ -105,13 +105,13 @@
         width: 80%;
       }
     }
-    .noteBar__settings {
+    .taskbar__settings {
       width: 20px;
       height: 100%;
       //   background-color: lightblue;
 
       @include flexbox;
-      .noteBar__settings__icon {
+      .taskbar__settings__icon {
         color: $greyIconsDark;
         cursor: pointer;
       }

@@ -106,6 +106,7 @@ function DashNote() {
                       return (
                         <SwiperSlide key={key}>
                           <DashCard
+                            _id={recommendedItem._id}
                             fileType={recommendedItem.fileIcon}
                             fileName={recommendedItem.fileName}
                             username={`${recommendedItem.createdBy.firstName} ${recommendedItem.createdBy.lastName}`}
@@ -160,7 +161,7 @@ function DashNote() {
         {/* Items */}
         {user &&
           items &&
-          (user?.noteCount + user?.boardCount > 0 ? (
+          (user?.noteCount > 0 ? (
             <div className="dashHome__items">
               {handleItemSort().length != 0 ? (
                 handleItemSort().map((item, key) => {

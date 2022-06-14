@@ -106,6 +106,7 @@ function DashBoard() {
                       return (
                         <SwiperSlide key={key}>
                           <DashCard
+                            _id={recommendedItem._id}
                             fileType={recommendedItem.fileIcon}
                             fileName={recommendedItem.fileName}
                             username={`${recommendedItem.createdBy.firstName} ${recommendedItem.createdBy.lastName}`}

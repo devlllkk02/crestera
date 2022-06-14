@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./NoteBar.scss";
+import "./Taskbar.scss";
 
 //Imports
 import profilePic from "../../../assets/images/other/profilePicture.jpg";
@@ -8,41 +8,41 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
-function NoteBar({ fileName, onlineUsers }) {
+function Taskbar({ fileName, onlineUsers }) {
   return (
-    <div className="noteBar">
-      <div className="noteBar__container">
-        <div className="noteBar__fileName">
+    <div className="taskbar">
+      <div className="taskbar__container">
+        <div className="taskbar__fileName">
           <p>{fileName}</p>
         </div>
-        <div className="noteBar__users">
-          <div className="noteBar__users__online">
+        <div className="taskbar__users">
+          <div className="taskbar__users__online">
             {onlineUsers &&
               onlineUsers.slice(0, 3).map((user, key) => {
                 return (
-                  <div className="noteBar__user" key={key}>
+                  <div className="taskbar__user" key={key}>
                     <img src={user.user.image} alt="" />
                   </div>
                 );
               })}
           </div>
-          <div className="noteBar__defaultUsers">
+          <div className="taskbar__defaultUsers">
             {onlineUsers &&
               onlineUsers.slice(0, 3).map((user, key) => {
                 console.log(user);
                 return (
-                  <div className="noteBar__defaultUser" key={key}>
+                  <div className="taskbar__defaultUser" key={key}>
                     <p>{onlineUsers.length}</p>
                   </div>
                 );
               })}
           </div>
         </div>
-        <div className="noteBar__share">
+        <div className="taskbar__share">
           <button>SHARE</button>
         </div>
-        <div className="noteBar__settings">
-          <div className="noteBar__settings__icon">
+        <div className="taskbar__settings">
+          <div className="taskbar__settings__icon">
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </div>
         </div>
@@ -51,4 +51,4 @@ function NoteBar({ fileName, onlineUsers }) {
   );
 }
 
-export default NoteBar;
+export default Taskbar;
