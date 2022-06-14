@@ -14,6 +14,12 @@ const FileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  format:{
+    type: String,
+  },
+  size:{
+    type: String,
+  },
   members: [{
     member: {
       type: mongoose.Schema.Types.ObjectId,

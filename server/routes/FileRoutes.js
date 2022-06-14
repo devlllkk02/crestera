@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
+const multer = require('multer');
+const storage = multer.diskStorage({})
+let upload = multer({storage})
+
 // Model types
 const Types = require('../utils/Types') 
 // CRUD Service
@@ -10,7 +15,7 @@ FileController = require('../controllers/FileController');
 
 //router - /v1/crestera/files/
 // Create
-router.post('/', (req, res) => CRUD.create(req.body, Types.FILE, res));
+router.post('/',upload.single("myFile"), (req, res) => FileController.create(req, res));
 
 
 // Get All Folders when mother folder == null
