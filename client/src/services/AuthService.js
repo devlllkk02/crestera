@@ -2,6 +2,56 @@ import axios from 'axios';
 import { baseUrl } from '../constants/constants';
 
 
+//vault-files
+export const newFile = (data) => {
+    return axios.post(baseUrl + 'files/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getFiles = (id) => {
+    return axios.get(baseUrl + 'files/fileId/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getFileshome = () => {
+    return axios.get(baseUrl + 'files/fileId', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const getFile = (id) => {
+    return axios.get(baseUrl + 'files/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const updateFile = (data) => {
+    return axios.put(baseUrl + 'files/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const deleteFile = (id) => {
+    return axios.delete(baseUrl + 'files/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+
 //vault-folders
 export const newFolder = (data) => {
     return axios.post(baseUrl + 'folders/', data, {
@@ -51,13 +101,7 @@ export const deleteFolder = (id) => {
     });
 };
 
-export const updateuser = (data) => {
-    return axios.put(baseUrl + 'users/', data, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-};
+
 
 //user-circle
 export const newCircle = (data) => {
@@ -117,4 +161,11 @@ export const getUsers = () => {
     });
 };
 
+export const updateuser = (data) => {
+    return axios.put(baseUrl + 'users/', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
 

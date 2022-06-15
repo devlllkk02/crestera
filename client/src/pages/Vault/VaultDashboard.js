@@ -3,10 +3,8 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
-import { Progress } from 'antd';
 import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
-import { getFolders, getFoldershome } from '../../services/AuthService';
-
+import { getFolders, getFoldershome , getFileshome , getFiles } from '../../services/AuthService';
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
 
@@ -73,12 +71,40 @@ const VaultDashboard = () => {
 
 
   //File
-  const [files, setFiles] = useState(Array(5).fill(0).map(e => ({
-    _id: Math.floor(Math.random() * 100000),
-    name: 'File',
-    addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
-    size: Math.floor(Math.random() * 1000)
-  })));
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    currentFolder !== "home " ?
+      GetFiles()
+      :
+      GetFilesHome();
+  }, []);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFiles()
+      :
+      GetFilesHome();
+  }, [currentFolder]);
+
+  const GetFiles = async () => {
+    try {
+      const response = await getFiles(currentFolder);
+      console.log(response.data.data);
+      setFiles(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const GetFilesHome = async () => {
+    try {
+      const response = await getFileshome();
+      console.log(response.data.data);
+      setFiles(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>

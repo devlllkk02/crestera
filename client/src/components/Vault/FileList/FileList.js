@@ -42,7 +42,7 @@ function FileList(props) {
                     <p>{props.file.size}MB</p>
                 </div>
                 <div className="VaultItem_title2 hide">
-                    <p>{getDateTime(props.file.addedOn)}</p>
+                    {/* <p>{getDateTime(props.file.addedOn)}</p> */}
                 </div>
                 <div className="VaultItem_setings"onClick={() => setpopover(true)}>
                     <div className="VaultItem_setings__container">
