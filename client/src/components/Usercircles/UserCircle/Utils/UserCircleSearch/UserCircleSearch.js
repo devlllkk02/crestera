@@ -1,5 +1,5 @@
 // ------ usercircleSearch  ------
-import React from 'react';
+import React , { useState } from 'react';
 import './UserCircleSearch.scss';
 
 //Font Awesome
@@ -10,8 +10,9 @@ import {
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AddUsersPopup from '../../AddUsersPopup';
 
-function usercircleSearch({ page }) {
+function UsercircleSearch({ page }) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -39,6 +40,8 @@ function usercircleSearch({ page }) {
     }
   };
 
+  const [btnpopup, setbtnpopup] = useState(false);
+
   return (
     <div className="usercircleSearch">
       <div className="usercircleSearch__button">
@@ -58,7 +61,7 @@ function usercircleSearch({ page }) {
           </button>
         )}
       </div>
-      <div className="usercircleSearch__searchbox1">
+      {/* <div className="usercircleSearch__searchbox1">
         <select name="" id="">
           <option value="0">Add Users</option>
           <option value="1">Naveen Liyanage</option>
@@ -68,7 +71,22 @@ function usercircleSearch({ page }) {
         <div className="usercircleSearch__searchbox2__icon">
           <FontAwesomeIcon icon={faUserPlus} />
         </div>
-      </div>
+          <h1>Select Fruits</h1>
+       <pre>{JSON.stringify(selected)}</pre>
+      <MultiSelect
+        options={options}
+        value={selected}
+        onChange={setSelected}
+        labelledBy="Select"
+      />
+      </div> */}
+      <button className="usercircle_addusers_button"onClick={() => setbtnpopup(true)}>
+            <span>ADD USERS</span>
+          </button>
+          <AddUsersPopup
+          trigger={btnpopup}
+          settrigger={setbtnpopup}
+        ></AddUsersPopup>
       <div className="usercircleSearch__searchbox2">
         <input type="text" placeholder="Search" />
         <div className="usercircleSearch__searchbox1__icon">
@@ -79,4 +97,4 @@ function usercircleSearch({ page }) {
   );
 }
 
-export default usercircleSearch;
+export default UsercircleSearch;

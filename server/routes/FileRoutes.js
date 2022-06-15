@@ -17,6 +17,8 @@ FileController = require('../controllers/FileController');
 // Create
 router.post('/',upload.single("myFile"), (req, res) => FileController.create(req, res));
 
+// Get All Folders when mother folder !== null
+router.get('/dwonload/:id', (req, res) => FileController.getByIdDownload(req, res));
 
 // Get All Folders when mother folder == null
 router.get('/fileId', (req, res) => FileController.getAll(req, res));
