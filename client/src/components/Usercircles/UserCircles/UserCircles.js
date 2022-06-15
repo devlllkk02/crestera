@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import '@fontsource/roboto';
 import './UserCircles.scss';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,8 +13,72 @@ import { NavLink } from 'react-router-dom';
 import UserCirclesSearch from './Utils/UserCirclesSearch/UserCirclesSearch';
 import UserCirclesHeader from './Utils/UserCirclesHeader/UserCirclesHeader';
 import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
+
+//AuthService
+import { getCircles } from '../../../services/AuthService';
+
+//import { useParams } from 'react-router';
+import {getUserCircles } from "./UserCircleAPI";
+
+
 function UserCircles() {
   const [isActive, setIsActive] = useState(false);
+  //const { usercircleId } = useParams();
+  const [search, setSearch] = useState("");
+  const [dropdown, setDropdown] = useState("All Circles");
+ 
+
+  
+  //Circles
+  useEffect(() => {
+		GetCircles(setUserCircles);
+	}, []);
+
+  const [usercircles, setUserCircles] = useState([]);
+
+    //Functions
+    const handleUserCircleSort = () => {
+      return usercircles
+      .filter((usercircle) => {
+        if (dropdown === "All Circles") return usercircle;
+        if (dropdown === "Public Circles") {
+          if (usercircle.isPublic == true) {
+            return usercircle;
+          }
+        }
+        if (dropdown === "Private Circles") {
+          if (usercircle.isPublic == false) {
+            return usercircle;
+          }
+        }
+      })
+        .filter((usercircle) => {
+          if (search == "") {
+            return usercircle;
+          } else if (
+            usercircle.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+          ) {
+            return usercircle;
+          }
+        });
+    };
+
+  //Get Circles
+  const GetCircles  = async () => {
+		try {
+			const response = await getCircles ();
+			console.log(response.data.data);
+			setUserCircles(response.data.data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+    //Getting Notes and Boards
+    // useEffect(() => {
+    //  // getUser(setUser);
+    //  getUserCircles(setUserCircles);
+    //  // getRecommendedNotesAndBoards(setRecommendedItems);
+    // }, []);
   return (
     <div className="usercircles">
       <div className="usercircles_header">
@@ -39,7 +102,9 @@ function UserCircles() {
           </div>
         </div> */}
         <div className="usercircles__search">
-          <UserCirclesSearch page="crestera" />
+          <UserCirclesSearch page="crestera"   search={search}
+          setSearch={setSearch} dropdown={dropdown}
+          setDropdown={setDropdown}/>
         </div>
         {/* <div className="usercircles_filter_box">
           <div className="usercircles_filter_dropdown">
@@ -84,15 +149,29 @@ function UserCircles() {
             title4="Members"
           />
         </div>
-        <div className="usercircles__items">
-          <UserCirclesItem
-            fileIcon="note"
-            fileName="Circle 01"
-            shared={false}
-            title1="Public"
-            title2="Janith Thenuka"
-          />
-          <UserCirclesItem
+       
+        {/* {
+        usercircles.map((usercircle) =>
+        <div key={usercircle._id}>
+        <UserCirclesItem usercircle={usercircle}/>
+        </div>
+        )
+        } */}
+        { usercircles &&
+         <div className="usercircles__items">
+
+            {handleUserCircleSort().map((usercircle) => {
+                return (
+                  <UserCirclesItem
+                  usercircle={usercircle}
+
+                  />
+                );
+              })
+            }
+        </div>}
+              
+          {/* <UserCirclesItem
             fileIcon="board"
             fileName="Circle 02"
             shared={false}
@@ -138,8 +217,8 @@ function UserCircles() {
             fileName="Circle 08"
             title1="Private"
             title2="Janith Thenuka"
-          />
-        </div>
+          /> */}
+       
       </div>
     </div>
   );

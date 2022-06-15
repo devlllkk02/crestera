@@ -50,7 +50,7 @@ function FileList(props) {
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
                                 <li onClick={() => setbtnpopup1(true)}><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
-                                <Link to="/vaultshare" style={{ textDecoration: 'none' }}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
+                                <Link to="/vaultshare" style={{color: 'black' ,textDecoration: 'none'}}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
                                 <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil}/>   Rename</li>
                                 <li><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
                                 <li><FontAwesomeIcon icon={faTrash}/>   Delete</li>

@@ -1,22 +1,84 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import List from '../../components/Vault/List';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
 import { Progress } from 'antd';
-import FolderCreatet from '../../components/Vault/FolderCreate/FolderCreate';
+import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
+import { getFolders, getFoldershome } from '../../services/AuthService';
+
+import FileList from '../../components/Vault/FileList/FileList'
+import FolderList from '../../components/Vault/FolderList/FolderList'
 
 const VaultDashboard = () => {
-
+ 
+  //get the mother folder
   const { folderId } = useParams();
-  const [currentFolder, setCurrentFolder] = useState(
-    folderId || 'main'
-  );
-
-  useEffect(() => setCurrentFolder(folderId || 'main'), [folderId]);
-
+  const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
+  useEffect(() => setCurrentFolder(folderId), [folderId]);
+  //popup
   const [popup, setpopup] = useState(false);
+
+
+  //Folder
+  const [updatefolders, setupdatefolders] = useState(false);
+  const [folders, setFolders] = useState([]);
+
+  useEffect(() => {
+    currentFolder !== "home " ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, []);
+  useEffect(() => {
+    currentFolder !== "home" ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [popup]);
+  useEffect(() => {
+    currentFolder !== "home" ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [updatefolders]);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [currentFolder]);
+
+  const GetFolders = async () => {
+    try {
+      const response = await getFolders(currentFolder);
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const GetFoldersHome = async () => {
+    try {
+      const response = await getFoldershome();
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+
+
+  //File
+  const [files, setFiles] = useState(Array(5).fill(0).map(e => ({
+    _id: Math.floor(Math.random() * 100000),
+    name: 'File',
+    addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
+    size: Math.floor(Math.random() * 1000)
+  })));
 
   return (
     <>
@@ -26,33 +88,51 @@ const VaultDashboard = () => {
         <div className="vaultDashButtons">
           <button className="vaultDashButton">upload</button>
           <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
-          <Link to={`/folder/bin`}  style={{ textDecoration: 'none' }}>
-          <button className="vaultDashButton">Trash</button>
+          <Link to={`/folder/bin`} style={{ textDecoration: 'none' }}>
+            <button className="vaultDashButton">Trash</button>
           </Link>
-          
+        </div>
 
-          <div className='progressBar'>
-            <Progress
-              strokeColor={{
-                from: '#0B572E',
-                to: '#117f45',
-              }}
-              percent={60.9}
-              status="active"
-              size="small" 
-            />
+
+        <div className="folderList">
+          <div className="box">
+
+            {/* Header */}
+            <div className="VaultHeader">
+              <div className="VaultHeader_fileIcon"></div>
+              <div className="VaultHeader_title1">
+                <p>Name</p>
+              </div>
+              <div className="VaultHeader_middleIcon"></div>
+              <div className="VaultHeader_title2">
+                <p>Size</p>
+              </div>
+              <div className="VaultHeader_title3">
+                <p>Date Modified</p>
+              </div>
+              <div className="VaultHeader_setings"></div>
+            </div>
+
+            {/* Folder list */}
+            {
+              folders.map((folder) =>
+                <div key={folder._id}>
+                  <FolderList folder={folder} updatefolders={updatefolders} setupdatefolders={setupdatefolders} />
+                </div>
+              )
+            }
+
+            {/* File list */}
+            {
+              files.map((file) =>
+                <FileList file={file} />
+              )
+            }
           </div>
         </div>
 
-        <div className="breadcrumb">
-        </div>
-
-        <div className="folderList">
-          <List currentFolder={currentFolder} />
-        </div>
-
       </div>
-      <FolderCreatet trigger={popup} settrigger={setpopup}/>
+      <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={currentFolder} />
     </>
   );
 };

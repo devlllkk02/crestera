@@ -68,7 +68,11 @@ const Routing = () => {
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
 
       {/* User Circles */}
-      <Route exact path="/usercircle" element={<UserCirclePage />} />
+      <Route
+        exact
+        path="/usercircle/:usercircleId"
+        element={<UserCirclePage />}
+      />
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
       <Route
         exact
@@ -82,7 +86,7 @@ const Routing = () => {
       />
 
       {/* Vault */}
-      <Route exact path="/dashboard/vault" element={<VaultDashboard />} />
+      {/* <Route exact path="/dashboard/vault" element={<VaultDashboard />} /> */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
       <Route exact path="/vaultshare" element={<VaultFileSharePage />} />
       <Route
@@ -94,7 +98,7 @@ const Routing = () => {
       {/* Note */}
       <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
-      <Route exact path="/board" element={<Whiteboard />} />
+      <Route exact path="/board/:boardId" element={<Whiteboard />} />
     </Routes>
   );
 };

@@ -3,18 +3,30 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const socketIOConnect = require("./config/socket");
+const cloudinary = require("cloudinary");
+const AdmZip = require('adm-zip');
 const PORT = process.env.PORT;
 
 //Initialising Express Application
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({
+    extended: true,
+}))
 
 //Connecting to MongoDB
 connectDB();
 
 //Connecting to Socket.io
 socketIOConnect();
+
+//connecting to cloudinary
+cloudinary.config({
+    cloud_name : process.env.CLOUDINARY_API_CLOUD,
+    api_key : process.env.CLOUDINARY_API_KEY,
+    api_secret : process.env.CLOUDINARY_API_SECRET,
+})
 
 //Modles
 require("./models/User");

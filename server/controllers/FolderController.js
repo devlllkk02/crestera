@@ -2,27 +2,19 @@
 const Folder = require('../models/Folder');//Folder Model
 const ResponseService = require('../utils/ResponseService'); // Response service
 
-
-
-// Get All Folders
-exports.getAll = (async (req, res) => {
-    const limit = req.query.limit ? parseInt(req.query.limit) : 10;
-    const page = req.query.page ? parseInt(req.query.page) : 0;
-    const _count = await Folder.countDocuments();
-    const totalPages = Math.ceil(_count / limit);
-
-    Folder.find((err, doc) => {
-        const newPayload = {
-            docs: doc,
-            totalPages: totalPages,
-            totalpost: _count
-        }
-        ResponseService.generalPayloadResponse(err, newPayload, res);
+// Get All Folders when mother folder !== null
+exports.getAllByID = (async (req, res) => {
+    const folderId = req.params.id;
+    Folder.find({ motherFolder: folderId }, (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
-        .populate('addedBy', 'firstName lastName')
-        .populate('members.member', 'firstName lastName')
-        .populate('circles.circle', 'name')
-        .skip(page * limit).limit(limit);
 });
 
+// Get All Folders when mother folder == null
+exports.getAll = (async (req, res) => {
+    Folder.find({ motherFolder: null  }, (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+    })
+        .sort({ addedOn: -1 })
+});

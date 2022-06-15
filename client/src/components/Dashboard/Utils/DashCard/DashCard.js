@@ -6,7 +6,10 @@ import "./DashCard.scss";
 import CresteraBoardIcon from "../../../../assets/images/cresteraIconsV1/cresteraIconsV1-Board.png";
 import CresteraNoteIcon from "../../../../assets/images/cresteraIconsV1/cresteraIconsV1-Note.png";
 
-function DashCard({ fileType, fileName, username }) {
+//Pacakages
+import { Link } from "react-router-dom";
+
+function DashCard({ _id, fileType, fileName, username }) {
   const setFileIcon = () => {
     if (fileType === "board") {
       return CresteraBoardIcon;
@@ -25,7 +28,12 @@ function DashCard({ fileType, fileName, username }) {
           <img src={setFileIcon()} alt="" />
         </div>
         <div className="dashCard__name">
-          <p>{fileName}</p>
+          <Link
+            to={`/${fileType}/${_id}`}
+            style={{ textDecorationLine: "none" }}
+          >
+            <p>{fileName}</p>
+          </Link>
         </div>
         <div className="dashCard__username">
           <p>{username}</p>

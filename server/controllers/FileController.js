@@ -1,28 +1,54 @@
 //Imports
 const File = require("../models/File"); //File Model
 const ResponseService = require("../utils/ResponseService"); // Response service
+const cloudinary = require("cloudinary");
 
 
+exports.create = (async (req, res) => {
+    try {
+        if (!req.file)
+            return res.status(400);
+        try {
+            uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'Vault',
+                resource_type: 'auto'
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
 
-// Get All Files
-exports.getAll = async (req, res) => {
-  const limit = req.query.limit ? parseInt(req.query.limit) : 10;
-  const page = req.query.page ? parseInt(req.query.page) : 0;
-  const _count = await File.countDocuments();
-  const totalPages = Math.ceil(_count / limit);
+        const {originalname} = req.file;
+        const {secure_url,bytes,format} =uploadedFile;
+        const {addedOn,addedBy} = req.body;
 
-  File.find((err, doc) => {
-    const newPayload = {
-      docs: doc,
-      totalPages: totalPages,
-      totalpost: _count,
-    };
-    ResponseService.generalPayloadResponse(err, newPayload, res);
-  })
-    .sort({ addedOn: -1 })
-    .populate('addedBy', 'firstName lastName')
-    .populate('members.member', 'firstName lastName')
-    .populate('circles.circle', 'name')
-    .skip(page * limit)
-    .limit(limit);
-};
+        const file = await File.create({
+            name : originalname,
+            file : secure_url,
+            size : bytes,
+            format,
+            addedOn,
+            addedBy,
+        });
+        res.status(200).json(file);
+    } catch (error) {
+        console.log(error.message)
+    }
+
+});
+
+// Get All Files when mother folder !== null
+exports.getAllByID = (async (req, res) => {
+    const fileId = req.params.id;
+    File.find({ motherFolder: fileId }, (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+    })
+        .sort({ addedOn: -1 })
+});
+
+// Get All Files when mother folder == null
+exports.getAll = (async (req, res) => {
+    File.find({ motherFolder: null }, (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+    })
+        .sort({ addedOn: -1 })
+});
