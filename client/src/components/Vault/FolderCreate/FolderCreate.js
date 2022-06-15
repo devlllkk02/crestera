@@ -26,12 +26,15 @@ const FolderCreate = ({ trigger, settrigger , currentfolder }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let motherfolder 
+    if(currentfolder !== 'home')
+      motherfolder =currentfolder;
     try {
       const response = await newFolder({
         addedBy: state._id,
         name: e.target.title.value,
         addedOn: currentDate,
-        motherFolder: currentfolder
+        motherFolder: motherfolder
       });
       settrigger(false);
       console.log(response);
