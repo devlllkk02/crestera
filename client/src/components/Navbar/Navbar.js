@@ -63,11 +63,16 @@ function Navbar({ page }) {
               <p>{`${state?.firstName} ${state?.lastName}`}</p>
             </Link>
           </div>
+
+          {/*Navbar Notification  */}
           <div className="navbar__notification">
             <div className="navbar__notification__container">
-              <FontAwesomeIcon icon={faBell} />
+              <FontAwesomeIcon icon={faBell} className="notification__icon"/>
+              <div className="notification__counter">2</div>
             </div>
           </div>
+
+
           <div className="navbar__userimage">
             <Link to="/profile">
               <img src={state?.image} alt="" />

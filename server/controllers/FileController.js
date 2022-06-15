@@ -3,7 +3,7 @@ const File = require("../models/File"); //File Model
 const ResponseService = require("../utils/ResponseService"); // Response service
 const cloudinary = require("cloudinary");
 
-
+//create
 exports.create = (async (req, res) => {
     try {
         if (!req.file)
@@ -32,6 +32,24 @@ exports.create = (async (req, res) => {
         res.status(200).json(file);
     } catch (error) {
         console.log(error.message)
+    }
+
+});
+
+//get download
+exports.getByIdDownload = (async (req, res) => {
+    try {
+        if (!req.file)
+            return res.status(400);
+        
+
+        const {originalname} = req.file;
+        const {secure_url,bytes,format} =uploadedFile;
+        const {addedOn,addedBy} = req.body;
+
+        atus(200).json(file);
+    } catch (error) {
+        return res.status(500).json({});
     }
 
 });

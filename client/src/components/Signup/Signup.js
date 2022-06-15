@@ -120,7 +120,8 @@ function Signup() {
           <button
             type="button"
             className="signup__form__submit-btn"
-            onClick={() => handleSignup()}
+            onClick={() => handleSignup()
+            }
           >
             SIGN UP
           </button>
