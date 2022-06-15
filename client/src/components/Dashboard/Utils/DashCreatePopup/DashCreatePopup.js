@@ -24,7 +24,7 @@ function DashCreatePopup({ popup, setPopup, type, title, link }) {
       createNote(fileName, setFileId);
     }
     if (type === "board") {
-      createBoard(fileName);
+      createBoard(fileName, setFileId);
     }
   };
 

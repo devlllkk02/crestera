@@ -7,9 +7,6 @@ const CRUD = require('../utils/CRUD')
 
 
 //router - /v1/crestera/users/
-// Create
-router.post('/', (req, res) => CRUD.create(req.body, Types.USER, res));
-
 //get all
 router.get('/', (req, res) => CRUD.getByQuery({}, Types.USER, res));
 

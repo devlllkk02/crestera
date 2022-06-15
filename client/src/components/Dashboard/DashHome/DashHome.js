@@ -7,6 +7,7 @@ import { UserContext } from "../../../App";
 import { getCurrentDayPhrase } from "../../../utils/CurrentDayPhrase";
 import { DateFormat } from "../../../utils/DateFormat";
 import { getNotesAndBoards, getRecommendedNotesAndBoards } from "./DashHomeAPI";
+import { getUser } from "../Utils/OtherAPI/UserAPI";
 
 //Packages
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,8 +15,6 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 //Components
 import DashCard from "../Utils/DashCard/DashCard";
@@ -26,7 +25,6 @@ import DashSearchFallback from "../Utils/DashSearchFallback/DashSearchFallback";
 import DashItemSkeleton from "../Utils/DashItem/DashItemSkeleton";
 import DashCardSkeleton from "../Utils/DashCard/DashCardSkeleton";
 import DashWelcome from "../Utils/DashWelcome/DashWelcome";
-import { getUser } from "../Utils/OtherAPI/UserAPI";
 import DashNoItems from "../Utils/DashNoItems/DashNoItems";
 
 function DashHome() {
@@ -88,7 +86,6 @@ function DashHome() {
       )}
       {/* Cards */}
       <div className="dashHome__cards">
-        {/* {console.log(user?.noteCount + user?.boardCount)} */}
         {user &&
           (user?.noteCount + user?.boardCount > 0 ? (
             <div className="dashHome__cards__swiper">
@@ -103,6 +100,7 @@ function DashHome() {
                     return (
                       <SwiperSlide key={key}>
                         <DashCard
+                          _id={recommendedItem._id}
                           fileType={recommendedItem.fileIcon}
                           fileName={recommendedItem.fileName}
                           username={`${recommendedItem.createdBy.firstName} ${recommendedItem.createdBy.lastName}`}

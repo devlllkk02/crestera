@@ -3,56 +3,108 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
-import { Progress } from 'antd';
 import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
-import { getFolders } from '../../services/AuthService';
-
+import { getFolders, getFoldershome , getFileshome , getFiles } from '../../services/AuthService';
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
 
 const VaultDashboard = () => {
-
+ 
+  //get the mother folder
   const { folderId } = useParams();
-  const [currentFolder, setCurrentFolder] = useState( folderId || null );
-
-  useEffect(() => setCurrentFolder(folderId || null), [folderId]);
-
-
+  const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
+  useEffect(() => setCurrentFolder(folderId), [folderId]);
+  //popup
   const [popup, setpopup] = useState(false);
 
 
-  const [folder, setFolder] = useState(currentFolder);
-  useEffect(() => setFolder(currentFolder), [currentFolder]);
-
-  
   //Folder
-  
   const [updatefolders, setupdatefolders] = useState(false);
   const [folders, setFolders] = useState([]);
 
-  const GetFolders  = async () => {
-		try {
-			const response = await getFolders ();
-			console.log(response.data.data);
-			setFolders(response.data.data);
-		} catch (e) {
-			console.log(e);
-		}
-	};
+  useEffect(() => {
+    currentFolder !== "home " ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, []);
+  useEffect(() => {
+    currentFolder !== "home" ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [popup]);
+  useEffect(() => {
+    currentFolder !== "home" ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [updatefolders]);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFolders()
+      :
+      GetFoldersHome();
+  }, [currentFolder]);
 
-  useEffect(() => {GetFolders();}, []);
-  useEffect(() => {GetFolders();}, [popup]);
-  useEffect(() => {GetFolders();}, [updatefolders]);
+  const GetFolders = async () => {
+    try {
+      const response = await getFolders(currentFolder);
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  
+  const GetFoldersHome = async () => {
+    try {
+      const response = await getFoldershome();
+      console.log(response.data.data);
+      setFolders(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
+
 
   //File
-  const [files, setFiles] = useState(Array(5).fill(0).map(e => ({
-    _id: Math.floor(Math.random() * 100000),
-    name: 'File',
-    addedOn: Date.now() - Math.floor(Math.random() * 1000000000),
-    size: Math.floor(Math.random() * 1000)
-  })));
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    currentFolder !== "home " ?
+      GetFiles()
+      :
+      GetFilesHome();
+  }, []);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFiles()
+      :
+      GetFilesHome();
+  }, [currentFolder]);
+
+  const GetFiles = async () => {
+    try {
+      const response = await getFiles(currentFolder);
+      console.log(response.data.data);
+      setFiles(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const GetFilesHome = async () => {
+    try {
+      const response = await getFileshome();
+      console.log(response.data.data);
+      setFiles(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -65,19 +117,6 @@ const VaultDashboard = () => {
           <Link to={`/folder/bin`} style={{ textDecoration: 'none' }}>
             <button className="vaultDashButton">Trash</button>
           </Link>
-
-
-          <div className='progressBar'>
-            <Progress
-              strokeColor={{
-                from: '#0B572E',
-                to: '#117f45',
-              }}
-              percent={60.9}
-              status="active"
-              size="small"
-            />
-          </div>
         </div>
 
 
@@ -104,7 +143,7 @@ const VaultDashboard = () => {
             {
               folders.map((folder) =>
                 <div key={folder._id}>
-                  <FolderList folder={folder} updatefolders={updatefolders} setupdatefolders={setupdatefolders}/>
+                  <FolderList folder={folder} updatefolders={updatefolders} setupdatefolders={setupdatefolders} />
                 </div>
               )
             }
@@ -119,7 +158,7 @@ const VaultDashboard = () => {
         </div>
 
       </div>
-      <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={folder}/>
+      <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={currentFolder} />
     </>
   );
 };

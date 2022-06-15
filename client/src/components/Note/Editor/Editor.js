@@ -10,7 +10,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
-import NoteBar from "../NoteBar/NoteBar";
+import Taskbar from "../TaskBar/Taskbar";
 
 function Editor() {
   const { state, dispatch } = useContext(UserContext);
@@ -164,7 +164,7 @@ function Editor() {
 
   return (
     <>
-      <NoteBar fileName={fileName} onlineUsers={onlineUsers} />
+      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
       <div className="editor" ref={editorWrapperRef}></div>;
     </>
   );
