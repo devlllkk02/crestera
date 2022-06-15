@@ -28,8 +28,10 @@
       .usercircleSearch__button__icon {
         margin-right: 5px;
       }
+
       .usercircleSearch__button__text {
         margin-left: 5px;
+
         p {
           text-transform: uppercase;
           font-weight: 600;
@@ -37,6 +39,7 @@
       }
     }
   }
+
   .usercircleSearch__searchbox2 {
     width: calc((100% - 500px) * 0.25);
     height: 100%;
@@ -70,41 +73,30 @@
       color: $greyIconsLight;
     }
   }
-  .usercircleSearch__searchbox1 {
+
+  button.usercircle_addusers_button {
+    background-color: #0f96c3;
+    color: $white;
+    background: #0f96c3;
+    display: block;
+
+    border: 0px solid #0f96c3;
+    //   box-sizing: border-box;
     width: calc((100% - 500px) * 0.25);
-    height: 100%;
-    // background-color: lightyellow;
+    height: 59%;
+    padding: 0px;
+    margin-left: 3%;
 
-    @include flexbox;
-    justify-content: flex-end;
-    position: relative;
 
-    select {
-      width: 100%;
-      height: 35px;
-      // background-color: $white;
-      background: $white;
+    span {
+      height: 2px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      font-stretch: 1000%;
 
-      margin-left: 20px;
-      padding: 5px;
-      -moz-appearance: none;
-      -webkit-appearance: none;
-
-      color: $grey;
-      outline: none;
-      border: $borderGreyLight;
-      box-sizing: border-box;
-
-      &:focus {
-        border: $borderGreyLight;
-        border-color: $blue;
-      }
-    }
-
-    .usercircleSearch__searchbox2__icon {
-      position: absolute;
-      right: 8px;
-      color: $greyIconsLight;
     }
   }
 }

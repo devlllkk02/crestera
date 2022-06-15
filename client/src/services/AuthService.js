@@ -108,4 +108,13 @@ export const deleteCircle = (id) => {
     });
 };
 
+//users
+export const getUsers = () => {
+    return axios.get(baseUrl + 'users/', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 
