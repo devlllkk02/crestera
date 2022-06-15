@@ -8,8 +8,7 @@ import {
 	circle,
 	selecthand,
 	text,
-	downloadIcon,
-	save
+	downloadIcon
 } from "../../../assets/images/Whiteboard/Icons/whiteboardIcons"
 
 import "../Whiteboard.scss"
