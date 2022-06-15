@@ -8,13 +8,15 @@ import {
 	circle,
 	selecthand,
 	text,
-	downloadIcon,
-	save
+	downloadIcon
 } from "../../../assets/images/Whiteboard/Icons/whiteboardIcons"
 
 import "../Whiteboard.scss"
 
+//iport packages
 import { fabric } from 'fabric';
+import io from "socket.io-client";
+
 let canvas;
 
 const colors = {
@@ -32,6 +34,8 @@ function ToolBar(){
 	const [brushColor, setBrushColor] = useState(colors.blue);
 	const [eraserSize, setEraserSize] = useState(10);
 	const [strokeColor, setStrokeColor] = useState(colors.black);
+	// const [socket, setSocket] = useState();
+
     useEffect(() => {
 		canvas = new fabric.Canvas('canvas');
 		canvas.isDrawingMode = true;
@@ -39,7 +43,15 @@ function ToolBar(){
 		canvas.setHeight(window.innerHeight-100);
 		canvas.setWidth(window.innerWidth-50);
 		canvas.freeDrawingBrush.width = brushSize; }, []);
-    
+        
+		// useEffect(() => {
+		// 	const s = io("http://localhost:3000");
+		// 	setSocket(s);
+		// 	return () => {
+		// 	  s.disconnect();
+		// 	};
+		//   }, []);
+
     	useEffect(() => {
             canvas.freeDrawingBrush.width = brushSize;
         }, [brushSize]);
