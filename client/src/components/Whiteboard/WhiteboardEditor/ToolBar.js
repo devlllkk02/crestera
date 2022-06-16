@@ -15,7 +15,6 @@ import "../Whiteboard.scss"
 
 //iport packages
 import { fabric } from 'fabric';
-import io from "socket.io-client";
 
 let canvas;
 
@@ -34,7 +33,6 @@ function ToolBar(){
 	const [brushColor, setBrushColor] = useState(colors.blue);
 	const [eraserSize, setEraserSize] = useState(10);
 	const [strokeColor, setStrokeColor] = useState(colors.black);
-	// const [socket, setSocket] = useState();
 
     useEffect(() => {
 		canvas = new fabric.Canvas('canvas');
@@ -42,15 +40,11 @@ function ToolBar(){
 		canvas.freeDrawingBrush.color = brushColor;
 		canvas.setHeight(window.innerHeight-100);
 		canvas.setWidth(window.innerWidth-50);
-		canvas.freeDrawingBrush.width = brushSize; }, []);
-        
-		// useEffect(() => {
-		// 	const s = io("http://localhost:3000");
-		// 	setSocket(s);
-		// 	return () => {
-		// 	  s.disconnect();
-		// 	};
-		//   }, []);
+		canvas.freeDrawingBrush.width = brushSize; 
+		
+
+	} );
+	
 
     	useEffect(() => {
             canvas.freeDrawingBrush.width = brushSize;
@@ -63,6 +57,8 @@ function ToolBar(){
         useEffect(() => {
             canvas.freeDrawingBrush.width = eraserSize;
         }, [eraserSize]);
+	
+	
     
         //function to change brush size
 	const handleBrushSizeChange = (e) => {
@@ -161,6 +157,7 @@ function ToolBar(){
 			window.open(dataURL);
 		}
 	};
+
     return (
 		<div className='toolSection'>
 			<div className='toolField'>
