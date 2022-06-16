@@ -89,15 +89,10 @@ const socketIOConnect = () => {
           //getting board
           socket.emit("load-board",board);
 
-          //add object to board
-          socket.on("object-added",async(data)=>{
-            socket.broadcast.to(boardId).emit("new-add",data)
-          });
-
-          //modify object in board
-          socket.on("object-modified",async(data)=>{
-            socket.broadcast.to(boardId).emit("new-modification",data)
-          });
+          //update canvas
+          socket.on("canvas-data",async(data)=>{
+            socket.broadcast.to(boardId).emit("canvas-data",data);
+          })
 
           //save board
           socket.on("save-board",async(data)=>{
