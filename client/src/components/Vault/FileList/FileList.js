@@ -35,11 +35,9 @@ function FileList(props) {
                 </div>
                 <div className="VaultItem_middleIcon">
                     <div className="VaultItem_middleIcon__container">
-                        <FontAwesomeIcon icon={faUserFriends} />
                     </div>
                 </div>
                 <div className="VaultItem_title1 hide">
-                    <p>{props.file.size}MB</p>
                 </div>
                 <div className="VaultItem_title2 hide">
                     <p>{getDateTime(props.file.addedOn)}</p>

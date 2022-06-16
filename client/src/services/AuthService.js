@@ -3,14 +3,6 @@ import { baseUrl } from '../constants/constants';
 
 
 //vault-files
-export const newFile = (data) => {
-    return axios.post(baseUrl + 'files/', data, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    });
-};
-
 export const getFiles = (id,uid) => {
     return axios.get(baseUrl + 'files/fileId/'+ id + '?uid=' + uid, {
         headers: {

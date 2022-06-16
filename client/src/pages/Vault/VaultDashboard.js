@@ -135,9 +135,7 @@ const VaultDashboard = () => {
                 <p>Name</p>
               </div>
               <div className="VaultHeader_middleIcon"></div>
-              <div className="VaultHeader_title2">
-                <p>Size</p>
-              </div>
+              <div className="VaultHeader_title2"> </div>
               <div className="VaultHeader_title3">
                 <p>Date Modified</p>
               </div>
