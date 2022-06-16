@@ -58,7 +58,8 @@ exports.getByIdDownload = (async (req, res) => {
 // Get All Files when mother folder !== null
 exports.getAllByID = (async (req, res) => {
     const fileId = req.params.id;
-    File.find({ motherFolder: fileId }, (err, doc) => {
+    const uid = req.query.uid;
+    File.find({ motherFolder: fileId , addedBy : uid}, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
@@ -66,7 +67,8 @@ exports.getAllByID = (async (req, res) => {
 
 // Get All Files when mother folder == null
 exports.getAll = (async (req, res) => {
-    File.find({ motherFolder: null }, (err, doc) => {
+    const uid = req.query.uid;
+    File.find({ motherFolder: null , addedBy : uid }, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })

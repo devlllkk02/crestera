@@ -11,16 +11,16 @@ export const newFile = (data) => {
     });
 };
 
-export const getFiles = (id) => {
-    return axios.get(baseUrl + 'files/fileId/'+ id, {
+export const getFiles = (id,uid) => {
+    return axios.get(baseUrl + 'files/fileId/'+ id + '?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
     });
 };
 
-export const getFileshome = () => {
-    return axios.get(baseUrl + 'files/fileId', {
+export const getFileshome = (uid) => {
+    return axios.get(baseUrl + 'files/fileId?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -61,16 +61,16 @@ export const newFolder = (data) => {
     });
 };
 
-export const getFolders = (id) => {
-    return axios.get(baseUrl + 'folders/folderId/'+ id, {
+export const getFolders = (id,uid) => {
+    return axios.get(baseUrl + 'folders/folderId/'+ id + '?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
     });
 };
 
-export const getFoldershome = () => {
-    return axios.get(baseUrl + 'folders/folderId', {
+export const getFoldershome = (uid) => {
+    return axios.get(baseUrl + 'folders/folderId?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
