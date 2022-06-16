@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import './VaultDashboard.scss';
@@ -8,9 +8,11 @@ import FileCreate from '../../components/Vault/FileCreate/FileCreate';
 import { getFolders, getFoldershome , getFileshome , getFiles } from '../../services/AuthService';
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
+import { UserContext } from '../../App';
 
 const VaultDashboard = () => {
- 
+  const { state, dispatch } = useContext(UserContext);
+
   //get the mother folder
   const { folderId } = useParams();
   const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
@@ -51,7 +53,7 @@ const VaultDashboard = () => {
 
   const GetFolders = async () => {
     try {
-      const response = await getFolders(currentFolder);
+      const response = await getFolders(currentFolder ,state._id);
       console.log(response.data.data);
       setFolders(response.data.data);
     } catch (e) {
@@ -61,15 +63,13 @@ const VaultDashboard = () => {
 
   const GetFoldersHome = async () => {
     try {
-      const response = await getFoldershome();
+      const response = await getFoldershome(state._id);
       console.log(response.data.data);
       setFolders(response.data.data);
     } catch (e) {
       console.log(e);
     }
   };
-
-
 
 
   //File
@@ -96,7 +96,7 @@ const VaultDashboard = () => {
 
   const GetFiles = async () => {
     try {
-      const response = await getFiles(currentFolder);
+      const response = await getFiles(currentFolder,state._id);
       console.log(response.data.data);
       setFiles(response.data.data);
     } catch (e) {
@@ -106,7 +106,7 @@ const VaultDashboard = () => {
 
   const GetFilesHome = async () => {
     try {
-      const response = await getFileshome();
+      const response = await getFileshome(state._id);
       console.log(response.data.data);
       setFiles(response.data.data);
     } catch (e) {
@@ -122,9 +122,6 @@ const VaultDashboard = () => {
         <div className="vaultDashButtons">
           <button className="vaultDashButton" onClick={() => setpopup1(true)}>upload</button>
           <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
-          <Link to={`/folder/bin`} style={{ textDecoration: 'none' }}>
-            <button className="vaultDashButton">Trash</button>
-          </Link>
         </div>
 
 

@@ -4,7 +4,6 @@ import axios from 'axios';
 import './FileCreate.scss';
 import { FiX } from 'react-icons/fi';
 import { UserContext } from '../../../App';
-import { updateFile } from '../../../services/AuthService';
 
 const FileCreate = ({ trigger, settrigger, currentfolder }) => {
     const currentDate = new Date();
