@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
 import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
+import FileCreate from '../../components/Vault/FileCreate/FileCreate';
 import { getFolders, getFoldershome , getFileshome , getFiles } from '../../services/AuthService';
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
@@ -14,9 +15,10 @@ const VaultDashboard = () => {
   const { folderId } = useParams();
   const [currentFolder, setCurrentFolder] = useState(folderId || 'home');
   useEffect(() => setCurrentFolder(folderId), [folderId]);
+
   //popup
   const [popup, setpopup] = useState(false);
-
+  const [popup1, setpopup1] = useState(false);
 
   //Folder
   const [updatefolders, setupdatefolders] = useState(false);
@@ -85,6 +87,12 @@ const VaultDashboard = () => {
       :
       GetFilesHome();
   }, [currentFolder]);
+  useEffect(() => {
+    currentFolder !== 'home' ?
+      GetFiles()
+      :
+      GetFilesHome();
+  }, [popup1]);
 
   const GetFiles = async () => {
     try {
@@ -112,7 +120,7 @@ const VaultDashboard = () => {
       <div className="vaultDashboard">
 
         <div className="vaultDashButtons">
-          <button className="vaultDashButton">upload</button>
+          <button className="vaultDashButton" onClick={() => setpopup1(true)}>upload</button>
           <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
           <Link to={`/folder/bin`} style={{ textDecoration: 'none' }}>
             <button className="vaultDashButton">Trash</button>
@@ -159,6 +167,7 @@ const VaultDashboard = () => {
 
       </div>
       <FolderCreate trigger={popup} settrigger={setpopup} currentfolder={currentFolder} />
+      <FileCreate trigger={popup1} settrigger={setpopup1} currentfolder={currentFolder} />
     </>
   );
 };

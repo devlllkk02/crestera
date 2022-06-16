@@ -6,7 +6,7 @@ import { baseUrl } from '../constants/constants';
 export const newFile = (data) => {
     return axios.post(baseUrl + 'files/', data, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
         }
     });
 };
@@ -38,7 +38,7 @@ export const getFile = (id) => {
 export const updateFile = (data) => {
     return axios.put(baseUrl + 'files/', data, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
         }
     });
 };

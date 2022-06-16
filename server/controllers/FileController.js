@@ -10,7 +10,7 @@ exports.create = (async (req, res) => {
             return res.status(400);
         try {
             uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-                folder: 'Vault',
+                folder: "Vault",
                 resource_type: 'auto'
             })
         } catch (error) {
@@ -19,8 +19,7 @@ exports.create = (async (req, res) => {
 
         const {originalname} = req.file;
         const {secure_url,bytes,format} =uploadedFile;
-        const {addedOn,addedBy} = req.body;
-
+        const  {addedOn,addedBy,motherFolder,} = req.body;
         const file = await File.create({
             name : originalname,
             file : secure_url,
@@ -28,6 +27,7 @@ exports.create = (async (req, res) => {
             format,
             addedOn,
             addedBy,
+            motherFolder,
         });
         res.status(200).json(file);
     } catch (error) {
@@ -35,6 +35,7 @@ exports.create = (async (req, res) => {
     }
 
 });
+
 
 //get download
 exports.getByIdDownload = (async (req, res) => {
