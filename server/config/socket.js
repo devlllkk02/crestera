@@ -10,7 +10,7 @@ const socketIOConnect = () => {
   });
 
   io.on("connection", (socket) => {
-    console.log("Socket Connected")
+    // console.log("Socket Connected")
     try {
       //?Note
       socket.on("get-document", async (noteId, user) => {
