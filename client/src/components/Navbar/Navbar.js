@@ -67,11 +67,10 @@ function Navbar({ page }) {
           {/*Navbar Notification  */}
           <div className="navbar__notification">
             <div className="navbar__notification__container">
-              <FontAwesomeIcon icon={faBell} className="notification__icon"/>
-              <div className="notification__counter">2</div>
+              <FontAwesomeIcon icon={faBell} className="notification__icon" />
+              {/* <div className="notification__counter">2</div> */}
             </div>
           </div>
-
 
           <div className="navbar__userimage">
             <Link to="/profile">

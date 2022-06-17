@@ -74,7 +74,7 @@ exports.getRecommendedBoardsController = async (req, res) => {
       return b.updatedAt - a.updatedAt;
     });
 
-    sortedboards = sortedboards.slice(0, 2);
+    sortedboards = sortedboards.slice(0, 10);
 
     res.json({ sortedboards });
   } catch (error) {
