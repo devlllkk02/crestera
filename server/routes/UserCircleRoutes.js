@@ -16,15 +16,15 @@ router.post('/', UserCircleController.create);
 //get all
 router.route('/').get(UserCircleController.getAll);
 
+// Get by id
+router.route('/:id').get(UserCircleController.getById);
+
 //router - /v1/crestera/circles/id
 // Update
 router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.USERCIRCLE, res));
 
 //add member
 router.put('/member', (req, res) => UserCircleController.addMember(req, res));
-
-// Get by id
-router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.USERCIRCLE, res));
 
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.USERCIRCLE, res));

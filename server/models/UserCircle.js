@@ -20,6 +20,10 @@ const UserCircleSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
+        isOwner: {
+            type: Boolean,
+            default: false
+        },
         isAdmin: {
             type: Boolean,
             default: false

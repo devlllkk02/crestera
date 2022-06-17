@@ -29,8 +29,8 @@ const UserCirclesCreate = () => {
       try {
         const response1 = await addMember({
           id: response.data.data._id,
-          member: state._id,
-          isAdmin: true,
+          members: state._id,
+          isOwner: true,
           isPending: false,
         });
         console.log(response1);
