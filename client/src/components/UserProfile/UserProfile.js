@@ -19,7 +19,7 @@ const UserProfile = () => {
     <div className="profile__page">
       <div className="profile__container">
         <div className="profile__pic">
-          <img src={profilePic} />
+        <img src={state?.image} alt="" />
         </div>
         <div className="profile__heading">
           <p>PUBLIC PROFILE</p>
@@ -53,7 +53,8 @@ const UserProfile = () => {
           </div>
           <div className="container">
             <h3>DOB</h3>
-            <p2>{`${state?.dob}`}</p2>
+            {/* <p2>{`${state?.dob}`}</p2> */}
+            <p2>1999-01-20</p2>
             <hr />
           </div>
           <div className="container">
