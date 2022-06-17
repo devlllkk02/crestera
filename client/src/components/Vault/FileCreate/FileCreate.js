@@ -10,7 +10,7 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
     const { state, dispatch } = useContext(UserContext);
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
-
+    const [uploading, setUploading] = useState(false);
     useEffect(() => {
         document.addEventListener('click', handleClickoutside, true)
     }, [])
@@ -27,6 +27,7 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
         setIsSelected(true);
     };
     const handleSubmission = async () => {
+        setUploading(true);
         let motherfolder
         if (currentfolder !== 'home')
             motherfolder = currentfolder;
@@ -36,7 +37,7 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
         formData.append('addedBy', state._id);
         formData.append('addedOn', currentDate);
         if (currentfolder !== 'home')
-        formData.append( 'motherFolder', motherfolder);
+            formData.append('motherFolder', motherfolder);
 
         try {
             const { data } = await axios({
@@ -48,6 +49,7 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
                 }
             });
             settrigger(false);
+            setUploading(false);
         } catch (e) {
             console.log(e);
         }
@@ -63,23 +65,28 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
                 </button>
                 <div className='create_folder' ref={ref}>
                     <div className='create_folder_box'>
+div
+                        {uploading ?
+                            <></>
+                            :
+                            <input type="file" name="file" onChange={changeHandler} />
+                        }
 
-                        <input type="file" name="file" onChange={changeHandler} />
                         {isSelected ? (
                             <div>
                                 <p>Filename: {selectedFile.name}</p>
-                                <p>Filetype: {selectedFile.type}</p>
                                 <p>Size in bytes: {selectedFile.size}</p>
-                                <p>
-                                    lastModifiedDate:{' '}
-                                    {selectedFile.lastModifiedDate.toLocaleDateString()}
-                                </p>
                             </div>
                         ) : (
                             <p>Select a file to show details</p>
                         )}
+
                         <div>
-                            <button onClick={handleSubmission}>Submit</button>
+                            {uploading ?
+                                <h2 class="animate">Uploading....</h2>
+                                :
+                                <button onClick={handleSubmission}>submit</button>
+                            }
                         </div>
 
                     </div>
