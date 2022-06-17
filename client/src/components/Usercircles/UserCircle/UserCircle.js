@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 // import '@fontsource/roboto';
 import './UserCircle.scss';
 import UserCircleUpdatePopup from './UserCircleUpdatePopup/UserCircleUpdatePopup';
@@ -22,13 +22,13 @@ import UserCircleHeader from './Utils/UserCircleHeader/UserCircleHeader';
 import UserCircleItem from './Utils/UserCircleItem/UserCircleItem';
 
 import { useParams } from 'react-router';
-import { getCircle } from '../../../services/AuthService'
-
+import { getCircle, getUsers} from '../../../services/AuthService';
 
 function UserCircle() {
   const [btnpopup, setbtnpopup] = useState(false);
   const { usercircleId } = useParams();
   const [usercircle, setUserCircle] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     loadUserCircle();
@@ -36,11 +36,14 @@ function UserCircle() {
   useEffect(() => {
     loadUserCircle();
   }, [btnpopup]);
+  useEffect(() => {
+    GetUsers();
+  }, []);
 
-//load folder by id
+  //load folder by id
   const loadUserCircle = async () => {
     try {
-      console.log(usercircleId)
+      console.log(usercircleId);
       const response = await getCircle(usercircleId);
       console.log(response.data.data);
       setUserCircle(response.data.data);
@@ -48,7 +51,18 @@ function UserCircle() {
       console.log(e);
     }
   };
-  
+
+  //get Users
+  //Get Users
+  const GetUsers = async () => {
+    try {
+      const response = await getUsers();
+      console.log(response.data.data);
+      setUsers(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="usercircle">
@@ -64,13 +78,14 @@ function UserCircle() {
         <UserCircleUpdatePopup
           trigger={btnpopup}
           settrigger={setbtnpopup}
-          usercircle={usercircle}/>
+          usercircle={usercircle}
+        />
         <FontAwesomeIcon className="user_gear_icon" icon={faUsersGear} />
       </div>
       <div className="usercircles_header_container">
         <div className="circle_type">
           <p1>Type: </p1>
-          <p2>{usercircle.isPublic ? 'public':'private'}</p2>
+          <p2>{usercircle.isPublic ? 'public' : 'private'}</p2>
         </div>
         {/* <div className="usercircles_search_box">
           <div className="usercircles_search_form">
@@ -83,7 +98,7 @@ function UserCircle() {
           </div>
         </div> */}
         <div className="usercircle__search">
-          <UserCircleSearch page="crestera" />
+          <UserCircleSearch page="crestera" ID={usercircleId} />
         </div>
         {/* <div className="usercircles_filter_box">
           <div className="usercircles_filter_dropdown">
@@ -111,15 +126,10 @@ function UserCircle() {
         </div>
         <div className="usercircle__items">
           <UserCircleItem
-            fileIcon="note"
-            fileName="Naveen Liyanage"
-            image={true}
-            owner={true}
-            shared={false}
-            title1="Owner"
-            title2="Jan 12, 2022"
+            usercircleMembers={usercircle.members}
+            usercircleId={usercircle._id}
           />
-          <UserCircleItem
+          {/* <UserCircleItem
             fileIcon="board"
             fileName="Heshani Wickramarachchi"
             shared={false}
@@ -171,7 +181,7 @@ function UserCircle() {
             image={true}
             title1="Member"
             title2="Jan 17, 2022"
-          />
+          /> */}
         </div>
       </div>
     </div>
