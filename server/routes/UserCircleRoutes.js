@@ -26,6 +26,9 @@ router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.USE
 //add member
 router.put('/member', (req, res) => UserCircleController.addMember(req, res));
 
+//update member
+router.patch('/member', (req, res) => UserCircleController.updateMember(req, res));
+
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.USERCIRCLE, res));
 

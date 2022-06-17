@@ -136,6 +136,15 @@ export const addMember = (data) => {
     });
 };
 
+
+export const updateMember = (data) => {
+    return axios.patch(baseUrl + 'circles/members', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const deleteCircle = (id) => {
     return axios.delete(baseUrl + 'circles/' + id, {
         headers: {
