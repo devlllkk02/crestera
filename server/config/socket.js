@@ -1,5 +1,4 @@
 const Note = require("../models/Note");
-const Board = require("../models/Board")
 
 // const io = require("socket.io")(require("http"));
 const socketIOConnect = () => {
@@ -10,9 +9,8 @@ const socketIOConnect = () => {
     },
   });
 
-  
   io.on("connection", (socket) => {
-    // console.log("Socket Connected")
+    console.log("Socket Connected")
     try {
       //?Note
       socket.on("get-document", async (noteId, user) => {
@@ -78,30 +76,6 @@ const socketIOConnect = () => {
           });
 
           io.to(noteId).emit("receive-onlineUsers", result.onlineUsers);
-        });
-
-        //?Board 
-        socket.on("get-board",async(boardId,user)=>{
-          const board = await Board.findById(boardId).populate({
-            path:"onlineUsers.user"
-          });
-          socket.join(boardId);
-
-          //getting board
-          socket.emit("load-board",board);
-
-          //update canvas
-          socket.on("canvas-data",async(data)=>{
-            socket.broadcast.to(boardId).emit("canvas-data",data);
-          })
-
-          //save board
-          socket.on("save-board",async(data)=>{
-            await Board.findByIdAndUpdate(boardId,{
-              data:data,
-            });
-          });
-
         });
       });
     } catch (error) {
