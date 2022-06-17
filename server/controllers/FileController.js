@@ -2,7 +2,7 @@
 const File = require("../models/File"); //File Model
 const ResponseService = require("../utils/ResponseService"); // Response service
 const cloudinary = require("cloudinary");
-
+const https = require('https');
 //create
 exports.create = (async (req, res) => {
     try {
@@ -31,7 +31,7 @@ exports.create = (async (req, res) => {
         });
         res.status(200).json(file);
     } catch (error) {
-        console.log(error.message)
+        return res.status(500).json({message : 'server error :('});
     }
 
 });
@@ -40,17 +40,14 @@ exports.create = (async (req, res) => {
 //get download
 exports.getByIdDownload = (async (req, res) => {
     try {
-        if (!req.file)
-            return res.status(400);
+        const id = req.params.id;
+        const file = await File.findById(id);
+        if (!file)
+        return res.status(404).json({message : 'File not found'});
         
-
-        const {originalname} = req.file;
-        const {secure_url,bytes,format} =uploadedFile;
-        const {addedOn,addedBy} = req.body;
-
-        atus(200).json(file);
+       https.get(file.file,(fileStream)=>fileStream.pipe(res));
     } catch (error) {
-        return res.status(500).json({});
+        return res.status(500).json({message : 'server error :('});
     }
 
 });
