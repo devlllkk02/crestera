@@ -35,9 +35,22 @@ exports.addMember = async function (req, res) {
     member: req.body.members,
     isAdmin: req.body.isAdmin,
     isPending: req.body.isPending,
+    isOwner: req.body.isOwner
   };
   UserCircle.findByIdAndUpdate(req.body.id, { $push: { members: member } }, { new: true },(err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
     }
   );
 };
+
+//update member
+// update comment.//to do not working
+exports.updateMember = async function (req, res) {
+  console.log(req.body)
+  UserCircle.update(
+      { 'memberss._id': req.body.memberId },
+      { $set: { 'members.$.isAdmin': req.body.isAdmin } },
+      { new: true }, (err, doc) => {
+          ResponseService.generalResponse(err, res, "member updated successfully");
+      });
+}

@@ -31,6 +31,7 @@ const UserCirclesCreate = () => {
           id: response.data.data._id,
           members: state._id,
           isOwner: true,
+          isAdmin: true,
           isPending: false,
         });
         console.log(response1);

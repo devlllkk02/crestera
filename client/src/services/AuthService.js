@@ -45,9 +45,7 @@ export const deleteFile = (id) => {
 
 export const downloadFile = (id) => {
     return axios.get(baseUrl + 'files/download/' + id, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        responseType:'blob',
     });
 };
 
@@ -138,6 +136,15 @@ export const updateCircle = (data) => {
 
 export const addMember = (data) => {
     return axios.put(baseUrl + 'circles/member', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+
+export const updateMember = (data) => {
+    return axios.patch(baseUrl + 'circles/members', data, {
         headers: {
             'Content-Type': 'application/json'
         }

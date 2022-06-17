@@ -1,6 +1,7 @@
 // ------ usercircleItem  ------
 import React, { useEffect, useState } from 'react';
 import './UserCircleItem.scss';
+import { updateMember } from '../../../../../services/AuthService';
 
 //Images
 import cresteraIconsV2Board from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png';
@@ -20,11 +21,20 @@ const UserCircleItem = ({
   usercircleId,
 }) => {
   const [members, setMembers] = useState([]);
+  const [admin, setAdmin] = useState([]);
 
   useEffect(() => {
     setMembers(usercircleMembers);
     console.log(usercircleMembers);
   }, [usercircleMembers]);
+
+  const handleUpdateMember = () => async (memberId) => {
+    await updateMember({
+      
+    });
+  }
+
+
 
   return (
     <div>
@@ -47,9 +57,12 @@ const UserCircleItem = ({
                 </div>
               </div>
               <div className="usercircleItem__title1">
-                <p>title1</p>
+                <p>{member.isOwner ? 'Owner':member.isAdmin ? 'Admin':'Member'}</p>
+               {member.isAdmin == false && <button onClick={handleUpdateMember}>Make Admin</button>}
+               {member.isAdmin == true && member.isOwner == false && <button onClick={member.isAdmin == true}>Remove Admin</button>}
               
-                  <FontAwesomeIcon className="user_owner" icon={faCrown} />
+                  {member.isOwner == true && <FontAwesomeIcon className="user_owner" icon={faCrown} />}
+                  
                 
               </div>
               <div className="usercircleItem__title2">
