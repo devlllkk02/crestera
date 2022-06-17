@@ -45,9 +45,7 @@ export const deleteFile = (id) => {
 
 export const downloadFile = (id) => {
     return axios.get(baseUrl + 'files/download/' + id, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        responseType:'blob',
     });
 };
 

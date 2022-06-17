@@ -3,6 +3,8 @@ import { getDateTime } from '../../../helpers/TimeHelper';
 import VaultPopover from "../../Popover/Popover";
 import { Link } from 'react-router-dom';
 import '../List.scss';
+import {downloadFile} from '../../../services/AuthService'
+import fileDownload from 'js-file-download'
 
 //Images
 import fileicon from '../../../assets/images/Vault icons/FileIcon.png'
@@ -21,6 +23,17 @@ function FileList(props) {
     const [popover, setpopover] = useState(false);
     const [btnpopup1, setbtnpopup1] = useState(false);
     const [btnpopup2, setbtnpopup2] = useState(false);
+
+   
+      const handleDownload = async () => {
+        try {
+          const response = await downloadFile(props.file._id);
+          fileDownload(response.data,props.file.name);
+        } catch (e) {
+          console.log(e);
+        }
+
+      };
     return (
         <div>
             <div className="VaultItem">
@@ -50,7 +63,7 @@ function FileList(props) {
                                 <li onClick={() => setbtnpopup1(true)}><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
                                 <Link to="/vaultshare" style={{color: 'black' ,textDecoration: 'none'}}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
                                 <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil}/>   Rename</li>
-                                <li><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
+                                <li onClick={handleDownload}><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
                                 <li><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>
                         </VaultPopover>
