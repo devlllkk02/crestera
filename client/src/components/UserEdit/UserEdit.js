@@ -113,7 +113,7 @@ const UserEdit = () => {
             If you wish to delete your account, please enter your email address
             to confirm your decision.
             <br />
-            Please note that this acction is irreversible.
+            Please note that this action is irreversible.
           </p2>
           <input type="email" name="email" placeholder="Email" />
           <button className="delete">DELETE</button>

@@ -14,6 +14,7 @@ const UserProfile = () => {
   const { state, dispatch } = useContext(UserContext);
   console.log(state);
 
+
   return (
     <div className="profile__page">
       <div className="profile__container">
