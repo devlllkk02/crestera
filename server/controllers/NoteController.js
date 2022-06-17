@@ -71,7 +71,7 @@ exports.getRecommendedNotesController = async (req, res) => {
       return b.updatedAt - a.updatedAt;
     });
 
-    sortednotes = sortednotes.slice(0, 2);
+    sortednotes = sortednotes.slice(0, 10);
 
     res.json({ sortednotes });
   } catch (error) {
