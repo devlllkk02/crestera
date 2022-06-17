@@ -1,5 +1,5 @@
 // ------ usercircleSearch  ------
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import './UserCircleSearch.scss';
 
 //Font Awesome
@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddUsersPopup from '../../AddUsersPopup';
 
-function UsercircleSearch({ page }) {
+function UserCircleSearch({ page, ID }) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -80,13 +80,17 @@ function UsercircleSearch({ page }) {
         labelledBy="Select"
       />
       </div> */}
-      <button className="usercircle_addusers_button"onClick={() => setbtnpopup(true)}>
-            <span>ADD USERS</span>
-          </button>
-          <AddUsersPopup
-          trigger={btnpopup}
-          settrigger={setbtnpopup}
-        ></AddUsersPopup>
+      <button
+        className="usercircle_addusers_button"
+        onClick={() => setbtnpopup(true)}
+      >
+        <span>ADD USERS</span>
+      </button>
+      <AddUsersPopup
+        trigger={btnpopup}
+        settrigger={setbtnpopup}
+        ID={ID}
+      ></AddUsersPopup>
       <div className="usercircleSearch__searchbox2">
         <input type="text" placeholder="Search" />
         <div className="usercircleSearch__searchbox1__icon">
@@ -97,4 +101,4 @@ function UsercircleSearch({ page }) {
   );
 }
 
-export default UsercircleSearch;
+export default UserCircleSearch;

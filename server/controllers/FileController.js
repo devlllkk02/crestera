@@ -2,7 +2,7 @@
 const File = require("../models/File"); //File Model
 const ResponseService = require("../utils/ResponseService"); // Response service
 const cloudinary = require("cloudinary");
-
+const https = require('https');
 //create
 exports.create = (async (req, res) => {
     try {
@@ -10,7 +10,7 @@ exports.create = (async (req, res) => {
             return res.status(400);
         try {
             uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-                folder: 'Vault',
+                folder: "Vault",
                 resource_type: 'auto'
             })
         } catch (error) {
@@ -19,8 +19,7 @@ exports.create = (async (req, res) => {
 
         const {originalname} = req.file;
         const {secure_url,bytes,format} =uploadedFile;
-        const {addedOn,addedBy} = req.body;
-
+        const  {addedOn,addedBy,motherFolder,} = req.body;
         const file = await File.create({
             name : originalname,
             file : secure_url,
@@ -28,28 +27,27 @@ exports.create = (async (req, res) => {
             format,
             addedOn,
             addedBy,
+            motherFolder,
         });
         res.status(200).json(file);
     } catch (error) {
-        console.log(error.message)
+        return res.status(500).json({message : 'server error :('});
     }
 
 });
 
+
 //get download
 exports.getByIdDownload = (async (req, res) => {
     try {
-        if (!req.file)
-            return res.status(400);
+        const id = req.params.id;
+        const file = await File.findById(id);
+        if (!file)
+        return res.status(404).json({message : 'File not found'});
         
-
-        const {originalname} = req.file;
-        const {secure_url,bytes,format} =uploadedFile;
-        const {addedOn,addedBy} = req.body;
-
-        atus(200).json(file);
+       https.get(file.file,(fileStream)=>fileStream.pipe(res));
     } catch (error) {
-        return res.status(500).json({});
+        return res.status(500).json({message : 'server error :('});
     }
 
 });
@@ -57,7 +55,8 @@ exports.getByIdDownload = (async (req, res) => {
 // Get All Files when mother folder !== null
 exports.getAllByID = (async (req, res) => {
     const fileId = req.params.id;
-    File.find({ motherFolder: fileId }, (err, doc) => {
+    const uid = req.query.uid;
+    File.find({ motherFolder: fileId , addedBy : uid}, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
@@ -65,7 +64,8 @@ exports.getAllByID = (async (req, res) => {
 
 // Get All Files when mother folder == null
 exports.getAll = (async (req, res) => {
-    File.find({ motherFolder: null }, (err, doc) => {
+    const uid = req.query.uid;
+    File.find({ motherFolder: null , addedBy : uid }, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })

@@ -3,24 +3,16 @@ import { baseUrl } from '../constants/constants';
 
 
 //vault-files
-export const newFile = (data) => {
-    return axios.post(baseUrl + 'files/', data, {
+export const getFiles = (id,uid) => {
+    return axios.get(baseUrl + 'files/fileId/'+ id + '?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
     });
 };
 
-export const getFiles = (id) => {
-    return axios.get(baseUrl + 'files/fileId/'+ id, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-};
-
-export const getFileshome = () => {
-    return axios.get(baseUrl + 'files/fileId', {
+export const getFileshome = (uid) => {
+    return axios.get(baseUrl + 'files/fileId?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -38,7 +30,7 @@ export const getFile = (id) => {
 export const updateFile = (data) => {
     return axios.put(baseUrl + 'files/', data, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
         }
     });
 };
@@ -48,6 +40,12 @@ export const deleteFile = (id) => {
         headers: {
             'Content-Type': 'application/json'
         }
+    });
+};
+
+export const downloadFile = (id) => {
+    return axios.get(baseUrl + 'files/download/' + id, {
+        responseType:'blob',
     });
 };
 
@@ -61,16 +59,16 @@ export const newFolder = (data) => {
     });
 };
 
-export const getFolders = (id) => {
-    return axios.get(baseUrl + 'folders/folderId/'+ id, {
+export const getFolders = (id,uid) => {
+    return axios.get(baseUrl + 'folders/folderId/'+ id + '?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
     });
 };
 
-export const getFoldershome = () => {
-    return axios.get(baseUrl + 'folders/folderId', {
+export const getFoldershome = (uid) => {
+    return axios.get(baseUrl + 'folders/folderId?uid=' + uid, {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -138,6 +136,15 @@ export const updateCircle = (data) => {
 
 export const addMember = (data) => {
     return axios.put(baseUrl + 'circles/member', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+
+export const updateMember = (data) => {
+    return axios.patch(baseUrl + 'circles/members', data, {
         headers: {
             'Content-Type': 'application/json'
         }

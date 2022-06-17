@@ -14,11 +14,14 @@ FileController = require('../controllers/FileController');
 
 
 //router - /v1/crestera/files/
-// Create
+// Create-upload
 router.post('/',upload.single("myFile"), (req, res) => FileController.create(req, res));
 
+//download
+router.get('/download/:id', (req, res) => FileController.getByIdDownload(req, res));
+
 // Get All Folders when mother folder !== null
-router.get('/dwonload/:id', (req, res) => FileController.getByIdDownload(req, res));
+router.get('/download/:id', (req, res) => FileController.getByIdDownload(req, res));
 
 // Get All Folders when mother folder == null
 router.get('/fileId', (req, res) => FileController.getAll(req, res));

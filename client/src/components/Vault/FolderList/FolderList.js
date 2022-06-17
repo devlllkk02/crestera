@@ -46,11 +46,9 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
                     </Link>
                     <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_middleIcon">
                     <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_middleIcon__container">
-                            <FontAwesomeIcon icon={faUserFriends} />
                         </Link>
                     </Link>
                     <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_title1 hide">
-                        <p>{folder.size}MB</p>
                     </Link>
                     <Link to={`/folder/${folder._id}`} style={{ textDecoration: 'none' }} className="VaultItem_title2 hide">
                         <p>{getDateTime(folder.addedOn)}</p>

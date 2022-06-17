@@ -34,7 +34,8 @@ function ToolBar(){
 	const [brushColor, setBrushColor] = useState(colors.blue);
 	const [eraserSize, setEraserSize] = useState(10);
 	const [strokeColor, setStrokeColor] = useState(colors.black);
-	// const [socket, setSocket] = useState();
+	const [socket, setSocket] = useState();
+	const [ canvasJSON,setcanvasJSON]= useState();
 
     useEffect(() => {
 		canvas = new fabric.Canvas('canvas');
@@ -42,15 +43,29 @@ function ToolBar(){
 		canvas.freeDrawingBrush.color = brushColor;
 		canvas.setHeight(window.innerHeight-100);
 		canvas.setWidth(window.innerWidth-50);
-		canvas.freeDrawingBrush.width = brushSize; }, []);
+		canvas.freeDrawingBrush.width = brushSize; 
+	
+		canvas.on("mouse:up",()=>{
+			if(canvasJSON==null) return;
+			console.log("canvas is loaded");
+			setcanvasJSON(JSON.stringify(canvas));
+		})
+	}, 	
+		[]);
+
+		useEffect(()=>{
+			if(canvasJSON==null) return;
+			socket.emit("canvas-data",canvasJSON)
+		},[canvasJSON])
         
-		// useEffect(() => {
-		// 	const s = io("http://localhost:3000");
-		// 	setSocket(s);
-		// 	return () => {
-		// 	  s.disconnect();
-		// 	};
-		//   }, []);
+		useEffect(() => {
+			const s = io("http://localhost:8000");
+			setSocket(s);
+			return () => {
+			  s.disconnect();
+			};
+		  }, []);
+		
 
     	useEffect(() => {
             canvas.freeDrawingBrush.width = brushSize;
