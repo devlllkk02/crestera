@@ -58,7 +58,7 @@ const UserCircleItem = ({
               </div>
               <div className="usercircleItem__title1">
                 <p>{member.isOwner ? 'Owner':member.isAdmin ? 'Admin':'Member'}</p>
-               {member.isAdmin == false && <button onClick={handleUpdateMember}>Make Admin</button>}
+               {/* {member.isAdmin == false && <button onClick={handleUpdateMember}>Make Admin</button>} */}
                {member.isAdmin == true && member.isOwner == false && <button onClick={member.isAdmin == true}>Remove Admin</button>}
               
                   {member.isOwner == true && <FontAwesomeIcon className="user_owner" icon={faCrown} />}
@@ -66,7 +66,7 @@ const UserCircleItem = ({
                 
               </div>
               <div className="usercircleItem__title2">
-                <p>title2</p>
+                <p>Jun 16, 2022 at 9:08 PM</p>
               </div>
               <div className="usercircleItem__setings">
                 <div className="usercircleItem__setings__container">

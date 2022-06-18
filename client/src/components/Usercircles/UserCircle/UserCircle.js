@@ -121,7 +121,7 @@ function UserCircle() {
           <UserCircleHeader
             title1="Username"
             title2="Type"
-            title3="Modified Date"
+            title3="Added Date"
           />
         </div>
         <div className="usercircle__items">

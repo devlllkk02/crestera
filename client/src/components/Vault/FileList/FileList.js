@@ -3,7 +3,7 @@ import { getDateTime } from '../../../helpers/TimeHelper';
 import VaultPopover from "../../Popover/Popover";
 import { Link } from 'react-router-dom';
 import '../List.scss';
-import {downloadFile} from '../../../services/AuthService'
+import {deleteFile, downloadFile} from '../../../services/AuthService'
 import fileDownload from 'js-file-download'
 
 //Images
@@ -11,14 +11,14 @@ import fileicon from '../../../assets/images/Vault icons/FileIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNodes , faPencil} from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNodes , faDownload } from "@fortawesome/free-solid-svg-icons";
 
 //components
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
 // import VaultRenamePopup from "../../Vault/VaultRenamePopup/VaultRenamePopup"
 
 
-function FileList(props) {
+function FileList({file, updatefolders, setupdatefolders}) {
 
     const [popover, setpopover] = useState(false);
     const [btnpopup1, setbtnpopup1] = useState(false);
@@ -27,8 +27,18 @@ function FileList(props) {
    
       const handleDownload = async () => {
         try {
-          const response = await downloadFile(props.file._id);
-          fileDownload(response.data,props.file.name);
+          const response = await downloadFile(file._id);
+          fileDownload(response.data,file.name);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+      const deletefile= async () => {
+        try {
+          const response = await deleteFile(file._id);
+          console.log(response);
+          setupdatefolders(!updatefolders);
         } catch (e) {
           console.log(e);
         }
@@ -44,7 +54,7 @@ function FileList(props) {
                     />
                 </div>
                 <div className="VaultItem_fileName">
-                    <p>{props.file.name}</p>
+                    <p>{file.name}</p>
                 </div>
                 <div className="VaultItem_middleIcon">
                     <div className="VaultItem_middleIcon__container">
@@ -53,7 +63,7 @@ function FileList(props) {
                 <div className="VaultItem_title1 hide">
                 </div>
                 <div className="VaultItem_title2 hide">
-                    <p>{getDateTime(props.file.addedOn)}</p>
+                    <p>{getDateTime(file.addedOn)}</p>
                 </div>
                 <div className="VaultItem_setings"onClick={() => setpopover(true)}>
                     <div className="VaultItem_setings__container">
@@ -62,13 +72,11 @@ function FileList(props) {
                             <ul>
                                 <li onClick={() => setbtnpopup1(true)}><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
                                 <Link to="/vaultshare" style={{color: 'black' ,textDecoration: 'none'}}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
-                                <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil}/>   Rename</li>
-                                <li onClick={handleDownload}><FontAwesomeIcon icon={faInfoCircle}/>   Download</li>
-                                <li><FontAwesomeIcon icon={faTrash}/>   Delete</li>
+                                <li onClick={handleDownload}><FontAwesomeIcon icon={faDownload}/>   Download</li>
+                                <li onClick={() => deletefile()}><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>
                         </VaultPopover>
                         <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1}/>
-                        {/* <VaultRenamePopup trigger={btnpopup2} settrigger={setbtnpopup2} /> */}
                     </div>
                 </div>
             </div>
