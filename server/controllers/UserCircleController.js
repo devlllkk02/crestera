@@ -44,13 +44,15 @@ exports.addMember = async function (req, res) {
 };
 
 //update member
-// update comment.//to do not working
 exports.updateMember = async function (req, res) {
   console.log(req.body)
-  UserCircle.update(
-      { 'memberss._id': req.body.memberId },
-      { $set: { 'members.$.isAdmin': req.body.isAdmin } },
-      { new: true }, (err, doc) => {
-          ResponseService.generalResponse(err, res, "member updated successfully");
-      });
-}
+
+  UserCircle.updateOne(
+      { 'members._id' : req.body.memberId },
+      { $set: { 'members.$.isAdmin': req.body.isAdmin} },
+      {new: true},(err, doc) => {
+            ResponseService.generalResponse(err, res, "member updated successfully");
+        });
+      };
+
+
