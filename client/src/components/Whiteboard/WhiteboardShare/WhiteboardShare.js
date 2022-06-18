@@ -39,7 +39,7 @@ function WhiteboardShare() {
           </div>
         </div>
       </div>
-      
+
       <div className="boardshare_getlink">
         <div className="boardshare_getlink_header">
           <p>GET LINK</p>
