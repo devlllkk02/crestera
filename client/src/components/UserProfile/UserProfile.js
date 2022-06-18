@@ -53,8 +53,7 @@ const UserProfile = () => {
           </div>
           <div className="container">
             <h3>DOB</h3>
-            {/* <p2>{`${state?.dob}`}</p2> */}
-            <p2>1999-01-20</p2>
+            <p2>{`${state?.dob}`}</p2>
             <hr />
           </div>
           <div className="container">

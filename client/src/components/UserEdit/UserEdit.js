@@ -29,7 +29,7 @@ const UserEdit = () => {
     <div className="edit_page">
       <div className="profile__container">
         <div className="profile__pic">
-          <img src={profilePic} />
+        <img src={state?.image} alt="" />
         </div>
         <div className="profile__heading">
           <p1>PUBLIC PROFILE</p1>
@@ -116,7 +116,7 @@ const UserEdit = () => {
             Please note that this action is irreversible.
           </p2>
           <input type="email" name="email" placeholder="Email" />
-          <button className="delete">DELETE</button>
+          <button className="delete" type="submit">DELETE</button>
         </div>
       </div>
     </div>
