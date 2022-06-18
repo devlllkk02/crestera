@@ -53,13 +53,15 @@ exports.getByIdDownload = (async (req, res) => {
 });
 
 // Get All Files when mother folder !== null
-exports.getAllByID = (async (req, res) => {
+exports.getAllById = (async (req, res) => {
     const fileId = req.params.id;
     const uid = req.query.uid;
     File.find({ motherFolder: fileId , addedBy : uid}, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
+        .populate('addedBy', 'firstName lastName')
+        .populate('motherFolder', 'name')
 });
 
 // Get All Files when mother folder == null
@@ -69,4 +71,16 @@ exports.getAll = (async (req, res) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
+        .populate('addedBy', 'firstName lastName')
+        .populate('motherFolder', 'name')
+});
+
+//get by id
+exports.getById = (async (req, res) => {
+
+    File.findById(req.params.id, (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+    })
+        .populate('addedBy', 'firstName lastName')
+        .populate('motherFolder', 'name')
 });

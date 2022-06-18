@@ -29,7 +29,7 @@ function Taskbar({ fileName, onlineUsers }) {
           <div className="taskbar__defaultUsers">
             {onlineUsers &&
               onlineUsers.slice(0, 3).map((user, key) => {
-                console.log(user);
+                // console.log(user);
                 return (
                   <div className="taskbar__defaultUser" key={key}>
                     <p>{onlineUsers.length}</p>

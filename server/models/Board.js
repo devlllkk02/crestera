@@ -10,8 +10,9 @@ const BoardSchema = new mongoose.Schema(
     fileName: {
       type: String,
     },
-    content: {
+    data: {
       type: String,
+      default: "",
     },
     thumbnail: {
       type: String,
@@ -20,6 +21,17 @@ const BoardSchema = new mongoose.Schema(
       type: ObjectId,
       ref: "User",
     },
+    onlineUsers: [
+      {
+        user: {
+          type: ObjectId,
+          ref: "User",
+        },
+        socketId: {
+          type: String,
+        },
+      },
+    ],
     members: [
       {
         member: {
