@@ -10,9 +10,9 @@ import foldericon from '../../../assets/images/Vault icons/FolderIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes, faPencil} from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faInfoCircle, faTrash, faShareNodes, faPencil} from "@fortawesome/free-solid-svg-icons";
 
-import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
+import FolderDetailsPopup from './FolderDetailsPopup';
 import FolderUpdate from '../FolderCreate/FolderUpdate';
 
 function FolderList({folder,updatefolders, setupdatefolders} ) {
@@ -20,7 +20,7 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
     const [popover, setpopover] = useState(false);
     const [btnpopup1, setbtnpopup1] = useState(false);
     const [btnpopup2, setbtnpopup2] = useState(false);
-    
+
     useEffect(() => {setupdatefolders(!updatefolders);}, [btnpopup2]);
 
     const DeleteFolder = async (e) => {
@@ -70,7 +70,7 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
                     </div>
                 {/* </Link> */}
             {/* </Link > */}
-            <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} folder={folder} />
+            <FolderDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} folder={folder} />
             <FolderUpdate trigger={btnpopup2} settrigger={setbtnpopup2} folder={folder} />
             </div>
         </div >
