@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   paintbrush,
   eraser,
@@ -13,10 +13,12 @@ import {
 
 import "../Whiteboard.scss";
 
-//iport packages
+//import packages
 import { fabric } from "fabric";
 import io from "socket.io-client";
-
+import { useParams } from "react-router-dom";
+import { UserContext } from "../../../App";
+import Taskbar from "../../Note/TaskBar/Taskbar";
 let canvas;
 
 const colors = {
@@ -30,6 +32,9 @@ const colors = {
 };
 
 function ToolBar() {
+  const { state, dispatch } = useContext(UserContext);
+  const { boardId } = useParams();
+
   const [brushSize, setBrushSize] = useState(5);
   const [brushColor, setBrushColor] = useState(colors.blue);
   const [eraserSize, setEraserSize] = useState(10);
@@ -37,6 +42,21 @@ function ToolBar() {
   const [socket, setSocket] = useState();
   const [canvasJSON, setcanvasJSON] = useState();
 
+  const [fileName, setFileName] = useState("");
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [deleted, setDeleted] = useState(false);
+
+  //Estblishing Web Socket
+  useEffect(() => {
+    const s = io("http://localhost:8000");
+    setSocket(s);
+
+    return () => {
+      s.disconnect();
+    };
+  }, []);
+
+  //Initializing Blank Canvas
   useEffect(() => {
     canvas = new fabric.Canvas("canvas");
     canvas.isDrawingMode = true;
@@ -46,25 +66,67 @@ function ToolBar() {
     canvas.freeDrawingBrush.width = brushSize;
 
     canvas.on("mouse:up", () => {
-      if (canvasJSON == null) return;
-      console.log("canvas is loaded");
       setcanvasJSON(JSON.stringify(canvas));
     });
   }, []);
 
+  //Get and Load Board
   useEffect(() => {
-    if (canvasJSON == null) return;
-    socket.emit("canvas-data", canvasJSON);
-  }, [canvasJSON]);
+    if (socket == null) return;
+    socket.once("load-board", (board) => {
+      canvas.loadFromJSON(board.data, canvas.renderAll.bind(canvas));
+      setcanvasJSON(board.data);
+      setFileName(board.fileName);
+    });
+    // console.log("board loaded");
+    socket.emit("get-board", boardId);
+    return () => {};
+  }, [socket]);
+
+  //Save Board
+  useEffect(() => {
+    canvas.on("mouse:up", () => {
+      if (socket == null) return;
+      // console.log("board saved");
+      setcanvasJSON(JSON.stringify(canvas));
+      socket.emit("save-board", boardId, JSON.stringify(canvas));
+    });
+  }, [socket, canvasJSON]);
+
+  //Send Board Changes
+  useEffect(() => {
+    if (socket == null || canvasJSON == null) return;
+    // console.log("changes send");
+    socket.emit("send-board-changes", boardId, JSON.stringify(canvas));
+  }, [socket, canvasJSON]);
+
+  //Receive Board Chanages
+  useEffect(() => {
+    if (socket == null || canvasJSON == null) return;
+
+    socket.on("receive-board-changes", (data) => {
+      // console.log("changes received");
+      setcanvasJSON(data);
+      canvas.loadFromJSON(JSON.parse(data), canvas.renderAll.bind(canvas));
+    });
+  }, [socket, canvasJSON]);
+
+  //? User
+  useEffect(() => {
+    if (socket == null || state == null) return;
+    if (state) {
+      socket.emit("get-boardIdAndUser", boardId, state);
+    }
+  }, [socket, state]);
 
   useEffect(() => {
-    const s = io("http://localhost:8000");
-    setSocket(s);
-    return () => {
-      s.disconnect();
-    };
-  }, []);
+    if (socket == null || onlineUsers == null) return;
+    socket.on("receive-board-OnlineUsers", (result) => {
+      setOnlineUsers(result);
+    });
+  }, [socket, onlineUsers]);
 
+  //*Tools
   useEffect(() => {
     canvas.freeDrawingBrush.width = brushSize;
   }, [brushSize]);
@@ -135,11 +197,16 @@ function ToolBar() {
 
     if (activeObjects.length === 0) {
       canvas.clear();
+      setcanvasJSON(JSON.stringify(canvas));
+      socket.emit("save-board", boardId, JSON.stringify(canvas));
+
       return;
     } else if (activeObjects.length) {
       activeObjects.forEach((object) => {
         canvas.remove(object);
       });
+      setcanvasJSON(JSON.stringify(canvas));
+      socket.emit("save-board", boardId, JSON.stringify(canvas));
     }
   };
 
@@ -172,158 +239,167 @@ function ToolBar() {
     }
   };
   return (
-    <div className="toolSection">
-      <div className="toolField">
-        <div className="brushWidth">
-          <div className="icon">
-            <img
-              src={paintbrush}
-              alt="paintbrush-icon"
-              className="paintBrushIcon"
+    <>
+      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
+      <div className="toolSection">
+        <div className="toolField">
+          <div className="brushWidth">
+            <div className="icon">
+              <img
+                src={paintbrush}
+                alt="paintbrush-icon"
+                className="paintBrushIcon"
+                onClick={() => {
+                  setBrushColor(colors.blue);
+                  canvas.isDrawingMode = true;
+                }}
+              />
+            </div>
+            <input
+              type="range"
+              min="1"
+              max="50"
+              step="5"
+              value={brushSize}
+              className="slider"
+              onChange={handleBrushSizeChange}
+            ></input>
+          </div>
+
+          <div className="colorsets">
+            <div
+              className="blue"
+              style={{ background: colors.blue }}
               onClick={() => {
                 setBrushColor(colors.blue);
-                canvas.isDrawingMode = true;
+                setStrokeColor(colors.blue);
               }}
-            />
-          </div>
-          <input
-            type="range"
-            min="1"
-            max="50"
-            step="5"
-            value={brushSize}
-            className="slider"
-            onChange={handleBrushSizeChange}
-          ></input>
-        </div>
-
-        <div className="colorsets">
-          <div
-            className="blue"
-            style={{ background: colors.blue }}
-            onClick={() => {
-              setBrushColor(colors.blue);
-              setStrokeColor(colors.blue);
-            }}
-          ></div>
-          <div
-            className="red "
-            style={{ background: colors.red }}
-            onClick={() => {
-              setBrushColor(colors.red);
-              setStrokeColor(colors.red);
-            }}
-          ></div>
-          <div
-            className="yellow "
-            style={{ background: colors.yellow }}
-            onClick={() => {
-              setBrushColor(colors.yellow);
-              setStrokeColor(colors.yellow);
-            }}
-          ></div>
-          <div
-            className="green "
-            style={{ background: colors.green }}
-            onClick={() => {
-              setBrushColor(colors.green);
-              setStrokeColor(colors.green);
-            }}
-          ></div>
-          <div
-            className="black "
-            style={{ background: colors.black }}
-            onClick={() => {
-              setBrushColor(colors.black);
-              setStrokeColor(colors.black);
-            }}
-          ></div>
-        </div>
-
-        <div className="eraser">
-          <div className="icon eraserDesc">
-            <img
-              src={eraser}
-              alt="eraser-icon"
-              className="eraserIcon"
-              onClick={(e) => {
-                setBrushColor(colors.white);
+            ></div>
+            <div
+              className="red "
+              style={{ background: colors.red }}
+              onClick={() => {
+                setBrushColor(colors.red);
+                setStrokeColor(colors.red);
               }}
-            />
+            ></div>
+            <div
+              className="yellow "
+              style={{ background: colors.yellow }}
+              onClick={() => {
+                setBrushColor(colors.yellow);
+                setStrokeColor(colors.yellow);
+              }}
+            ></div>
+            <div
+              className="green "
+              style={{ background: colors.green }}
+              onClick={() => {
+                setBrushColor(colors.green);
+                setStrokeColor(colors.green);
+              }}
+            ></div>
+            <div
+              className="black "
+              style={{ background: colors.black }}
+              onClick={() => {
+                setBrushColor(colors.black);
+                setStrokeColor(colors.black);
+              }}
+            ></div>
           </div>
-          <input
-            type="range"
-            min="1"
-            max="100"
-            step="10"
-            value={eraserSize}
-            className="slider"
-            onChange={(e) => setEraserSize(e.target.value)}
-          ></input>
-        </div>
 
-        <div className="deleteField">
-          <div className="icon" onClick={deleteObjects}>
-            <img src={dustbin} alt="delete-icon" className="deleteBtn" />
+          <div className="eraser">
+            <div className="icon eraserDesc">
+              <img
+                src={eraser}
+                alt="eraser-icon"
+                className="eraserIcon"
+                onClick={(e) => {
+                  setBrushColor(colors.white);
+                }}
+              />
+            </div>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              step="10"
+              value={eraserSize}
+              className="slider"
+              onChange={(e) => setEraserSize(e.target.value)}
+            ></input>
           </div>
-        </div>
 
-        <div className="selectionHand">
-          <div className="icon" onClick={() => (canvas.isDrawingMode = false)}>
-            <img src={selecthand} alt="select-icon" className="selecthandBtn" />
+          <div className="deleteField">
+            <div className="icon" onClick={deleteObjects}>
+              <img src={dustbin} alt="delete-icon" className="deleteBtn" />
+            </div>
           </div>
-        </div>
 
-        <div className="textInput">
-          <div className="icon">
-            <img
-              src={text}
-              alt="textInput-icon"
-              className="textInputBtn"
-              onClick={addTextInput}
-            />
+          <div className="selectionHand">
+            <div
+              className="icon"
+              onClick={() => (canvas.isDrawingMode = false)}
+            >
+              <img
+                src={selecthand}
+                alt="select-icon"
+                className="selecthandBtn"
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="shapesMenuField">
-          <div className="icon square">
-            <img
-              src={square}
-              alt="square-icon"
-              className="squareShape"
-              onClick={(e) => generateSquare(e)}
-            />
+          <div className="textInput">
+            <div className="icon">
+              <img
+                src={text}
+                alt="textInput-icon"
+                className="textInputBtn"
+                onClick={addTextInput}
+              />
+            </div>
           </div>
-          <div className="icon">
-            <img
-              src={triangle}
-              alt="triangle-icon"
-              className="triangleShape"
-              onClick={(e) => generateTriangle(e)}
-            />
-          </div>
-          <div className="icon">
-            <img
-              src={circle}
-              alt="circle-icon"
-              className="circleShape"
-              onClick={(e) => generateCircle(e)}
-            />
-          </div>
-        </div>
 
-        <div className="download">
-          <div className="icon">
-            <img
-              src={downloadIcon}
-              alt="download-icon"
-              className="downloadBtn"
-              onClick={download}
-            />
+          <div className="shapesMenuField">
+            <div className="icon square">
+              <img
+                src={square}
+                alt="square-icon"
+                className="squareShape"
+                onClick={(e) => generateSquare(e)}
+              />
+            </div>
+            <div className="icon">
+              <img
+                src={triangle}
+                alt="triangle-icon"
+                className="triangleShape"
+                onClick={(e) => generateTriangle(e)}
+              />
+            </div>
+            <div className="icon">
+              <img
+                src={circle}
+                alt="circle-icon"
+                className="circleShape"
+                onClick={(e) => generateCircle(e)}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* <div className='load icon'>
+          <div className="download">
+            <div className="icon">
+              <img
+                src={downloadIcon}
+                alt="download-icon"
+                className="downloadBtn"
+                onClick={download}
+              />
+            </div>
+          </div>
+
+          {/* <div className='load icon'>
 				<img
 							src={save}
 							alt='save-icon'
@@ -333,9 +409,10 @@ function ToolBar() {
 					
 				</div> */}
 
-        <div className="save" /* onClick={clearSaved}*/>Save Board</div>
+          <div className="save" /* onClick={clearSaved}*/>Save Board</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

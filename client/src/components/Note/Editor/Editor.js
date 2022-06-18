@@ -23,7 +23,7 @@ function Editor() {
   const [fileName, setFileName] = useState("");
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  //Estblishing Web Socker
+  //Estblishing Web Socket
   useEffect(() => {
     const s = io("http://localhost:8000");
     setSocket(s);
@@ -103,8 +103,7 @@ function Editor() {
 
   useEffect(() => {
     if (socket == null || onlineUsers == null) return;
-    socket.on("receive-onlineUsers", (result) => {
-      // console.log(typeof result);
+    socket.on("receive-note-OnlineUsers", (result) => {
       setOnlineUsers(result);
     });
   }, [socket, onlineUsers]);
