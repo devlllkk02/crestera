@@ -16,15 +16,12 @@ function Editor() {
   const { state, dispatch } = useContext(UserContext);
   const { noteId } = useParams();
 
+  //State
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const [keyUp, setKeyUp] = useState(false);
   const [fileName, setFileName] = useState("");
   const [onlineUsers, setOnlineUsers] = useState([]);
-
-  useEffect(() => {
-    // if (onlineUsers) console.log(onlineUsers);
-  }, [onlineUsers]);
 
   //Estblishing Web Socker
   useEffect(() => {
@@ -37,13 +34,13 @@ function Editor() {
 
   //Quill Send Changes
   useEffect(() => {
-    if (socket == null || quill == null) return;
+    if (socket == null || quill == null || noteId == null) return;
 
     const handleQuill = (delta, oldDelta, source) => {
       if (source != "user") {
         return;
       }
-      socket.emit("send-changes", delta);
+      socket.emit("send-changes", noteId, delta);
     };
 
     quill.on("text-change", handleQuill);
@@ -51,7 +48,7 @@ function Editor() {
     return () => {
       quill.off("text-change", handleQuill);
     };
-  }, [socket, quill]);
+  }, [socket, quill, noteId]);
 
   //Quill Recieve Changes
   useEffect(() => {
@@ -81,11 +78,11 @@ function Editor() {
 
   //Save Document Changes
   useEffect(() => {
-    if (socket == null || quill == null) return;
+    if (socket == null || quill == null || noteId == null) return;
 
     const interval = setInterval(() => {
       if (keyUp == true) {
-        socket.emit("save-document", quill.getContents());
+        socket.emit("save-document", noteId, quill.getContents());
         // console.log("Updated Note");
       }
       setKeyUp(false);
@@ -94,9 +91,16 @@ function Editor() {
     return () => {
       clearInterval(interval);
     };
-  }, [quill, socket, keyUp]);
+  }, [noteId, quill, socket, keyUp]);
 
   //? User
+  useEffect(() => {
+    if (socket == null || state == null) return;
+    if (state) {
+      socket.emit("get-noteIdAndUser", noteId, state);
+    }
+  }, [socket, state]);
+
   useEffect(() => {
     if (socket == null || onlineUsers == null) return;
     socket.on("receive-onlineUsers", (result) => {
@@ -104,8 +108,7 @@ function Editor() {
       setOnlineUsers(result);
     });
   }, [socket, onlineUsers]);
-
-  //Tracking Keyboard
+  //?Tracking Keyboard
   useEffect(() => {
     const keyEvent = window.addEventListener(
       "keydown",
@@ -117,14 +120,7 @@ function Editor() {
 
     return keyEvent;
   }, []);
-
-  useEffect(() => {
-    if (socket == null || state == null) return;
-    if (state) {
-      socket.emit("get-noteIdAndUser", noteId, state);
-    }
-  }, [socket, state]);
-
+  //?Toobar Options
   const TOOLBAR_OPTIONS = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
@@ -146,9 +142,7 @@ function Editor() {
   ];
 
   const editorWrapperRef = useCallback((editorWrapper) => {
-    if (editorWrapper == null) {
-      return;
-    }
+    if (editorWrapper == null) return;
     editorWrapper.innerHTML = "";
 
     const editor = document.createElement("div");
@@ -157,15 +151,14 @@ function Editor() {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
-    q.disable();
-    // q.setText("Loading...");
+    // q.disable();
     setQuill(q);
   }, []);
 
   return (
     <>
       <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
-      <div className="editor" ref={editorWrapperRef}></div>;
+      <div className="editor" ref={editorWrapperRef}></div>
     </>
   );
 }

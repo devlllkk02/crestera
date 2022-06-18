@@ -10,41 +10,32 @@ const socketIOConnect = () => {
   });
 
   io.on("connection", (socket) => {
-    console.log("Socket Connected")
     try {
-      //?Note
-      socket.on("get-document", async (noteId, user) => {
+      //? Note
+      //Getting Note
+      socket.on("get-document", async (noteId) => {
         const document = await Note.findById(noteId).populate({
           path: "onlineUsers.user",
         });
         socket.join(noteId);
 
-        //? Note
-        //Getting Note
         socket.emit("load-document", document);
+      });
 
-        // Updating Note
-        socket.on("send-changes", (delta) => {
-          socket.broadcast.to(noteId).emit("receive-changes", delta);
-        });
+      // Updating Note
+      socket.on("send-changes", (noteId, delta) => {
+        socket.join(noteId);
+        socket.broadcast.to(noteId).emit("receive-changes", delta);
+      });
 
-        //Saving Note
-        socket.on("save-document", async (data) => {
-          await Note.findByIdAndUpdate(noteId, {
-            data: data,
-          });
-          // console.log("updated");
-        });
-
-        //?User
-        //Connect User
-        socket.on("connect-user", async () => {
-          console.log("heard");
-          // await Note.findByIdAndUpdate(noteId, {
-          //   $push: { onlineUsers: { user: user, socketId: socket.id } },
-          // });
+      //Saving Note
+      socket.on("save-document", async (noteId, data) => {
+        socket.join(noteId);
+        await Note.findByIdAndUpdate(noteId, {
+          data: data,
         });
       });
+
       //? User
       //Getting User
       socket.on("get-noteIdAndUser", async (noteId, user) => {
