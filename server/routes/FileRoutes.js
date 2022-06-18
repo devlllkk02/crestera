@@ -24,14 +24,14 @@ router.get('/download/:id', (req, res) => FileController.getByIdDownload(req, re
 router.get('/fileId', (req, res) => FileController.getAll(req, res));
 
 // Get All Folders when mother folder !== null
-router.get('/fileId/:id', (req, res) => FileController.getAllByID(req, res));
+router.get('/fileId/:id', (req, res) => FileController.getAllById(req, res));
 
 //router - /v1/crestera/files/id
 // Update
 router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.FILE, res));
 
 // Get by id
-router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.FILE, res));
+router.get('/:id', (req, res) => FileController.getById(req, res));
 
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.FILE, res));

@@ -14,15 +14,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical, faUserFriends, faInfoCircle , faTrash,  faShareNodes , faDownload } from "@fortawesome/free-solid-svg-icons";
 
 //components
-import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
-// import VaultRenamePopup from "../../Vault/VaultRenamePopup/VaultRenamePopup"
+import FileDetailsPopup from "./FileDetailsPopup"
 
 
 function FileList({file, updatefolders, setupdatefolders}) {
 
     const [popover, setpopover] = useState(false);
     const [btnpopup1, setbtnpopup1] = useState(false);
-    const [btnpopup2, setbtnpopup2] = useState(false);
 
    
       const handleDownload = async () => {
@@ -76,7 +74,7 @@ function FileList({file, updatefolders, setupdatefolders}) {
                                 <li onClick={() => deletefile()}><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>
                         </VaultPopover>
-                        <VaultDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1}/>
+                        <FileDetailsPopup trigger={btnpopup1} settrigger={setbtnpopup1} file={file}/>
                     </div>
                 </div>
             </div>
