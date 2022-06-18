@@ -10,7 +10,7 @@ import foldericon from '../../../assets/images/Vault icons/FolderIcon.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes, faPencil, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faUserFriends, faInfoCircle, faTrash, faShareNodes, faPencil} from "@fortawesome/free-solid-svg-icons";
 
 import VaultDetailsPopup from "../../Vault/VaultDetailsPopup/VaultDetailsPopup"
 import FolderUpdate from '../FolderCreate/FolderUpdate';
@@ -20,6 +20,7 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
     const [popover, setpopover] = useState(false);
     const [btnpopup1, setbtnpopup1] = useState(false);
     const [btnpopup2, setbtnpopup2] = useState(false);
+    
     useEffect(() => {setupdatefolders(!updatefolders);}, [btnpopup2]);
 
     const DeleteFolder = async (e) => {
@@ -61,7 +62,6 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
                                     <li onClick={() => setbtnpopup1(true)} ><FontAwesomeIcon icon={faInfoCircle} />  Details</li>
                                     <Link to={`/vaultshare/${folder._id}`} style={{color: 'black' ,textDecoration: 'none'}} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
                                     <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil} />   Rename</li>
-                                    <li><FontAwesomeIcon icon={faDownload}/> <a href=""style={{color: 'black' ,textDecoration: 'none'}} > Download</a></li>
                                     <li onClick={() => DeleteFolder(folder._id)}><FontAwesomeIcon icon={faTrash} />   Delete</li>
                                 </ul>
                             </VaultPopover>
