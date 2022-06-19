@@ -25,7 +25,7 @@ exports.getById = function (req, res) {
       ResponseService.generalPayloadResponse(err, doc, res);
   })
   .populate('addedBy', 'firstName lastName')
-  .populate('members.member','firstName lastName ');
+  .populate('members.member','firstName lastName image');
       
 }
 
