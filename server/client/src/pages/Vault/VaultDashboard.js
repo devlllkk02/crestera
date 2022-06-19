@@ -1,15 +1,3 @@
-<<<<<<< HEAD:client/src/pages/Vault/VaultDashboard.js
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router';
-import './VaultDashboard.scss';
-import Navbar from "../../components/Navbar/Navbar";
-import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
-import FileCreate from '../../components/Vault/FileCreate/FileCreate';
-import { getFolders, getFoldershome, getFileshome, getFiles } from '../../services/AuthService';
-import FileList from '../../components/Vault/FileList/FileList'
-import FolderList from '../../components/Vault/FolderList/FolderList'
-import { UserContext } from '../../App';
-=======
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -26,7 +14,6 @@ import {
 import FileList from "../../components/Vault/FileList/FileList";
 import FolderList from "../../components/Vault/FolderList/FolderList";
 import { UserContext } from "../../App";
->>>>>>> host_test_2:server/client/src/pages/Vault/VaultDashboard.js
 
 const VaultDashboard = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -45,15 +32,6 @@ const VaultDashboard = () => {
   const [updatefolders, setupdatefolders] = useState(false);
   const [folders, setFolders] = useState([]);
 
-<<<<<<< HEAD:client/src/pages/Vault/VaultDashboard.js
-
-  useEffect(() => {
-    currentFolder !== "home" ?
-      GetFolders()
-      :
-      GetFoldersHome();
-  }, [popup, updatefolders, currentFolder, state]);
-=======
   useEffect(() => {
     currentFolder !== "home " ? GetFolders() : GetFoldersHome();
   }, []);
@@ -66,7 +44,6 @@ const VaultDashboard = () => {
   useEffect(() => {
     currentFolder !== "home" ? GetFolders() : GetFoldersHome();
   }, [currentFolder]);
->>>>>>> host_test_2:server/client/src/pages/Vault/VaultDashboard.js
 
   const GetFolders = async () => {
 
@@ -94,20 +71,6 @@ const VaultDashboard = () => {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD:client/src/pages/Vault/VaultDashboard.js
-    currentFolder !== "home " ?
-      GetFiles()
-      :
-      GetFilesHome();
-  }, [popup1, updatefolders, currentFolder, state]);
-
-  useEffect(() => {
-    currentFolder !== 'home' ?
-      GetFiles()
-      :
-      GetFilesHome();
-  }, [currentFolder,state,popup1, updatefolders]);
-=======
     currentFolder !== "home " ? GetFiles() : GetFilesHome();
   }, []);
   useEffect(() => {
@@ -116,7 +79,6 @@ const VaultDashboard = () => {
   useEffect(() => {
     currentFolder !== "home" ? GetFiles() : GetFilesHome();
   }, [popup1]);
->>>>>>> host_test_2:server/client/src/pages/Vault/VaultDashboard.js
 
   const GetFiles = async () => {
     try {
@@ -179,17 +141,9 @@ const VaultDashboard = () => {
             ))}
 
             {/* File list */}
-<<<<<<< HEAD:client/src/pages/Vault/VaultDashboard.js
-            {
-              files.map((file) =>
-                <FileList file={file} updatefolders={updatefolders} setupdatefolders={setupdatefolders} />
-              )
-            }
-=======
             {files.map((file) => (
               <FileList file={file} />
             ))}
->>>>>>> host_test_2:server/client/src/pages/Vault/VaultDashboard.js
           </div>
         </div>
       </div>
