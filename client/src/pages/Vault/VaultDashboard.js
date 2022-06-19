@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import './VaultDashboard.scss';
 import Navbar from "../../components/Navbar/Navbar";
 import FolderCreate from '../../components/Vault/FolderCreate/FolderCreate';
