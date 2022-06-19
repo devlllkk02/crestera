@@ -3,7 +3,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import './UserCircleItem.scss';
 import { updateMember } from '../../../../../services/AuthService';
 import { UserContext } from '../../../../../App';
-import LetteredAvatar from 'react-lettered-avatar';
 
 //Images
 import cresteraIconsV2Board from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png';
@@ -48,9 +47,10 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
           <>
             <div key={member._id} className="usercircleItem" disabled>
               <div className="usercircleItem__fileIcon">
-              <LetteredAvatar size={50} 
-            name={`${member.member && member.member.firstName} ${member.member && member.member.lastName} `}
-        />
+                {console.log(member)}
+            <img src={member.member && member.member.image}/> 
+            {/* name={`${member.member && member.member.firstName} ${member.member && member.member.lastName} `}
+        /> */}
               </div>
               <div className="usercircleItem__fileName">
                 <p>
