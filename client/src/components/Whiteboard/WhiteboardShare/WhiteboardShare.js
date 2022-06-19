@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //Components
 import SharePopup from "../../SharePopup/SharePopup";
 
-function WhiteboardShare() {
+function WhiteboardShare(props) {
 
   const[btnpopup, setbtnpopup] = useState(false);
 
@@ -79,9 +79,9 @@ function WhiteboardShare() {
         <button className="boardshare_linkgroup_button" onClick={() => setbtnpopup(true)}>
           <span>INVITE PEOPLE & GROUPS</span>
         </button>
-        <SharePopup>
+        <SharePopup
           trigger={btnpopup}
-          settrigger={setbtnpopup}
+          settrigger={setbtnpopup}>
         </SharePopup>
       </div>
       <div className="boardshare_list_header">

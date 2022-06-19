@@ -14,7 +14,7 @@ const SharePopup = ({ trigger, settrigger}) => {
           <button className="closebtn" onClick={() => settrigger(false)}>
             <FontAwesomeIcon icon={faX} />
           </button>
-          <div className="vaultshare_header">
+          <div className="share_header">
             <h1>INVITE PEOPLES & GROUPS</h1>
           </div>
           <div className="share__searchbox1">
