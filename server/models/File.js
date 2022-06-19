@@ -20,6 +20,10 @@ const FileSchema = new mongoose.Schema({
   size:{
     type: String,
   },
+  motherFolder: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Folder'
+  },
   members: [{
     member: {
       type: mongoose.Schema.Types.ObjectId,

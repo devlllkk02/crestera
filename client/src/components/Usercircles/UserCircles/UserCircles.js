@@ -86,7 +86,7 @@ function UserCircles() {
       </div>
       <div className="usercircles_header_container">
         <Link to="/UserCirclesCreate" style={{ textDecoration: 'none' }}>
-          <button className="usercircles_button">
+          <button className="usercircles_button" disabled>
             <FontAwesomeIcon className="plus_button " icon={faPlus} />
             <span>Create Circle</span>
           </button>

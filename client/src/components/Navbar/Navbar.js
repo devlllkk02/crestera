@@ -79,7 +79,6 @@ function Navbar({ page }) {
             </div>
           </div>
 
-
           <div className="navbar__userimage">
             <Link to="/profile">
               <img src={state?.image} alt="" />
