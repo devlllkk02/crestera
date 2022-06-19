@@ -69,7 +69,7 @@ function FileList({file, updatefolders, setupdatefolders}) {
                         <VaultPopover trigger={popover} settrigger={setpopover}>
                             <ul>
                                 <li onClick={() => setbtnpopup1(true)}><FontAwesomeIcon icon={faInfoCircle}/>  Details</li>
-                                <Link to="/vaultshare" style={{color: 'black' ,textDecoration: 'none'}}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
+                                <Link to={`/vaultshare/${file._id}`} style={{color: 'black' ,textDecoration: 'none'}}><li><FontAwesomeIcon icon={ faShareNodes}/>   Share</li></Link>
                                 <li onClick={handleDownload}><FontAwesomeIcon icon={faDownload}/>   Download</li>
                                 <li onClick={() => deletefile()}><FontAwesomeIcon icon={faTrash}/>   Delete</li>
                             </ul>

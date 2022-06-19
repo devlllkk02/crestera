@@ -33,6 +33,7 @@ import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCrea
 import Whiteboard from "./components/Whiteboard/Whiteboard";
 import VaultFolderSharePage from "./pages/Vault/VaultSharePage/VaultFolderSharePage";
 import VaultFileSharePage from "./pages/Vault/VaultSharePage/VaultFileSharePage";
+import FileDownloadPage from "./pages/Vault/FileDownloadPage/FileDownloadPage";
 
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
@@ -69,6 +70,7 @@ const Routing = () => {
       <Route exact path="/edit" element={<UserEditPage />} />
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
+      <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
 
       {/* User Circles */}
       <Route
@@ -90,7 +92,7 @@ const Routing = () => {
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-      <Route exact path="/vaultshare" element={<VaultFileSharePage />} />
+      <Route exact path="/vaultshare/:fileId" element={<VaultFileSharePage />} />
       <Route
         exact
         path="/vaultshare/:folderId"
