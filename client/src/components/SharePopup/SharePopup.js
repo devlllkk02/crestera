@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SharePopup.scss';
 
 //Images
-import profilePic from '../../../assets/images/other/profilePicture.jpg'
+import profilePic from '../../assets/images/other/profilePicture.jpg'
 
 const SharePopup = ({ trigger, settrigger}) => {
     return trigger ? (
