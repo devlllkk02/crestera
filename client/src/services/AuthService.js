@@ -144,7 +144,7 @@ export const addMember = (data) => {
 
 
 export const updateMember = (data) => {
-    return axios.patch(baseUrl + 'circles/members', data, {
+    return axios.patch(baseUrl + 'circles/member/update', data, {
         headers: {
             'Content-Type': 'application/json'
         }

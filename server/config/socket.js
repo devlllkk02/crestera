@@ -1,5 +1,5 @@
 const Note = require("../models/Note");
-const Board = require("../models/Board")
+const Board = require("../models/Board");
 
 // const io = require("socket.io")(require("http"));
 const socketIOConnect = () => {
@@ -10,44 +10,34 @@ const socketIOConnect = () => {
     },
   });
 
-  
   io.on("connection", (socket) => {
-    console.log("Socket Connected")
     try {
-      //?Note
-      socket.on("get-document", async (noteId, user) => {
+      //? Note
+      //Getting Note
+      socket.on("get-document", async (noteId) => {
         const document = await Note.findById(noteId).populate({
           path: "onlineUsers.user",
         });
         socket.join(noteId);
 
-        //? Note
-        //Getting Note
         socket.emit("load-document", document);
+      });
 
-        // Updating Note
-        socket.on("send-changes", (delta) => {
-          socket.broadcast.to(noteId).emit("receive-changes", delta);
-        });
+      // Updating Note
+      socket.on("send-changes", (noteId, delta) => {
+        socket.join(noteId);
+        socket.broadcast.to(noteId).emit("receive-changes", delta);
+      });
 
-        //Saving Note
-        socket.on("save-document", async (data) => {
-          await Note.findByIdAndUpdate(noteId, {
-            data: data,
-          });
-          // console.log("updated");
-        });
-
-        //?User
-        //Connect User
-        socket.on("connect-user", async () => {
-          console.log("heard");
-          // await Note.findByIdAndUpdate(noteId, {
-          //   $push: { onlineUsers: { user: user, socketId: socket.id } },
-          // });
+      //Saving Note
+      socket.on("save-document", async (noteId, data) => {
+        socket.join(noteId);
+        await Note.findByIdAndUpdate(noteId, {
+          data: data,
         });
       });
-      //? User
+
+      //? User | Note
       //Getting User
       socket.on("get-noteIdAndUser", async (noteId, user) => {
         //Updating Online Users
@@ -62,7 +52,7 @@ const socketIOConnect = () => {
           path: "onlineUsers.user",
         });
 
-        io.to(noteId).emit("receive-onlineUsers", result.onlineUsers);
+        io.to(noteId).emit("receive-note-OnlineUsers", result.onlineUsers);
 
         //Disconnected User
         socket.on("disconnect", async () => {
@@ -77,31 +67,72 @@ const socketIOConnect = () => {
             path: "onlineUsers.user",
           });
 
-          io.to(noteId).emit("receive-onlineUsers", result.onlineUsers);
+          io.to(noteId).emit("receive-note-OnlineUsers", result.onlineUsers);
+        });
+      });
+
+      //!----------------------------//
+
+      //?Board
+      //Getting Board
+      socket.on("get-board", async (boardId) => {
+        const board = await Board.findById(boardId).populate({
+          path: "onlineUsers.user",
+        });
+        socket.join(boardId);
+        socket.emit("load-board", board);
+      });
+
+      //Saving Board
+      socket.on("save-board", async (boardId, data) => {
+        socket.join(boardId);
+
+        const newBoard = await Board.findByIdAndUpdate(
+          boardId,
+          {
+            data: data,
+          },
+          { new: true }
+        );
+      });
+
+      //Updating Board
+      socket.on("send-board-changes", (boardId, data) => {
+        socket.join(boardId);
+        socket.broadcast.to(boardId).emit("receive-board-changes", data);
+      });
+
+      //? User | Board
+      //Getting User
+      socket.on("get-boardIdAndUser", async (boardId, user) => {
+        //Updating Online Users
+        // console.log("Connected: " + socket.id);
+        const result = await Board.findByIdAndUpdate(
+          boardId,
+          {
+            $push: { onlineUsers: { user: user, socketId: socket.id } },
+          },
+          { new: true }
+        ).populate({
+          path: "onlineUsers.user",
         });
 
-        //?Board 
-        socket.on("get-board",async(boardId,user)=>{
-          const board = await Board.findById(boardId).populate({
-            path:"onlineUsers.user"
-          });
-          socket.join(boardId);
+        io.to(boardId).emit("receive-board-OnlineUsers", result.onlineUsers);
 
-          //getting board
-          socket.emit("load-board",board);
-
-          //update canvas
-          socket.on("canvas-data",async(data)=>{
-            socket.broadcast.to(boardId).emit("canvas-data",data);
-          })
-
-          //save board
-          socket.on("save-board",async(data)=>{
-            await Board.findByIdAndUpdate(boardId,{
-              data:data,
-            });
+        //Disconnected User
+        socket.on("disconnect", async () => {
+          // console.log("Disconnected: " + socket.id);
+          const result = await Board.findByIdAndUpdate(
+            boardId,
+            {
+              $pull: { onlineUsers: { user: user, socketId: socket.id } },
+            },
+            { new: true }
+          ).populate({
+            path: "onlineUsers.user",
           });
 
+          io.to(boardId).emit("receive-board-OnlineUsers", result.onlineUsers);
         });
       });
     } catch (error) {

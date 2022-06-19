@@ -49,7 +49,7 @@ exports.getRecommendedNotesAndBoardsController = async (req, res) => {
       return b.updatedAt - a.updatedAt;
     });
 
-    sortednotesandboards = sortednotesandboards.slice(0, 2);
+    sortednotesandboards = sortednotesandboards.slice(0, 10);
 
     res.json({ sortednotesandboards });
   } catch (error) {

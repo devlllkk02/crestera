@@ -7,14 +7,16 @@ import { MultiSelect } from 'react-multi-select-component';
 import './AddUsersPopup.scss';
 import { getUsers, addMember } from '../../../services/AuthService';
 
-const AddUsersPopup = ({ trigger, settrigger, ID }) => {
+const AddUsersPopup = ({ trigger, settrigger, ID, circlemembers }) => {
   const [selected, setSelected] = useState([]);
   const [users, setUsers] = useState([]);
 
   //Users
   useEffect(() => {
     GetUsers();
+    console.log(circlemembers);
   }, []);
+
 
   //Get Users
   const GetUsers = async () => {
@@ -27,7 +29,23 @@ const AddUsersPopup = ({ trigger, settrigger, ID }) => {
     }
   };
 
-  const addmember = async (member) => { 
+  // const FilterUsers = () => {
+  //    const options= {users.map((user) => ({
+  //                 let flag = 0;
+                  
+  //                 circlemembers.map((member) => ({
+  //                  if(member._id == user._id)
+  //                  flag =1;
+  //                 }))
+
+  //                 value: user._id,
+  //                 label: `${user.firstName} ${user.lastName} `,
+  //                 if(flag==1)
+  //                 disabled: true,
+  //               }))}
+  // };
+
+  const addmember = async (member) => {
     try {
       const response = await addMember({
         members: member,
@@ -38,15 +56,13 @@ const AddUsersPopup = ({ trigger, settrigger, ID }) => {
     } catch (e) {
       console.log(e);
     }
-   }
+  };
   const handleSubmit = () => {
     const members = [];
     selected.map((select) => members.push(select['value']));
     console.log(members);
 
-    members.map((member) => (
-     addmember(member)
-    ))
+    members.map((member) => addmember(member));
   };
 
   return trigger ? (
@@ -61,7 +77,7 @@ const AddUsersPopup = ({ trigger, settrigger, ID }) => {
               <h1>ADD USERS</h1>
             </div>
             <div className="addusers__searchbox1">
-              <MultiSelect 
+             <MultiSelect 
                 options={users.map((user) => ({
                   value: user._id,
                   label: `${user.firstName} ${user.lastName} `,

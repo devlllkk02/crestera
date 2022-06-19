@@ -7,12 +7,12 @@ import {
   faChevronDown,
   faPlus,
   faSearch,
-  faUserPlus,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddUsersPopup from '../../AddUsersPopup';
 
-function UserCircleSearch({ page, ID }) {
+function UserCircleSearch({ page, ID, usercircleMembers }) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -90,6 +90,7 @@ function UserCircleSearch({ page, ID }) {
         trigger={btnpopup}
         settrigger={setbtnpopup}
         ID={ID}
+        circlemembers={usercircleMembers}
       ></AddUsersPopup>
       <div className="usercircleSearch__searchbox2">
         <input type="text" placeholder="Search" />

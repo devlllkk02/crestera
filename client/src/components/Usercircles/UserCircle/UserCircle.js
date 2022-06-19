@@ -26,19 +26,18 @@ import { getCircle, getUsers} from '../../../services/AuthService';
 
 function UserCircle() {
   const [btnpopup, setbtnpopup] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const { usercircleId } = useParams();
   const [usercircle, setUserCircle] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     loadUserCircle();
+    GetUsers();
   }, []);
   useEffect(() => {
     loadUserCircle();
-  }, [btnpopup]);
-  useEffect(() => {
-    GetUsers();
-  }, []);
+  }, [btnpopup,refresh]);
 
   //load folder by id
   const loadUserCircle = async () => {
@@ -121,13 +120,14 @@ function UserCircle() {
           <UserCircleHeader
             title1="Username"
             title2="Type"
-            title3="Modified Date"
           />
         </div>
         <div className="usercircle__items">
           <UserCircleItem
             usercircleMembers={usercircle.members}
             usercircleId={usercircle._id}
+            refresh={refresh}
+            setRefresh={setRefresh}
           />
           {/* <UserCircleItem
             fileIcon="board"

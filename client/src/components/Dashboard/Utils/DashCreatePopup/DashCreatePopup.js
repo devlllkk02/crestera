@@ -31,7 +31,7 @@ function DashCreatePopup({ popup, setPopup, type, title, link }) {
   //Redirecting
   useEffect(() => {
     if (fileId) {
-      navigate(`/note/${fileId}`);
+      navigate(`/${type}/${fileId}`);
     }
   }, [fileId]);
 
