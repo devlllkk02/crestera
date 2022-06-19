@@ -75,7 +75,7 @@
         margin-left: 45px;
       }
 
-      input[type="email"] {
+      input[type="email"]{
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
@@ -86,7 +86,6 @@
         line-height: 16px;
       }
     }
-
     .profile__form {
       color: #0f96c3;
       width: 100%;
@@ -99,7 +98,6 @@
       font-weight: 700;
 
       input {
-        width: 288px;
         height: 40px;
         margin-top: 5px;
         border: 1px solid #444e63;
@@ -107,8 +105,7 @@
         width: 100%;
       }
 
-      .profile__name,
-      .container {
+      .profile__name, .container {
         width: 100%;
         display: flex;
         margin-top: 22px;
@@ -130,8 +127,17 @@
         flex-direction: column;
       }
 
+      .user__email {
+        width: 599px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
       .profile__bio {
         margin-top: 22px;
+        margin-bottom: 20px;
         display: flex;
         flex-direction: column;
 
@@ -143,33 +149,38 @@
           opacity: 0.3;
         }
       }
-
-      .profile__dob {
-        width: 300px;
-        height: 40px;
-      }
-
-      .profile__gender {
-        margin-left: 20px;
-
-        select {
-          margin-top: 4px;
-          width: 285px;
-          height: 42px;
-          cursor: pointer;
-          -moz-appearance: none;
-          -webkit-appearance: none;
-          color: $grey;
-          outline: none;
-          border: $borderGreyLight;
-          box-sizing: border-box;
-
-          &:focus {
-            border: $borderGreyLight;
-            border-color: $blue;
-          }
+      
+    .password__heading{
+        p1{
+            color: #0f96c3;
+            font-weight: 450;
+            font-size: 20px;
+            line-height: 33px;  
         }
+
+        hr{
+        width: 600px;
+        border: 1px solid #444e63;
+        opacity: 0.3;
+        margin-left: 0px;
+        }
+
+    }
+
+
+      .current_password, .new_password, .confirm_password{
+          margin-top: 22px;
+          margin-bottom: 5px;
+
+          input{
+            width: 600px;
+            height: 40px;
+            margin-top: 5px;
+            border: 1px solid #444e63;
+            opacity: 0.3;
+          }
       }
+
     }
 
     .buttons {

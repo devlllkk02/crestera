@@ -51,16 +51,6 @@ const UserProfile = () => {
               <hr />
             </div>
           </div>
-          <div className="container">
-            <h3>DOB</h3>
-            <p2>{`${state?.dob}`}</p2>
-            <hr />
-          </div>
-          <div className="container">
-            <h3>GENDER</h3>
-            <p2>{`${state?.gender}`}</p2>
-            <hr />
-          </div>
         </div>
         <div className="buttons">
           <Link to="/edit">
