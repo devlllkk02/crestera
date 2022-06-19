@@ -11,7 +11,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //Components
-import VaultSharePopup from "../../Vault/VaultSharePopup/VaultSharePopup";
+import SharePopup from "../../SharePopup/SharePopup";
 
 function WhiteboardShare() {
 
@@ -79,10 +79,10 @@ function WhiteboardShare() {
         <button className="boardshare_linkgroup_button" onClick={() => setbtnpopup(true)}>
           <span>INVITE PEOPLE & GROUPS</span>
         </button>
-        <VaultSharePopup>
+        <SharePopup>
           trigger={btnpopup}
           settrigger={setbtnpopup}
-        </VaultSharePopup>
+        </SharePopup>
       </div>
       <div className="boardshare_list_header">
         <div className="boardshare_list_header_title1">
