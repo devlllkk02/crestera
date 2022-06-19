@@ -1,5 +1,6 @@
 //------ User Profile Edit Page ------
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import "./otherUserEdit.scss";
 
 import profilepic from "../../assets/images/other/profilePicture.jpg"
@@ -7,6 +8,8 @@ import profilepic from "../../assets/images/other/profilePicture.jpg"
 
 
 const otherUserEdit = () => {
+  const{ userId } = useParams();
+
   return (
     <div className="edit_page">
       <div className="profile__container">
@@ -28,7 +31,7 @@ const otherUserEdit = () => {
                     name="firstName"
                     placeholder="First Name"
                     id="firstName"
-                    //defaultValue={`${state?.firstName}`}
+                    //defaultValue={ user.firstName}`}
                   />
                 </label>
               </div>
