@@ -17,7 +17,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserEditPage from "./pages/UserEditPage/UserEditPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
-import OtherUserProfile from "./components/OtherUserProfile/otherProfile";
+import OtherUserProfile from "./pages/UserProfilePage/OtherUserProfilePage";
 import Notification from "./components/Notification/Notification";
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
