@@ -184,10 +184,3 @@ export const updateuser = (data) => {
     });
 };
 
-export const getUser = (id) => {
-    return axios.get(baseUrl + 'users/'+ id, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-};
