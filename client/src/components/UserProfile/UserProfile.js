@@ -14,11 +14,12 @@ const UserProfile = () => {
   const { state, dispatch } = useContext(UserContext);
   console.log(state);
 
+
   return (
     <div className="profile__page">
       <div className="profile__container">
         <div className="profile__pic">
-          <img src={profilePic} />
+        <img src={state?.image} alt="" />
         </div>
         <div className="profile__heading">
           <p>PUBLIC PROFILE</p>
