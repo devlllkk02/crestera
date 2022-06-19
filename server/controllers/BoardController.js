@@ -81,3 +81,24 @@ exports.getRecommendedBoardsController = async (req, res) => {
     console.log(error);
   }
 };
+
+//Get One Board
+exports.getSingleBoardController = (req, res) => {
+  Board.findById(req.params.boardId)
+    .populate("createdBy", "-password")
+    .then((board) => res.send(board))
+    .catch((error) => {
+      console.log(error);
+      res.status(422).json({ error: "Invalid board id!" });
+    });
+};
+
+//Update One Board
+exports.updateSingleBoardController = (req, res) => {
+  Board.findByIdAndUpdate(req.params.boardId, req.body, { new: true }).exec(
+    (error, result) => {
+      if (error) return res.status(422).json({ error: error });
+      else res.send(result);
+    }
+  );
+};

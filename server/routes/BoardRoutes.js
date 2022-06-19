@@ -11,6 +11,8 @@ const {
   createBoardController,
   getBoardsController,
   getRecommendedBoardsController,
+  getSingleBoardController,
+  updateSingleBoardController,
 } = require("../controllers/BoardController");
 
 //? ------ GET ROUTES ------
@@ -24,8 +26,15 @@ router.get(
   getRecommendedBoardsController
 );
 
+//ROUTE : GET : Get One Note
+router.get("/board/:boardId", AuthMiddleware, getSingleBoardController);
+
 //? ------ POST ROUTES ------
 //ROUTE : POST : Create Board
 router.post("/createboard", AuthMiddleware, createBoardController);
+
+//? ------ UPDATE ROUTES ------
+//ROUTE : PUT : Update One Board
+router.put("/updateboard/:boardId", AuthMiddleware, updateSingleBoardController);
 
 module.exports = router;

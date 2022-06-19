@@ -1,5 +1,5 @@
 export const updateNote = (noteId, data) => {
-  fetch(`http://localhost:5000/update/${noteId}`, {
+  fetch(`/update/${noteId}`, {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const updateNote = (noteId, data) => {
 };
 
 export const getNote = (noteId, data) => {
-  fetch(`http://localhost:5000/note/${noteId}`, {
+  fetch(`/note/${noteId}`, {
     method: "put",
     headers: {
       "Content-Type": "application/json",

@@ -35,6 +35,6 @@ router.post("/createnote", AuthMiddleware, createNoteController);
 
 //? ------ UPDATE ROUTES ------
 //ROUTE : PUT : Update One Note
-router.put("/update/:noteId", AuthMiddleware, updateSingleNoteController);
+router.put("/updatenote/:noteId", AuthMiddleware, updateSingleNoteController);
 
 module.exports = router;
