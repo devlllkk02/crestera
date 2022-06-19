@@ -124,6 +124,12 @@ function ToolBar() {
     socket.on("receive-board-OnlineUsers", (result) => {
       setOnlineUsers(result);
     });
+
+    return () => {
+      socket.off("receive-note-OnlineUsers", (result) => {
+        setOnlineUsers(result);
+      });
+    };
   }, [socket, onlineUsers]);
 
   //*Tools
