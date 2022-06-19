@@ -43,6 +43,15 @@ exports.addMember = async function (req, res) {
   );
 };
 
+//remove member
+exports.removeMember = async function (req, res) {
+  
+  UserCircle.findByIdAndUpdate(req.body.id, { $pull: { members: req.body.members } }, { new: true },(err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+    }
+  );
+};
+
 //update member
 exports.updateMember = async function (req, res) {
   console.log(req.body)
@@ -55,4 +64,14 @@ exports.updateMember = async function (req, res) {
         });
       };
 
+//update is pending
+exports.updatePeding = async function (req, res) {
+  console.log(req.body)
 
+  UserCircle.updateOne(
+      { 'members._id' : req.body.memberId },
+      { $set: { 'members.$.isPending': req.body.isPending} },
+      {new: true},(err, doc) => {
+            ResponseService.generalResponse(err, res);
+        });
+      };
