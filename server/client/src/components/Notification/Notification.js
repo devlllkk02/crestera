@@ -1,14 +1,13 @@
 import React from 'react'
 import Navbar from '../Navbar/Navbar'
-import NotificationList from "./NotificationList"
+// import NotificationItem from './Utils/NotificationItem'
+import NotificationList from './Utils/NotificationList'
 import "./Notification.scss"
 
 function Notification() {
   return (
     <div><Navbar/>
     <div className="notification__container">
-        <div className='notification__header'>
-    <h1>NOTIFICATION</h1> </div>
     <div className='notification__content'>
         <h4><NotificationList/></h4>
 
