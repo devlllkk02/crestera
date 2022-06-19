@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
+import axios from 'axios';
+import { baseUrl } from '../../../constants/constants';
+import { UserContext } from "../../../App";
 import {
 	paintbrush,
 	eraser,
@@ -13,7 +16,7 @@ import {
 
 import "../Whiteboard.scss"
 
-//iport packages
+//import packages
 import { fabric } from 'fabric';
 import io from "socket.io-client";
 
@@ -29,6 +32,14 @@ const colors = {
     white: ' #FFFFFF'
 };
 
+export const saveBoard = (data) => {
+	return axios.post(baseUrl + 'createboard/', data, {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+};
+
 function ToolBar(){
     const [brushSize, setBrushSize] = useState(5);
 	const [brushColor, setBrushColor] = useState(colors.blue);
@@ -37,6 +48,21 @@ function ToolBar(){
 	const [socket, setSocket] = useState();
 	const [ canvasJSON,setcanvasJSON]= useState();
 
+	const { state, dispatch } = useContext(UserContext);
+
+	const handleBoardSave = async (e) => {
+		e.preventDefault();
+		try {
+		  const response = await  saveBoard({
+			fileName:e.target.title.value,
+			content:setcanvasJSON(JSON.stringify(canvas)),
+			addedBy: state._id,
+		  });
+		  console.log(response);
+		} catch (e) {
+		  console.log(e);
+		}
+	  };
     useEffect(() => {
 		canvas = new fabric.Canvas('canvas');
 		canvas.isDrawingMode = true;
@@ -338,7 +364,7 @@ function ToolBar(){
 					
 				</div> */}
 
-				<div className='save' /* onClick={clearSaved}*/>
+				<div className='save' onClick={(e) => handleBoardSave(e)}>
 					Save Board
 				</div>
 

@@ -17,6 +17,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserEditPage from "./pages/UserEditPage/UserEditPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import Notification from "./components/Notification/Notification"
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 // import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
@@ -82,6 +83,9 @@ const Routing = () => {
       <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board/:boardId" element={<Whiteboard />} />
+
+      {/* Notification */}
+      <Route exact path = "/Notification" element={<Notification/>}/>
     </Routes>
   );
 };
