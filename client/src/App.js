@@ -16,7 +16,7 @@ import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserEditPage from "./components/OtherUserEdit/otherUserEdit";
-import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import UserProfilePage from "./components/OtherUserProfile/otherProfile";
 import Notification from "./components/Notification/Notification"
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
