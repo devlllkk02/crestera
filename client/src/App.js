@@ -16,7 +16,8 @@ import DashNotePage from "./pages/DashNotePage/DashNotePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserEditPage from "./components/OtherUserEdit/otherUserEdit";
-import UserProfilePage from "./components/OtherUserProfile/otherProfile";
+import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
+import OtherUserProfile from "./components/OtherUserProfile/OtherProfile"
 import Notification from "./components/Notification/Notification"
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
@@ -59,21 +60,18 @@ const Routing = () => {
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/signup" element={<SignupPage />} />
       <Route exact path="/login" element={<LoginPage />} />
+
       {/* Dashboard */}
       <Route exact path="/dashboard" element={<DashHomePage />} />
       <Route exact path="/dashboard/board" element={<DashBoardPage />} />
       <Route exact path="/dashboard/note" element={<DashNotePage />} />
       <Route exact path="/profile" element={<UserProfilePage />} />
       <Route exact path="/edit" element={<UserEditPage />} />
-
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
+      <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
 
       {/* User Circles */}
-      <Route
-        exact
-        path="/usercircle/:usercircleId"
-        element={<UserCirclePage />}
-      />
+      <Route exact  path="/usercircle/:usercircleId" element={<UserCirclePage />} />
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
       <Route
         exact
