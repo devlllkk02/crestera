@@ -1,5 +1,5 @@
 export const getBoards = (setItems) => {
-  fetch("http://localhost:5000/getboards", {
+  fetch("/getboards", {
     method: "get",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -13,7 +13,7 @@ export const getBoards = (setItems) => {
 };
 
 export const getRecommendedBoards = (setRecommendedItems) => {
-  fetch("http://localhost:5000/getrecommendedboards", {
+  fetch("/getrecommendedboards", {
     method: "get",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,

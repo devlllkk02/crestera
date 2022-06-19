@@ -1,2 +1,1 @@
-
-export const baseUrl = "http://localhost:5000/v1/crestera/";
+export const baseUrl = "/v1/crestera/";

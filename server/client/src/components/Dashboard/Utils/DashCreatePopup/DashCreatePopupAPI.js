@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { ToastProperties } from "../../../../utils/ToastProperties";
 
 export const createNote = (fileName, setFileId) => {
-  fetch("http://localhost:5000/createnote", {
+  fetch("/createnote", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const createNote = (fileName, setFileId) => {
 };
 
 export const createBoard = (fileName, setFileId) => {
-  fetch("http://localhost:5000/createboard", {
+  fetch("/createboard", {
     method: "post",
     headers: {
       "Content-Type": "application/json",

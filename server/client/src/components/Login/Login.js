@@ -21,7 +21,7 @@ function Login() {
   const handleLogin = () => {
     // console.log(firstName, lastName, email, password, conpassword);
 
-    fetch("http://localhost:5000/login", {
+    fetch("/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

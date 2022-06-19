@@ -48,7 +48,7 @@ function ToolBar() {
 
   //Estblishing Web Socket
   useEffect(() => {
-    const s = io("http://localhost:8000");
+    const s = io("/");
     setSocket(s);
 
     return () => {

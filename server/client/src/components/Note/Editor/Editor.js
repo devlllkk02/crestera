@@ -25,7 +25,7 @@ function Editor() {
 
   //Estblishing Web Socket
   useEffect(() => {
-    const s = io("http://localhost:5000");
+    const s = io("/");
     setSocket(s);
     return () => {
       s.disconnect();
