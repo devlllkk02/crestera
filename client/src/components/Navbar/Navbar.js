@@ -1,5 +1,5 @@
 // ------ Navbar  ------
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import "./Navbar.scss";
 
 //Imports
@@ -7,6 +7,7 @@ import { UserContext } from "../../App";
 
 //Packages
 import { Link, NavLink } from "react-router-dom";
+import io from "socket.io-client";
 
 //Images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
@@ -39,6 +40,12 @@ function Navbar({ page }) {
     }
   };
 
+    //Estblishing Web Socker
+    useEffect(() => {
+      const socket = io("http://localhost:8000");
+      console.log(socket);
+    }, []);
+
   return (
     <>
       <div className="navbar">
@@ -67,8 +74,8 @@ function Navbar({ page }) {
           {/*Navbar Notification  */}
           <div className="navbar__notification">
             <div className="navbar__notification__container">
-              <FontAwesomeIcon icon={faBell} className="notification__icon" />
-              {/* <div className="notification__counter">2</div> */}
+              <Link to="/Notification"><FontAwesomeIcon icon={faBell} className="notification__icon"/></Link>
+              <div className="notification__counter">2</div>
             </div>
           </div>
 

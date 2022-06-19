@@ -399,17 +399,6 @@ function ToolBar() {
             </div>
           </div>
 
-          {/* <div className='load icon'>
-				<img
-							src={save}
-							alt='save-icon'
-							className='saveBtn'
-							onClick={download}
-						/>
-					
-				</div> */}
-
-          <div className="save" /* onClick={clearSaved}*/>Save Board</div>
         </div>
       </div>
     </>
