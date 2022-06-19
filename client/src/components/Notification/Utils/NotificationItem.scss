@@ -1,0 +1,62 @@
+@import "../../../Theme.scss" ;
+
+.notification__item{
+    @include flexbox;
+    width: 80%;
+    height: 70px;
+    margin: 8px auto;
+     border-bottom: $borderGreyLight;
+
+    .notification__item__container{
+        @include flexbox;
+         width: 65%;
+         justify-content: space-between;
+        
+         .notification__image__container{
+            position: relative;
+        .notification__avatar{
+            background-color: $blue;
+             width: 50px;
+             height: 50px;
+             border-radius: 50%;
+             border: 3px solid $blue;
+             position: relative;
+         }
+     
+         .notification__icon{ 
+            z-index: 1;
+             background-color: white;
+             width: 25px;
+             height: 25px;
+             border-radius: 50%;
+             border: 2px solid $purple;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+         } }
+     
+         .notification__message__container{
+             margin-left: 10px;
+             @include flexbox;
+             flex-direction: row;
+            
+         }
+
+         .notification__button__container > button{
+            border:none;
+            margin: 5px;
+            color: $white;
+            width: 145px;
+            height: 40px;
+            cursor: pointer;   
+         }
+        .notification__accept__btn{
+            background-color: #0B572E;
+        }
+        .notification__decline__btn{
+            background-color: #7D292B;
+        }
+    }
+
+   
+}
