@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@fontsource/roboto";
 import "./WhiteboardShare.scss";
 
@@ -10,7 +10,13 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Components
+import SharePopup from "../../SharePopup/SharePopup";
+
 function WhiteboardShare() {
+
+  const[btnpopup, setbtnpopup] = useState(false);
+
   return (
     <div className="boardshare">
       <div className="boardshare_header">
@@ -70,9 +76,13 @@ function WhiteboardShare() {
         <div className="boardshare_linkgroup_header">
           <p>SHARE WITH PEOPLE & GROUPS</p>
         </div>
-        <button className="boardshare_linkgroup_button">
+        <button className="boardshare_linkgroup_button" onClick={() => setbtnpopup(true)}>
           <span>INVITE PEOPLE & GROUPS</span>
         </button>
+        <SharePopup>
+          trigger={btnpopup}
+          settrigger={setbtnpopup}
+        </SharePopup>
       </div>
       <div className="boardshare_list_header">
         <div className="boardshare_list_header_title1">

@@ -1,12 +1,10 @@
 //------ User Profile Edit Page ------
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import "./UserEdit.scss";
 import profilePic from "../../assets/images/other/profilePicture.jpg";
-import { updateuser } from '../../services/AuthService';
+import { updateuser } from "../../services/AuthService";
 
-import { UserContext } from '../../App';
-
-
+import { UserContext } from "../../App";
 
 const UserEdit = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -31,26 +29,37 @@ const UserEdit = () => {
     <div className="edit_page">
       <div className="profile__container">
         <div className="profile__pic">
-          <img src={profilePic} />
+        <img src={state?.image} alt="" />
         </div>
         <div className="profile__heading">
           <p1>PUBLIC PROFILE</p1>
           <hr />
         </div>
         <div className="profile__form">
-
           <form onSubmit={handleSubmit}>
             <div className="profile__name">
               <div className="first__name">
                 <label>
                   First Name
-                  <input type="text" name="firstName" placeholder='firstName' id='firstName' defaultValue={`${state?.firstName}`} />
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="firstName"
+                    id="firstName"
+                    defaultValue={`${state?.firstName}`}
+                  />
                 </label>
               </div>
               <div className="last__name">
                 <label>
                   Last name
-                  <input type="text" name="lastName" placeholder="lastName" id='lastName' defaultValue={`${state?.lastName}`} />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="lastName"
+                    id="lastName"
+                    defaultValue={`${state?.lastName}`}
+                  />
                 </label>
               </div>
             </div>
@@ -67,10 +76,10 @@ const UserEdit = () => {
               <label>Bio</label>
               <textarea
                 defaultValue={`${state?.bio}`}
-                type='text'
-                placeholder='Bio'
-                name='bio'
-                id='bio'
+                type="text"
+                placeholder="Bio"
+                name="bio"
+                id="bio"
               />
             </div>
             <div className="container">
@@ -88,14 +97,14 @@ const UserEdit = () => {
               </div>
             </div>
             <div className="buttons">
-              <button className="cancel" >CANCEL</button>
+              <button className="cancel">CANCEL</button>
 
-              <button className="save" type='submit'>SAVE</button>
+              <button className="save" type="submit">
+                SAVE
+              </button>
             </div>
           </form>
-
         </div>
-
 
         <div className="profile__heading">
           <p1>DELETE ACCOUNT</p1>
@@ -104,14 +113,14 @@ const UserEdit = () => {
             If you wish to delete your account, please enter your email address
             to confirm your decision.
             <br />
-            Please note that this acction is irreversible.
+            Please note that this action is irreversible.
           </p2>
           <input type="email" name="email" placeholder="Email" />
+          <button className="delete" type="submit">DELETE</button>
         </div>
-        <button className="delete">DELETE</button>
       </div>
     </div>
   );
-}
+};
 
 export default UserEdit;
