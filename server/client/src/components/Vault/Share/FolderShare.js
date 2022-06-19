@@ -69,7 +69,7 @@ const FolderShare =()=>{
           <div className="vaultshare_details_datemodified">
             <p1>Date Modified :</p1>&nbsp;
             {folder.addedOn &&
-            <p2> {getDateTime(folder.addedOn)}</p2>
+            <p2> dfsf</p2>
           }
           </div>
         </div>
