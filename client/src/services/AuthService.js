@@ -168,6 +168,14 @@ export const getUsers = () => {
     });
 };
 
+export const getUser = (id) => {
+    return axios.get(baseUrl + 'users/' + id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const updateuser = (data) => {
     return axios.put(baseUrl + 'users/', data, {
         headers: {

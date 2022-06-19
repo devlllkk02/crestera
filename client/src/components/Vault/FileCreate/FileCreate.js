@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import './FileCreate.scss';
@@ -65,11 +64,10 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
                 </button>
                 <div className='create_folder' ref={ref}>
                     <div className='create_folder_box'>
-div
                         {uploading ?
                             <></>
                             :
-                            <input type="file" name="file" onChange={changeHandler} />
+                            <input type="file" className='custom-file-input' name="file" onChange={changeHandler} />
                         }
 
                         {isSelected ? (
