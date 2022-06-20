@@ -14,6 +14,9 @@ router.post('/', (req, res) => CRUD.create(req.body, Types.FOLDER, res));
 // Get All Folders when mother folder == null
 router.get('/folderId', (req, res) => FolderController.getAll(req, res));
 
+// Get All shared Folders 
+router.get('/share', (req, res) => FolderController.getAllShare(req, res));
+
 // Get All Folders when mother folder !== null
 router.get('/folderId/:id', (req, res) => FolderController.getAllById(req, res));
 
@@ -22,7 +25,7 @@ router.get('/folderId/:id', (req, res) => FolderController.getAllById(req, res))
 router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.FOLDER, res));
 
 // Get by id
-router.get('/:id', (req, res) =>  FolderController.getByID(req, res));
+router.get('/:id', (req, res) =>  FolderController.getById(req, res));
 
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.FOLDER, res));
