@@ -26,6 +26,11 @@
     display: flex;
     align-content: center;
 
+    p{
+      font-weight: 450;
+      font-family: "Roboto";
+    }
+
     .share_icon {
       width: 20%;
       display: flex;
@@ -84,28 +89,42 @@
       }
     }
 
-    button.share_linkgroup_button {
-      background-color: #0f96c3;
-      color: $white;
-      background: #0f96c3;
-      display: block;
-      border: 2px solid #0f96c3;
-      width: 350px;
-      height: 40px;
-      padding: 6px;
-      cursor: pointer;
-      margin-left: 20px;
-
-      span {
-        height: 35px;
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        font-stretch: 1000%;
+      button.share_linkgroup_button {
+        background-color: #0f96c3;
+        color: $white;
+        background: #0f96c3;
+        display: block;
+        border: 2px solid #0f96c3;
+        width: 350px;
+        height: 40px;
+        padding: 6px;
+        cursor: pointer;
+        margin-left: 20px;
+  
+        span {
+          height: 35px;
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 19px;
+          font-stretch: 1000%;
+        }
       }
     }
+
+    .share_linkgroup_header {
+      p {
+        font-family: "Roboto";
+        color: #0f96c3;
+        font-size: 20px;
+        font-weight: 700;
+        border-bottom: $borderGreyLight;
+        padding-bottom: 10px;
+      }
+    }
+
+    
   }
 
   .share_list_header {
@@ -324,4 +343,5 @@
       }
     }
   }
-}
+
+

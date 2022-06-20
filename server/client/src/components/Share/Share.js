@@ -101,7 +101,7 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
                   handlePeopleShare();
                 }}
               >
-                SHARE WITH PEOPLE
+                <span>SHARE WITH PEOPLE</span>
               </button>
               {/* <button
                 className="share_linkgroup_button"
@@ -140,8 +140,8 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
                     <p>{`${member?.firstName} ${member?.lastName}`}</p>
                   </div>
                   <div className="share_list_body_item__button">
-                    <button onClick={() => handleRemoveUser(member._id)}>
-                      REMOVE
+                    <button classname="share_listitem_remove_button" onClick={() => handleRemoveUser(member._id)}>
+                      <span>REMOVE</span>
                     </button>
                   </div>
                 </div>
