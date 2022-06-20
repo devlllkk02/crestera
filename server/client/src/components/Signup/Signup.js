@@ -84,7 +84,7 @@ function Signup() {
 
     google.accounts.id.renderButton(document.getElementById("signUp-element"), {
       theme: "outline",
-      size: "large",
+      size: "medium",
       text: "signup_with",
     });
   }, []);

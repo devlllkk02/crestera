@@ -38,6 +38,8 @@ import FileDownloadPage from "./pages/Vault/FileDownloadPage/FileDownloadPage";
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import ScrollToTop from "./utils/ScrollToTop";
+import ShareNotePage from "./pages/ShareNotePage/ShareNotePage";
+import ShareBoardPage from "./pages/ShareBoardPage/ShareBoardPage";
 
 export const UserContext = createContext();
 
@@ -70,7 +72,11 @@ const Routing = () => {
       <Route exact path="/edit" element={<UserEditPage />} />
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
-      <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
+      <Route
+        exact
+        path="/downloadpage/:fileId"
+        element={<FileDownloadPage />}
+      />
 
       {/* User Circles */}
       <Route
@@ -103,6 +109,10 @@ const Routing = () => {
       <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board/:boardId" element={<Whiteboard />} />
+
+      {/* Share */}
+      <Route exact path="share/note/:Id" element={<ShareNotePage />} />
+      <Route exact path="share/board/:Id" element={<ShareBoardPage />} />
 
       {/* Notification */}
       <Route exact path="/Notification" element={<Notification />} />
