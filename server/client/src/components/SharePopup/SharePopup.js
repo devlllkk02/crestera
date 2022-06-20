@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { faX, faUserPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MultiSelect } from 'react-multi-select-component';
-
 import './SharePopup.scss';
 
 //Images
 import profilePic from '../../assets/images/other/profilePicture.jpg'
 import { addMember,  getUsers } from '../../services/AuthService';
 
-const SharePopup = ({ trigger, settrigger, ID, members}) => {
+const SharePopup = ({ trigger, settrigger, ID, shareMembers}) => {
   const[selected, setSelected] = useState([]);
   const[users, setUsers] = useState([]);
 
   //Users
   useEffect(() => {
     GetUsers();
-    console.log(members);
+    console.log(shareMembers);
   }, []);
 
 
