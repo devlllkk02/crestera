@@ -60,7 +60,7 @@ function FolderList({folder,updatefolders, setupdatefolders} ) {
                             <VaultPopover trigger={popover} settrigger={setpopover}>
                                 <ul>
                                     <li onClick={() => setbtnpopup1(true)} ><FontAwesomeIcon icon={faInfoCircle} />  Details</li>
-                                    <Link to={`/vaultshare/${folder._id}`} style={{color: 'black' ,textDecoration: 'none'}} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
+                                    <Link to={`/vaultfoldershare/${folder._id}`} style={{color: 'black' ,textDecoration: 'none'}} ><li><FontAwesomeIcon icon={faShareNodes} />   Share</li></Link>
                                     <li onClick={() => setbtnpopup2(true)}><FontAwesomeIcon icon={faPencil} />   Rename</li>
                                     <li onClick={() => DeleteFolder(folder._id)}><FontAwesomeIcon icon={faTrash} />   Delete</li>
                                 </ul>
