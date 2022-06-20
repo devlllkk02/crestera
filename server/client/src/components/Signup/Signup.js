@@ -1,18 +1,19 @@
 //------ Singup  ------
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Signup.scss";
 
 import { Link, useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastProperties } from "../../utils/ToastProperties";
 import "react-toastify/dist/ReactToastify.css";
-
+import { UserContext } from "../../App";
 //Images
 import CresteraLogo from "../../assets/images/logos/Crestera-Logo.png";
 import Google from "../../assets/images/Icons/google.png";
 
 function Signup() {
+  const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -47,6 +48,48 @@ function Signup() {
       })
       .catch((error) => console.log(error));
   };
+
+  const handleGoogleAuth = (response) => {
+    console.log(response.credential);
+    console.log(jwt_decode(response.credential));
+    let googleUser = jwt_decode(response.credential);
+
+    fetch("/googleauth", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: googleUser.given_name,
+        lastName: googleUser.family_name,
+        email: googleUser.email,
+        image: googleUser.picture,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch({ type: "USER", payload: data.user });
+        navigate("/dashboard");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //Google Authentication
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "836162203429-ti117lo7go6p2vb1imqb1tav0b6j00en.apps.googleusercontent.com",
+      callback: handleGoogleAuth,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signUp-element"), {
+      theme: "outline",
+      size: "large",
+      text: "signup_with",
+    });
+  }, []);
 
   return (
     <div className="signup">
@@ -114,19 +157,17 @@ function Signup() {
               onChange={(e) => setConPassword(e.target.value)}
             />
           </div>
-          
 
           {/* Sign up button */}
           <button
             type="button"
             className="signup__form__submit-btn"
-            onClick={() => handleSignup()
-            }
+            onClick={() => handleSignup()}
           >
             SIGN UP
           </button>
           <hr />
-          <button type="button" className="signup__form__google-btn">
+          {/* <button type="button" className="signup__form__google-btn">
             <img
               src={Google}
               alt="google-logo"
@@ -134,7 +175,8 @@ function Signup() {
               className="signup__form__google"
             />
             <span>Sign up with Google</span>
-          </button>
+          </button> */}
+          <div id="signUp-element"></div>
           <p>Already Have An Account?</p>
 
           <div className="signup__login__link">
