@@ -64,12 +64,9 @@ const VaultShareDashboard = () => {
                 <div className="vaultDashButtons">
                     <button className="vaultDashButton" onClick={() => setpopup1(true)}>upload</button>
                     <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
-                    <button className="vaultDashButton">
-                        <Link to="/profil/folder/home" style={{ textDecoration: "none", Color:""}}>
-                            Home
-                        </Link>
-                    </button>
-
+                    <Link to="/folder/home" style={{ textDecoration: "none", Color: "#0b572e" }}>
+                        <button className="vaultDashButton"> Home</button>
+                    </Link>
                 </div>
 
 

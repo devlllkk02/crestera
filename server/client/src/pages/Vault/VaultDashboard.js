@@ -8,6 +8,7 @@ import { getFolders, getFoldershome, getFileshome, getFiles } from '../../servic
 import FileList from '../../components/Vault/FileList/FileList'
 import FolderList from '../../components/Vault/FolderList/FolderList'
 import { UserContext } from '../../App';
+import { Link } from "react-router-dom";
 
 const VaultDashboard = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -70,7 +71,7 @@ const VaultDashboard = () => {
       GetFiles()
       :
       GetFilesHome();
-  }, [currentFolder,state,popup1, updatefolders]);
+  }, [currentFolder, state, popup1, updatefolders]);
 
   const GetFiles = async () => {
     try {
@@ -100,6 +101,9 @@ const VaultDashboard = () => {
         <div className="vaultDashButtons">
           <button className="vaultDashButton" onClick={() => setpopup1(true)}>upload</button>
           <button className="vaultDashButton" onClick={() => setpopup(true)}>create</button>
+          <Link to="/folder/share/home" style={{ textDecoration: "none" }}>
+            <button className="vaultDashButton"> Share </button>
+          </Link>
         </div>
 
 
