@@ -1,7 +1,7 @@
 @import url("https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css");
+@import "../../../Theme.scss";
 
-
-.create_folder_popup {
+.upload_folder_popup {
   z-index: 1200;
   position: fixed;
   top: 0;
@@ -13,10 +13,11 @@
   justify-content: center;
   align-items: center;
 
-  .create_folder_popup-body {
+  .upload_folder_popup-body {
+    @include flexbox;
+    width: 30%;
     position: relative;
-    padding-top: 20px;
-    padding-right: 20px;
+    padding: 20px;
     border-radius: 5px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     background-color: white;
@@ -34,13 +35,12 @@
     }
   }
 }
-.create_folder {
-  
+.upload_folder {
+  @include flexbox;
 
-  .create_folder_box {
+  .upload_folder_box {
     margin-top: 20px;
     background: #fff;
-    background-color: aqua;
     border-left-color: blue;
     margin-bottom: 10px;
     padding:10px;
@@ -49,19 +49,8 @@
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    h5 {
-      font-weight: 700;
-      font-size: 25px;
-      text-align: center;
-      color: #0F96C3;
-    }
-    form {
-      margin-top: -20px;
-      font-size: 15px;
-      margin-left: -10px;
-      text-align: center;
 
-      input {
+      .custom-file-input {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -70,19 +59,19 @@
         border-radius: 4px;
         box-sizing: border-box;
       
-      input[type="file"] {
+      .custom-file-input[type="file"] {
         background-color: #0F96C3;
         color: white;
       }
-      input[type="submit"] {
-        background-color: #0F96C3;
-        color: white;
-      }
+   
+    }
+    .submit-btn{
+      width: 100%;
     }
 
     }
   }
-}
+
 
 @keyframes load {
     0%{
