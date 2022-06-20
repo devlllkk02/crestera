@@ -26,6 +26,7 @@ import Share from "./pages/SharePage/SharePage";
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 
 import VaultDashboard from "./pages/Vault/VaultDashboard";
+import VaultShareDashboard from "./pages/Vault/VaultShareDashboard";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
@@ -86,6 +87,7 @@ const Routing = () => {
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
+      <Route exact path="/folder/share/:folderId" element={<VaultShareDashboard />} />
       <Route exact path="/vaultfileshare/" element={<VaultFileSharePage />} />
       <Route exact path="/vaultfoldershare/:folderId" element={<VaultFolderSharePage />}/>
 
