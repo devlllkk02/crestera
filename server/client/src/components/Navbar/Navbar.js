@@ -4,10 +4,10 @@ import "./Navbar.scss";
 
 //Imports
 import { UserContext } from "../../App";
+import {getCircleNotification} from "../../services/AuthService";
 
 //Packages
 import { Link, NavLink } from "react-router-dom";
-import io from "socket.io-client";
 
 //Images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
@@ -40,12 +40,28 @@ function Navbar({ page }) {
     }
   };
 
-    //Estblishing Web Socker
-    // useEffect(() => {
-    //   const socket = io("/");
-    //   // console.log(socket);
-    // }, []);
+  const [circleNotifications, setCircleNotifications] = useState([]);
 
+  useEffect(()=>{
+   GetCircleNotification();
+  },[state,isOpen]);
+
+  useEffect(()=>{
+   GetCircleNotification();
+  },[]);
+
+  const GetCircleNotification = async () => { 
+   try{
+     const response = await getCircleNotification(state._id);
+     console.log(response.data.data);
+     setCircleNotifications(response.data.data);
+   }
+   catch(e){
+     console.log(e);
+   }
+
+   }
+ 
   return (
     <>
       <div className="navbar">
@@ -75,7 +91,9 @@ function Navbar({ page }) {
           <div className="navbar__notification">
             <div className="navbar__notification__container">
               <Link to="/Notification"><FontAwesomeIcon icon={faBell} className="notification__icon"/></Link>
-              <div className="notification__counter">2</div>
+              <div className="notification__counter">
+                {circleNotifications.length}
+              </div>
             </div>
           </div>
 

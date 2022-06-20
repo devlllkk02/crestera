@@ -37,8 +37,7 @@ exports.getById = (async (req, res) => {
 
 
 //add member
-
-exports.addFolderMember = async function (req, res) {
+exports.addMember = async function (req, res) {
     const member = {
       member: req.body.members,
       canEdit: req.body.canEdit,
@@ -52,3 +51,29 @@ exports.addFolderMember = async function (req, res) {
       }
     );
   };
+
+//add circle
+exports.addCircle = async function (req, res) {
+  const circle = {
+    circle: req.body.circles,
+    canEdit: req.body.canEdit,
+  };
+  Folder.findByIdAndUpdate(
+    req.body.id,
+    { $push: { circles : circle } },
+    { new: true },
+    (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+    }
+  );
+};
+
+// Get shared folders of user using member
+exports.getAllMember = async (req, res) => {
+  UserCircle.find( { members: { $elemMatch: { member : req.params.id } }},(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+  .sort({ addedOn: -1 })
+  .populate('addedBy', 'firstName lastName')
+  .populate('motherFolder', 'name')
+};

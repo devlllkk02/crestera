@@ -26,19 +26,18 @@ import Share from "./pages/SharePage/SharePage";
 // import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
 
 import VaultDashboard from "./pages/Vault/VaultDashboard";
-import WhiteboardShare from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
-// import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
 import Whiteboard from "./components/Whiteboard/Whiteboard";
 import VaultFolderSharePage from "./pages/Vault/VaultSharePage/VaultFolderSharePage";
 import VaultFileSharePage from "./pages/Vault/VaultSharePage/VaultFileSharePage";
 import FileDownloadPage from "./pages/Vault/FileDownloadPage/FileDownloadPage";
-
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import ScrollToTop from "./utils/ScrollToTop";
+import ShareNotePage from "./pages/ShareNotePage/ShareNotePage";
+import ShareBoardPage from "./pages/ShareBoardPage/ShareBoardPage";
 
 export const UserContext = createContext();
 
@@ -73,38 +72,31 @@ const Routing = () => {
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
       <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
       <Route exact path="/share" element={<Share/>} />
+      <Route
+        exact
+        path="/downloadpage/:fileId"
+        element={<FileDownloadPage />}
+      />
 
       {/* User Circles */}
-      <Route
-        exact
-        path="/usercircle/:usercircleId"
-        element={<UserCirclePage />}
-      />
+      <Route exact path="/usercircle/:usercircleId" element={<UserCirclePage />}/>
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
-      <Route
-        exact
-        path="/usercirclescreate"
-        element={<UserCirclesCreatePage />}
-      />
-      <Route
-        exact
-        path="/usercirclescreate"
-        element={<UserCirclesCreatePage />}
-      />
+      <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />}/>
+      <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />} />
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
       <Route exact path="/vaultfileshare/" element={<VaultFileSharePage />} />
-      <Route
-        exact
-        path="/vaultfoldershare/:folderId"
-        element={<VaultFolderSharePage />}
-      />
+      <Route exact path="/vaultfoldershare/:folderId" element={<VaultFolderSharePage />}/>
 
       {/* Note */}
       <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board/:boardId" element={<Whiteboard />} />
+
+      {/* Share */}
+      <Route exact path="share/note/:Id" element={<ShareNotePage />} />
+      <Route exact path="share/board/:Id" element={<ShareBoardPage />} />
 
       {/* Notification */}
       <Route exact path="/Notification" element={<Notification />} />

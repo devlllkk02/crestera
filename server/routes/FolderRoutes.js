@@ -27,6 +27,13 @@ router.get('/:id', (req, res) =>  FolderController.getByID(req, res));
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.FOLDER, res));
 
+//add member
+router.put('/member', (req, res) => FolderController.addMember(req, res));
 
+//add circle
+router.put('/circle', (req, res) => FolderController.addCircle(req, res));
+
+// Get by id
+router.get('/share/member/:id', (req, res) =>  FolderController.getAllMember(req, res));
 
 module.exports=router;

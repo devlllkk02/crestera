@@ -47,13 +47,9 @@ exports.addMember = async function (req, res) {
 
 //remove member
 exports.removeMember = async function (req, res) {
-  const member = {
-    member: req.body.members,
-  };
-
   UserCircle.findByIdAndUpdate(
     req.body.id,
-    { $pull: { members: member } },
+    { $pull: { "members": {member:req.body.memberId} } },
     { new: true },
     (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
@@ -80,9 +76,8 @@ exports.updatePeding = async function (req, res) {
   console.log(req.body);
 
   UserCircle.updateOne(
-    { 'members._id': req.body.memberId },
+    { 'members.member': req.body.memberId , '_id':req.body.circleId},
     { $set: { 'members.$.isPending': req.body.isPending } },
-    { new: true },
     (err, doc) => {
       ResponseService.generalResponse(err, res);
     }
@@ -115,12 +110,38 @@ exports.getUsersNotAddedToUserCircle = async (req, res) => {
     filteredIds = userIds.filter((item) => {
       return !memberIds.includes(item);
     });
-
     const filteredUsers = await User.find({ _id: { $in: filteredIds } });
-
     // console.log(`User Ids: ${userIds} \nMemeber Ids: ${memberIds} \nFiltered Ids: ${filteredIds}`);
     res.send(filteredUsers);
   } catch (error) {
     console.log(error);
   }
+};
+
+// Get notification
+exports.getNotification = (async (req, res) => {
+  const uid = req.params.id;
+  UserCircle.find( { members: { $elemMatch: { member : uid , isPending: "true" } } }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+  })
+});
+
+// Get All  public Circles
+exports.getAllPublic = async (req, res) => {
+  UserCircle.find( { isPublic : "true"  },(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+    .sort({ addedOn: -1 })
+    .populate('addedBy', 'firstName lastName')
+    .populate('members.member', 'firstName lastName ');
+};
+
+// Get All private Circles of user
+exports.getAllPrivate = async (req, res) => {
+  UserCircle.find( { members: { $elemMatch: { member : req.params.id , isPending: "false" } } , isPublic : "false" },(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+    .sort({ addedOn: -1 })
+    .populate('addedBy', 'firstName lastName')
+    .populate('members.member', 'firstName lastName ');
 };
