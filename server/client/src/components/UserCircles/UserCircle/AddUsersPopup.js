@@ -14,36 +14,24 @@ const AddUsersPopup = ({ trigger, settrigger, ID, circlemembers }) => {
   //Users
   useEffect(() => {
     GetUsers();
-    console.log(circlemembers);
+    // console.log(circlemembers);
   }, []);
 
-
   //Get Users
-  const GetUsers = async () => {
-    try {
-      const response = await getUsers();
-      console.log(response.data.data);
-      setUsers(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
+  const GetUsers = () => {
+
+    fetch(`/v1/crestera/circles/circle/${ID}`, {
+      method: 'get',
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("hi")
+        console.log(result)
+        setUsers(result)
+      })
+      .catch((error) => console.log(error));
   };
 
-  // const FilterUsers = () => {
-  //    const options= {users.map((user) => ({
-  //                 let flag = 0;
-                  
-  //                 circlemembers.map((member) => ({
-  //                  if(member._id == user._id)
-  //                  flag =1;
-  //                 }))
-
-  //                 value: user._id,
-  //                 label: `${user.firstName} ${user.lastName} `,
-  //                 if(flag==1)
-  //                 disabled: true,
-  //               }))}
-  // };
 
   const addmember = async (member) => {
     try {
@@ -52,7 +40,7 @@ const AddUsersPopup = ({ trigger, settrigger, ID, circlemembers }) => {
         id: ID,
       });
       settrigger(false);
-      console.log(response);
+      // console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -60,7 +48,7 @@ const AddUsersPopup = ({ trigger, settrigger, ID, circlemembers }) => {
   const handleSubmit = () => {
     const members = [];
     selected.map((select) => members.push(select['value']));
-    console.log(members);
+    // console.log(members);
 
     members.map((member) => addmember(member));
   };
@@ -77,7 +65,7 @@ const AddUsersPopup = ({ trigger, settrigger, ID, circlemembers }) => {
               <h1>ADD USERS</h1>
             </div>
             <div className="addusers__searchbox1">
-             <MultiSelect 
+              <MultiSelect
                 options={users.map((user) => ({
                   value: user._id,
                   label: `${user.firstName} ${user.lastName} `,

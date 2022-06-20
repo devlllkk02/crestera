@@ -67,7 +67,7 @@ function UserCircles() {
   const GetCircles  = async () => {
 		try {
 			const response = await getCircles ();
-			console.log(response.data.data);
+			// console.log(response.data.data);
 			setUserCircles(response.data.data);
 		} catch (e) {
 			console.log(e);

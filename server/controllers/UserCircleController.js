@@ -1,4 +1,5 @@
 //Imports
+const User = require('../models/User');
 const UserCircle = require('../models/UserCircle');
 const ResponseService = require('../utils/ResponseService'); // Response service
 
@@ -15,19 +16,16 @@ exports.getAll = async (req, res) => {
   })
     .sort({ addedOn: -1 })
     .populate('addedBy', 'firstName lastName')
-    .populate('members.member','firstName lastName ');
-
+    .populate('members.member', 'firstName lastName ');
 };
-
 
 exports.getById = function (req, res) {
   UserCircle.findById(req.params.id, (err, doc) => {
-      ResponseService.generalPayloadResponse(err, doc, res);
+    ResponseService.generalPayloadResponse(err, doc, res);
   })
-  .populate('addedBy', 'firstName lastName')
-  .populate('members.member','firstName lastName image');
-      
-}
+    .populate('addedBy', 'firstName lastName')
+    .populate('members.member', 'firstName lastName image');
+};
 
 //add member
 exports.addMember = async function (req, res) {
@@ -35,9 +33,13 @@ exports.addMember = async function (req, res) {
     member: req.body.members,
     isAdmin: req.body.isAdmin,
     isPending: req.body.isPending,
-    isOwner: req.body.isOwner
+    isOwner: req.body.isOwner,
   };
-  UserCircle.findByIdAndUpdate(req.body.id, { $push: { members: member } }, { new: true },(err, doc) => {
+  UserCircle.findByIdAndUpdate(
+    req.body.id,
+    { $push: { members: member } },
+    { new: true },
+    (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
     }
   );
@@ -45,8 +47,15 @@ exports.addMember = async function (req, res) {
 
 //remove member
 exports.removeMember = async function (req, res) {
-  
-  UserCircle.findByIdAndUpdate(req.body.id, { $pull: { members: req.body.members } }, { new: true },(err, doc) => {
+  const member = {
+    member: req.body.members,
+  };
+
+  UserCircle.findByIdAndUpdate(
+    req.body.id,
+    { $pull: { members: member } },
+    { new: true },
+    (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
     }
   );
@@ -54,24 +63,64 @@ exports.removeMember = async function (req, res) {
 
 //update member
 exports.updateMember = async function (req, res) {
-  console.log(req.body)
+  console.log(req.body);
 
   UserCircle.updateOne(
-      { 'members._id' : req.body.memberId },
-      { $set: { 'members.$.isAdmin': req.body.isAdmin} },
-      {new: true},(err, doc) => {
-            ResponseService.generalResponse(err, res, "member updated successfully");
-        });
-      };
+    { 'members._id': req.body.memberId },
+    { $set: { 'members.$.isAdmin': req.body.isAdmin } },
+    { new: true },
+    (err, doc) => {
+      ResponseService.generalResponse(err, res, 'member updated successfully');
+    }
+  );
+};
 
 //update is pending
 exports.updatePeding = async function (req, res) {
-  console.log(req.body)
+  console.log(req.body);
 
   UserCircle.updateOne(
-      { 'members._id' : req.body.memberId },
-      { $set: { 'members.$.isPending': req.body.isPending} },
-      {new: true},(err, doc) => {
-            ResponseService.generalResponse(err, res);
-        });
-      };
+    { 'members._id': req.body.memberId },
+    { $set: { 'members.$.isPending': req.body.isPending } },
+    { new: true },
+    (err, doc) => {
+      ResponseService.generalResponse(err, res);
+    }
+  );
+};
+
+//get users not added to a user circle
+exports.getUsersNotAddedToUserCircle = async (req, res) => {
+  try {
+    const users = await User.find().select('_id');
+    const usercircle = await UserCircle.findById(req.params.circleId)
+      .populate('members.member')
+      .select('members');
+
+    const userIds = [];
+    const memberIds = [];
+    var filteredIds = [];
+
+    //Getting All User Ids
+    users.forEach((user) => {
+      userIds.push(user._id.toString());
+    });
+
+    //Getting All Member Ids
+    usercircle.members.forEach((member) => {
+      memberIds.push(member.member._id.toString());
+    });
+
+    //Filtering Ids
+    filteredIds = userIds.filter((item) => {
+      return !memberIds.includes(item);
+    });
+
+    const filteredUsers = await User.find({ _id: { $in: filteredIds } });
+
+    // console.log(`User Ids: ${userIds} \nMemeber Ids: ${memberIds} \nFiltered Ids: ${filteredIds}`);
+    res.send(filteredUsers);
+  } catch (error) {
+    console.log(error);
+  }
+};
