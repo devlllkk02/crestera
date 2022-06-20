@@ -40,16 +40,6 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
     }
   };
 
-  // const handleRemoveMember = async (memberId) => {
-  //   try {
-  //     const response = await removeMember({
-  //       members: memberId,
-  //       id: usercircleId,
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
   const handleRemoveMember = async (memberId) => {
     console.log(memberId)
     await removeMember({

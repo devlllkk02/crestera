@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddUsersPopup from '../../AddUsersPopup';
 
-function UserCircleSearch({ page, ID, usercircleMembers }) {
+function UserCircleSearch({ page, ID, usercircleMembers, search, setSearch}) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -93,7 +93,8 @@ function UserCircleSearch({ page, ID, usercircleMembers }) {
         circlemembers={usercircleMembers}
       ></AddUsersPopup>
       <div className="usercircleSearch__searchbox2">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" value={search}
+          onChange={(e) => setSearch(e.target.value)} />
         <div className="usercircleSearch__searchbox1__icon">
           <FontAwesomeIcon icon={faSearch} />
         </div>
