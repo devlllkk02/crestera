@@ -22,19 +22,6 @@ function WhiteboardShare({ID, shareMembers, refresh, setRefresh}) {
     console.log(shareMembers);
   }, []);
 
-  
-  // const handleUpdateMember = async(memberId) => {
-  //   try{
-  //     const response = await updateMember({
-  //       memberId: memberId
-  //     });
-  //     console.log(response);
-  //     setRefresh(!refresh);
-  //   }catch(e){
-  //     console.log(e);
-  //   }
-  // }
-
   return (
     <div className="boardshare">
       <div className="boardshare_header">
