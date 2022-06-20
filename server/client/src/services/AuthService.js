@@ -142,6 +142,24 @@ export const addMember = (data) => {
     });
 };
 
+// export const addFolderMember = (data) => {
+//     return axios.put(baseUrl + 'folders/member', data, {
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     });
+// };
+
+//remove member form user circle
+export const removeMember = (data) => {
+    return axios.put(baseUrl + 'circles/member/remove', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+
 
 export const updateMember = (data) => {
     return axios.patch(baseUrl + 'circles/member/update', data, {

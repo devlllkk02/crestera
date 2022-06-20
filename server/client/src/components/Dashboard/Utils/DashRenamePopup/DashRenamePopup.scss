@@ -1,0 +1,71 @@
+// ------ dashRenamePopup ------
+@import "../../../../Theme.scss";
+
+.dashRenamePopup {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color: $black, $alpha: 0.3);
+
+  @include flexbox;
+
+  position: fixed;
+  top: 0px;
+  z-index: 5;
+
+  .dashRenamePopup__container {
+    width: 500px;
+    height: 230px;
+    background-color: $white;
+
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px -2px $form-black;
+
+    padding: 10px;
+
+    .dashRenamePopup__title {
+      width: 100%;
+      height: 70px;
+      //   background-color: lightgreen;
+      @include flexbox;
+      position: relative;
+
+      p {
+        color: $grey;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: $font-large;
+      }
+
+      .dashRenamePopup__title__icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: $grey;
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    .dashRenamePopup__text {
+      width: 100%;
+      height: 100px;
+      //   background-color: lightcoral;
+      @include flexbox;
+      flex-direction: column;
+
+      input {
+        @include textbox;
+        width: 80%;
+      }
+    }
+    .dashRenamePopup__button {
+      width: 100%;
+      height: 60px;
+      //   background-color: lightgreen;
+      @include flexbox;
+
+      button {
+        @include ButtonBlueDark;
+      }
+    }
+  }
+}

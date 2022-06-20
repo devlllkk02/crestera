@@ -81,3 +81,49 @@ exports.getRecommendedBoardsController = async (req, res) => {
     console.log(error);
   }
 };
+
+//Get One Board
+exports.getSingleBoardController = (req, res) => {
+  Board.findById(req.params.boardId)
+    .populate("createdBy", "-password")
+    .then((board) => res.send(board))
+    .catch((error) => {
+      console.log(error);
+      res.status(422).json({ error: "Invalid board id!" });
+    });
+};
+
+//Update One Board
+exports.updateSingleBoardController = (req, res) => {
+  Board.findByIdAndUpdate(req.params.boardId, req.body, { new: true }).exec(
+    (error, result) => {
+      if (error) return res.status(422).json({ error: error });
+      else res.send(result);
+    }
+  );
+};
+
+//Delete One Board
+exports.deleteSingleBoardController = async (req, res) => {
+  try {
+    const board = await Board.findOne({ _id: req.params.boardId }).exec();
+
+    if (board.createdBy._id.toString() === req.user._id.toString()) {
+      const removedBoard = await board.remove();
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $inc: { boardCount: -1 },
+        },
+        { new: true }
+      );
+      res.json({
+        message: "Board deleted successfully!",
+        removedBoard: removedBoard,
+        updatedUser: updatedUser,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

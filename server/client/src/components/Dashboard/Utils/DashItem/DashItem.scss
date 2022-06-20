@@ -9,6 +9,7 @@
   @include flexbox;
   border-bottom: $borderGreyLight;
   margin-bottom: 5px;
+  position: relative;
 
   .dashItem__fileIcon {
     width: 70px;
@@ -82,6 +83,50 @@
     .dashItem__setings__container {
       cursor: pointer;
       color: $grey;
+    }
+  }
+  .dashItem__dropdown {
+    width: 150px;
+    height: 100px;
+    // background-color: lightgreen;
+    background-color: $white;
+    border: $borderGreyLight;
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    bottom: -110px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 10px -10px rgba($grey, 0.3),
+      0px -8px 10px -10px rgba($grey, 0.3);
+    padding: 0px 10px;
+
+    @include flexbox;
+    flex-direction: column;
+    .dashItem__dropdown__item {
+      width: 100%;
+      height: 40px;
+      background-color: lightcoral;
+      background-color: $white;
+      @include flexbox;
+      // border-bottom: $borderGreyLight;
+      .dashItem__dropdown__item__icon {
+        width: 40px;
+        height: 100%;
+        background-color: lightblue;
+        background-color: $white;
+        @include flexbox;
+        color: $greyIconsDark;
+      }
+      .dashItem__dropdown__item__text {
+        width: 110px;
+        height: 100%;
+        background-color: lightseagreen;
+        background-color: $white;
+        @include flexbox;
+        justify-content: flex-start;
+        padding-left: 10px;
+        cursor: pointer;
+      }
     }
   }
 }

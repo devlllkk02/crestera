@@ -41,10 +41,10 @@ function Navbar({ page }) {
   };
 
     //Estblishing Web Socker
-    useEffect(() => {
-      const socket = io("http://localhost:8000");
-      console.log(socket);
-    }, []);
+    // useEffect(() => {
+    //   const socket = io("/");
+    //   // console.log(socket);
+    // }, []);
 
   return (
     <>

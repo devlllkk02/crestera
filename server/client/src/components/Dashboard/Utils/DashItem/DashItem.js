@@ -1,5 +1,5 @@
 // ------ DashItem  ------
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./DashItem.scss";
 
 //Images
@@ -11,10 +11,46 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisVertical,
+  faPencil,
+  faTrash,
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 
-function DashItem({ _id, fileIcon, fileName, title1, title2, shared }) {
+function DashItem({
+  _id,
+  fileIcon,
+  fileName,
+  title1,
+  title2,
+  shared,
+  currentItemID,
+  setCurrentItem,
+  renamePopup,
+  setRenamePopup,
+  deletePopup,
+  setDeletePopup,
+}) {
+  const dropdownRef = useRef(null);
+  const [hidden, setHidden] = useState(true);
+
+  useEffect(() => {
+    document.addEventListener("click", handleDropdownClick, true);
+
+    return () =>
+      document.removeEventListener("click", handleDropdownClick, true);
+  }, []);
+
+  const handleDropdownClick = (e) => {
+    if (!dropdownRef.current.contains(e.target)) {
+      // console.log("Clicked Outside!");
+      setHidden(true);
+      setCurrentItem("");
+    } else {
+      setHidden(true);
+      // console.log("Clicked Inside!");
+    }
+  };
+
   return (
     <div className="dashItem">
       <div className="dashItem__fileIcon">
@@ -40,8 +76,36 @@ function DashItem({ _id, fileIcon, fileName, title1, title2, shared }) {
         <p>{`${title2.month.short} ${title2.date}, ${title2.year}`}</p>
       </div>
       <div className="dashItem__setings">
-        <div className="dashItem__setings__container">
+        <div
+          className="dashItem__setings__container"
+          onClick={() => {
+            setHidden(!hidden);
+            setCurrentItem({ _id: _id, fileType: fileIcon });
+          }}
+        >
           <FontAwesomeIcon icon={faEllipsisVertical} />
+        </div>
+      </div>
+      <div
+        className="dashItem__dropdown"
+        style={hidden ? { display: "none" } : { display: "flex" }}
+        ref={dropdownRef}
+      >
+        <div className="dashItem__dropdown__item">
+          <div className="dashItem__dropdown__item__icon">
+            <FontAwesomeIcon icon={faPencil} />
+          </div>
+          <div className="dashItem__dropdown__item__text">
+            <p onClick={() => setRenamePopup("flex")}>Rename</p>
+          </div>
+        </div>
+        <div className="dashItem__dropdown__item">
+          <div className="dashItem__dropdown__item__icon">
+            <FontAwesomeIcon icon={faTrash} />
+          </div>
+          <div className="dashItem__dropdown__item__text">
+            <p onClick={() => setDeletePopup("flex")}>Delete</p>
+          </div>
         </div>
       </div>
     </div>
