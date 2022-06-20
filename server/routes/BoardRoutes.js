@@ -13,6 +13,7 @@ const {
   getRecommendedBoardsController,
   getSingleBoardController,
   updateSingleBoardController,
+  deleteSingleBoardController,
 } = require("../controllers/BoardController");
 
 //? ------ GET ROUTES ------
@@ -35,6 +36,18 @@ router.post("/createboard", AuthMiddleware, createBoardController);
 
 //? ------ UPDATE ROUTES ------
 //ROUTE : PUT : Update One Board
-router.put("/updateboard/:boardId", AuthMiddleware, updateSingleBoardController);
+router.put(
+  "/updateboard/:boardId",
+  AuthMiddleware,
+  updateSingleBoardController
+);
+
+//? ------ DELETE ROUTES ------
+//ROUTE : DELETE : Delete One Board
+router.delete(
+  "/deleteboard/:boardId",
+  AuthMiddleware,
+  deleteSingleBoardController
+);
 
 module.exports = router;
