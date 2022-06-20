@@ -176,7 +176,7 @@ function Signup() {
             />
             <span>Sign up with Google</span>
           </button> */}
-          <div id="signUp-element"></div>
+          <div id="signUp-element" style={{ margin: "7px 0px" }}></div>
           <p>Already Have An Account?</p>
 
           <div className="signup__login__link">
