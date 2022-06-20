@@ -50,12 +50,13 @@ Crestera
 Follow the follwing steps to begin development.
 
 1. Clone this repository.
+1. cd server. 
 1. cd client.
 1. Run `npm install`.
 1. Test locally using `npm start` command. //start Frontend 
 1. cd server. 
 1. Run `npm install`.
-1. Test locally using `npm start` command. //start Backend 
+1. Test locally using `npm run dev` command. //start Backend 
 
 note 
 if you haven't install globally install it 
