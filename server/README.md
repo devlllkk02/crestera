@@ -10,9 +10,8 @@
 1. NodeJS express sever.
 1. MongoDB.
 1. React.
-1. Ant design.
+1. socket.io.
 1. Sass.
-1. styled component
 
 ## Folder/file structure
 
