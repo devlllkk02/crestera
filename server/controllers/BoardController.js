@@ -102,3 +102,28 @@ exports.updateSingleBoardController = (req, res) => {
     }
   );
 };
+
+//Delete One Board
+exports.deleteSingleBoardController = async (req, res) => {
+  try {
+    const board = await Board.findOne({ _id: req.params.boardId }).exec();
+
+    if (board.createdBy._id.toString() === req.user._id.toString()) {
+      const removedBoard = await board.remove();
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $inc: { boardCount: -1 },
+        },
+        { new: true }
+      );
+      res.json({
+        message: "Board deleted successfully!",
+        removedBoard: removedBoard,
+        updatedUser: updatedUser,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

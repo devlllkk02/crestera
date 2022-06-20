@@ -107,9 +107,17 @@ exports.deleteSingleNoteController = async (req, res) => {
 
     if (note.createdBy._id.toString() === req.user._id.toString()) {
       const removedNote = await note.remove();
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $inc: { noteCount: -1 },
+        },
+        { new: true }
+      );
       res.json({
         message: "Note deleted successfully!",
         removedNote: removedNote,
+        updatedUser: updatedUser,
       });
     }
   } catch (error) {
