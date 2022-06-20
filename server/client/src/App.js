@@ -19,22 +19,14 @@ import UserEditPage from "./pages/UserEditPage/UserEditPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import OtherUserProfile from "./components/OtherUserProfile/otherProfile";
 import Notification from "./components/Notification/Notification";
-
-// import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
-// import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
-// import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
-
 import VaultDashboard from "./pages/Vault/VaultDashboard";
-import WhiteboardShare from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
-// import VaultSharePage from "./pages/Vault/VaultSharePage/VaultSharePage";
 import Whiteboard from "./components/Whiteboard/Whiteboard";
 import VaultFolderSharePage from "./pages/Vault/VaultSharePage/VaultFolderSharePage";
 import VaultFileSharePage from "./pages/Vault/VaultSharePage/VaultFileSharePage";
 import FileDownloadPage from "./pages/Vault/FileDownloadPage/FileDownloadPage";
-
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import ScrollToTop from "./utils/ScrollToTop";
@@ -73,22 +65,10 @@ const Routing = () => {
       <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
 
       {/* User Circles */}
-      <Route
-        exact
-        path="/usercircle/:usercircleId"
-        element={<UserCirclePage />}
-      />
+      <Route exact path="/usercircle/:usercircleId" element={<UserCirclePage />}/>
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
-      <Route
-        exact
-        path="/usercirclescreate"
-        element={<UserCirclesCreatePage />}
-      />
-      <Route
-        exact
-        path="/usercirclescreate"
-        element={<UserCirclesCreatePage />}
-      />
+      <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />}/>
+      <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />} />
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />

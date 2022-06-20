@@ -33,5 +33,7 @@ router.put('/member', (req, res) => FolderController.addMember(req, res));
 //add circle
 router.put('/circle', (req, res) => FolderController.addCircle(req, res));
 
+// Get by id
+router.get('/share/member/:id', (req, res) =>  FolderController.getAllMember(req, res));
 
 module.exports=router;

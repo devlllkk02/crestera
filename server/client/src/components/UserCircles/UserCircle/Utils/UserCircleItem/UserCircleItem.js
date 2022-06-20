@@ -57,8 +57,6 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
             <div key={member._id} className="usercircleItem" disabled>
               <div className="usercircleItem__fileIcon">
             <img src={member.member && member.member.image}/> 
-            {/* name={`${member.member && member.member.firstName} ${member.member && member.member.lastName} `}
-        /> */}
               </div>
               <div className="usercircleItem__fileName">
                 <p>

@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "76b295d1-42ee-48f7-99e4-8bcb6e93ca3f",
 		"name": "crestera",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7986605"
 	},
 	"item": [
 		{
@@ -15,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"foldername\",\r\n    \"addedOn\":\"2022-03-14T23:00:00Z\"\r\n}",
+							"raw": "{\r\n    \"name\":\"vidith\",\r\n    \"addedOn\":\"2022-03-14T23:00:00Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +46,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/folders/",
+							"raw": "http://localhost:5000/v1/crestera/folders/folderId",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -55,7 +56,7 @@
 								"v1",
 								"crestera",
 								"folders",
-								""
+								"folderId"
 							]
 						}
 					},
@@ -67,7 +68,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/folders//62320c1eb6f2d983fd580214",
+							"raw": "http://localhost:5000/v1/crestera/folders/62320e64ab3cc8082ef2e174",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -77,8 +78,7 @@
 								"v1",
 								"crestera",
 								"folders",
-								"",
-								"62320c1eb6f2d983fd580214"
+								"62320e64ab3cc8082ef2e174"
 							]
 						}
 					},
@@ -114,6 +114,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add members",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"62a9ba75ccc18e8c8d785ca5\",\r\n    \"members\" : \"62a10624416e5305e0150740\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/folders/member",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"folders",
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add circles",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"62a9ba75ccc18e8c8d785ca5\",\r\n    \"circles\" : \"62ac262b1f76283b50c99ce0\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/folders/circle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"folders",
+								"circle"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -126,13 +188,29 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"fileName\",\r\n    \"addedOn\":\"2022-03-14T23:00:00Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myFile",
+									"type": "file",
+									"src": "/C:/Users/HP/Downloads/File Icon.png"
+								},
+								{
+									"key": "addedOn",
+									"value": "2022-03-14T23:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "addedBy",
+									"value": "62a10624416e5305e0150740",
+									"type": "text"
+								},
+								{
+									"key": "motherFolder",
+									"value": "62a9ba75ccc18e8c8d785ca5",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:5000/v1/crestera/files/",
@@ -157,7 +235,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/files/",
+							"raw": "http://localhost:5000/v1/crestera/files/fileId",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -167,7 +245,29 @@
 								"v1",
 								"crestera",
 								"files",
-								""
+								"fileId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/files/62ab4e7e8c29e10d9dd861fe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"files",
+								"62ab4e7e8c29e10d9dd861fe"
 							]
 						}
 					},
@@ -200,8 +300,28 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addedOn",
+									"value": "2022-03-14T23:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "62ab42e4af2712f6b5dcbfce",
+									"type": "text"
+								},
+								{
+									"key": "addedBy",
+									"value": "62a10624416e5305e0150740",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/files/123",
+							"raw": "http://localhost:5000/v1/crestera/files/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -211,7 +331,35 @@
 								"v1",
 								"crestera",
 								"files",
-								"123"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get files of user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/files/fileId?uid=62a10624416e5305e0150740",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"files",
+								"fileId"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "62a10624416e5305e0150740"
+								}
 							]
 						}
 					},
@@ -281,7 +429,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/users/123",
+							"raw": "http://localhost:5000/v1/crestera/users/6233479f76ee9735c13976a4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -291,7 +439,7 @@
 								"v1",
 								"crestera",
 								"users",
-								"123"
+								"6233479f76ee9735c13976a4"
 							]
 						}
 					},
@@ -304,7 +452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\":\"6232030c521d4e16704ff2d6\",\r\n    \"firstName\":\"firstName\",\r\n    \"lastName\":\"lastName\",\r\n    \"bio\":\"this is bio\",\r\n    \"email\":\"email@gmail.com\",\r\n    \"mobileNo\":\"94000000000\",\r\n    \"gender\":\"male\",\r\n    \"dob\":\"1999-01-20T23:00:00Z\"\r\n}",
+							"raw": "{\r\n    \"_id\":\"62a10624416e5305e0150740\",\r\n    \"firstName\":\"Janith Thenuka\",\r\n    \"lastName\":\"Herath\",\r\n    \"bio\":\"this is my bio\",\r\n    \"email\":\"janith@gmail.com\",\r\n    \"mobileNo\":\"94000000000\",\r\n    \"gender\":\"male\",\r\n    \"dob\":\"1999-01-20T23:00:00Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -365,7 +513,75 @@
 					"response": []
 				},
 				{
-					"name": "get all circles",
+					"name": "get notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/circles/notification/62a567657c28944af8f5180b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"circles",
+								"notification",
+								"62a567657c28944af8f5180b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get circle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/circles/62ac5a621f76283b50c99da0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"circles",
+								"62ac5a621f76283b50c99da0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all public circles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/circles/public/circles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"circles",
+								"public",
+								"circles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all private circles of user",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -413,8 +629,47 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:5000/v1/crestera/circles/123",
+							"raw": "http://localhost:5000/v1/crestera/circles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"crestera",
+								"circles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add member to circle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/crestera/circles/member",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -424,7 +679,7 @@
 								"v1",
 								"crestera",
 								"circles",
-								"123"
+								"member"
 							]
 						}
 					},
