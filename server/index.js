@@ -3,9 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const http = require("http");
-const socketIOConnect = require("./config/socket");
 const cloudinary = require("cloudinary");
-const AdmZip = require("adm-zip");
 const PORT = process.env.PORT || 5000;
 const {
   CLOUDINARY_API_CLOUD,
@@ -44,17 +42,6 @@ cloudinary.config({
   api_secret: CLOUDINARY_API_SECRET,
 });
 
-//Modles
-require("./models/User");
-require("./models/Note");
-require("./models/Board");
-
-//Routes
-app.use(require("./routes/AuthRoutes"));
-app.use(require("./routes/NoteRoutes"));
-app.use(require("./routes/BoardRoutes"));
-app.use(require("./routes/MainDashboardRoutes"));
-app.use(require("./routes/ShareRoutes"));
 
 //? User Routes
 app.use("/v1/crestera/users", require("./routes/UserRoutes"));
@@ -68,6 +55,35 @@ app.use("/v1/crestera/notes", require("./routes/NoteRoutes"));
 app.use("/v1/crestera/folders", require("./routes/FolderRoutes"));
 //? File Routes
 app.use("/v1/crestera/files", require("./routes/FileRoutes"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Modles
+require("./models/User");
+require("./models/Note");
+require("./models/Board");
+
+//Routes
+app.use(require("./routes/AuthRoutes"));
+app.use(require("./routes/NoteRoutes"));
+app.use(require("./routes/BoardRoutes"));
+app.use(require("./routes/MainDashboardRoutes"));
+app.use(require("./routes/ShareRoutes"));
+
+
 
 //Deploy to Heroku
 if (process.env.NODE_ENV == "production") {
