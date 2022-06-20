@@ -27,6 +27,8 @@ function DashItem({
   setCurrentItem,
   renamePopup,
   setRenamePopup,
+  deletePopup,
+  setDeletePopup,
 }) {
   const dropdownRef = useRef(null);
   const [hidden, setHidden] = useState(true);
@@ -44,6 +46,7 @@ function DashItem({
       setHidden(true);
       setCurrentItem("");
     } else {
+      setHidden(true);
       // console.log("Clicked Inside!");
     }
   };
@@ -101,7 +104,7 @@ function DashItem({
             <FontAwesomeIcon icon={faTrash} />
           </div>
           <div className="dashItem__dropdown__item__text">
-            <p>Delete</p>
+            <p onClick={() => setDeletePopup("flex")}>Delete</p>
           </div>
         </div>
       </div>

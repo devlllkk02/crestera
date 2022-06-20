@@ -1,6 +1,4 @@
-//Dash Create Popup API
-import { toast } from "react-toastify";
-import { ToastProperties } from "../../../../utils/ToastProperties";
+//Dash Rename Popup API
 
 //Get a note
 export const getANote = (noteId, setItem, setFileName) => {

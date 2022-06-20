@@ -27,6 +27,7 @@ import DashCardSkeleton from "../Utils/DashCard/DashCardSkeleton";
 import DashWelcome from "../Utils/DashWelcome/DashWelcome";
 import DashNoItems from "../Utils/DashNoItems/DashNoItems";
 import DashRenamePopup from "../Utils/DashRenamePopup/DashRenamePopup";
+import DashDeletePopup from "../Utils/DashDeletePopup/DashDeletePopup";
 
 function DashHome() {
   //Global State
@@ -45,6 +46,7 @@ function DashHome() {
   const [dropdown, setDropdown] = useState("All Documents");
 
   const [renamePopup, setRenamePopup] = useState("none");
+  const [deletePopup, setDeletePopup] = useState("none");
   const [currentItem, setCurrentItem] = useState("");
 
   //Functions
@@ -169,10 +171,15 @@ function DashHome() {
                       shared={item.shared}
                       title1={`${item.createdBy.firstName} ${item.createdBy.lastName}`}
                       title2={DateFormat(item.updatedAt)}
+                      //Current Item
                       currentItem={currentItem}
                       setCurrentItem={setCurrentItem}
+                      //Rename Popup
                       renamePopup={renamePopup}
                       setRenamePopup={setRenamePopup}
+                      //Delete Popup
+                      deletePopup={deletePopup}
+                      setDeletePopup={setDeletePopup}
                     />
                   );
                 })
@@ -198,8 +205,16 @@ function DashHome() {
           renamePopup={renamePopup}
           setRenamePopup={setRenamePopup}
           currentItem={currentItem}
-          setCurrentItem={currentItem}
-          title="Create A New Note"
+          setCurrentItem={setCurrentItem}
+        />
+      </div>
+      {/* Delete Popup */}
+      <div style={{ display: deletePopup }}>
+        <DashDeletePopup
+          deletePopup={deletePopup}
+          setDeletePopup={setDeletePopup}
+          currentItem={currentItem}
+          setCurrentItem={setCurrentItem}
         />
       </div>
     </>
