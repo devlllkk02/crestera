@@ -67,3 +67,13 @@ exports.addCircle = async function (req, res) {
     }
   );
 };
+
+// Get shared folders of user using member
+exports.getAllMember = async (req, res) => {
+  UserCircle.find( { members: { $elemMatch: { member : req.params.id } }},(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+  .sort({ addedOn: -1 })
+  .populate('addedBy', 'firstName lastName')
+  .populate('motherFolder', 'name')
+};
