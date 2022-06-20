@@ -30,6 +30,7 @@ function UserCircle() {
   const { usercircleId } = useParams();
   const [usercircle, setUserCircle] = useState([]);
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadUserCircle();
@@ -97,23 +98,9 @@ function UserCircle() {
           </div>
         </div> */}
         <div className="usercircle__search">
-          <UserCircleSearch page="crestera" ID={usercircleId} />
+          <UserCircleSearch page="crestera" ID={usercircleId}  search={search}
+          setSearch={setSearch}/>
         </div>
-        {/* <div className="usercircles_filter_box">
-          <div className="usercircles_filter_dropdown">
-            <select>
-              <option value="0">Search User</option>
-
-              <NavLink to="/SignIn">
-                <option value="1">Public Circles</option>
-              </NavLink>
-              <option value="2">Private Circles</option>
-            </select>
-          </div>
-          <div className="dropdown_icon">
-            <FontAwesomeIcon icon={faSearch} />
-          </div>
-        </div> */}
       </div>
       <div className="User_Circles_List">
         <div className="usercircle__header">
@@ -129,59 +116,6 @@ function UserCircle() {
             refresh={refresh}
             setRefresh={setRefresh}
           />
-          {/* <UserCircleItem
-            fileIcon="board"
-            fileName="Heshani Wickramarachchi"
-            shared={false}
-            image={true}
-            icon={true}
-            title1="Member"
-            title2="Jan 10, 2022"
-          />
-          <UserCircleItem
-            fileIcon="note"
-            fileName="Uththara Dushani"
-            shared={false}
-            image={true}
-            icon={true}
-            title1="Member"
-            title2="Jan 08, 2022"
-          />
-          <UserCircleItem
-            fileIcon="note"
-            fileName="Vidith Welihinda"
-            shared={false}
-            image={true}
-            icon={true}
-            title1="Member"
-            title2="Jan 07, 2022"
-          />
-
-          <UserCircleItem
-            fileIcon="board"
-            fileName="Naveen Liyanage"
-            shared={false}
-            image={true}
-            icon={true}
-            title1="Member"
-            title2="Jan 07, 2022"
-          />
-          <UserCircleItem
-            fileIcon="note"
-            fileName="Naveen Liyanage"
-            icon={true}
-            image={true}
-            title1="Member"
-            title2="Jan 05, 2022"
-          />
-          <UserCircleItem
-            fileIcon="note"
-            fileName="Naveen Liyanage"
-            icon={true}
-            image={true}
-            title1="Member"
-            title2="Jan 17, 2022"
-          /> */}
         </div>
       </div>
     </div>

@@ -34,3 +34,21 @@ exports.getById = (async (req, res) => {
         .populate('addedBy', 'firstName lastName')
         .populate('motherFolder', 'name')
 });
+
+
+//add member
+
+exports.addFolderMember = async function (req, res) {
+    const member = {
+      member: req.body.members,
+      canEdit: req.body.canEdit,
+    };
+    Folder.findByIdAndUpdate(
+      req.body.id,
+      { $push: { members: member } },
+      { new: true },
+      (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+      }
+    );
+  };
