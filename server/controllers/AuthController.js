@@ -123,3 +123,35 @@ exports.getUser = (req, res) => {
 exports.protectedController = (req, res) => {
   res.send("You are viewing protected resources!");
 };
+
+//Google Auth
+exports.googleAuthController = async (req, res) => {
+  const { firstName, lastName, email, image } = req.body;
+
+  const existingUser = await User.findOne({ email: email });
+
+  if (existingUser) {
+    const token = jwt.sign({ _id: existingUser._id }, JWT_SECRET);
+    return res.json({
+      message: "Successfully logged in!",
+      token: token,
+      user: existingUser,
+    });
+  } else {
+    const user = new User({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: "",
+      image: image,
+    });
+
+    const newUser = await user.save();
+    const token = jwt.sign({ _id: newUser._id }, JWT_SECRET);
+    return res.json({
+      message: "Successfully logged in!",
+      token: token,
+      user: newUser,
+    });
+  }
+};

@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Login.scss";
 
 import { Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastProperties } from "../../utils/ToastProperties";
 import "react-toastify/dist/ReactToastify.css";
@@ -44,6 +45,46 @@ function Login() {
       })
       .catch((error) => console.log(error));
   };
+
+  const handleGoogleAuth = (response) => {
+    let googleUser = jwt_decode(response.credential);
+
+    fetch("/googleauth", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: googleUser.given_name,
+        lastName: googleUser.family_name,
+        email: googleUser.email,
+        image: googleUser.picture,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch({ type: "USER", payload: data.user });
+        navigate("/dashboard");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //Google Authentication
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "836162203429-ti117lo7go6p2vb1imqb1tav0b6j00en.apps.googleusercontent.com",
+      callback: handleGoogleAuth,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signUp-element"), {
+      theme: "outline",
+      size: "large",
+      text: "signin_with",
+    });
+  }, []);
 
   return (
     <div className="login">
@@ -96,7 +137,7 @@ function Login() {
           </button>
 
           <hr />
-          <button type="button" className="login__form__google__btn">
+          {/* <button type="button" className="login__form__google__btn">
             <img
               src={Google}
               alt="google-logo"
@@ -104,7 +145,8 @@ function Login() {
               className="login__form__google"
             />
             <span>Sign up with Google</span>
-          </button>
+          </button> */}
+          <div id="signUp-element" style={{ margin: "7px 0px" }}></div>
           <p>Don't Have An Account?</p>
           <div className="login__signup__link">
             <Link to="/signup" style={{ textDecoration: "none" }}>

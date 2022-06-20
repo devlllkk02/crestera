@@ -6,6 +6,7 @@ const {
   loginController,
   protectedController,
   getUser,
+  googleAuthController,
 } = require("../controllers/AuthController");
 
 const AuthMiddleware = require("../middleware/AuthMiddleware");
@@ -21,5 +22,8 @@ router.get("/getuser", AuthMiddleware, getUser);
 
 //Protected
 router.get("/protected", AuthMiddleware, protectedController);
+
+//Google Auth
+router.post("/googleauth", googleAuthController);
 
 module.exports = router;
