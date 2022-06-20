@@ -7,6 +7,15 @@ import updateIsPending from "../../../services/AuthService"
 import removeMember from "../../../services/AuthService"
 
 function NotificationItem(props) {
+
+    const acceptInvitation  = async()=>{
+        try{
+
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
   return (
     <div className='notification__item'>
         <div className='notification__item__container'>
