@@ -8,7 +8,6 @@ import { getFolders, getShareFoldershome } from '../../services/AuthService';
 import FolderList from '../../components/Vault/FolderList/FolderList'
 import { UserContext } from '../../App';
 import { Link } from "react-router-dom";
-import { Color } from 'fabric/fabric-impl';
 
 const VaultShareDashboard = () => {
     const { state, dispatch } = useContext(UserContext);
