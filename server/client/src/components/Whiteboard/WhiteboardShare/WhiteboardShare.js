@@ -48,7 +48,7 @@ function WhiteboardShare(props) {
 
       <div className="boardshare_getlink">
         <div className="boardshare_getlink_header">
-          <p>GET LINK</p>
+          <p>GET LINK TO DOWNLOAD</p>
         </div>
         <div className="boardshare_getlink_body">
           <div className="boardshare__linkbox">
@@ -56,15 +56,6 @@ function WhiteboardShare(props) {
               type="text"
               placeholder="https://www.crestera.com/vault/SpN2EDHFdKjywdmwixcI"
             />
-          </div>
-          <div className="boardshare__linkaccessbox">
-            <select name="" id="">
-              <option value="">Restricted</option>
-              <option value="">Any one with the link</option>
-            </select>
-            <div className="boardshare__linkaccessbox__icon">
-              <FontAwesomeIcon icon={faChevronDown} />
-            </div>
           </div>
           <button className="boardshare_getlink_button">
             <span>COPY LINK</span>
