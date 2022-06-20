@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "@fontsource/roboto";
 import "./WhiteboardShare.scss";
-import SharePopup from "../../SharePopup/SharePopup";
-import ShareUserList from "../WhiteboardShare/ShareUserList/ShareUserList"
-import { updateMember } from "../../../services/AuthService";
+import SharePopup from "../../Share/SharePopup/SharePopup";
 
 //images
 import slideicon from "../../../assets/images/Whiteboard/slideicon.png";
-import profilePic from "../../../assets/images/other/profilePicture.jpg";
 
 //Font Awesome
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ShareUserList from "../WhiteboardShare/ShareUserList/ShareUserList";
 
+function WhiteboardShare({ID, shareMembers, refresh, setRefresh}) {
 
-function WhiteboardShare({ID, shareMember, refresh, setRefresh}) {
-
+  //const[user , setUser] = useState([]);
   const[members, setMembers] = useState([]);
   const[btnpopup, setbtnpopup] = useState(false);
 
   useEffect(() => {
-    setMembers(shareMember);
-    console.log(shareMember);
-  }, [shareMember]);
+    setMembers(shareMembers);
+    console.log(shareMembers);
+  }, []);
 
+  
   // const handleUpdateMember = async(memberId) => {
   //   try{
   //     const response = await updateMember({
@@ -90,14 +89,15 @@ function WhiteboardShare({ID, shareMember, refresh, setRefresh}) {
           className="boardshare_linkgroup_button"
           onClick={() => setbtnpopup(true)}
         >
-          <span>INVITE PEOPLE & GROUPS</span>
+          <span>SHARE WITH PEOPLE & GROUPS</span>
         </button>
-        <SharePopup
+        
+        {/* <SharePopup
           trigger={btnpopup}
           settrigger={setbtnpopup}
           ID={ID}
-          shareMembers={shareMember}
-        ></SharePopup>
+          shareMembers={shareMembers}
+        ></SharePopup> */}
       </div>
 
       <div className="boardshare_list_header">

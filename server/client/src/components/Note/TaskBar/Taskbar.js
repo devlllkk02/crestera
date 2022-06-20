@@ -7,6 +7,7 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg";
 //Pacakages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Taskbar({ fileName, onlineUsers }) {
   return (
@@ -39,7 +40,9 @@ function Taskbar({ fileName, onlineUsers }) {
           </div>
         </div>
         <div className="taskbar__share">
-          <button>SHARE</button>
+        <Link to="/share">
+        <button>SHARE</button>
+          </Link>
         </div>
         <div className="taskbar__settings">
           <div className="taskbar__settings__icon">

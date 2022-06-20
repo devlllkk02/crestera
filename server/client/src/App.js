@@ -19,6 +19,7 @@ import UserEditPage from "./pages/UserEditPage/UserEditPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import OtherUserProfile from "./pages/UserProfilePage/OtherUserProfilePage";
 import Notification from "./components/Notification/Notification";
+import Share from "./components/Share/Share";
 
 // import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
 // import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
@@ -71,6 +72,7 @@ const Routing = () => {
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
       <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
+      <Route exact path="/share" element={<Share/>} />
 
       {/* User Circles */}
       <Route
