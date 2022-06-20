@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router';
 import '@fontsource/roboto';
 import './Share.scss';
 
 import { getDateTime } from '../../../helpers/TimeHelper';
+import { formatBytes } from '../../../helpers/SizeHelper';
+import { getFile } from '../../../services/AuthService';
 
 //Images
 import fileicon from '../../../assets/images/Vault icons/FileIcon.png';
@@ -16,8 +19,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //Components
 import VaultSharePopup from '../VaultSharePopup/VaultSharePopup';
 
-function FileShare(props) {
+function FileShare() {
+  const { fileId } = useParams();
   const [btnpopup, setbtnpopup] = useState(false);
+  const [file, setFile] = useState([]);
+
+  useEffect(() => {
+    loadFile();
+  },[]);
+
+
+
+  const loadFile = async () => {
+    try {
+     // console.log(fileId);
+      const response = await getFile(fileId);
+      console.log(response.data.data);
+      setFile(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const copy = async () => {
+    await navigator.clipboard.writeText("http://localhost:3000/downloadpage/"+`${file._id}`);
+    alert('Text copied');
+  }
+
+  // const inputHandler = event => {
+  //   setText(event.target.value);
+  // }
+  
+
   return (
     <div className="vaultshare">
       <div className="vaultshare_header">
@@ -30,19 +63,19 @@ function FileShare(props) {
         <div className="vaultshare_details_list">
           <div className="vaultshare_details_name">
             <p1>Name :</p1>&nbsp;
-            <p2>File 01</p2>
+            <p2>{file.name}</p2>
           </div>
           <div className="vaultshare_details_type">
             <p1>Type :</p1>&nbsp;
-            <p2>File</p2>
+            <p2>{file.format}</p2>
           </div>
           <div className="vaultshare_details_size">
             <p1>Size:</p1>&nbsp;
-            <p2>490 MB</p2>
+            <p2>{formatBytes(file.size)}</p2>
           </div>
           <div className="vaultshare_details_datemodified">
             <p1>Date Modified :</p1>&nbsp;
-            <p2>Jan 12, 2022</p2>
+            <p2>{getDateTime(file.addedOn)}</p2>
           </div>
         </div>
       </div>
@@ -53,11 +86,11 @@ function FileShare(props) {
         <div className="vaultshare_link_body">
           <div className="vaultshare__linkbox">
             <input
-              type="text"
-              placeholder="https://www.crestera.com/vault/SpN2EDHFdKjywdmwixcI"
+              placeholder="http://localhost:3000/downloadpage/62ae02ae41abdbd4c311ca4f"
+              type="text" disabled
             />
           </div>
-          <div className="vaultshare__linkaccessbox">
+          {/* <div className="vaultshare__linkaccessbox">
             <select name="" id="">
               <option value="">Restricted</option>
               <option value="">Allow</option>
@@ -65,13 +98,13 @@ function FileShare(props) {
             <div className="vaultshare__linkaccessbox__icon">
               <FontAwesomeIcon icon={faChevronDown} />
             </div>
-          </div>
-          <button className="vaultshare_link_button">
+          </div> */}
+          <button className="vaultshare_link_button" onClick={copy} >
             <span>COPY LINK</span>
           </button>
         </div>
       </div>
-      <div className="vaultshare_link_group">
+      {/* <div className="vaultshare_link_group">
         <div className="vaultshare_link_group_header">
           <p>SHARE WITH PEOPLES & GROUPS</p>
         </div>
@@ -200,7 +233,7 @@ function FileShare(props) {
             <span>REMOVE</span>
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,0 +1,85 @@
+@import '../../../Theme.scss';
+
+.filedownload {
+  width: 100%;
+  height: 1000vh;
+
+  .filedownload_container {
+    background-color: bisque;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+    height: 500px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px -2px rgba(68, 78, 99, 0.3);
+    border-radius: 20px;
+
+    .filedownload_header{
+
+      width: 50px;
+      background-color: #ffffff;
+      display: inline-flex;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      margin-top: 40px;
+      align-items: center;
+
+      img {
+        height: 100px;
+        width: 100px;
+        // border-radius: 100%;
+        // border: 2px solid $blue;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+      }
+
+    }
+
+    h5{
+      font-weight: 700;
+      font-size: 26px;
+      text-align: center;
+      color: #0F96C3;
+    }
+    h6{
+      font-weight: 300;
+      font-size: 22px;
+      text-align: center;
+      color: $grey;
+     // font-weight: 700;
+    }
+    button.filedownload_button{
+
+      @include flexbox;
+                    margin-top: 60px;
+                    align-self: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    //background-color: #0f96c3;
+                    color: $white;
+                    background: #0f96c3;
+
+                    border: 2px solid #0f96c3;
+                    box-sizing: border-box;
+                    width: calc((100% - 210px) * 0.75);
+                    padding: 6px;
+                    vertical-align: middle;
+
+                    //height: 20px;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    // line-height: 19px;
+                    font-stretch: 1000%;
+
+                    &:hover {
+                        color: #0f96c3;
+                        background: $white;
+                    }
+    }
+  }
+}

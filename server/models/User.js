@@ -25,7 +25,6 @@ const Schema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     dob: {
       type: Date,

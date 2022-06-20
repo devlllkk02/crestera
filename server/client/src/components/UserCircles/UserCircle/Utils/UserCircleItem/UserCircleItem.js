@@ -1,7 +1,7 @@
 // ------ usercircleItem  ------
 import React, { useEffect, useState, useContext } from 'react';
 import './UserCircleItem.scss';
-import { updateMember } from '../../../../../services/AuthService';
+import { updateMember, removeMember} from '../../../../../services/AuthService';
 import { UserContext } from '../../../../../App';
 
 //Images
@@ -24,7 +24,7 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
 
   useEffect(() => {
     setMembers(usercircleMembers);
-    console.log(usercircleMembers);
+    // console.log(usercircleMembers);
   }, [usercircleMembers]);
 
   const handleUpdateMember = async (memberId, isAdmin) => {
@@ -33,12 +33,31 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
         memberId: memberId,
         isAdmin: isAdmin,
       });
-      console.log(response);
+      // console.log(response);
       setRefresh(!refresh);
     } catch (e) {
       console.log(e);
     }
   };
+
+  // const handleRemoveMember = async (memberId) => {
+  //   try {
+  //     const response = await removeMember({
+  //       members: memberId,
+  //       id: usercircleId,
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+  const handleRemoveMember = async (memberId) => {
+    console.log(memberId)
+    await removeMember({
+      members: memberId,
+      id: usercircleId,
+    });
+    setRefresh(!refresh);
+  }
 
   return (
     <div>
@@ -47,7 +66,6 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
           <>
             <div key={member._id} className="usercircleItem" disabled>
               <div className="usercircleItem__fileIcon">
-                {console.log(member)}
             <img src={member.member && member.member.image}/> 
             {/* name={`${member.member && member.member.firstName} ${member.member && member.member.lastName} `}
         /> */}
@@ -92,7 +110,7 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
               </div>
               <div className="usercircleItem__setings">
                 <div className="usercircleItem__setings__container">
-                  <button className="usercircle_remove_button">
+                  <button className="usercircle_remove_button" onClick={() => handleRemoveMember(member.member._id)}>
                     <span>REMOVE</span>
                   </button>
                 </div>

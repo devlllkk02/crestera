@@ -13,6 +13,7 @@ const {
   getRecommendedNotesController,
   getSingleNoteController,
   updateSingleNoteController,
+  deleteSingleNoteController,
 } = require("../controllers/NoteController");
 
 //? ------ GET ROUTES ------
@@ -35,6 +36,14 @@ router.post("/createnote", AuthMiddleware, createNoteController);
 
 //? ------ UPDATE ROUTES ------
 //ROUTE : PUT : Update One Note
-router.put("/update/:noteId", AuthMiddleware, updateSingleNoteController);
+router.put("/updatenote/:noteId", AuthMiddleware, updateSingleNoteController);
+
+//? ------ DELETE ROUTES ------
+//ROUTE : DELETE : Delete One Note
+router.delete(
+  "/deletenote/:noteId",
+  AuthMiddleware,
+  deleteSingleNoteController
+);
 
 module.exports = router;
