@@ -90,7 +90,7 @@ function DashSearch({
           <FontAwesomeIcon icon={faSearch} />
         </div>
       </div>
-      <div className="dashSearch__searchbox2">
+      {/* <div className="dashSearch__searchbox2">
         <select
           name=""
           id=""
@@ -104,7 +104,7 @@ function DashSearch({
         <div className="dashSearch__searchbox2__icon">
           <FontAwesomeIcon icon={faChevronDown} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -162,7 +162,12 @@ function Editor() {
 
   return (
     <>
-      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
+      <Taskbar
+        fileName={fileName}
+        onlineUsers={onlineUsers}
+        fileType="note"
+        id={noteId}
+      />
       <div className="editor" ref={editorWrapperRef}></div>
     </>
   );
