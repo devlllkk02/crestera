@@ -50,7 +50,6 @@ exports.removeMember = async function (req, res) {
   const member = {
     member: req.body.members,
   };
-
   UserCircle.findByIdAndUpdate(
     req.body.id,
     { $pull: { members: member } },

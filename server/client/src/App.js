@@ -20,6 +20,7 @@ import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import OtherUserProfile from "./components/OtherUserProfile/otherProfile";
 import Notification from "./components/Notification/Notification";
 import VaultDashboard from "./pages/Vault/VaultDashboard";
+import VaultShareDashboard from "./pages/Vault/VaultShareDashboard";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
 import UserCirclesPage from "./pages/UserCirclesPage/UserCirclesPage";
 import UserCirclesCreatePage from "./pages/UserCirclesCreatePage/UserCirclesCreatePage";
@@ -72,6 +73,7 @@ const Routing = () => {
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
+      <Route exact path="/folder/share/:folderId" element={<VaultShareDashboard />} />
       <Route exact path="/vaultfileshare/" element={<VaultFileSharePage />} />
       <Route exact path="/vaultfoldershare/:folderId" element={<VaultFolderSharePage />}/>
 
