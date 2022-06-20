@@ -130,3 +130,23 @@ exports.getNotification = (async (req, res) => {
       ResponseService.generalPayloadResponse(err, doc, res);
   })
 });
+
+// Get All  public Circles
+exports.getAllPublic = async (req, res) => {
+  UserCircle.find( { isPublic : "true"  },(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+    .sort({ addedOn: -1 })
+    .populate('addedBy', 'firstName lastName')
+    .populate('members.member', 'firstName lastName ');
+};
+
+// Get All private Circles of user
+exports.getAllPrivate = async (req, res) => {
+  UserCircle.find( { members: { $elemMatch: { member : req.params.id , isPending: "false" } } , isPublic : "false" },(err, doc) => {
+    ResponseService.generalPayloadResponse(err, doc, res);
+  })
+    .sort({ addedOn: -1 })
+    .populate('addedBy', 'firstName lastName')
+    .populate('members.member', 'firstName lastName ');
+};
