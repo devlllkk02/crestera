@@ -22,7 +22,7 @@ router.get('/folderId/:id', (req, res) => FolderController.getAllById(req, res))
 router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.FOLDER, res));
 
 // Get by id
-router.get('/:id', (req, res) =>  FolderController.getByID(req, res));
+router.get('/:id', (req, res) =>  FolderController.getById(req, res));
 
 // Delete
 router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.FOLDER, res));

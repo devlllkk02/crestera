@@ -26,7 +26,7 @@ const FolderShare = () => {
 
   useEffect(() => {
     loadFolder();
-  }, []);
+  }, [folderId]);
 
   useEffect(() => {
     setMembers(folder.members);
@@ -88,7 +88,7 @@ const FolderShare = () => {
         <VaultSharePopup
           trigger={btnpopup}
           settrigger={setbtnpopup}
-          ID={folder._id}
+          ID={folderId}
         ></VaultSharePopup>
       </div>
       <div className='foldershare__header__list'>
@@ -134,16 +134,10 @@ const FolderShare = () => {
               </div>
               <div className="foldershare__Item__title1">
                 <p>
-                  {member.isOwner
-                    ? 'Owner'
-                    : member.isAdmin
-                    ? 'Admin'
-                    : member.isPending
-                    ? 'Pending'
-                    : 'Member'}
+                  
                 </p>
 
-                {member.isOwner == true && (
+                {/* {member.isOwner == true && (
                   <FontAwesomeIcon className="user_owner" icon={faCrown} />
                 )}
               </div>
@@ -157,7 +151,7 @@ const FolderShare = () => {
                   <button >
                     Remove Admin
                   </button>
-                )}
+                )} */}
               </div>
               <div className="foldershare__Item__setings">
                 <div className="foldershare__Item__setings__container">

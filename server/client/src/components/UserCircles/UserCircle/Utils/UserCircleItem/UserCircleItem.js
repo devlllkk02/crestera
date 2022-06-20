@@ -24,7 +24,7 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
 
   useEffect(() => {
     setMembers(usercircleMembers);
-    // console.log(usercircleMembers);
+    console.log(usercircleMembers);
   }, [usercircleMembers]);
 
   const handleUpdateMember = async (memberId, isAdmin) => {

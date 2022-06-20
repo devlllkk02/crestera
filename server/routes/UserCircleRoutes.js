@@ -16,7 +16,8 @@ router.post('/', UserCircleController.create);
 router.route('/').get(UserCircleController.getAll);
 
 // Get by id
-router.route('/:id').get(UserCircleController.getById);
+// router.route('/:id').get(UserCircleController.getById);
+router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.FOLDER, res));
 
 //router - /v1/crestera/circles/id
 // Update

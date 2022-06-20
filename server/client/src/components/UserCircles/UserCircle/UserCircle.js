@@ -35,6 +35,7 @@ function UserCircle() {
   useEffect(() => {
     loadUserCircle();
     GetUsers();
+    console.log(usercircle.members)
   }, []);
   useEffect(() => {
     loadUserCircle();
