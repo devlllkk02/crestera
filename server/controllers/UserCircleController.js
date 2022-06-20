@@ -47,12 +47,9 @@ exports.addMember = async function (req, res) {
 
 //remove member
 exports.removeMember = async function (req, res) {
-  const member = {
-    member: req.body.members,
-  };
   UserCircle.findByIdAndUpdate(
     req.body.id,
-    { $pull: { members: member } },
+    { $pull: { "members": {member:req.body.memberId} } },
     { new: true },
     (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
@@ -79,9 +76,8 @@ exports.updatePeding = async function (req, res) {
   console.log(req.body);
 
   UserCircle.updateOne(
-    { 'members._id': req.body.memberId },
+    { 'members.member': req.body.memberId , '_id':req.body.circleId},
     { $set: { 'members.$.isPending': req.body.isPending } },
-    { new: true },
     (err, doc) => {
       ResponseService.generalResponse(err, res);
     }

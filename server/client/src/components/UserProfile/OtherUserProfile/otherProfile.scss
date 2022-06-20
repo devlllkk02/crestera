@@ -1,10 +1,10 @@
 //------ User Profile Page ------
-@import "../../Theme.scss";
+@import "../../../Theme.scss";
 
 .profile__page {
     overflow-y: hidden;
     overflow-x: hidden;
-    background: url("../../assets/images/other/Crestera-Background.png");
+    background: url("../../../assets/images/other/Crestera-Background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

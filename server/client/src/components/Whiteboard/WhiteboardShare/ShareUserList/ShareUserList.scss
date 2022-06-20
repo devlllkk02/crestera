@@ -1,0 +1,124 @@
+// ------ shareItem ------
+@import "../../../../Theme.scss";
+
+.shareItem {
+  width: 100%;
+  height: 60px;
+  // background-color: lightblue;
+
+  @include flexbox;
+  border-bottom: $borderGreyLight;
+  margin-bottom: 5px;
+
+  .shareItem__fileIcon {
+    width: 70px;
+    height: 100%;
+    // background-color: lightpink;
+
+    @include flexbox;
+
+    img {
+      height: 40px;
+      width: 40px;
+
+      border-radius: 50%;
+      border: 2px solid $blue;
+      cursor: pointer;
+    }
+  }
+  .shareItem__fileName {
+    width: calc((100% - 210px) * 0.5);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-extra-small;
+    }
+  }
+  .shareItem__middleIcon {
+    width: 70px;
+    height: 100%;
+    // background-color: lightpink;
+
+    @include flexbox;
+
+    .shareItem__middleIcon__container {
+      cursor: pointer;
+      color: $grey;
+    }
+  }
+  .shareItem__title1 {
+    width: calc((100% - 210px) * 0.25);
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-extra-small;
+    }
+    .user_owner{
+      color:rgba(250, 168, 26, 1);
+      margin-left: -200%;
+    }
+  }
+  .shareItem__title2 {
+    width: calc((100% - 210px) * 0.25);
+    height: 100%;
+    // background-color: lightpink;
+
+    @include flexbox;
+    justify-content: flex-start;
+
+    p {
+      color: $grey;
+      font-size: $font-extra-small;
+    }
+  }
+  .shareItem__setings {
+    width: 70px;
+    height: 100%;
+    // background-color: lightyellow;
+
+    @include flexbox;
+
+    .shareItem__setings__container {
+      cursor: pointer;
+      color: $grey;
+      button.share_remove_button {
+        background-color: #0f96c3;
+        color: $white;
+        background: #0f96c3;
+        // display: block;
+        // margin:auto;  
+        margin-left: -120px;
+  
+        background-color: white;
+      border: 2px solid #0F96C3;
+      color: #0F96C3;
+        //   box-sizing: border-box;
+        width: 100px;
+        height: 40px;
+        &:hover{
+          background-color:#0F96C3;
+          color: white;
+
+        }
+        span {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 19px;
+  
+        }
+      }
+    }
+  }
+}

@@ -81,7 +81,7 @@ function Login() {
 
     google.accounts.id.renderButton(document.getElementById("signUp-element"), {
       theme: "outline",
-      size: "large",
+      size: "medium",
       text: "signin_with",
     });
   }, []);

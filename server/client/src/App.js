@@ -17,8 +17,14 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import UserEditPage from "./pages/UserEditPage/UserEditPage";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
-import OtherUserProfile from "./components/OtherUserProfile/otherProfile";
+import OtherUserProfile from "./pages/UserProfilePage/OtherUserProfilePage";
 import Notification from "./components/Notification/Notification";
+import Share from "./pages/SharePage/SharePage";
+
+// import UserCirclePage from './pages/UserCirclePage/UserCirclePage';
+// import UserCirclesPage from './pages/UserCirclesPage/UserCirclesPage';
+// import UserCirclesCreatePage from './pages/UserCirclesCreatePage/UserCirclesCreatePage';
+
 import VaultDashboard from "./pages/Vault/VaultDashboard";
 import VaultShareDashboard from "./pages/Vault/VaultShareDashboard";
 import UserCirclePage from "./pages/UserCirclePage/UserCirclePage";
@@ -31,6 +37,8 @@ import FileDownloadPage from "./pages/Vault/FileDownloadPage/FileDownloadPage";
 import NotePage from "./pages/NotePage/NotePage";
 import WhiteboardSharePage from "./pages/Whteboard/WhiteboardSharePage/WhiteboardSharePage";
 import ScrollToTop from "./utils/ScrollToTop";
+import ShareNotePage from "./pages/ShareNotePage/ShareNotePage";
+import ShareBoardPage from "./pages/ShareBoardPage/ShareBoardPage";
 
 export const UserContext = createContext();
 
@@ -64,6 +72,12 @@ const Routing = () => {
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
       <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
+      <Route exact path="/share" element={<Share/>} />
+      <Route
+        exact
+        path="/downloadpage/:fileId"
+        element={<FileDownloadPage />}
+      />
 
       {/* User Circles */}
       <Route exact path="/usercircle/:usercircleId" element={<UserCirclePage />}/>
@@ -81,6 +95,10 @@ const Routing = () => {
       <Route exact path="/note/:noteId" element={<NotePage />} />
       {/* Board */}
       <Route exact path="/board/:boardId" element={<Whiteboard />} />
+
+      {/* Share */}
+      <Route exact path="share/note/:Id" element={<ShareNotePage />} />
+      <Route exact path="share/board/:Id" element={<ShareBoardPage />} />
 
       {/* Notification */}
       <Route exact path="/Notification" element={<Notification />} />

@@ -35,18 +35,8 @@ const NoteSchema = new mongoose.Schema(
     ],
     members: [
       {
-        member: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        canEdit: {
-          type: Boolean,
-          default: false,
-        },
-        seen: {
-          type: Boolean,
-          default: false,
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
     circles: [

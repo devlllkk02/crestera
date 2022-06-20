@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./otherProfile.scss";
 import { useParams } from "react-router-dom";
-import { getUser } from "../../services/AuthService";
+import { getUser } from "../../../services/AuthService";
 
 const OtherProfile = () => {
   const { userId } = useParams();

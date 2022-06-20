@@ -16,9 +16,9 @@
     @include flexbox;
 
     .taskbar__fileName {
-      width: calc((100% - 420px));
+      width: calc((100% - 400px));
       height: 100%;
-      //   background-color: lightblue;
+      // background-color: lightblue;
 
       @include flexbox;
       justify-content: flex-start;
@@ -102,7 +102,190 @@
 
       button {
         @include ButtonRedDark;
+        width: 100%;
+      }
+    }
+
+    .taskbar__users__note {
+      width: 200px;
+      height: 100%;
+      //   background-color: lightcoral;
+      @include flexbox;
+      justify-content: flex-end;
+      position: relative;
+
+      .taskbar__users__online {
+        width: 100%;
+        height: 100%;
+        // background-color: lightcoral;
+        @include flexbox;
+        justify-content: flex-end;
+        .taskbar__user {
+          width: 35px;
+          height: 35px;
+          position: absolute;
+          &:nth-child(1) {
+            right: 25px;
+            z-index: 1;
+          }
+
+          &:nth-child(2) {
+            right: 50px;
+            z-index: 2;
+          }
+          &:nth-child(3) {
+            right: 75px;
+            z-index: 3;
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid $red;
+          }
+        }
+      }
+
+      .taskbar__defaultUsers {
+        width: 100%;
+        height: 100%;
+        // background-color: lightgreen;
+
+        @include flexbox;
+        justify-content: flex-end;
+
+        .taskbar__defaultUser {
+          background-color: $red;
+
+          border-radius: 50%;
+          border: 2px solid $red;
+          width: 30px;
+          height: 30px;
+
+          &:not(:first-child) {
+            display: none;
+          }
+          @include flexbox;
+          p {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    .taskbar__users__board {
+      width: 200px;
+      height: 100%;
+      //   background-color: lightcoral;
+      @include flexbox;
+      justify-content: flex-end;
+      position: relative;
+
+      .taskbar__users__online {
+        width: 100%;
+        height: 100%;
+        // background-color: lightcoral;
+        @include flexbox;
+        justify-content: flex-end;
+        .taskbar__user {
+          width: 35px;
+          height: 35px;
+          position: absolute;
+          &:nth-child(1) {
+            right: 25px;
+            z-index: 1;
+          }
+
+          &:nth-child(2) {
+            right: 50px;
+            z-index: 2;
+          }
+          &:nth-child(3) {
+            right: 75px;
+            z-index: 3;
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid $purple;
+          }
+        }
+      }
+
+      .taskbar__defaultUsers {
+        width: 100%;
+        height: 100%;
+        // background-color: lightgreen;
+
+        @include flexbox;
+        justify-content: flex-end;
+
+        .taskbar__defaultUser {
+          background-color: $purple;
+
+          border-radius: 50%;
+          border: 2px solid $purple;
+          width: 30px;
+          height: 30px;
+
+          &:not(:first-child) {
+            display: none;
+          }
+          @include flexbox;
+          p {
+            color: $white;
+          }
+        }
+      }
+    }
+    .taskbar__share {
+      width: 200px;
+      height: 100%;
+      // background-color: lightseagreen;
+      @include flexbox;
+
+      button {
+        @include ButtonRedDark;
         width: 80%;
+      }
+    }
+
+    .taskbar__share__note {
+      width: 200px;
+      height: 100%;
+      //   background-color: lightseagreen;
+      @include flexbox;
+      justify-content: flex-end;
+
+      .taskbar__share__link {
+        width: 100%;
+        height: 100%;
+        @include flexbox;
+        justify-content: flex-end;
+        button {
+          @include ButtonRedDark;
+          width: 80%;
+        }
+      }
+    }
+    .taskbar__share__board {
+      width: 200px;
+      height: 100%;
+      // background-color: lightseagreen;
+      @include flexbox;
+      justify-content: flex-end;
+      .taskbar__share__link {
+        width: 100%;
+        height: 100%;
+        @include flexbox;
+        justify-content: flex-end;
+        button {
+          @include ButtonPurpleDark;
+          width: 80%;
+        }
       }
     }
     .taskbar__settings {

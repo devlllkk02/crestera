@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+//import tool icons 
 import {
   paintbrush,
   eraser,
@@ -32,29 +33,29 @@ const colors = {
 };
 
 function ToolBar() {
-  const { state, dispatch } = useContext(UserContext);
-  const { boardId } = useParams();
-
-  const [brushSize, setBrushSize] = useState(5);
-  const [brushColor, setBrushColor] = useState(colors.blue);
-  const [eraserSize, setEraserSize] = useState(10);
-  const [strokeColor, setStrokeColor] = useState(colors.black);
-  const [socket, setSocket] = useState();
-  const [canvasJSON, setcanvasJSON] = useState();
-
+  const {state, dispatch} = useContext(UserContext);
+  const {boardId} =useParams();
+  const [ brushSize, setBrushSize] =useState(5);
+  const [brushColor, setBrushColor] =useState(colors.blue);
+  const [eraserSize,setEraserSize]=useState(10);
+  const [ strokeColor,setStrokeColor] = useState(colors.black);
+  
   const [fileName, setFileName] = useState("");
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [deleted, setDeleted] = useState(false);
 
-  //Estblishing Web Socket
-  useEffect(() => {
+  const [canvasJSON, setcanvasJSON] = useState();
+  const [socket, setSocket] = useState();
+  
+
+  //Web Socket
+  useEffect(()=>{
     const s = io("/");
     setSocket(s);
-
     return () => {
       s.disconnect();
     };
-  }, []);
+  },[]);
 
   //Initializing Blank Canvas
   useEffect(() => {
@@ -64,10 +65,12 @@ function ToolBar() {
     canvas.setHeight(window.innerHeight - 100);
     canvas.setWidth(window.innerWidth - 50);
     canvas.freeDrawingBrush.width = brushSize;
-
-    canvas.on("mouse:up", () => {
+    
+    //setcanvas data into a JSON
+    canvas.on("mouse:up",()=>{
       setcanvasJSON(JSON.stringify(canvas));
     });
+
   }, []);
 
   //Get and Load Board
@@ -78,7 +81,6 @@ function ToolBar() {
       setcanvasJSON(board.data);
       setFileName(board.fileName);
     });
-    // console.log("board loaded");
     socket.emit("get-board", boardId);
     return () => {};
   }, [socket]);
@@ -246,7 +248,12 @@ function ToolBar() {
   };
   return (
     <>
-      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
+      <Taskbar
+        fileName={fileName}
+        onlineUsers={onlineUsers}
+        fileType="board"
+        id={boardId}
+      />
       <div className="toolSection">
         <div className="toolField">
           <div className="brushWidth">
@@ -404,7 +411,6 @@ function ToolBar() {
               />
             </div>
           </div>
-
         </div>
       </div>
     </>
