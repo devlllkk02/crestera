@@ -75,6 +75,14 @@ export const getFoldershome = (uid) => {
     });
 };
 
+export const getShareFoldershome = (uid) => {
+    return axios.get(baseUrl + 'folders/share?uid=' + uid, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const getFolder = (id) => {
     return axios.get(baseUrl + 'folders/' + id, {
         headers: {

@@ -4,7 +4,7 @@ import './FileCreate.scss';
 import { FiX } from 'react-icons/fi';
 import { UserContext } from '../../../App';
 
-const FileCreate = ({ trigger, settrigger, currentfolder }) => {
+const Fileupload = ({ trigger, settrigger, currentfolder }) => {
     const currentDate = new Date();
     const { state, dispatch } = useContext(UserContext);
     const [selectedFile, setSelectedFile] = useState();
@@ -56,14 +56,14 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
 
 
     return trigger ? (
-        <div className='create_folder_popup'>
-            <div className='create_folder_popup-body'>
+        <div className='upload_folder_popup'>
+            <div className='upload_folder_popup-body'>
                 <button className='closebtn'
                     onClick={() => settrigger(false)}>
                     <FiX />
                 </button>
-                <div className='create_folder' ref={ref}>
-                    <div className='create_folder_box'>
+                <div className='upload_folder' ref={ref}>
+                    <div className='upload_folder_box'>
                         {uploading ?
                             <></>
                             :
@@ -83,7 +83,7 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
                             {uploading ?
                                 <h2 class="animate">Uploading....</h2>
                                 :
-                                <button onClick={handleSubmission}>submit</button>
+                                <button onClick={handleSubmission} className="submit-btn">submit</button>
                             }
                         </div>
 
@@ -94,4 +94,4 @@ const FileCreate = ({ trigger, settrigger, currentfolder }) => {
     ) : <></>;
 };
 
-export default FileCreate;
+export default Fileupload;

@@ -25,9 +25,19 @@ exports.getAll = (async (req, res) => {
         .populate('motherFolder', 'name')
 });
 
+// Get All Folders when mother folder == null
+exports.getAllShare = (async (req, res) => {
+  const uid = req.query.uid;
+  Folder.find({members: { $elemMatch: { member : uid } } }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+  })
+      .sort({ addedOn: -1 })
+      .populate('addedBy', 'firstName lastName')
+      .populate('motherFolder', 'name')
+});
+
 //get by id
 exports.getById = (async (req, res) => {
-
     Folder.findById(req.params.id, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
