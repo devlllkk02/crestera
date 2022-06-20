@@ -5,6 +5,7 @@ import "./NotificationItem.scss"
 
 
 function NotificationItem(props) {
+    
   return (
     <div className='notification__item'>
         <div className='notification__item__container'>
