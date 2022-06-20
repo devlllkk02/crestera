@@ -1,6 +1,6 @@
 # crestera
 
-`host_test_2` branch is pipelined to https://crestera.herokuapp.com on push. 
+`main` branch is pipelined to https://crestera.herokuapp.com on push. 
 
 ## UI designs
 

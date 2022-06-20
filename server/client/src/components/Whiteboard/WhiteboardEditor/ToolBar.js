@@ -248,7 +248,12 @@ function ToolBar() {
   };
   return (
     <>
-      <Taskbar fileName={fileName} onlineUsers={onlineUsers} />
+      <Taskbar
+        fileName={fileName}
+        onlineUsers={onlineUsers}
+        fileType="board"
+        id={boardId}
+      />
       <div className="toolSection">
         <div className="toolField">
           <div className="brushWidth">
@@ -406,7 +411,6 @@ function ToolBar() {
               />
             </div>
           </div>
-
         </div>
       </div>
     </>

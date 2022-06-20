@@ -82,7 +82,7 @@ exports.getRecommendedNotesController = async (req, res) => {
 //Get One Note
 exports.getSingleNoteController = (req, res) => {
   Note.findById(req.params.noteId)
-    .populate("createdBy", "-password")
+    .populate("createdBy members", "-password")
     .then((note) => res.send(note))
     .catch((error) => {
       console.log(error);
