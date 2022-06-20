@@ -185,13 +185,6 @@ export const updateIsPending = (data) =>{
     })
 }
 
-export const removeMember = (data) => {
-    return axios.put(baseUrl+ 'circles/member/remove',data,{
-        headers:{
-            'Content-Type': 'application/json'
-        }
-    })
-}
 
 //users
 export const getUsers = () => {
