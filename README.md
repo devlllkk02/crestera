@@ -1,5 +1,10 @@
 # crestera
 
+`host_test_2` branch is pipelined to https://crestera.herokuapp.com on push. 
+
+## UI designs
+
+You can find the elavant Figma design for the frontend [[here](https://www.figma.com/file/If9jAQGyX4nradGAhHT2Wz/Crestera?node-id=0%3A1)].
 ## Branching convension
 
 `main` branch will be used to deploy production releases.
@@ -19,31 +24,31 @@ Follow the current naming convention and folder structure.
 
 ```
 Crestera
-├── client                   // Frontend
-|       ├── public               // Public folder
-|       ├── src                  // Add all the source files here
-| 	|   ├── assets           // Assets folder
-| 	|   ├── components       // Components folder. Add all sub components here
-| 	|   ├── constants        // Add Constant files here
-|       |   ├── context          // Add files related to Context API here.
-|	|   ├── pages            // Main pages folder such as About Page, Landing Page etc.
-| 	|   ├── services         // Services folder
-|	|   ├── App.js           // App.js
-| 	|   └── index.js         // index.js file. Add context providers here to wrap the whole app
-|       ├── .gitignore           // Gitignore file
-|       └── package.json         // node module dependencies
-├── server                   //Backend
-|       ├── controllers      // Add all controller for models here
-|       ├── models           // Add all the mongoose models here
-|       ├── routes           // Add all the routes and sub routes here
-|       ├── utils            // Add all the services here
-│       |   └── middlewares  // Add middlewares here for tasks
-|       ├── index.js         // Entry file
-|       ├── nodemon.json     // Update parellel with ecosystem.config.js but only the dev variables goes here
-|       ├── package.json     // node module dependencies
-|       └── readme.md        // README file
-└── readme.md                // README file
-```
+├── server                               //Backend
+|       ├── client                       // Frontend
+|       |      ├── public                // Public folder
+|       |      ├── src                   // Add all the source files here
+|      	|      |    ├── assets           // Assets folder
+| 	|      |    ├── components       // Components folder. Add all sub components here
+| 	|      |    ├── constants        // Add Constant files here
+|       |      |    ├── context          // Add files related to Context API here.
+|	|      |    ├── pages            // Main pages folder such as About Page, Landing Page etc.
+| 	|      |    ├── services         // Services folder
+|	|      |    ├── App.js           // App.js
+| 	|      |    └── index.js         // index.js file. Add context providers here to wrap the whole app
+|       |      ├── .gitignore            // Gitignore file
+|       |      └── package.json          // node module dependencies
+|       ├── controllers                  // Add all controller for models here
+|       ├── models                       // Add all the mongoose models here
+|       ├── routes                       // Add all the routes and sub routes here
+|       ├── utils                        // Add all the services here
+│       |   └── middlewares              // Add middlewares here for tasks
+|       ├── index.js                     // Entry file
+|       ├── nodemon.json                 // Update parellel with ecosystem.config.js but only the dev variables goes here
+|       ├── package.json                 // node module dependencies
+|       └── readme.md                    // README file
+└── readme.md                            // README file
+``` 
 
 ## Development
 
