@@ -50,8 +50,6 @@ function Signup() {
   };
 
   const handleGoogleAuth = (response) => {
-    console.log(response.credential);
-    console.log(jwt_decode(response.credential));
     let googleUser = jwt_decode(response.credential);
 
     fetch("/googleauth", {
