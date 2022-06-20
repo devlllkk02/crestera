@@ -127,3 +127,11 @@ exports.deleteSingleBoardController = async (req, res) => {
     console.log(error);
   }
 };
+
+// Get notification
+exports.getBoardNotification = (async (req, res) => {
+  const uid = req.params.id;
+  UserCircle.find( { members: { $elemMatch: { member : uid , seen: "false" } } }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+  })
+});

@@ -5,6 +5,7 @@ const router = express.Router();
 
 //Middleware
 const AuthMiddleware = require("../middleware/AuthMiddleware");
+const BoardController = require('../controllers/BoardController');
 
 //Controller
 const {
@@ -49,5 +50,8 @@ router.delete(
   AuthMiddleware,
   deleteSingleBoardController
 );
+
+//get notification
+router.route('/notification/:id').get(BoardController.getBoardNotification);
 
 module.exports = router;
