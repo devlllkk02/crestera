@@ -37,9 +37,6 @@ const server = http.createServer(app);
 //Connecting to MongoDB
 connectDB();
 
-//Connecting to Socket.io
-// socketIOConnect();
-
 //connecting to cloudinary
 cloudinary.config({
   cloud_name: CLOUDINARY_API_CLOUD,
@@ -57,6 +54,7 @@ app.use(require("./routes/AuthRoutes"));
 app.use(require("./routes/NoteRoutes"));
 app.use(require("./routes/BoardRoutes"));
 app.use(require("./routes/MainDashboardRoutes"));
+app.use(require("./routes/ShareRoutes"));
 
 //? User Routes
 app.use("/v1/crestera/users", require("./routes/UserRoutes"));

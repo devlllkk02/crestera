@@ -7,15 +7,22 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg";
 //Pacakages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-function Taskbar({ fileName, onlineUsers }) {
+function Taskbar({ id, fileName, onlineUsers, fileType }) {
   return (
     <div className="taskbar">
       <div className="taskbar__container">
         <div className="taskbar__fileName">
           <p>{fileName}</p>
         </div>
-        <div className="taskbar__users">
+        <div
+          className={
+            fileType === "note"
+              ? "taskbar__users__note "
+              : "taskbar__users__board "
+          }
+        >
           <div className="taskbar__users__online">
             {onlineUsers &&
               onlineUsers.slice(0, 3).map((user, key) => {
@@ -38,14 +45,29 @@ function Taskbar({ fileName, onlineUsers }) {
               })}
           </div>
         </div>
-        <div className="taskbar__share">
-          <button>SHARE</button>
+        <div
+          className={
+            fileType === "note"
+              ? "taskbar__share__note"
+              : "taskbar__share__board"
+          }
+        >
+          <Link
+            to={
+              fileType === "note" ? `/share/note/${id}` : `/share/board/${id}`
+            }
+            style={{ textDecoration: "none" }}
+
+            className="taskbar__share__link"
+          >
+            <button>SHARE</button>
+          </Link>
         </div>
-        <div className="taskbar__settings">
+        {/* <div className="taskbar__settings">
           <div className="taskbar__settings__icon">
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
