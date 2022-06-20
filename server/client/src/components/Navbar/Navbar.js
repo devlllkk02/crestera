@@ -7,7 +7,6 @@ import { UserContext } from "../../App";
 
 //Packages
 import { Link, NavLink } from "react-router-dom";
-import io from "socket.io-client";
 
 //Images
 import profilePic from "../../assets/images/other/profilePicture.jpg";
@@ -40,11 +39,10 @@ function Navbar({ page }) {
     }
   };
 
-    //Estblishing Web Socker
-    // useEffect(() => {
-    //   const socket = io("/");
-    //   // console.log(socket);
-    // }, []);
+  
+
+     
+ 
 
   return (
     <>

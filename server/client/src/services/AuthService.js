@@ -142,6 +142,14 @@ export const addMember = (data) => {
     });
 };
 
+export const getCircleNotification = (id) => {
+    return axios.get(baseUrl + 'circles/notification/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 // export const addFolderMember = (data) => {
 //     return axios.put(baseUrl + 'folders/member', data, {
 //         headers: {
@@ -159,6 +167,14 @@ export const removeMember = (data) => {
     });
 };
 
+//update is pending
+export const updateIsPending = (data) =>{
+    return axios.patch(baseUrl + 'circles/member/update/pending',data,{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}
 
 
 export const updateMember = (data) => {
@@ -176,6 +192,9 @@ export const deleteCircle = (id) => {
         }
     });
 };
+
+
+
 
 //users
 export const getUsers = () => {
