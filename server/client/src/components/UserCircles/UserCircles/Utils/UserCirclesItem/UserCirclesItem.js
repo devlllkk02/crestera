@@ -38,7 +38,7 @@ function usercirclesItem( props) {
       </div>
       <div className="usercirclesItem__setings">
         <div className="usercirclesItem__setings__container">
-          <p>10</p>
+          <p>{props.usercircle.members.length}</p>
         </div>
       </div>
     </div>

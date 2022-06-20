@@ -78,7 +78,7 @@ const Routing = () => {
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-      <Route exact path="/vaultfileshare/" element={<VaultFileSharePage />} />
+      <Route exact path="/vaultfileshare/:fileId" element={<VaultFileSharePage />} />
       <Route exact path="/vaultfoldershare/:folderId" element={<VaultFolderSharePage />}/>
 
       {/* Note */}

@@ -118,6 +118,24 @@ export const getCircles = () => {
     });
 };
 
+//get public circles
+export const getPublicCircles = () => {
+    return axios.get(baseUrl + 'circles/public/circles/', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+//get private circles
+export const getPrivateCircles = (id) => {
+    return axios.get(baseUrl + 'circles/private/circles/:id' + id,{
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const getCircle = (id) => {
     return axios.get(baseUrl + 'circles/' + id, {
         headers: {

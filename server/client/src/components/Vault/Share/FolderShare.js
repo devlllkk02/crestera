@@ -26,7 +26,7 @@ const FolderShare = () => {
 
   useEffect(() => {
     loadFolder();
-  }, []);
+  }, [folderId]);
 
   useEffect(() => {
     setMembers(folder.members);

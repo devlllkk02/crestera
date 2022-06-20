@@ -80,7 +80,7 @@ function UserCircle() {
           settrigger={setbtnpopup}
           usercircle={usercircle}
         />
-        <FontAwesomeIcon className="user_gear_icon" icon={faUsersGear} />
+        {/* <FontAwesomeIcon className="user_gear_icon" icon={faUsersGear} /> */}
       </div>
       <div className="usercircles_header_container">
         <div className="circle_type">
