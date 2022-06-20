@@ -47,7 +47,6 @@ const VaultDashboard = () => {
 
   const GetFolders = async () => {
 
-    console.log(state._id);
     try {
       const response = await getFolders(currentFolder, state._id);
       console.log(response.data.data);

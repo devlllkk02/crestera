@@ -159,6 +159,22 @@ export const deleteCircle = (id) => {
     });
 };
 
+export const updateIsPending = (data) =>{
+    return axios.patch(baseUrl + 'circles/member/update/pending',data,{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
+export const removeMember = (id) => {
+    return axios.put(baseUrl+ 'circles/member/remove'+id,{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 //users
 export const getUsers = () => {
     return axios.get(baseUrl + 'users/', {
