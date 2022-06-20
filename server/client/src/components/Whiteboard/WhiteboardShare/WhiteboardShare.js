@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "@fontsource/roboto";
 import "./WhiteboardShare.scss";
 import SharePopup from "../../SharePopup/SharePopup";
+import ShareUserList from "../WhiteboardShare/ShareUserList/ShareUserList"
 import { updateMember } from "../../../services/AuthService";
 
 //images
@@ -108,8 +109,9 @@ function WhiteboardShare({ID, shareMember, refresh, setRefresh}) {
         </div>
       </div>
 
-
-      <div>
+      
+      
+      {/* <div>
         {members&& members.map((member)=>(
           <>
             <div key={member._id} className="shareUserItem" disabled>
@@ -141,7 +143,7 @@ function WhiteboardShare({ID, shareMember, refresh, setRefresh}) {
         
         )}
         
-      </div>
+      </div> */}
     </div>
   );
 }
