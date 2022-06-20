@@ -142,6 +142,14 @@ export const addMember = (data) => {
     });
 };
 
+export const getCircleNotification = (id) => {
+    return axios.get(baseUrl + 'circles/notification/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 // export const addFolderMember = (data) => {
 //     return axios.put(baseUrl + 'folders/member', data, {
 //         headers: {

@@ -1,30 +1,58 @@
-import React from 'react'
-import profilePic from "../../../assets/images/other/profilePicture.jpg"
-import BoardIcon from "../../../assets/images/cresteraIconsV1/cresteraIconsV1-Board.png"
+import React, {useContext}from 'react'
+import UserCircleIcon from "../../../assets/images/Icons/user group.png"
 import "./NotificationItem.scss"
+import { UserContext } from '../../../App';
+import {removeMember,updateIsPending} from "../../../services/AuthService"
 
+function NotificationItem({circleNotification,trigger, setTrigger}) {
+    const { state, dispatch } = useContext(UserContext);
 
-function NotificationItem(props) {
-    
+    const Decline= async ()=>{
+       try{
+        const response = await removeMember({
+            id: circleNotification._id,
+            memberId: state._id
+        });
+        console.log(response);
+        setTrigger(!trigger);
+       }
+       catch(e){
+        console.log(e);
+       }
+    }
+
+    const Accept = async ()=>{
+        console.log("accepted");
+        try{
+            console.log("accepted");
+            const response = await updateIsPending({
+                circleId : circleNotification._id,
+                memberId: state._id,
+                isPending : "false"
+            });
+            console.log(response);
+            setTrigger(!trigger);
+        }
+        catch(e){
+         console.log(e);
+        }
+    }
   return (
     <div className='notification__item'>
         <div className='notification__item__container'>
         <div className='notification__image__container'>
             <div className='notification__image__avatar'>
-                <img src={profilePic} alt="profile_picture" className='notification__avatar'/>
-            </div>
-            <div className='notification__image__icon'>
-                <img src={BoardIcon} alt="notification__icon" className="notification__icon"/>
+                <img src={UserCircleIcon} alt="profile_picture" className='notification__avatar'/>
             </div>
         </div>
         <div className='notification__message__container'>
             <div className='notification__message'>
-            <p>{props.name} has invited you to join {props.itemName}</p>
+            <p>You are invited to join "{circleNotification.name}" user circle</p>
             </div>
         </div>
         <div className='notification__button__container'>
-                <button className='notification__accept__btn'>ACCEPT</button>
-                <button className='notification__decline__btn'>DECLINE</button>
+                <button className='notification__accept__btn' onClick={() => Accept()} >ACCEPT</button>
+                <button className='notification__decline__btn' onClick={()=> Decline()}>DECLINE</button>
             </div>
         </div>
     </div>
