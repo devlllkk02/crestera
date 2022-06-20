@@ -6,6 +6,7 @@ import './UserCirclesItem.scss';
 //Images
 import cresteraIconsV2Board from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png';
 import cresteraIconsV2Note from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Note.png';
+import usergroupicon from '../../../../../assets/images/Icons/user group.png'
 
 //Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +19,9 @@ import {
 function usercirclesItem( props) {
   return (
     <div className="usercirclesItem">
-      <div className="usercirclesItem__fileIcon"></div>
+      <div className="usercirclesItem__fileIcon">
+      <img src={usergroupicon}/> 
+      </div>
       <div className="usercirclesItem__fileName">
       <Link to={`/usercircle/${props.usercircle._id}`} style={{ textDecoration: 'none' }}><p>{props.usercircle.name}</p></Link> 
       </div>

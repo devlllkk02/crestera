@@ -75,7 +75,7 @@ function FileShare() {
           </div>
           <div className="vaultshare_details_datemodified">
             <p1>Date Modified :</p1>&nbsp;
-            <p2>sfsfs</p2>
+            <p2></p2>
           </div>
         </div>
       </div>
