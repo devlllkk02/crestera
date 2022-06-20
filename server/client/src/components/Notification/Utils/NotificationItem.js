@@ -3,6 +3,9 @@ import profilePic from "../../../assets/images/other/profilePicture.jpg"
 import BoardIcon from "../../../assets/images/cresteraIconsV1/cresteraIconsV1-Board.png"
 import "./NotificationItem.scss"
 
+import updateIsPending from "../../../services/AuthService"
+import removeMember from "../../../services/AuthService"
+
 function NotificationItem(props) {
   return (
     <div className='notification__item'>

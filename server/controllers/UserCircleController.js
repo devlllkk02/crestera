@@ -75,3 +75,14 @@ exports.updatePeding = async function (req, res) {
             ResponseService.generalResponse(err, res);
         });
       };
+
+// Get member in a user circle
+// exports.getAll = (async (req, res) => {
+//   const uid = req.query.uid;
+//   Folder.find({ isPending: true , addedBy : uid }, (err, doc) => {
+//       ResponseService.generalPayloadResponse(err, doc, res);
+//   })
+//       .sort({ addedOn: -1 })
+//       .populate('addedBy', 'firstName lastName')
+//       .populate('motherFolder', 'name')
+// });
