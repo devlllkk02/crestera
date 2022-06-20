@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "@fontsource/roboto";
 import "./WhiteboardShare.scss";
-import SharePopup from "../../Share/SharePopup/SharePopup";
+import SharePopUp from "../../Share/SharePopup/SharePopUp";
 
 //images
 import slideicon from "../../../assets/images/Whiteboard/slideicon.png";

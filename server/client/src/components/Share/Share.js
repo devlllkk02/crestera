@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "@fontsource/roboto";
 import "./Share.scss";
-import SharePopup from "./SharePopup/SharePopup";
+import SharePopUp from "./SharePopup/SharePopUp";
 
 import { UserContext } from "../../App";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import boardIcon from "./../../assets/images/cresteraIconsV2/cresteraIconsV2-Boa
 import { getABoard, getANote } from "./ShareAPI";
 import { DateFormat } from "../../utils/DateFormat";
 import { removeUserFromNote } from "./SharePopup/SharePopupAPI";
+import { removeUserFromBoard } from "./SharePopup/SharePopupAPI"
 
 function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
     if (fileType === "note") {
       removeUserFromNote(Id, userId, setUpdate);
     } else {
-      // getABoard(Id, setFile);
+      removeUserFromBoard(Id, userId, setUpdate);
     }
   };
   //Updating DOM
@@ -90,7 +91,7 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
 
           <div className="share_linkgroup">
             <div className="share_linkgroup_header">
-              <p>SHARE WITH PEOPLE & GROUPS</p>
+              <p>SHARE WITH PEOPLE </p>
             </div>
             <div className="share_linkgroup_buttons">
               <button
@@ -110,14 +111,14 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
               </button> */}
             </div>
 
-            <SharePopup
+            <SharePopUp
               trigger={btnpopup}
               settrigger={setbtnpopup}
               ID={ID}
               shareMembers={shareMembers}
               fileType={fileType}
               Id={Id}
-            ></SharePopup>
+            ></SharePopUp>
           </div>
 
           <div className="share_list_header">

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { faX, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MultiSelect } from "react-multi-select-component";
-import "./SharePopup.scss";
+import "./SharePopUp.scss";
 
 import { addMember, getUsers } from "../../../services/AuthService";
 import {
   addUserToNote,
   getANoteUsers,
   removeUserFromNote,
+  addUserToBoard, 
+  getABoardUsers, 
+  removeUserFromBoard
 } from "./SharePopupAPI";
 
 import { useNavigate } from "react-router-dom";
 
-const SharePopup = ({
+const SharePopUp = ({
   trigger,
   settrigger,
   ID,
@@ -31,9 +33,9 @@ const SharePopup = ({
   useEffect(() => {
     if (fileType === "note") {
       getANoteUsers(Id, setUsers);
-    } else {
-      // getABoard(Id, setFile);
-    }
+    } else{
+        getABoardUsers(Id, setUsers);
+      }
   }, []);
 
   //Add User
@@ -42,7 +44,8 @@ const SharePopup = ({
       console.log(userId);
       addUserToNote(Id, userId, setUpdate);
     } else {
-      // getABoard(Id, setFile);
+        console.log(userId);
+      addUserToBoard(Id, userId, setUpdate);
     }
   };
 
@@ -52,7 +55,8 @@ const SharePopup = ({
       console.log(userId);
       removeUserFromNote(Id, userId, setUpdate);
     } else {
-      // getABoard(Id, setFile);
+        console.log(userId);
+        removeUserFromBoard(Id, userId, setUpdate);
     }
   };
   //Updating DOM
@@ -104,7 +108,7 @@ const SharePopup = ({
         <div className="invite_container">
           <div onSubmit={handleSubmit}>
             <div className="share_header">
-              <h1>INVITE PEOPLES & GROUPS</h1>
+              <h1>INVITE PEOPLE</h1>
             </div>
             {users && (
               <div className="share_popup_body">
@@ -164,4 +168,4 @@ const SharePopup = ({
   );
 };
 
-export default SharePopup;
+export default SharePopUp;
