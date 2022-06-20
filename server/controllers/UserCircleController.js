@@ -126,10 +126,7 @@ exports.getUsersNotAddedToUserCircle = async (req, res) => {
 // Get notification
 exports.getNotification = (async (req, res) => {
   const uid = req.params.id;
-  UserCircle.find( { 'members.member': { $gte: uid } }, (err, doc) => {
+  UserCircle.find( { members: { $elemMatch: { member : uid , isPending: "true" } } }, (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
   })
-      .sort({ addedOn: -1 })
-      .populate('addedBy', 'firstName lastName')
-      .populate('motherFolder', 'name')
 });
