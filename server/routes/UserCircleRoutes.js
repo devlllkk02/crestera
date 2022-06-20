@@ -51,3 +51,6 @@ router.delete('/:id', (req, res) =>
 //get users not added to a user circle
 router.get('/circle/:circleId', UserCircleController.getUsersNotAddedToUserCircle);
 module.exports = router;
+
+//get notification
+router.route('/notification/:id').get(UserCircleController.getNotification);

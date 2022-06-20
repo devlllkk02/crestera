@@ -115,12 +115,21 @@ exports.getUsersNotAddedToUserCircle = async (req, res) => {
     filteredIds = userIds.filter((item) => {
       return !memberIds.includes(item);
     });
-
     const filteredUsers = await User.find({ _id: { $in: filteredIds } });
-
     // console.log(`User Ids: ${userIds} \nMemeber Ids: ${memberIds} \nFiltered Ids: ${filteredIds}`);
     res.send(filteredUsers);
   } catch (error) {
     console.log(error);
   }
 };
+
+// Get notification
+exports.getNotification = (async (req, res) => {
+  const uid = req.params.id;
+  UserCircle.find( { 'members.member': { $gte: uid } }, (err, doc) => {
+      ResponseService.generalPayloadResponse(err, doc, res);
+  })
+      .sort({ addedOn: -1 })
+      .populate('addedBy', 'firstName lastName')
+      .populate('motherFolder', 'name')
+});
