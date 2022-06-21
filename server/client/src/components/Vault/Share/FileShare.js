@@ -42,7 +42,7 @@ function FileShare() {
   };
 
   const copy = async () => {
-    await navigator.clipboard.writeText("http://localhost:3000/downloadpage/"+`${file._id}`);
+    await navigator.clipboard.writeText("http://crestera.herokuapp.com/downloadpage/"+`${file._id}`);
     alert('Text copied');
   }
 
@@ -73,10 +73,10 @@ function FileShare() {
             <p1>Size:</p1>&nbsp;
             <p2>{formatBytes(file.size)}</p2>
           </div>
-          <div className="vaultshare_details_datemodified">
+          {/* <div className="vaultshare_details_datemodified">
             <p1>Date Modified :</p1>&nbsp;
             <p2>{getDateTime(file.addedOn)}</p2>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="vaultshare_link">
@@ -86,7 +86,7 @@ function FileShare() {
         <div className="vaultshare_link_body">
           <div className="vaultshare__linkbox">
             <input
-              placeholder="http://localhost:3000/downloadpage/62ae02ae41abdbd4c311ca4f"
+              placeholder="http://crestera.herokuapp.com/downloadpage/62ae02ae41abdbd4c311ca4f"
               type="text" disabled
             />
           </div>

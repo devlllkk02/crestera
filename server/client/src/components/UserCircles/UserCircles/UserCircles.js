@@ -15,7 +15,7 @@ import UserCirclesHeader from './Utils/UserCirclesHeader/UserCirclesHeader';
 import UserCirclesItem from './Utils/UserCirclesItem/UserCirclesItem';
 
 //AuthService
-import { getCircles } from '../../../services/AuthService';
+import { getCircles, getPrivateCircles, getPublicCircles } from '../../../services/AuthService';
 
 //import { useParams } from 'react-router';
 import {getUserCircles } from "./UserCircleAPI";
@@ -31,14 +31,16 @@ function UserCircles() {
   
   //Circles
   useEffect(() => {
-		GetCircles(setUserCircles);
+		GetCircles();
 	}, []);
 
   const [usercircles, setUserCircles] = useState([]);
+  const [userpubliccircles, setUserPublicCircles] = useState([]);
+  const [userprivatecircles, setUserPrivateCircles] = useState([]);
 
     //Functions
     const handleUserCircleSort = () => {
-      return usercircles
+      return usercircles 
       .filter((usercircle) => {
         if (dropdown === "All Circles") return usercircle;
         if (dropdown === "Public Circles") {
@@ -73,6 +75,29 @@ function UserCircles() {
 			console.log(e);
 		}
 	};
+
+  const GetPublicCircles = async () =>{
+    try {
+			const response = await getPublicCircles ();
+			// console.log(response.data.data);
+			setUserPublicCircles(response.data.data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+  const GetPrivateCircles = async () =>{
+    try {
+			const response = await getPrivateCircles ();
+			// console.log(response.data.data);
+			setUserPrivateCircles(response.data.data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+
+  
     //Getting Notes and Boards
     // useEffect(() => {
     //  // getUser(setUser);
@@ -106,39 +131,6 @@ function UserCircles() {
           setSearch={setSearch} dropdown={dropdown}
           setDropdown={setDropdown}/>
         </div>
-        {/* <div className="usercircles_filter_box">
-          <div className="usercircles_filter_dropdown">
-            <div
-              className="usercircles_filter_dropdown_button"
-              onClick={(e) => setIsActive(!isActive)}
-            >
-              <p>All Circles</p>
-              <div className="dropdown_icon">
-                <FontAwesomeIcon icon={faAngleDown} />
-              </div>
-            </div>
-            {isActive && (
-              <div className="usercircles_filter_dropdown_content">
-                <Link
-                  to="/UserCirclesPublic"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div className="usercircles_filter_dropdown_item">
-                    <p>Public Circles</p>
-                  </div>
-                </Link>
-                <Link
-                  to="/UserCirclesPrivate"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div className="usercircles_filter_dropdown_item">
-                    <p>Private Circles</p>
-                  </div>
-                </Link>
-              </div>
-            )}
-          </div>
-        </div> */}
       </div>
       <div className="User_Circles_List">
         <div className="usercircles__header">

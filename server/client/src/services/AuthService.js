@@ -126,6 +126,24 @@ export const getCircles = () => {
     });
 };
 
+//get public circles
+export const getPublicCircles = () => {
+    return axios.get(baseUrl + 'circles/public/circles/', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+//get private circles
+export const getPrivateCircles = (id) => {
+    return axios.get(baseUrl + 'circles/private/circles/:id' + id,{
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
 export const getCircle = (id) => {
     return axios.get(baseUrl + 'circles/' + id, {
         headers: {
@@ -158,13 +176,7 @@ export const getCircleNotification = (id) => {
     });
 };
 
-// export const addFolderMember = (data) => {
-//     return axios.put(baseUrl + 'folders/member', data, {
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
-// };
+
 
 //remove member form user circle
 export const removeMember = (data) => {
@@ -229,3 +241,21 @@ export const updateuser = (data) => {
     });
 };
 
+//board
+
+export const getBoardNotification = (id) => {
+    return axios.get(baseUrl + 'boards/notification/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+//update seen
+export const updateSeen = (data) =>{
+    return axios.patch(baseUrl + 'boards/member/update/seen',data,{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}
