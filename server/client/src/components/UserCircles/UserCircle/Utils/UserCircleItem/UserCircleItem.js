@@ -1,7 +1,10 @@
 // ------ usercircleItem  ------
 import React, { useEffect, useState, useContext } from 'react';
 import './UserCircleItem.scss';
-import { updateMember, removeMember} from '../../../../../services/AuthService';
+import {
+  updateMember,
+  removeMember,
+} from '../../../../../services/AuthService';
 import { UserContext } from '../../../../../App';
 
 //Images
@@ -17,8 +20,16 @@ import {
   faCrown,
 } from '@fortawesome/free-solid-svg-icons';
 
-const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}) => {
+const UserCircleItem = ({
+  usercircleMembers,
+  usercircleId,
+  refresh,
+  setRefresh,
+}) => {
   const { state, dispatch } = useContext(UserContext);
+  const [loguserAdmin, setloguserAdmin] = useState(false);
+  const [loguserOwner, setloguserOwner] = useState(false);
+  console.log(state);
   const [members, setMembers] = useState([]);
   const [admin, setAdmin] = useState([]);
 
@@ -26,6 +37,28 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
     setMembers(usercircleMembers);
     // console.log(usercircleMembers);
   }, [usercircleMembers]);
+
+  useEffect(() => {
+    console.log(loguserAdmin);
+  }, [loguserAdmin]);
+
+  useEffect(() => {
+    if (members == null) return;
+    console.log(members);
+    members.forEach((member) => {
+      if (member.member._id == state._id && member.isAdmin)
+        setloguserAdmin(true);
+    });
+  }, [members]);
+
+  useEffect(() => {
+    if (members == null) return;
+    console.log(members);
+    members.forEach((member) => {
+      if (member.member._id == state._id && member.isOwner)
+        setloguserOwner(true);
+    });
+  }, [members]);
 
   const handleUpdateMember = async (memberId, isAdmin) => {
     try {
@@ -41,13 +74,17 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
   };
 
   const handleRemoveMember = async (memberId) => {
-    console.log(memberId)
-    await removeMember({
-      members: memberId,
-      id: usercircleId,
-    });
-    setRefresh(!refresh);
-  }
+    try {
+      const response = await removeMember({
+        id: usercircleId,
+        memberId: memberId,
+      });
+      console.log(response);
+      setRefresh(!refresh);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div>
@@ -56,7 +93,7 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
           <>
             <div key={member._id} className="usercircleItem" disabled>
               <div className="usercircleItem__fileIcon">
-            <img src={member.member && member.member.image}/> 
+                <img src={member.member && member.member.image} />
               </div>
               <div className="usercircleItem__fileName">
                 <p>
@@ -85,22 +122,28 @@ const UserCircleItem = ({ usercircleMembers, usercircleId ,refresh , setRefresh}
                 )}
               </div>
               <div className="usercircleItem__title2">
-                {member.isAdmin == false && member.isOwner == false && (
-                  <button onClick={() => handleUpdateMember(member._id, true)}>
+                {/* {(member.member._id==state._id && member.isAdmin )=>setloguserAdmin(true)} */}
+                {loguserAdmin && !member.isAdmin && (
+                  <button className = "usercircle_admin"onClick={() => handleUpdateMember(member._id, true)}>
                     Make Admin
                   </button>
                 )}
-                {member.isAdmin == true && member.isOwner == false && (
-                  <button onClick={() => handleUpdateMember(member._id, false)}>
+                {loguserOwner && !member.isOwner && member.isAdmin && (
+                  <button className = "usercircle_admin" onClick={() => handleUpdateMember(member._id, false)}>
                     Remove Admin
                   </button>
                 )}
               </div>
               <div className="usercircleItem__setings">
                 <div className="usercircleItem__setings__container">
-                  <button className="usercircle_remove_button" onClick={() => handleRemoveMember(member.member._id)}>
-                    <span>REMOVE</span>
-                  </button>
+                  {loguserOwner && !member.isOwner && (
+                    <button
+                      className="usercircle_remove_button"
+                      onClick={() => handleRemoveMember(member.member._id)}
+                    >
+                      <span>REMOVE</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

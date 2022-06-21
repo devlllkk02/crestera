@@ -40,39 +40,6 @@
     }
   }
 
-  .usercircleSearch__searchbox2 {
-    width: calc((100% - 500px) * 0.25);
-    height: 100%;
-    // background-color: lightseagreen;
-
-    @include flexbox;
-    justify-content: flex-start;
-    position: relative;
-
-    input {
-      width: 100%;
-      height: 35px;
-      padding: 10px;
-      margin-left: 20px;
-
-      color: $grey;
-      outline: none;
-      border: $borderGreyLight;
-      box-sizing: border-box;
-      font-size: $font-small;
-
-      &:focus {
-        border: $borderGreyLight;
-        border-color: $blue;
-      }
-    }
-
-    .usercircleSearch__searchbox1__icon {
-      position: absolute;
-      right: 8px;
-      color: $greyIconsLight;
-    }
-  }
 
   button.usercircle_addusers_button {
     background-color: #0f96c3;
@@ -85,7 +52,7 @@
     width: calc((100% - 500px) * 0.25);
     height: 59%;
     padding: 0px;
-    margin-left: 3%;
+    margin-left: 15%;
 
 
     span {
