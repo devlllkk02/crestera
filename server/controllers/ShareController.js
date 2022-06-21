@@ -63,7 +63,13 @@ exports.shareRemoveUserFromNoteController = async (req, res) => {
     const user = await User.findById(userId);
     const note = await Note.findById(noteId).populate("members");
 
-    note = note.
+    const newNote = await Note.findByIdAndUpdate(
+      noteId,
+      { $pull: { members: { _id: userId } } },
+      { new: true }
+    )
+      .populate("members")
+      .exec();
 
     res.send();
   } catch (error) {

@@ -1,24 +1,17 @@
-const express = require('express');
+// ------ USer Routes  ------
+// Imports
+const express = require("express");
+const { updateUser } = require("../controllers/UserController");
+
 const router = express.Router();
-// Model types
-const Types = require('../utils/Types') 
-// CRUD Service
-const CRUD = require('../utils/CRUD')
+
+//Middleware
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 
 
-//router - /v1/crestera/users/
-//get all
-router.get('/', (req, res) => CRUD.getByQuery({}, Types.USER, res));
-
-//router - /v1/crestera/users/id
-// Update
-router.put('/', (req, res) => CRUD.updateById(req.body._id, req.body,  Types.USER, res));
-
-// Get by id
-router.get('/:id', (req, res) => CRUD.getById(req.params.id,  Types.USER, res));
-
-// Delete
-router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.USER, res));
+//? ------ UPDATE ROUTES ------
+//ROUTE : PUT : Update user
+router.put("/updateuser", AuthMiddleware, updateUser);
 
 
-module.exports=router;
+module.exports = router;
