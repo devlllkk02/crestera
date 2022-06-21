@@ -55,9 +55,10 @@ app.use(require("./routes/NoteRoutes"));
 app.use(require("./routes/BoardRoutes"));
 app.use(require("./routes/MainDashboardRoutes"));
 app.use(require("./routes/ShareRoutes"));
+app.use(require("./routes/UserRoutes"));
 
 //? User Routes
-app.use("/v1/crestera/users", require("./routes/UserRoutes"));
+// app.use("/v1/crestera/users", require("./routes/UserRoutes"));
 //? UserCircle Routes
 app.use("/v1/crestera/circles", require("./routes/UserCircleRoutes"));
 //? Board Routes
