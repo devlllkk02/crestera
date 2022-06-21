@@ -67,7 +67,7 @@ const Fileupload = ({ trigger, settrigger, currentfolder }) => {
                         {uploading ?
                             <></>
                             :
-                            <input type="file" className='custom-file-input' name="file" onChange={changeHandler} />
+                            <input type="file" className='custom-file-input' name="file" hidden onChange={changeHandler} />
                         }
 
                         {isSelected ? (
