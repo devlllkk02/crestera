@@ -176,17 +176,25 @@ export const getCircleNotification = (id) => {
     });
 };
 
-// export const addFolderMember = (data) => {
-//     return axios.put(baseUrl + 'folders/member', data, {
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
-// };
+export const addFolderMember = (data) => {
+    return axios.put(baseUrl + 'folders/member', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
 
 //remove member form user circle
 export const removeMember = (data) => {
     return axios.put(baseUrl + 'circles/member/remove', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+export const removeFolderMember = (data) => {
+    return axios.put(baseUrl + 'folders/member/remove', data, {
         headers: {
             'Content-Type': 'application/json'
         }

@@ -1,4 +1,5 @@
 //Imports
+const User = require('../models/User');
 const Folder = require('../models/Folder');//Folder Model
 const ResponseService = require('../utils/ResponseService'); // Response service
 
@@ -43,6 +44,7 @@ exports.getById = (async (req, res) => {
     })
         .populate('addedBy', 'firstName lastName')
         .populate('motherFolder', 'name')
+        .populate('members.member', 'firstName lastName image');
 });
 
 
@@ -55,6 +57,17 @@ exports.addMember = async function (req, res) {
     Folder.findByIdAndUpdate(
       req.body.id,
       { $push: { members: member } },
+      { new: true },
+      (err, doc) => {
+        ResponseService.generalPayloadResponse(err, doc, res);
+      }
+    );
+  };
+
+  exports.removeMember = async function (req, res) {
+    Folder.findByIdAndUpdate(
+      req.body.id,
+      { $pull: { "members": {member:req.body.memberId} } },
       { new: true },
       (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
@@ -86,4 +99,37 @@ exports.getAllMember = async (req, res) => {
   .sort({ addedOn: -1 })
   .populate('addedBy', 'firstName lastName')
   .populate('motherFolder', 'name')
+};
+
+exports.getUsersNotAddedToFolder = async (req, res) => {
+  try {
+    const users = await User.find().select('_id');
+    const folder = await Folder.findById(req.params.folderId)
+      .populate('members.member')
+      .select('members');
+
+    const userIds = [];
+    const memberIds = [];
+    var filteredIds = [];
+
+    //Getting All User Ids
+    users.forEach((user) => {
+      userIds.push(user._id.toString());
+    });
+
+    //Getting All Member Ids
+    folder.members.forEach((member) => {
+      memberIds.push(member.member._id.toString());
+    });
+
+    //Filtering Ids
+    filteredIds = userIds.filter((item) => {
+      return !memberIds.includes(item);
+    });
+    const filteredUsers = await User.find({ _id: { $in: filteredIds } });
+    // console.log(`User Ids: ${userIds} \nMemeber Ids: ${memberIds} \nFiltered Ids: ${filteredIds}`);
+    res.send(filteredUsers);
+  } catch (error) {
+    console.log(error);
+  }
 };

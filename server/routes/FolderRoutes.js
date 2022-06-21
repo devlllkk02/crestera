@@ -5,6 +5,7 @@ const Types = require('../utils/Types')
 // CRUD Service
 const CRUD = require('../utils/CRUD')
 //controller
+const Folder = require('../models/Folder');
 FolderController = require('../controllers/FolderController');
 
 //router - /v1/crestera/folders/
@@ -32,6 +33,7 @@ router.delete('/:id', (req, res) => CRUD.deleteById(req.params.id,  Types.FOLDER
 
 //add member
 router.put('/member', (req, res) => FolderController.addMember(req, res));
+router.put('/member/remove', (req, res) =>  FolderController.removeMember(req, res));
 
 //add circle
 router.put('/circle', (req, res) => FolderController.addCircle(req, res));
@@ -40,3 +42,7 @@ router.put('/circle', (req, res) => FolderController.addCircle(req, res));
 router.get('/share/member/:id', (req, res) =>  FolderController.getAllMember(req, res));
 
 module.exports=router;
+
+//get users not added to a folder
+router.get('/folder/:folderId', FolderController.getUsersNotAddedToFolder);
+module.exports = router;

@@ -11,31 +11,51 @@ import './VaultSharePopup.scss';
 
 //Images
 import profilePic from '../../../assets/images/other/profilePicture.jpg';
+import { addFolderMember } from '../../../services/AuthService';
 
 const VaultSharePopup = ({ trigger, settrigger, ID }) => {
   const [selected, setSelected] = useState([]);
   const [users, setUsers] = useState([]);
 
+  //Users
+  useEffect(() => {
+    GetUsers();
+    // console.log(circlemembers);
+  }, [ID]);
 
-  // const addmember = async (member) => {
-  //   try {
-  //     const response = await addMember({
-  //       members: member,
-  //       id: ID,
-  //     });
-  //     settrigger(false);
-  //     // console.log(response);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // const handleSubmit = () => {
-  //   const members = [];
-  //   selected.map((select) => members.push(select['value']));
-  //   // console.log(members);
+  //Get Users
+  const GetUsers = () => {
+    fetch(`/v1/crestera/folders/folder/${ID}`, {
+      method: 'get',
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setUsers(result);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  //   members.map((member) => addmember(member));
-  // };
+  const addmember = async (member) => {
+    try {
+      const response = await addFolderMember({
+        members: member,
+        id: ID,
+      });
+      settrigger(false);
+      // console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleSubmit = () => {
+    const members = [];
+    selected.map((select) => members.push(select['value']));
+    // console.log(members);
+
+    members.map((member) => addmember(member));
+  };
+
   return trigger ? (
     <div className="popup">
       <div className="vaultshare_popup_body">
@@ -43,21 +63,20 @@ const VaultSharePopup = ({ trigger, settrigger, ID }) => {
           <FontAwesomeIcon icon={faX} />
         </button>
         <div className="foldershare_addusers_container">
-          <form>
+          <form onSubmit={handleSubmit} >
             <div className="foldershare_addusers_header">
               <h1>INVITE PEOPLES</h1>
             </div>
             <div className="foldershare_addusers__searchbox1">
-              {/* <MultiSelect
-              // options={users.map((user) => ({
-              //   value: user._id,
-              //   label: `${user.firstName} ${user.lastName} `,
-              // }))}
-              // value={selected}
-              // onChange={setSelected}
-              // labelledBy="Select"
-              /> */}
-              hii
+              <MultiSelect
+              options={users.map((user) => ({
+                value: user._id,
+                label: `${user.firstName} ${user.lastName} `,
+              }))}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
+              />
             </div>
             <input type="submit" value="INVITE"></input>
           </form>

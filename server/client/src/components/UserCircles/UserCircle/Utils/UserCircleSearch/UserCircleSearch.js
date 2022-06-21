@@ -92,12 +92,12 @@ function UserCircleSearch({ page, ID, usercircleMembers }) {
         ID={ID}
         circlemembers={usercircleMembers}
       ></AddUsersPopup>
-      <div className="usercircleSearch__searchbox2">
+      {/* <div className="usercircleSearch__searchbox2">
         <input type="text" placeholder="Search" />
         <div className="usercircleSearch__searchbox1__icon">
           <FontAwesomeIcon icon={faSearch} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
