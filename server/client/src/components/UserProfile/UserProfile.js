@@ -43,18 +43,18 @@ const UserProfile = () => {
             <p2>{`${state?.email}`}</p2>
             <hr />
           </div>
-          <div className="bio">
+          {/* <div className="bio">
             <div className="container">
               <h3>BIO</h3>
               <p2>{`${state?.bio}`}
               </p2>
               <hr />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="buttons">
           <Link to="/edit">
-          <button className="edit">EDIT</button>
+          <button className="save" >EDIT</button>
           </Link>
         </div>
       </div>

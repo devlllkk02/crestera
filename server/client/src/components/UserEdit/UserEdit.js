@@ -1,18 +1,27 @@
 //------ User Profile Edit Page ------
 import React, {useEffect, useState} from "react";
 import "./UserEdit.scss";
+import { useContext } from "react";
+
+import { UserContext } from "../../App";
+import { Link } from "react-router-dom";
 
 import profilepic from "../../assets/images/other/profilePicture.jpg"
+import { getUser } from "../../services/AuthService";
 
 
 
 const UserEdit = () => {
+  
+  const { state, dispatch } = useContext(UserContext);
+  const[user, setUser] = useState();
+
 
   return (
     <div className="edit_page">
       <div className="profile__container">
         <div className="profile__pic">
-          <img src={profilepic} alt=""/>
+          <img src={`${state?.image}`} alt=""/>
         </div>
         <div className="profile__heading">
           <p1>PUBLIC PROFILE</p1>
@@ -29,7 +38,7 @@ const UserEdit = () => {
                     name="firstName"
                     placeholder="First Name"
                     id="firstName"
-                    //defaultValue={ user.firstName}`}
+                    defaultValue={`${state?.firstName}`}
                   />
                 </label>
               </div>
@@ -41,7 +50,7 @@ const UserEdit = () => {
                     name="lastName"
                     placeholder="Last Name"
                     id="lastName"
-                    //defaultValue={`${state?.lastName}`}
+                    defaultValue={`${state?.lastName}`}
                   />
                 </label>
               </div>
@@ -51,10 +60,20 @@ const UserEdit = () => {
               <input
                 type="text"
                 name="userName"
-                // defaultValue={`${state?.email}`}
+                defaultValue={`${state?.email}`}
                 placeholder="Email"
               />
             </div>
+            <div className="buttons">
+              <Link to="/profile">
+              <button className="cancel">CANCEL</button>
+              </Link>
+
+              <button className="save" type="submit">
+                SAVE
+              </button>
+            </div>
+            <br></br>
            
             <div className="password__heading">
           <p1>CHANGE PASSWORD</p1>
@@ -92,17 +111,17 @@ const UserEdit = () => {
                 </label>
             </div>
             <div className="buttons">
-              <button className="cancel">CANCEL</button>
+              {/* <button className="cancel">CANCEL</button> */}
 
               <button className="save" type="submit">
-                SAVE
+                CHANGE PASSWORD
               </button>
             </div>
             
           </form>
         </div>
 
-        <div className="profile__heading">
+        {/* <div className="profile__heading">
           <p1>DELETE ACCOUNT</p1>
           <hr />
           <p2>
@@ -115,10 +134,11 @@ const UserEdit = () => {
           <button className="delete" type="submit">
             DELETE
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
+
 };
 
 export default UserEdit;
