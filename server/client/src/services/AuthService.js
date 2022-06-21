@@ -184,6 +184,7 @@ export const addFolderMember = (data) => {
     });
 };
 
+
 //remove member form user circle
 export const removeMember = (data) => {
     return axios.put(baseUrl + 'circles/member/remove', data, {
@@ -255,3 +256,21 @@ export const updateuser = (data) => {
     });
 };
 
+//board
+
+export const getBoardNotification = (id) => {
+    return axios.get(baseUrl + 'boards/notification/'+ id, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};
+
+//update seen
+export const updateSeen = (data) =>{
+    return axios.patch(baseUrl + 'boards/member/update/seen',data,{
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
+}

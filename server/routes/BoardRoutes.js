@@ -54,4 +54,7 @@ router.delete(
 //get notification
 router.route('/notification/:id').get(BoardController.getBoardNotification);
 
+//update seen
+router.patch('/member/update/seen', (req, res) =>  BoardController.updateSeen(req, res));
+
 module.exports = router;

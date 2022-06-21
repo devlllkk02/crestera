@@ -7,7 +7,7 @@ const ResponseService = require('../utils/ResponseService'); // Response service
 exports.getAllById = (async (req, res) => {
     const folderId = req.params.id;
     const uid = req.query.uid;
-    Folder.find({ motherFolder: folderId , addedBy : uid }, (err, doc) => {
+    Folder.find({ motherFolder: folderId  }, (err, doc) => {
         ResponseService.generalPayloadResponse(err, doc, res);
     })
         .sort({ addedOn: -1 })
@@ -26,7 +26,7 @@ exports.getAll = (async (req, res) => {
         .populate('motherFolder', 'name')
 });
 
-// Get All Folders when mother folder == null
+// Get All shared Folders 
 exports.getAllShare = (async (req, res) => {
   const uid = req.query.uid;
   Folder.find({members: { $elemMatch: { member : uid } } }, (err, doc) => {

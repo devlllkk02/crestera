@@ -58,14 +58,15 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+        overflow: hidden;
       
-      .custom-file-input[type="file"] {
-        background-color: #0F96C3;
-        color: white;
-      }
-   
     }
+  
     .submit-btn{
+      background-color: #0F96C3;
+      border-style: none;
+      color: white;
+      height: 30px;
       width: 100%;
     }
 

@@ -2,31 +2,17 @@ import React, {useContext}from 'react'
 import UserCircleIcon from "../../../assets/images/Icons/user group.png"
 import "./NotificationItem.scss"
 import { UserContext } from '../../../App';
-import {removeMember,updateIsPending} from "../../../services/AuthService"
+import {updateSeen} from "../../../services/AuthService"
 
-function NotificationItem({circleNotification,trigger, setTrigger}) {
+function NotificationBoardItem({circleNotification,trigger, setTrigger}) {
     const { state, dispatch } = useContext(UserContext);
 
-    const Decline= async ()=>{
-       try{
-        const response = await removeMember({
-            id: circleNotification._id,
-            memberId: state._id
-        });
-        console.log(response);
-        setTrigger(!trigger);
-       }
-       catch(e){
-        console.log(e);
-       }
-    }
-
-    const Accept = async ()=>{
+    const SEEN = async ()=>{
         try{
-            const response = await updateIsPending({
-                circleId : circleNotification._id,
+            const response = await updateSeen({
+                BoardId : circleNotification._id,
                 memberId: state._id,
-                isPending : "false"
+                seen : "false"
             });
             console.log(response);
             setTrigger(!trigger);
@@ -45,16 +31,15 @@ function NotificationItem({circleNotification,trigger, setTrigger}) {
         </div>
         <div className='notification__message__container'>
             <div className='notification__message'>
-            <p>You are invited to join "{circleNotification.name}" user circle</p>
+            <p>You are invited to join "{circleNotification.name}"</p>
             </div>
         </div>
         <div className='notification__button__container'>
-                <button className='notification__accept__btn' onClick={() => Accept()} >ACCEPT</button>
-                <button className='notification__decline__btn' onClick={()=> Decline()}>DECLINE</button>
+                <button className='notification__accept__btn' onClick={() => SEEN()} >SEEN</button>
             </div>
         </div>
     </div>
   )
 }
 
-export default NotificationItem
+export default  NotificationBoardItem

@@ -3,8 +3,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const BOard = require('../models/Board');
 require("dotenv").config();
+const ResponseService = require('../utils/ResponseService'); // Response service
 
 //Modles
 const Board = mongoose.model("Board");
@@ -131,7 +132,18 @@ exports.deleteSingleBoardController = async (req, res) => {
 // Get notification
 exports.getBoardNotification = (async (req, res) => {
   const uid = req.params.id;
-  UserCircle.find( { members: { $elemMatch: { member : uid , seen: "false" } } }, (err, doc) => {
+  BOard.find( { members: { $elemMatch: { member : uid , seen: "false"} } }, (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
   })
 });
+
+//update seen
+exports.updateSeen = async function (req, res) {
+  UserCircle.updateOne(
+    { 'members.member': req.body.memberId , '_id':req.body.boardId},
+    { $set: { 'members.$.seen': req.body.seen } },
+    (err, doc) => {
+      ResponseService.generalResponse(err, res);
+    }
+  );
+};
