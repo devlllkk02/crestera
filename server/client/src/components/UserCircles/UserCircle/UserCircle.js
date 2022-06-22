@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 // import '@fontsource/roboto';
 import './UserCircle.scss';
 import UserCircleUpdatePopup from './UserCircleUpdatePopup/UserCircleUpdatePopup';
@@ -22,15 +22,19 @@ import UserCircleHeader from './Utils/UserCircleHeader/UserCircleHeader';
 import UserCircleItem from './Utils/UserCircleItem/UserCircleItem';
 
 import { useParams } from 'react-router';
+import { UserContext } from '../../../App';
 import { getCircle, getUsers} from '../../../services/AuthService';
 
 function UserCircle() {
+  const { state, dispatch } = useContext(UserContext);
+  const [loguserAdmin, setloguserAdmin] = useState(false);
   const [btnpopup, setbtnpopup] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const { usercircleId } = useParams();
   const [usercircle, setUserCircle] = useState([]);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
+  const [members, setMembers] = useState([]);
 
   useEffect(() => {
     loadUserCircle();
@@ -39,6 +43,19 @@ function UserCircle() {
   useEffect(() => {
     loadUserCircle();
   }, [btnpopup,refresh]);
+  useEffect(() => {
+    setMembers(usercircle.members);
+    // console.log(usercircleMembers);
+  }, [usercircle.members]);
+
+  useEffect(() => {
+    if (members == null) return;
+    console.log(members);
+    members.forEach((member) => {
+      if (member.member._id == state._id && member.isAdmin)
+        setloguserAdmin(true);
+    });
+  }, [members]);
 
   //load folder by id
   const loadUserCircle = async () => {
@@ -68,13 +85,13 @@ function UserCircle() {
     <div className="usercircle">
       <div className="usercircle_header">
         <p>{usercircle.name}</p>
-        <button className="btnEdit">
+      {loguserAdmin && <button className="btnEdit">
           <FontAwesomeIcon
             className="user_circle_edit_icon"
             icon={faPen}
             onClick={() => setbtnpopup(true)}
           />
-        </button>
+        </button>}
         <UserCircleUpdatePopup
           trigger={btnpopup}
           settrigger={setbtnpopup}
@@ -100,6 +117,7 @@ function UserCircle() {
         <div className="usercircle__search">
           <UserCircleSearch page="crestera" ID={usercircleId}  search={search}
           setSearch={setSearch}/>
+           {usercircle.isPublic==true && <button className='usercircle_join_button'>Join Circle</button>}
         </div>
       </div>
       <div className="User_Circles_List">

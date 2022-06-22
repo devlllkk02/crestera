@@ -83,7 +83,7 @@
       font-size: $font-extra-small;
     }
 
-    button.usercircle_admin{
+    button.usercircle_add_admin{
 
       background-color: #0f96c3;
         color: $white;
@@ -112,6 +112,36 @@
   
         }
   }
+  button.usercircle_remove_admin{
+
+    background-color: #0f96c3;
+      color: $white;
+      background: #0f96c3;
+      // display: block;
+      // margin:auto;  
+      margin-left: -120px;
+
+      background-color: white;
+    border: 2px solid #ff0000;
+    color: #ff0000;
+      //   box-sizing: border-box;
+      width: 140px;
+      height: 40px;
+      &:hover{
+        background-color:#ff0000;
+        color: white;
+
+      }
+      span {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+
+      }
+}
+  
 }
   .usercircleItem__setings {
     width: 70px;
