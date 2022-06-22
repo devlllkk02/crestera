@@ -49,6 +49,15 @@ exports.shareAddUserToNoteController = async (req, res) => {
       .populate("members")
       .exec();
 
+    //Updating shared user's note count
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        $inc: { noteCount: 1 },
+      },
+      { new: true }
+    );
+
     res.send({ newNote });
   } catch (error) {
     console.log(error);
@@ -60,9 +69,7 @@ exports.shareRemoveUserFromNoteController = async (req, res) => {
   try {
     const { noteId, userId } = req.body;
 
-
     let { members } = await Note.findById(noteId).populate("members");
-
     members = members.filter((member) => {
       return member._id.toString() != userId;
     });
@@ -76,6 +83,15 @@ exports.shareRemoveUserFromNoteController = async (req, res) => {
     )
       .populate("members")
       .exec();
+
+    //Updating shared user's note count
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        $inc: { noteCount: -1 },
+      },
+      { new: true }
+    );
 
     res.send(newNote);
   } catch (error) {

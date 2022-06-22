@@ -42,7 +42,7 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
   //Updating DOM
   useEffect(() => {
     if (update) {
-      // navigate(0);
+      navigate(0);
     }
   }, [update]);
 

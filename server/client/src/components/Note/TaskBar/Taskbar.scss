@@ -15,6 +15,7 @@
 
     @include flexbox;
 
+    //File Name
     .taskbar__fileName {
       width: calc((100% - 400px));
       height: 100%;
@@ -27,87 +28,10 @@
         color: $grey;
       }
     }
-    .taskbar__users {
-      width: 200px;
-      height: 100%;
-      //   background-color: lightcoral;
-      @include flexbox;
-      justify-content: flex-end;
-      position: relative;
 
-      .taskbar__users__online {
-        width: 100%;
-        height: 100%;
-        // background-color: lightcoral;
-        @include flexbox;
-        justify-content: flex-end;
-        .taskbar__user {
-          width: 35px;
-          height: 35px;
-          position: absolute;
-          &:nth-child(1) {
-            right: 25px;
-            z-index: 1;
-          }
-
-          &:nth-child(2) {
-            right: 50px;
-            z-index: 2;
-          }
-          &:nth-child(3) {
-            right: 75px;
-            z-index: 3;
-          }
-
-          img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid $red;
-          }
-        }
-      }
-
-      .taskbar__defaultUsers {
-        width: 100%;
-        height: 100%;
-        // background-color: lightgreen;
-
-        @include flexbox;
-        justify-content: flex-end;
-
-        .taskbar__defaultUser {
-          background-color: $red;
-
-          border-radius: 50%;
-          border: 2px solid $red;
-          width: 30px;
-          height: 30px;
-
-          &:not(:first-child) {
-            display: none;
-          }
-          @include flexbox;
-          p {
-            color: $white;
-          }
-        }
-      }
-    }
-    .taskbar__share {
-      width: 200px;
-      height: 100%;
-      //   background-color: lightseagreen;
-      @include flexbox;
-
-      button {
-        @include ButtonRedDark;
-        width: 100%;
-      }
-    }
-
+    //Users
     .taskbar__users__note {
-      width: 200px;
+      width: 400px;
       height: 100%;
       //   background-color: lightcoral;
       @include flexbox;
@@ -175,7 +99,7 @@
     }
 
     .taskbar__users__board {
-      width: 200px;
+      width: 400px;
       height: 100%;
       //   background-color: lightcoral;
       @include flexbox;
@@ -241,22 +165,12 @@
         }
       }
     }
-    .taskbar__share {
-      width: 200px;
-      height: 100%;
-      // background-color: lightseagreen;
-      @include flexbox;
 
-      button {
-        @include ButtonRedDark;
-        width: 80%;
-      }
-    }
-
+    //Share
     .taskbar__share__note {
       width: 200px;
       height: 100%;
-      //   background-color: lightseagreen;
+      // background-color: lightseagreen;
       @include flexbox;
       justify-content: flex-end;
 
@@ -299,5 +213,85 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.taskbar__users {
+  width: 200px;
+  height: 100%;
+  background-color: lightcoral;
+  @include flexbox;
+  justify-content: flex-end;
+  position: relative;
+
+  .taskbar__users__online {
+    width: 100%;
+    height: 100%;
+    // background-color: lightcoral;
+    @include flexbox;
+    justify-content: flex-end;
+    .taskbar__user {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      &:nth-child(1) {
+        right: 25px;
+        z-index: 1;
+      }
+
+      &:nth-child(2) {
+        right: 50px;
+        z-index: 2;
+      }
+      &:nth-child(3) {
+        right: 75px;
+        z-index: 3;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid $red;
+      }
+    }
+  }
+
+  .taskbar__defaultUsers {
+    width: 100%;
+    height: 100%;
+    // background-color: lightgreen;
+
+    @include flexbox;
+    justify-content: flex-end;
+
+    .taskbar__defaultUser {
+      background-color: $red;
+
+      border-radius: 50%;
+      border: 2px solid $red;
+      width: 30px;
+      height: 30px;
+
+      &:not(:first-child) {
+        display: none;
+      }
+      @include flexbox;
+      p {
+        color: $white;
+      }
+    }
+  }
+}
+
+.taskbar__share {
+  width: 200px;
+  height: 100%;
+  background-color: lightseagreen;
+  @include flexbox;
+
+  button {
+    @include ButtonRedDark;
+    width: 80%;
   }
 }

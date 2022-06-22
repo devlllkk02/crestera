@@ -45,12 +45,15 @@ exports.createNoteController = async (req, res) => {
 
 //Get Notes Of A User
 exports.getNotesController = (req, res) => {
-  Note.find({ createdBy: req.user._id })
+  Note.find({
+    $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+  })
     .populate("createdBy")
     .then((notes) => {
       notes = notes.sort((a, b) => {
         return b.updatedAt - a.updatedAt;
       });
+
       res.json({ notes: notes });
     })
     .catch((error) => {
@@ -62,9 +65,9 @@ exports.getNotesController = (req, res) => {
 exports.getRecommendedNotesController = async (req, res) => {
   try {
     //Fetching notes and boards
-    const notes = await Note.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
+    const notes = await Note.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
 
     //Sorting based on updated time
     let sortednotes = notes.sort((a, b) => {

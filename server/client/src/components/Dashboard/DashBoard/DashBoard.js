@@ -59,9 +59,7 @@ function DashBoard() {
       .filter((item) => {
         if (dropdown === "All Documents") return item;
         if (dropdown === "Shared With Me") {
-          if (item.shared == true) {
-            return item;
-          }
+          return item.createdBy._id != state._id;
         }
       })
       .filter((item) => {
@@ -192,7 +190,7 @@ function DashBoard() {
                     />
                   );
                 })
-              ) : search ? (
+              ) : search || dropdown == "Shared With Me" ? (
                 <DashSearchFallback />
               ) : (
                 <>

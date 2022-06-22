@@ -13,12 +13,12 @@ const Board = mongoose.model("Board");
 exports.getNotesAndBoardsController = async (req, res) => {
   try {
     //Fetching notes and boards
-    const notes = await Note.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
-    const boards = await Board.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
+    const notes = await Note.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
+    const boards = await Board.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
     //joining notes and boards
     const notesandboards = notes.concat(boards);
     //Sorting based on updated time
@@ -36,12 +36,12 @@ exports.getNotesAndBoardsController = async (req, res) => {
 exports.getRecommendedNotesAndBoardsController = async (req, res) => {
   try {
     //Fetching notes and boards
-    const notes = await Note.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
-    const boards = await Board.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
+    const notes = await Note.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
+    const boards = await Board.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
     //joining notes and boards
     const notesandboards = notes.concat(boards);
     //Sorting based on updated time

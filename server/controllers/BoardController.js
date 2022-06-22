@@ -3,9 +3,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const BOard = require('../models/Board');
+const BOard = require("../models/Board");
 require("dotenv").config();
-const ResponseService = require('../utils/ResponseService'); // Response service
+const ResponseService = require("../utils/ResponseService"); // Response service
 
 //Modles
 const Board = mongoose.model("Board");
@@ -49,7 +49,9 @@ exports.createBoardController = async (req, res) => {
 
 //Get Boards Of A User
 exports.getBoardsController = (req, res) => {
-  Board.find({ createdBy: req.user._id })
+  Board.find({
+    $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+  })
     .populate("createdBy")
     .then((boards) => {
       boards = boards.sort((a, b) => {
@@ -66,9 +68,9 @@ exports.getBoardsController = (req, res) => {
 exports.getRecommendedBoardsController = async (req, res) => {
   try {
     //Fetching boards and boards
-    const boards = await Board.find({ createdBy: req.user._id }).populate(
-      "createdBy"
-    );
+    const boards = await Board.find({
+      $or: [{ createdBy: req.user._id }, { members: { _id: req.user._id } }],
+    }).populate("createdBy");
 
     //Sorting based on updated time
     let sortedboards = boards.sort((a, b) => {
@@ -130,18 +132,21 @@ exports.deleteSingleBoardController = async (req, res) => {
 };
 
 // Get notification
-exports.getBoardNotification = (async (req, res) => {
+exports.getBoardNotification = async (req, res) => {
   const uid = req.params.id;
-  BOard.find( { members: { $elemMatch: { member : uid , seen: "false"} } }, (err, doc) => {
+  BOard.find(
+    { members: { $elemMatch: { member: uid, seen: "false" } } },
+    (err, doc) => {
       ResponseService.generalPayloadResponse(err, doc, res);
-  })
-});
+    }
+  );
+};
 
 //update seen
 exports.updateSeen = async function (req, res) {
   UserCircle.updateOne(
-    { 'members.member': req.body.memberId , '_id':req.body.boardId},
-    { $set: { 'members.$.seen': req.body.seen } },
+    { "members.member": req.body.memberId, _id: req.body.boardId },
+    { $set: { "members.$.seen": req.body.seen } },
     (err, doc) => {
       ResponseService.generalResponse(err, res);
     }

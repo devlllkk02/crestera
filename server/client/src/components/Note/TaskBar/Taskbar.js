@@ -1,15 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Taskbar.scss";
 
 //Imports
 import profilePic from "../../../assets/images/other/profilePicture.jpg";
+import { UserContext } from "../../../App";
 
 //Pacakages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { getABoard, getANote } from "../../Share/ShareAPI";
 
 function Taskbar({ id, fileName, onlineUsers, fileType }) {
+  const { state, dispatch } = useContext(UserContext);
+  const [file, setFile] = useState();
+  useEffect(() => {
+    if (fileType === "note") {
+      getANote(id, setFile);
+    } else {
+      getABoard(id, setFile);
+    }
+  }, []);
+
   return (
     <div className="taskbar">
       <div className="taskbar__container">
@@ -45,24 +57,26 @@ function Taskbar({ id, fileName, onlineUsers, fileType }) {
               })}
           </div>
         </div>
-        <div
-          className={
-            fileType === "note"
-              ? "taskbar__share__note"
-              : "taskbar__share__board"
-          }
-        >
-          <Link
-            to={
-              fileType === "note" ? `/share/note/${id}` : `/share/board/${id}`
+        {state?._id == file?.createdBy?._id && (
+          <div
+            className={
+              fileType === "note"
+                ? "taskbar__share__note"
+                : "taskbar__share__board"
             }
-            style={{ textDecoration: "none" }}
-
-            className="taskbar__share__link"
           >
-            <button>SHARE</button>
-          </Link>
-        </div>
+            <Link
+              to={
+                fileType === "note" ? `/share/note/${id}` : `/share/board/${id}`
+              }
+              style={{ textDecoration: "none" }}
+              className="taskbar__share__link"
+            >
+              <button>SHARE</button>
+            </Link>
+          </div>
+        )}
+
         {/* <div className="taskbar__settings">
           <div className="taskbar__settings__icon">
             <FontAwesomeIcon icon={faEllipsisVertical} />
