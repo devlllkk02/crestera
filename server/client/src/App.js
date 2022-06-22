@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { initialState, reducer } from "./reducers/UserReducer";
+import { ToastContainer, toast } from "react-toastify";
 
 // Pages
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -71,8 +72,12 @@ const Routing = () => {
       <Route exact path="/edit" element={<UserEditPage />} />
       <Route exact path="/boardshare" element={<WhiteboardSharePage />} />
       <Route exact path="/otheruser/:userId" element={<OtherUserProfile />} />
-      <Route exact path="/downloadpage/:fileId" element={<FileDownloadPage/>} />
-      <Route exact path="/share" element={<Share/>} />
+      <Route
+        exact
+        path="/downloadpage/:fileId"
+        element={<FileDownloadPage />}
+      />
+      <Route exact path="/share" element={<Share />} />
       <Route
         exact
         path="/downloadpage/:fileId"
@@ -80,16 +85,40 @@ const Routing = () => {
       />
 
       {/* User Circles */}
-      <Route exact path="/usercircle/:usercircleId" element={<UserCirclePage />}/>
+      <Route
+        exact
+        path="/usercircle/:usercircleId"
+        element={<UserCirclePage />}
+      />
       <Route exact path="/usercircles" element={<UserCirclesPage />} />
-      <Route exact path="/usercirclescreate" element={<UserCirclesCreatePage />}/>
-      <Route exact  path="/usercirclescreate"  element={<UserCirclesCreatePage />} />
+      <Route
+        exact
+        path="/usercirclescreate"
+        element={<UserCirclesCreatePage />}
+      />
+      <Route
+        exact
+        path="/usercirclescreate"
+        element={<UserCirclesCreatePage />}
+      />
 
       {/* Vault */}
       <Route exact path="/folder/:folderId" element={<VaultDashboard />} />
-      <Route exact path="/vaultfileshare/:fileId" element={<VaultFileSharePage />} />
-      <Route exact path="/folder/share/:folderId" element={<VaultShareDashboard />} />
-      <Route exact path="/vaultfoldershare/:folderId" element={<VaultFolderSharePage />}/>
+      <Route
+        exact
+        path="/vaultfileshare/:fileId"
+        element={<VaultFileSharePage />}
+      />
+      <Route
+        exact
+        path="/folder/share/:folderId"
+        element={<VaultShareDashboard />}
+      />
+      <Route
+        exact
+        path="/vaultfoldershare/:folderId"
+        element={<VaultFolderSharePage />}
+      />
 
       {/* Note */}
       <Route exact path="/note/:noteId" element={<NotePage />} />
@@ -114,6 +143,7 @@ const App = () => {
         <Router>
           <ScrollToTop>
             <Routing />
+            <ToastContainer theme="light" />
           </ScrollToTop>
         </Router>
       </UserContext.Provider>

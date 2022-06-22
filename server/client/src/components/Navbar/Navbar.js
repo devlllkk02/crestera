@@ -1,10 +1,10 @@
 // ------ Navbar  ------
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Navbar.scss";
 
 //Imports
 import { UserContext } from "../../App";
-import {getCircleNotification} from "../../services/AuthService";
+import { getCircleNotification } from "../../services/AuthService";
 
 //Packages
 import { Link, NavLink } from "react-router-dom";
@@ -42,26 +42,26 @@ function Navbar({ page }) {
 
   const [circleNotifications, setCircleNotifications] = useState([]);
 
-  useEffect(()=>{
-   GetCircleNotification();
-  },[state,isOpen]);
+  useEffect(() => {
+    if (state == null) return;
+    GetCircleNotification();
+  }, [state, isOpen]);
 
-  useEffect(()=>{
-   GetCircleNotification();
-  },[]);
+  useEffect(() => {
+    if (state == null) return;
+    GetCircleNotification();
+  }, [state]);
 
-  const GetCircleNotification = async () => { 
-   try{
-     const response = await getCircleNotification(state._id);
-     console.log(response.data.data);
-     setCircleNotifications(response.data.data);
-   }
-   catch(e){
-     console.log(e);
-   }
+  const GetCircleNotification = async () => {
+    try {
+      const response = await getCircleNotification(state._id);
+      // console.log(response.data.data);
+      setCircleNotifications(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-   }
- 
   return (
     <>
       <div className="navbar">
@@ -90,7 +90,9 @@ function Navbar({ page }) {
           {/*Navbar Notification  */}
           <div className="navbar__notification">
             <div className="navbar__notification__container">
-              <Link to="/Notification"><FontAwesomeIcon icon={faBell} className="notification__icon"/></Link>
+              <Link to="/Notification">
+                <FontAwesomeIcon icon={faBell} className="notification__icon" />
+              </Link>
               <div className="notification__counter">
                 {circleNotifications.length}
               </div>

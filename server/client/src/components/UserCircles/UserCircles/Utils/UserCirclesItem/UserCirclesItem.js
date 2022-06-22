@@ -1,29 +1,33 @@
 // ------ usercirclesItem  ------
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './UserCirclesItem.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./UserCirclesItem.scss";
 
 //Images
-import cresteraIconsV2Board from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png';
-import cresteraIconsV2Note from '../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Note.png';
-import usergroupicon from '../../../../../assets/images/Icons/user group.png'
+import cresteraIconsV2Board from "../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png";
+import cresteraIconsV2Note from "../../../../../assets/images/cresteraIconsV2/cresteraIconsV2-Note.png";
+import usergroupicon from "../../../../../assets/images/Icons/user group.png";
 
 //Fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisVertical,
   faUserFriends,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
-
-function usercirclesItem( props) {
+function usercirclesItem(props) {
   return (
     <div className="usercirclesItem">
       <div className="usercirclesItem__fileIcon">
-      <img src={usergroupicon}/> 
+        <img src={usergroupicon} />
       </div>
       <div className="usercirclesItem__fileName">
-      <Link to={`/usercircle/${props.usercircle._id}`} style={{ textDecoration: 'none' }}><p>{props.usercircle.name}</p></Link> 
+        <Link
+          to={`/usercircle/${props.usercircle._id}`}
+          style={{ textDecoration: "none" }}
+        >
+          <p>{props.usercircle.name}</p>
+        </Link>
       </div>
       <div className="usercirclesItem__middleIcon">
         <div className="usercirclesItem__middleIcon__container">
@@ -31,10 +35,10 @@ function usercirclesItem( props) {
         </div>
       </div>
       <div className="usercirclesItem__title1">
-        <p>{props.usercircle.isPublic ? 'public':'private'}</p>
+        <p>{props.usercircle.isPublic ? "public" : "private"}</p>
       </div>
       <div className="usercirclesItem__title2">
-      <p>{`${props.usercircle.addedBy.firstName} ${props.usercircle.addedBy.lastName} `}</p>
+        <p>{`${props.usercircle.addedBy?.firstName} ${props.usercircle.addedBy?.lastName} `}</p>
       </div>
       <div className="usercirclesItem__setings">
         <div className="usercirclesItem__setings__container">

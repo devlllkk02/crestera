@@ -3,8 +3,8 @@ import "./Login.scss";
 
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { ToastContainer, toast } from "react-toastify";
 import { ToastProperties } from "../../utils/ToastProperties";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../App";
 
@@ -155,7 +155,6 @@ function Login() {
           </div>
         </form>
       </div>
-      <ToastContainer theme="colored" />
     </div>
   );
 }

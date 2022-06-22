@@ -15,7 +15,6 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Components
@@ -216,8 +215,6 @@ function DashBoard() {
           link={"/board"}
         />
       </div>
-      {/* Toast */}
-      <ToastContainer theme="colored" />
       {/* Rename Popup */}
       <div style={{ display: renamePopup }}>
         <DashRenamePopup

@@ -1,4 +1,4 @@
-// ------ Note Controller  ------
+// ------ Board Controller  ------
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -110,6 +110,10 @@ exports.updateSingleBoardController = (req, res) => {
 exports.deleteSingleBoardController = async (req, res) => {
   try {
     const board = await Board.findOne({ _id: req.params.boardId }).exec();
+    let memberIds = [];
+    board.members.forEach((member) => {
+      memberIds.push(member._id);
+    });
 
     if (board.createdBy._id.toString() === req.user._id.toString()) {
       const removedBoard = await board.remove();
@@ -128,7 +132,7 @@ exports.deleteSingleBoardController = async (req, res) => {
         updatedUser: updatedUser,
       });
 
-      //Remove Note Count of Member Users
+      //Remove Board Count of Member Users
       await User.updateMany(
         { _id: { $in: memberIds } },
         {
