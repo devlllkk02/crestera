@@ -68,21 +68,6 @@ app.use("/v1/crestera/folders", require("./routes/FolderRoutes"));
 //? File Routes
 app.use("/v1/crestera/files", require("./routes/FileRoutes"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Modles
 require("./models/User");
 require("./models/Note");
@@ -94,8 +79,6 @@ app.use(require("./routes/NoteRoutes"));
 app.use(require("./routes/BoardRoutes"));
 app.use(require("./routes/MainDashboardRoutes"));
 app.use(require("./routes/ShareRoutes"));
-
-
 
 //Deploy to Heroku
 if (process.env.NODE_ENV == "production") {
