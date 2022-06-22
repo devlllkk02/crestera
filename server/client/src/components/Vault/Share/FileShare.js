@@ -86,7 +86,7 @@ function FileShare() {
         <div className="vaultshare_link_body">
           <div className="vaultshare__linkbox">
             <input
-              placeholder="http://crestera.herokuapp.com/downloadpage/62ae02ae41abdbd4c311ca4f"
+              placeholder={"http://crestera.herokuapp.com/downloadpage/"+`${file._id}`}
               type="text" disabled
             />
           </div>
