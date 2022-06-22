@@ -124,12 +124,12 @@ const UserCircleItem = ({
               <div className="usercircleItem__title2">
                 {/* {(member.member._id==state._id && member.isAdmin )=>setloguserAdmin(true)} */}
                 {loguserAdmin && !member.isAdmin && (
-                  <button className = "usercircle_admin"onClick={() => handleUpdateMember(member._id, true)}>
+                  <button className = "usercircle_add_admin"onClick={() => handleUpdateMember(member._id, true)}>
                     Make Admin
                   </button>
                 )}
                 {loguserOwner && !member.isOwner && member.isAdmin && (
-                  <button className = "usercircle_admin" onClick={() => handleUpdateMember(member._id, false)}>
+                  <button className = "usercircle_remove_admin" onClick={() => handleUpdateMember(member._id, false)}>
                     Remove Admin
                   </button>
                 )}
