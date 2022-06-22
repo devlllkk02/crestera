@@ -106,10 +106,18 @@ exports.updateSingleNoteController = (req, res) => {
 //Delete One Note
 exports.deleteSingleNoteController = async (req, res) => {
   try {
-    const note = await Note.findOne({ _id: req.params.noteId }).exec();
+    const note = await Note.findOne({ _id: req.params.noteId })
+      .populate("members")
+      .exec();
+    let memberIds = [];
+    note.members.forEach((member) => {
+      memberIds.push(member._id);
+    });
 
     if (note.createdBy._id.toString() === req.user._id.toString()) {
       const removedNote = await note.remove();
+
+      //Remove Note Count of Created User
       const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
         {
@@ -121,6 +129,20 @@ exports.deleteSingleNoteController = async (req, res) => {
         message: "Note deleted successfully!",
         removedNote: removedNote,
         updatedUser: updatedUser,
+      });
+
+      //Remove Note Count of Member Users
+      await User.updateMany(
+        { _id: { $in: memberIds } },
+        {
+          $inc: { noteCount: -1 },
+        },
+        { new: true }
+      );
+    } else {
+      res.json({
+        error:
+          "You don't have permission to delete. Deletion terminated!",
       });
     }
   } catch (error) {

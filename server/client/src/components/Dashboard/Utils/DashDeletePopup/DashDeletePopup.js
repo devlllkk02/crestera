@@ -9,7 +9,7 @@ import { ToastProperties } from "../../../../utils/ToastProperties";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { deleteABoard, deleteANote } from "./DashDeletePopupAPI";
 import { getABoard, getANote } from "../DashRenamePopup/DashRenamePopupAPI";
 
@@ -78,6 +78,7 @@ function DashDeletePopup({
           </div>
         </div>
       )}
+      <ToastContainer theme="light" />
     </>
   );
 }

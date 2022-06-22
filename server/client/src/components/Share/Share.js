@@ -11,7 +11,11 @@ import noteIcon from "./../../assets/images/cresteraIconsV2/cresteraIconsV2-Note
 import boardIcon from "./../../assets/images/cresteraIconsV2/cresteraIconsV2-Board.png";
 import { getABoard, getANote } from "./ShareAPI";
 import { DateFormat } from "../../utils/DateFormat";
-import { removeUserFromNote } from "./SharePopup/SharePopupAPI";
+import {
+  removeUserFromBoard,
+  removeUserFromNote,
+} from "./SharePopup/SharePopupAPI";
+import Navbar from "../Navbar/Navbar";
 
 function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
   const navigate = useNavigate();
@@ -21,6 +25,7 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
   //state
   const [file, setFile] = useState();
   const [update, setUpdate] = useState(false);
+  const [btnpopup, setbtnpopup] = useState(false);
 
   //Get and Load Document
   useEffect(() => {
@@ -36,9 +41,10 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
     if (fileType === "note") {
       removeUserFromNote(Id, userId, setUpdate);
     } else {
-      // getABoard(Id, setFile);
+      removeUserFromBoard(Id, userId, setUpdate);
     }
   };
+
   //Updating DOM
   useEffect(() => {
     if (update) {
@@ -46,21 +52,13 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
     }
   }, [update]);
 
-  //!---------------------------------------------
-  const [members, setMembers] = useState([]);
-  const [btnpopup, setbtnpopup] = useState(false);
-
-  useEffect(() => {
-    setMembers(shareMembers);
-    // console.log(shareMembers);
-  }, []);
-
-  const handlePeopleShare = () => {};
-
   return (
     <>
       {file && (
         <div className="share">
+          <div className="share__navbar">
+            <Navbar />
+          </div>
           <div className="share_header">
             <p>SHARE</p>
           </div>
@@ -97,7 +95,6 @@ function Share({ fileType, ID, shareMembers, refresh, setRefresh }) {
                 className="share_linkgroup_button"
                 onClick={() => {
                   setbtnpopup(true);
-                  handlePeopleShare();
                 }}
               >
                 SHARE WITH PEOPLE

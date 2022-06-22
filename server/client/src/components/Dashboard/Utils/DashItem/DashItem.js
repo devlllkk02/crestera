@@ -1,5 +1,5 @@
 // ------ DashItem  ------
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "./DashItem.scss";
 
 //Images
@@ -8,6 +8,7 @@ import cresteraIconsV2Note from "../../../../assets/images/cresteraIconsV2/crest
 
 //Packages
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisVertical,
@@ -23,13 +24,14 @@ function DashItem({
   title1,
   title2,
   shared,
-  currentItemID,
+  currentItem,
   setCurrentItem,
   renamePopup,
   setRenamePopup,
   deletePopup,
   setDeletePopup,
 }) {
+  const { state, dispatch } = useContext(UserContext);
   const dropdownRef = useRef(null);
   const [hidden, setHidden] = useState(true);
 
@@ -103,6 +105,7 @@ function DashItem({
           <div className="dashItem__dropdown__item__icon">
             <FontAwesomeIcon icon={faTrash} />
           </div>
+          {/* {state._id == } */}
           <div className="dashItem__dropdown__item__text">
             <p onClick={() => setDeletePopup("flex")}>Delete</p>
           </div>

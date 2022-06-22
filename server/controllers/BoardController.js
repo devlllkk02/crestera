@@ -88,7 +88,7 @@ exports.getRecommendedBoardsController = async (req, res) => {
 //Get One Board
 exports.getSingleBoardController = (req, res) => {
   Board.findById(req.params.boardId)
-    .populate("createdBy", "-password")
+    .populate("createdBy members", "-password")
     .then((board) => res.send(board))
     .catch((error) => {
       console.log(error);
@@ -113,6 +113,8 @@ exports.deleteSingleBoardController = async (req, res) => {
 
     if (board.createdBy._id.toString() === req.user._id.toString()) {
       const removedBoard = await board.remove();
+
+      //Remove Board Count of Created User
       const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
         {
@@ -124,6 +126,19 @@ exports.deleteSingleBoardController = async (req, res) => {
         message: "Board deleted successfully!",
         removedBoard: removedBoard,
         updatedUser: updatedUser,
+      });
+
+      //Remove Note Count of Member Users
+      await User.updateMany(
+        { _id: { $in: memberIds } },
+        {
+          $inc: { boardCount: -1 },
+        },
+        { new: true }
+      );
+    } else {
+      res.json({
+        error: "You don't have permission to delete. Deletion terminated!",
       });
     }
   } catch (error) {

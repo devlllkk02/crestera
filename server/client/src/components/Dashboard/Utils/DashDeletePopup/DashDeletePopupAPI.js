@@ -1,5 +1,7 @@
 //Dash Delete Popup API
 
+import { toast } from "react-toastify";
+
 export const deleteANote = (noteId, setUpdated) => {
   fetch(`/deletenote/${noteId}`, {
     method: "delete",
@@ -9,7 +11,11 @@ export const deleteANote = (noteId, setUpdated) => {
   })
     .then((res) => res.json())
     .then((result) => {
-      setUpdated(true);
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        setUpdated(true);
+      }
     })
     .catch((error) => console.log(error));
 };
@@ -23,7 +29,12 @@ export const deleteABoard = (boardId, setUpdated) => {
   })
     .then((res) => res.json())
     .then((result) => {
-      setUpdated(true);
+      console.log(result);
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        setUpdated(true);
+      }
     })
     .catch((error) => console.log(error));
 };

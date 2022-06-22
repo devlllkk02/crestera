@@ -6,8 +6,11 @@ import "./SharePopup.scss";
 
 import { addMember, getUsers } from "../../../services/AuthService";
 import {
+  addUserToBoard,
   addUserToNote,
+  getABoardUsers,
   getANoteUsers,
+  removeUserFromBoard,
   removeUserFromNote,
 } from "./SharePopupAPI";
 
@@ -32,7 +35,7 @@ const SharePopup = ({
     if (fileType === "note") {
       getANoteUsers(Id, setUsers);
     } else {
-      // getABoard(Id, setFile);
+      getABoardUsers(Id, setUsers);
     }
   }, []);
 
@@ -42,58 +45,16 @@ const SharePopup = ({
       console.log(userId);
       addUserToNote(Id, userId, setUpdate);
     } else {
-      // getABoard(Id, setFile);
+      addUserToBoard(Id, userId, setUpdate);
     }
   };
 
-  //Remove User
-  const handleRemoveUser = (userId) => {
-    if (fileType === "note") {
-      console.log(userId);
-      removeUserFromNote(Id, userId, setUpdate);
-    } else {
-      // getABoard(Id, setFile);
-    }
-  };
   //Updating DOM
   useEffect(() => {
     if (update) {
       navigate(0);
     }
   }, [update]);
-
-  //!---------------------------
-
-  const GetUsers = async () => {
-    try {
-      const response = await getUsers();
-      // console.log(response.data.data);
-      // setUsers(response.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const addmember = async (member) => {
-    try {
-      const response = await addMember({
-        members: member,
-        id: ID,
-      });
-      settrigger(false);
-      console.log(response);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleSubmit = () => {
-    const members = [];
-    selected.map((select) => members.push(select["value"]));
-    console.log(members);
-
-    members.map((member) => addmember(member));
-  };
 
   return trigger ? (
     <div className="popup">
@@ -102,7 +63,7 @@ const SharePopup = ({
           <FontAwesomeIcon icon={faX} />
         </button>
         <div className="invite_container">
-          <div onSubmit={handleSubmit}>
+          <div>
             <div className="share_header">
               <h1>INVITE PEOPLES & GROUPS</h1>
             </div>
