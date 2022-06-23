@@ -24,6 +24,10 @@
     // background-color: aqua;
     // padding-top: 42px;
 
+    .usercircle_create_button{
+      width:20%;
+      display: flex;
+
     button.usercircles_button {
       background-color: #0f96c3;
       color: $white;
@@ -33,7 +37,7 @@
       //   box-sizing: border-box;
       width: 150px;
       height: 40px;
-      margin-left: 60%;
+      margin-left: 30%;
       .plus_button {
         // color: white;
         margin-left: -10px;
@@ -42,11 +46,17 @@
         margin-left: 5px;
         font-family: 'Roboto';
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 14px;
         line-height: 19px;
       }
+
+      &:hover{
+        background-color: $white;
+        color:#0f96c3;
+      }
     }
+  }
     // .usercircles_search_box {
     //   background: #ffffff;
     //   border: 1px solid rgba(68, 78, 99, 0.3);
