@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function usercirclesSearch({ page, search,
   setSearch, dropdown,
-  setDropdown }) {
+  setDropdown}) {
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };

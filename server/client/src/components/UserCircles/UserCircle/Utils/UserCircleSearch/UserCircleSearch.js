@@ -1,5 +1,5 @@
 // ------ usercircleSearch  ------
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './UserCircleSearch.scss';
 
 //Font Awesome
@@ -7,12 +7,31 @@ import {
   faChevronDown,
   faPlus,
   faSearch,
-  faUserPlus
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddUsersPopup from '../../AddUsersPopup';
+import { UserContext } from '../../../../../App';
 
 function UserCircleSearch({ page, ID, usercircleMembers }) {
+  const { state, dispatch } = useContext(UserContext);
+  const [loguserAdmin, setloguserAdmin] = useState(false);
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    setMembers(usercircleMembers);
+    // console.log(usercircleMembers);
+  }, [usercircleMembers]);
+
+  useEffect(() => {
+    if (members == null) return;
+    console.log(members);
+    members.forEach((member) => {
+      if (member.member._id == state._id && member.isAdmin)
+        setloguserAdmin(true);
+    });
+  }, [members]);
+
   const setCreateButtonBorderStyles = () => {
     if (page === 'board') {
       return { border: '3px solid #582753' };
@@ -80,12 +99,12 @@ function UserCircleSearch({ page, ID, usercircleMembers }) {
         labelledBy="Select"
       />
       </div> */}
-      <button
+      {loguserAdmin && <button
         className="usercircle_addusers_button"
         onClick={() => setbtnpopup(true)}
       >
         <span>ADD USERS</span>
-      </button>
+      </button>}
       <AddUsersPopup
         trigger={btnpopup}
         settrigger={setbtnpopup}

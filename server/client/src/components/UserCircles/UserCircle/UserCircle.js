@@ -23,7 +23,7 @@ import UserCircleItem from './Utils/UserCircleItem/UserCircleItem';
 
 import { useParams } from 'react-router';
 import { UserContext } from '../../../App';
-import { getCircle, getUsers, addMember} from '../../../services/AuthService';
+import { getCircle, getUsers, addMember } from '../../../services/AuthService';
 
 function UserCircle() {
   const { state, dispatch } = useContext(UserContext);
@@ -34,7 +34,7 @@ function UserCircle() {
   const { usercircleId } = useParams();
   const [usercircle, setUserCircle] = useState([]);
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function UserCircle() {
   }, []);
   useEffect(() => {
     loadUserCircle();
-  }, [btnpopup,refresh]);
+  }, [btnpopup, refresh]);
   useEffect(() => {
     setMembers(usercircle.members);
     // console.log(usercircleMembers);
@@ -62,8 +62,7 @@ function UserCircle() {
     if (members == null) return;
     console.log(members);
     members.forEach((member) => {
-      if (member.member._id == state._id)
-        setloguser(false);
+      if (member.member._id == state._id) setloguser(true);
     });
   }, [members]);
 
@@ -91,34 +90,36 @@ function UserCircle() {
     }
   };
 
-
-  const handleJoin  = async () => {
+  const handleJoin = async () => {
     console.log(usercircle._id);
-      try {
-        const response1 = await addMember({
-          id: usercircle._id,
-          members: state._id,
-          isOwner: false,
-          isAdmin: false,
-          isPending: false,
-        });
-        console.log(response1);
-      } catch (e) {
-        console.log(e);
-      }
-    };
+    try {
+      const response1 = await addMember({
+        id: usercircle._id,
+        members: state._id,
+        isOwner: false,
+        isAdmin: false,
+        isPending: false,
+      });
+      console.log(response1);
+      window.location.reload(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="usercircle">
       <div className="usercircle_header">
         <p>{usercircle.name}</p>
-      {loguserAdmin && <button className="btnEdit">
-          <FontAwesomeIcon
-            className="user_circle_edit_icon"
-            icon={faPen}
-            onClick={() => setbtnpopup(true)}
-          />
-        </button>}
+        {loguserAdmin && (
+          <button className="btnEdit">
+            <FontAwesomeIcon
+              className="user_circle_edit_icon"
+              icon={faPen}
+              onClick={() => setbtnpopup(true)}
+            />
+          </button>
+        )}
         <UserCircleUpdatePopup
           trigger={btnpopup}
           settrigger={setbtnpopup}
@@ -142,17 +143,26 @@ function UserCircle() {
           </div>
         </div> */}
         <div className="usercircle__search">
-          <UserCircleSearch page="crestera" ID={usercircleId}  search={search}
-          setSearch={setSearch}/>
-           {usercircle.isPublic==true && loguser && <button className='usercircle_join_button'onClick={() => handleJoin(state._id)}>Join Circle</button>}
+          <UserCircleSearch
+            page="crestera"
+            ID={usercircleId}
+            search={search}
+            setSearch={setSearch}
+            usercircleMembers={usercircle.members}
+          />
+          {usercircle.isPublic == true && !loguser && 
+            <button
+              className="usercircle_join_button"
+              onClick={() => handleJoin(state._id)}
+            >
+              Join Circle
+            </button>
+          }
         </div>
       </div>
       <div className="User_Circles_List">
         <div className="usercircle__header">
-          <UserCircleHeader
-            title1="Username"
-            title2="Type"
-          />
+          <UserCircleHeader title1="Username" title2="Type" />
         </div>
         <div className="usercircle__items">
           <UserCircleItem
