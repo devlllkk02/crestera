@@ -43,6 +43,9 @@ const FolderShareMembers = ({ folderMembers, folderId ,refresh , setRefresh}) =>
 
   return (
     <div className='foldershare_box'>
+      <div className='foldershare_people_header'>
+      <p>SHARED PEOPLE</p>
+      </div>
       {members &&
         members.map((member) => (
           < >
