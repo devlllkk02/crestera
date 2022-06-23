@@ -42,7 +42,7 @@ function usercirclesSearch({ page, search,
 
   return (
     <div className="usercirclesSearch">
-      <div className="usercirclesSearch__button">
+      {/* <div className="usercirclesSearch__button">
         {page != 'crestera' && (
           <button style={setCreateButtonBorderStyles()}>
             <div
@@ -58,7 +58,7 @@ function usercirclesSearch({ page, search,
             </div>
           </button>
         )}
-      </div>
+      </div> */}
       <div className="usercirclesSearch__searchbox1">
         <input type="text" placeholder="Search" value={search}
           onChange={(e) => setSearch(e.target.value)}/>
