@@ -23,11 +23,12 @@ import UserCircleItem from './Utils/UserCircleItem/UserCircleItem';
 
 import { useParams } from 'react-router';
 import { UserContext } from '../../../App';
-import { getCircle, getUsers} from '../../../services/AuthService';
+import { getCircle, getUsers, addMember} from '../../../services/AuthService';
 
 function UserCircle() {
   const { state, dispatch } = useContext(UserContext);
   const [loguserAdmin, setloguserAdmin] = useState(false);
+  const [loguser, setloguser] = useState(false);
   const [btnpopup, setbtnpopup] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const { usercircleId } = useParams();
@@ -57,6 +58,15 @@ function UserCircle() {
     });
   }, [members]);
 
+  useEffect(() => {
+    if (members == null) return;
+    console.log(members);
+    members.forEach((member) => {
+      if (member.member._id == state._id)
+        setloguser(false);
+    });
+  }, [members]);
+
   //load folder by id
   const loadUserCircle = async () => {
     try {
@@ -80,6 +90,23 @@ function UserCircle() {
       console.log(e);
     }
   };
+
+
+  const handleJoin  = async () => {
+    console.log(usercircle._id);
+      try {
+        const response1 = await addMember({
+          id: usercircle._id,
+          members: state._id,
+          isOwner: false,
+          isAdmin: false,
+          isPending: false,
+        });
+        console.log(response1);
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
   return (
     <div className="usercircle">
@@ -117,7 +144,7 @@ function UserCircle() {
         <div className="usercircle__search">
           <UserCircleSearch page="crestera" ID={usercircleId}  search={search}
           setSearch={setSearch}/>
-           {usercircle.isPublic==true && <button className='usercircle_join_button'>Join Circle</button>}
+           {usercircle.isPublic==true && loguser && <button className='usercircle_join_button'onClick={() => handleJoin(state._id)}>Join Circle</button>}
         </div>
       </div>
       <div className="User_Circles_List">
