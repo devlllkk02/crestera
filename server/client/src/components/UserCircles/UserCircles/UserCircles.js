@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "@fontsource/roboto";
 import "./UserCircles.scss";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -113,12 +114,12 @@ function UserCircles() {
             <p>USER CIRCLES</p>
           </div>
           <div className="usercircles_header_container">
-            <Link to="/UserCirclesCreate" style={{ textDecoration: "none" }}>
-              <button className="usercircles_button" disabled>
+            <NavLink to="/UserCirclesCreate" style={{ textDecoration: "none" }} className="usercircle_create_button">
+              <button className="usercircles_button" >
                 <FontAwesomeIcon className="plus_button " icon={faPlus} />
                 <span>Create Circle</span>
               </button>
-            </Link>
+            </NavLink>
             {/* <div className="usercircles_search_box">
     <div className="usercircles_search_form">
       <form>
